@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.Pool;
 
 namespace UnityEngine.UI
 {
@@ -17,7 +18,7 @@ namespace UnityEngine.UI
         // So this struct gets used as a key to a dictionary, so we need to guarantee a constant Hash value.
         private int m_CachedHashFromTransform;
 
-        static ObjectPool<LayoutRebuilder> s_Rebuilders = new ObjectPool<LayoutRebuilder>(null, x => x.Clear());
+        static ObjectPool<LayoutRebuilder> s_Rebuilders = new ObjectPool<LayoutRebuilder>(() => new LayoutRebuilder(), null, x => x.Clear());
 
         private void Initialize(RectTransform controller)
         {
@@ -114,7 +115,19 @@ namespace UnityEngine.UI
                 // Then call the remaining, such as layout groups that change their children, taking their own RectTransform size into account.
                 for (int i = 0; i < components.Count; i++)
                     if (!(components[i] is ILayoutSelfController))
-                        action(components[i]);
+                    {
+                        var scrollRect = components[i];
+
+                        if (scrollRect && scrollRect is UnityEngine.UI.ScrollRect)
+                        {
+                            if (((UnityEngine.UI.ScrollRect)scrollRect).content != rect)
+                                action(components[i]);
+                        }
+                        else
+                        {
+                            action(components[i]);
+                        }
+                    }
 
                 for (int i = 0; i < rect.childCount; i++)
                     PerformLayoutControl(rect.GetChild(i) as RectTransform, action);
@@ -135,7 +148,7 @@ namespace UnityEngine.UI
             // If there are no controllers on this rect we can skip this entire sub-tree
             // We don't need to consider controllers on children deeper in the sub-tree either,
             // since they will be their own roots.
-            if (components.Count > 0  || rect.GetComponent(typeof(ILayoutGroup)))
+            if (components.Count > 0  || rect.TryGetComponent(typeof(ILayoutGroup), out _))
             {
                 // Layout calculations needs to executed bottom up with children being done before their parents,
                 // because the parent calculated sizes rely on the sizes of the children.
