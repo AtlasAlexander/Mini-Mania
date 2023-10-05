@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2592834634489832757}
   - component: {fileID: 557683310716909340}
   - component: {fileID: 5746515299123698936}
+  - component: {fileID: 6735641802201547012}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -92,6 +93,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953525018959683129}
   m_Enabled: 1
+--- !u!114 &6735641802201547012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953525018959683129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd23dc7edb450f640a22e4140bd916a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 1
 --- !u!1 &1277057347166123594
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +200,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277057347166123594}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d95a3db05cace6c498f021136fc7adcf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -214,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee7abf6f7331c84087fb768f8c46e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 100
+  moveSpeed: 200
 --- !u!54 &4846153277263834680
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -240,5 +254,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0

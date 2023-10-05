@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveVector = Vector2.zero;      // The players direction
     private Rigidbody rb = null;                    // Used for physics of movement
     [SerializeField] private float moveSpeed;       // How fast the player will move
+    private Vector3 playerMovement = Vector3.zero;  // Player moving in a 3D space
 
     // Start is called before the first frame update
     private void Awake()
@@ -37,8 +38,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Calculated movement every frame using velocity
-        rb.velocity = new Vector3((moveVector.x * moveSpeed) * Time.fixedDeltaTime, 0.0f, 
+        playerMovement = new Vector3((moveVector.x * moveSpeed) * Time.fixedDeltaTime, 0.0f, 
             (moveVector.y * moveSpeed) * Time.fixedDeltaTime);
+
+        // Gets the players transform to move in world space
+        rb.velocity = transform.TransformDirection(playerMovement);
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
