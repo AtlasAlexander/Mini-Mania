@@ -1,57 +1,51 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    private CharacterController controller;                     // CharacterController component
+    private Vector3 playerVelocity;                             // player jump/gravity force
+    //private bool groundedPlayer;                              // Checking if player is on the ground
+    private InputManager inputManager;                          // Player input system
+    //private Oxygen oxygen;
+    private Transform cameraTransform;                          // Camera transform
 
-    private InputSystem inputSystem = null;         // Unity's new input system
-    private Vector2 moveVector = Vector2.zero;      // The players direction
-    private Rigidbody rb = null;                    // Used for physics of movement
-    [SerializeField] private float moveSpeed;       // How fast the player will move
-    private Vector3 playerMovement = Vector3.zero;  // Player moving in a 3D space
+    [SerializeField] private float playerSpeed = 2.0f;          // How fast the player will move
+    //[SerializeField] private float jumpHeight = 1.0f;         // How high the player will jump
+    [SerializeField] private float gravityValue = -9.81f;       // The strength of the gravity
 
-    // Start is called before the first frame update
-    private void Awake()
+    private void Start()
     {
-        // An instance of Unity's new input system
-        inputSystem = new InputSystem();
-
-        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();       // Getting the character controller
+        inputManager = InputManager.Instance;                   // An instance of the input system
+        cameraTransform = Camera.main.transform;                // Getting the transform of camera
+        //oxygen = FindObjectOfType<Oxygen>();
     }
 
-
-    private void OnEnable()
+    private void Update()
     {
-        inputSystem.Enable();
-        inputSystem.Player.Movement.performed += OnMovementPerformed;   // Enable when an input is performed
-        inputSystem.Player.Movement.canceled += OnMovementCanceled;     // Enable when there is no input
-    }
+        /*groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }*/
 
-    private void OnDisable()
-    {
-        inputSystem.Disable();
-        inputSystem.Player.Movement.performed -= OnMovementPerformed;   // Disable when there is no input performed
-        inputSystem.Player.Movement.canceled -= OnMovementCanceled;     // Diable when an input has been performed
-    }
+        Vector2 movement = inputManager.GetMovement();                              // Get the movement from input manager
+        Vector3 move = new Vector3(movement.x, 0.0f, movement.y);                   // Have movement up, down, left, right
+        move = cameraTransform.forward * move.z + cameraTransform.right * move.x;   // Player will turn with the camera
+        controller.Move(playerSpeed * Time.deltaTime * move);                       // Overall movement functionality
 
-    // Update is called once per frame
-    private void FixedUpdate()
-    {
-        // Calculated movement every frame using velocity
-        playerMovement = new Vector3((moveVector.x * moveSpeed) * Time.fixedDeltaTime, 0.0f, 
-            (moveVector.y * moveSpeed) * Time.fixedDeltaTime);
+        // Changes the height position of the player..
+        /*if (Input.GetButtonDown("Jump") && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }*/
 
-        // Gets the players transform to move in world space
-        rb.velocity = transform.TransformDirection(playerMovement);
-    }
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
 
-    private void OnMovementPerformed(InputAction.CallbackContext value)
-    {
-        moveVector = value.ReadValue<Vector2>();    // Get the value of input vector
-    }
-
-    private void OnMovementCanceled(InputAction.CallbackContext value)
-    {
-        moveVector = Vector2.zero;  // vector goes to zero when there is no input
+        
+        //oxygen.ReplenishOxygen(10);
+        
     }
 }
