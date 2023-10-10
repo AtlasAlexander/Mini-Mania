@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     //[SerializeField] float damage = 30f;
-    [SerializeField, Range(0.1f, 0.1f)] float changeAmount;
+    [SerializeField, Range(0.1f, 0.5f)] float changeAmount;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] GameObject sizeHitEffect;
