@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -53,6 +54,11 @@ public class InputManager : MonoBehaviour
     {
         // Getting value vector2 for the camera
         return inputSystem.Player.Look.ReadValue<Vector2>();
+    }
+
+    public float GetJumpButton()
+    {
+        return inputSystem.Player.Jump.ReadValue<float>();
     }
 
 }
