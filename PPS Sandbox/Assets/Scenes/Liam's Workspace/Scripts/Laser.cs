@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class laser : MonoBehaviour
 {
 
     private LineRenderer lr;
     public GameObject player;
+
     void Start()
     {
         lr = GetComponent<LineRenderer>();
@@ -26,13 +29,18 @@ public class laser : MonoBehaviour
     {
         lr.SetPosition(0, transform.position);
         RaycastHit hit;
+
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            if (hit.collider)
+            if (hit.collider.CompareTag("Player"))
             {
                 lr.SetPosition(1, hit.point);
                 //Kill
-                Destroy(player);
+                Destroy(hit.collider.gameObject);
+            }
+            else
+            {
+                lr.SetPosition(1, hit.point);
             }
         }
         else lr.SetPosition(1, transform.forward * 5000);
