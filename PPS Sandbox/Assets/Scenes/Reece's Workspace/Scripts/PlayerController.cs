@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;                     // CharacterController component
-    [SerializeField] private Vector3 playerVelocity;                             // player jump/gravity force
+    private Vector3 playerVelocity;                             // player jump/gravity force
     private bool groundedPlayer;                                // Checking if player is on the ground
     private InputManager inputManager;                          // Player input system
     private Transform cameraTransform;                          // Camera transform
@@ -33,12 +33,13 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = inputManager.GetMovement();                              // Get the movement from input manager
         Vector3 move = new Vector3(movement.x, 0.0f, movement.y);                   // Have movement up, down, left, right
         move = cameraTransform.forward * move.z + cameraTransform.right * move.x;   // Player will turn with the camera
-        controller.Move(playerSpeed * Time.deltaTime * move);                       // Overall movement functionality
+        move.y = 0.0f;                                                              // Keeps the camera transform in position
+        controller.Move(move * Time.deltaTime * playerSpeed);                       // Overall movement functionality
 
-        float jump = inputManager.GetJumpButton();
+        bool jump = inputManager.PlayerJumpedThisFrame();                           // Calling in jump input from input manager
 
         // Changes the height position of the player..
-        if (jump > 0.5f && groundedPlayer)
+        if (jump && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }

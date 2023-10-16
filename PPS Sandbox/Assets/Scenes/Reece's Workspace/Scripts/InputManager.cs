@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -56,9 +55,9 @@ public class InputManager : MonoBehaviour
         return inputSystem.Player.Look.ReadValue<Vector2>();
     }
 
-    public float GetJumpButton()
+    public bool PlayerJumpedThisFrame()
     {
-        return inputSystem.Player.Jump.ReadValue<float>();
+        return inputSystem.Player.Jump.triggered;
     }
 
 }

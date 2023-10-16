@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,6 +345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469304697513271573, guid: dcd2aba7f0dfcfa44bcf2d57b05edaf1,
+        type: 3}
+      propertyPath: m_UpdateMethod
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4828699013729193467, guid: dcd2aba7f0dfcfa44bcf2d57b05edaf1,
         type: 3}
@@ -847,7 +852,8 @@ PrefabInstance:
       propertyPath: gravityValue
       value: -9.81
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1395281023130298280, guid: 19064679a3e2bb145831e23e4f9c2828, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2222931223194200077, guid: 19064679a3e2bb145831e23e4f9c2828,
