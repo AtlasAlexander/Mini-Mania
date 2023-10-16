@@ -55,9 +55,9 @@ public class InputManager : MonoBehaviour
         return inputSystem.Player.Look.ReadValue<Vector2>();
     }
 
-    public bool PlayerJumpedThisFrame()
+    public float GetJumpInput()
     {
-        return inputSystem.Player.Jump.triggered;
+        return inputSystem.Player.Jump.ReadValue<float>();
     }
 
 }

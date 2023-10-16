@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.0f;           // How high the player will jump
     [SerializeField] private float gravityValue = -9.81f;       // The strength of the gravity
 
+    private readonly float distanceFromGround = 0.0f;           // Evaluates how far player is from ground
+    private readonly float none = 0.0f;                         // float with nothing in it
+    private readonly float inputPress = 0.5f;                   // Evaluating jump input value
+    private readonly float force = -3.0f;                       // Evaluates the force of gravity
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();       // Getting the character controller
@@ -22,30 +27,44 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        IsPlayerGrounded();     // If the player touches the ground enable the jump
+        GetPlayerMovement();    // Gets player movement and camera controls
+        GetPlayerJump();        // Get player jumping mechanic
+    }
+
+    private void IsPlayerGrounded()
+    {
         groundedPlayer = controller.isGrounded;
 
-        if (groundedPlayer && playerVelocity.y < 0f)
+        if (groundedPlayer && playerVelocity.y < distanceFromGround)
         {
-            playerVelocity.y = 0f;
+            playerVelocity.y = 0.0f;
         }
+    }
 
-
+    private void GetPlayerMovement()
+    {
         Vector2 movement = inputManager.GetMovement();                              // Get the movement from input manager
-        Vector3 move = new Vector3(movement.x, 0.0f, movement.y);                   // Have movement up, down, left, right
+        Vector3 move = new(movement.x, none, movement.y);                           // Have movement up, down, left, right
         move = cameraTransform.forward * move.z + cameraTransform.right * move.x;   // Player will turn with the camera
         move.y = 0.0f;                                                              // Keeps the camera transform in position
-        controller.Move(move * Time.deltaTime * playerSpeed);                       // Overall movement functionality
+        move.Normalize();                                                           // Keeps consistent movement when looking around
+        float cameraYRotation = cameraTransform.rotation.eulerAngles.y;             // Get the camera rotation Y-axis
+        transform.rotation = Quaternion.Euler(none, cameraYRotation, none);         // Apply camera Y-axis to rotate player in the Y
+        controller.Move(playerSpeed * Time.deltaTime * move);                       // Overall movement functionality
+    }
 
-        bool jump = inputManager.PlayerJumpedThisFrame();                           // Calling in jump input from input manager
+    private void GetPlayerJump()
+    {
+        float jumpInput = inputManager.GetJumpInput();                              // Calling in jump input from input manager
 
         // Changes the height position of the player..
-        if (jump && groundedPlayer)
+        if (jumpInput > inputPress && groundedPlayer)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * force * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-        
     }
 }
