@@ -15,14 +15,14 @@ public class laser : MonoBehaviour
         lr = GetComponent<LineRenderer>();
     }
 
-    private void OnTriggerEnter(Collider other)
+  /*  private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player killed");
             Destroy(other.gameObject);
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -35,7 +35,7 @@ public class laser : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 lr.SetPosition(1, hit.point);
-                //Kill
+                //Kill player
                 Destroy(hit.collider.gameObject);
             }
             else
