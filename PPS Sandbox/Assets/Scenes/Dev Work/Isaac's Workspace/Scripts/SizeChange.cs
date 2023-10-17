@@ -16,7 +16,7 @@ public class SizeChange : MonoBehaviour
         }
         if(ammoType.ToString() == "Grow")
         {
-            IncreaseObject(changeAmount);
+            GrowObject(changeAmount);
         }
     }
 
@@ -42,7 +42,7 @@ public class SizeChange : MonoBehaviour
         }
     }
 
-    void IncreaseObject(float changeAmount)
+    void GrowObject(float changeAmount)
     {
         //Debug.Log("working increase " + changeAmount);
         Vector3 currentSize = GetComponent<Transform>().localScale;
