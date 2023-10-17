@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] GameObject sizeHitEffect;
+    [SerializeField] GameObject mirrorHitEffect;
     [SerializeField] Ammo ammoSlot;
     [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShots = 0.5f;
@@ -75,19 +76,29 @@ public class Weapon : MonoBehaviour
             CreateHitImpact(hit);
 
             SizeChange target = hit.transform.GetComponent<SizeChange>();
+            Mirror mirror = hit.transform.GetComponent<Mirror>();
 
             //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-            if (target == null)
+            if (target == null && mirror == null)
             {
                 CreateHitImpact(hit);
                 return;
             }
-            else
+            if(target != null)
             {
                 CreateSizeHitImpact(hit);
                 //target.TakeDamage(damage);
                 target.ChangeSize(ammoType, changeAmount);
                 
+            }
+            if(mirror != null)
+            {
+                CreateMirrorHitImpact(hit);
+                mirror.MirrorSizeChange(ammoType);
+            }
+            else 
+            {
+                return;
             }
             
         }
@@ -105,6 +116,12 @@ public class Weapon : MonoBehaviour
     private void CreateSizeHitImpact(RaycastHit hit)
     {
         GameObject impact = Instantiate(sizeHitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+        Destroy(impact, 1);
+    }
+
+    private void CreateMirrorHitImpact(RaycastHit hit)
+    {
+        GameObject impact = Instantiate(mirrorHitEffect, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(impact, 1);
     }
 }
