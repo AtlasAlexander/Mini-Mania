@@ -55,4 +55,9 @@ public class InputManager : MonoBehaviour
         return inputSystem.Player.Look.ReadValue<Vector2>();
     }
 
+    public float GetJumpInput()
+    {
+        return inputSystem.Player.Jump.ReadValue<float>();
+    }
+
 }
