@@ -2,6 +2,6 @@
 public enum AmmoType
 {
     Shrink,
-    Increase,
+    Grow,
     Bullets
 }

@@ -33,7 +33,7 @@ public class Mirror : MonoBehaviour
             ShrinkPlayer();
 
         }
-        if (ammoType.ToString() == "Increase" && inRange)
+        if (ammoType.ToString() == "Grow" && inRange)
         {
             GrowPlayer();
         }
@@ -89,7 +89,7 @@ public class Mirror : MonoBehaviour
         CheckSmallest();
         CheckLargest();
 
-        Debug.Log(inRange);
+        //Debug.Log(inRange);
     }
 
     void CheckSmallest()

@@ -14,7 +14,7 @@ public class SizeChange : MonoBehaviour
             ShrinkObject(changeAmount);
             
         }
-        if(ammoType.ToString() == "Increase")
+        if(ammoType.ToString() == "Grow")
         {
             IncreaseObject(changeAmount);
         }
