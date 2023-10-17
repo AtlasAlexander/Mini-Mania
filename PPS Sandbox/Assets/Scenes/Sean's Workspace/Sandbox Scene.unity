@@ -1357,6 +1357,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 873831586023948407, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
+        type: 3}
+      propertyPath: m_VerticalAxis.m_AccelTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 873831586023948407, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
+        type: 3}
+      propertyPath: m_VerticalAxis.m_DecelTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 873831586023948407, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
+        type: 3}
+      propertyPath: m_HorizontalAxis.m_AccelTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 873831586023948407, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
+        type: 3}
+      propertyPath: m_HorizontalAxis.m_DecelTime
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1042920913193577629, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
         type: 3}
       propertyPath: ammoText
