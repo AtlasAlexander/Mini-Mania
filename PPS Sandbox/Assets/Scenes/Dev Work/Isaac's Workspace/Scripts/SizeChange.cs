@@ -14,15 +14,15 @@ public class SizeChange : MonoBehaviour
             ShrinkObject(changeAmount);
             
         }
-        if(ammoType.ToString() == "Increase")
+        if(ammoType.ToString() == "Grow")
         {
-            IncreaseObject(changeAmount);
+            GrowObject(changeAmount);
         }
     }
 
     void ShrinkObject(float changeAmount)
     {
-        Debug.Log("working shrink " + changeAmount);
+        //Debug.Log("working shrink " + changeAmount);
         Vector3 currentSize = GetComponent<Transform>().localScale;
 
         if(currentSize != smallestSize)
@@ -42,7 +42,7 @@ public class SizeChange : MonoBehaviour
         }
     }
 
-    void IncreaseObject(float changeAmount)
+    void GrowObject(float changeAmount)
     {
         //Debug.Log("working increase " + changeAmount);
         Vector3 currentSize = GetComponent<Transform>().localScale;

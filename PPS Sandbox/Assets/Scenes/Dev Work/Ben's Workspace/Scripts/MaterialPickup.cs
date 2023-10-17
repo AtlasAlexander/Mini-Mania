@@ -5,8 +5,12 @@ using TMPro;
 
 public class MaterialPickup : MonoBehaviour
 {
-    public TextMeshProUGUI materialsText;
+    private InputManager inputManager;
+    [SerializeField] private TextMeshProUGUI materialsText;
+    [SerializeField] private GameObject pressE;
     private GameObject growthRay;
+    [SerializeField] private GameObject FinishedGrowthRay;
+    private bool rayBuilt = false;
 
     //amount of mats needed to build gun (edit in inspector)
     public int materialsNeeded;
@@ -15,17 +19,30 @@ public class MaterialPickup : MonoBehaviour
     private void Start()
     {
         growthRay = GameObject.FindGameObjectWithTag("GrowthRay");
+        inputManager = InputManager.Instance;
     }
 
     private void Update()
     {
         //Update the amount of mats collected on UI
         materialsText.text = "Mats Collected: " + materialsCollected.ToString();
-
-        if (materialsCollected >= materialsNeeded && Vector3.Distance(gameObject.transform.position, growthRay.transform.position) < 5)
+        if (!rayBuilt)
         {
-            print("Build");
+            if (materialsCollected >= materialsNeeded && Vector3.Distance(gameObject.transform.position, growthRay.transform.position) < 5)
+            {
+                pressE.SetActive(true);
+                if (inputManager.GetInteraction() > 0)
+                {
+                    Instantiate(FinishedGrowthRay, growthRay.transform.position, Quaternion.identity);
+                    Destroy(growthRay);
+                    rayBuilt = true;
+                }
+            }
+            else
+                pressE.SetActive(false);
         }
+        else
+            pressE.SetActive(false);
     }
 
     //Called when player collides with another object
