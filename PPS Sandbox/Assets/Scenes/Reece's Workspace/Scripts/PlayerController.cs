@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         move.y = 0.0f;                                                              // Keeps the camera transform in position
         move.Normalize();                                                           // Keeps consistent movement when looking around
         float cameraYRotation = cameraTransform.rotation.eulerAngles.y;             // Get the camera rotation Y-axis
-        transform.rotation = Quaternion.Euler(none, cameraYRotation, none);         // Apply camera Y-axis to rotate player in the Y
+        //transform.rotation = Quaternion.Euler(none, cameraYRotation, none);       // Apply camera Y-axis to rotate player in the Y
         controller.Move(playerSpeed * Time.deltaTime * move);                       // Overall movement functionality
     }
 

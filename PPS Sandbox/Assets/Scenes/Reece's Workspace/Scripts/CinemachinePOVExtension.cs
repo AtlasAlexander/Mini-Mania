@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CinemachinePOVExtension : CinemachineExtension
 {
-    [SerializeField] private float horizontalSpeed = 1.0f;      // Camera horizontal rotation speed
-    [SerializeField] private float verticalSpeed = 1.0f;        // Camera vertical rotation speed
+    private readonly float horizontalSpeed = 1.0f;              // Camera horizontal rotation speed
+    private readonly float verticalSpeed = 1.0f;                // Camera vertical rotation speed
     [SerializeField] private float clampAngle = 80.0f;          // Camera clamp in vertical motion
 
     private InputManager inputManager;                          
@@ -37,7 +37,7 @@ public class CinemachinePOVExtension : CinemachineExtension
                     startingRotation.y = Mathf.Clamp(startingRotation.y, -clampAngle, clampAngle);
 
                     // The overall orientation of the first person camera
-                    state.RawOrientation = Quaternion.Euler(startingRotation.y, startingRotation.x, 0.0f);
+                    state.RawOrientation = Quaternion.Euler(startingRotation.y, startingRotation.x, 0.0f).normalized;
                 }
             }
         }
