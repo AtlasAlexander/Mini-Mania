@@ -60,4 +60,19 @@ public class InputManager : MonoBehaviour
         return inputSystem.Player.Jump.ReadValue<float>();
     }
 
+    public float GetPlayerScaleBig()
+    {
+        return inputSystem.Player.PlayerScaleBig.ReadValue<float>();
+    }
+
+    public float GetPlayerScaleNormal()
+    {
+        return inputSystem.Player.PlayerScaleNormal.ReadValue<float>();
+    }
+
+    public float GetPlayerScaleSmall()
+    {
+        return inputSystem.Player.PlayerScaleSmall.ReadValue<float>();
+    }
+
 }

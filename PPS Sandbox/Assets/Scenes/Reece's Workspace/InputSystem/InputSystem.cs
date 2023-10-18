@@ -62,6 +62,33 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Player Scale Big"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1149a97-ac41-424a-a0d8-c4bda9ee5507"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Player Scale Normal"",
+                    ""type"": ""Button"",
+                    ""id"": ""81ecf78a-7801-4a9c-8730-ed950553f065"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Player Scale Small"",
+                    ""type"": ""Button"",
+                    ""id"": ""22cf914b-f5a6-4abb-840c-7fea6ce91362"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,6 +212,39 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47e81b00-6d55-4384-8b81-852c67cda914"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player Scale Big"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7e9dd7e-3534-48f2-a95d-8d642a1d4dca"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player Scale Normal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99447b10-2138-44d7-9c7e-97228f2bfae8"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player Scale Small"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +268,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_PlayerScaleBig = m_Player.FindAction("Player Scale Big", throwIfNotFound: true);
+        m_Player_PlayerScaleNormal = m_Player.FindAction("Player Scale Normal", throwIfNotFound: true);
+        m_Player_PlayerScaleSmall = m_Player.FindAction("Player Scale Small", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +336,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_PlayerScaleBig;
+    private readonly InputAction m_Player_PlayerScaleNormal;
+    private readonly InputAction m_Player_PlayerScaleSmall;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -281,6 +347,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @PlayerScaleBig => m_Wrapper.m_Player_PlayerScaleBig;
+        public InputAction @PlayerScaleNormal => m_Wrapper.m_Player_PlayerScaleNormal;
+        public InputAction @PlayerScaleSmall => m_Wrapper.m_Player_PlayerScaleSmall;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,6 +371,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @PlayerScaleBig.started += instance.OnPlayerScaleBig;
+            @PlayerScaleBig.performed += instance.OnPlayerScaleBig;
+            @PlayerScaleBig.canceled += instance.OnPlayerScaleBig;
+            @PlayerScaleNormal.started += instance.OnPlayerScaleNormal;
+            @PlayerScaleNormal.performed += instance.OnPlayerScaleNormal;
+            @PlayerScaleNormal.canceled += instance.OnPlayerScaleNormal;
+            @PlayerScaleSmall.started += instance.OnPlayerScaleSmall;
+            @PlayerScaleSmall.performed += instance.OnPlayerScaleSmall;
+            @PlayerScaleSmall.canceled += instance.OnPlayerScaleSmall;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -318,6 +396,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @PlayerScaleBig.started -= instance.OnPlayerScaleBig;
+            @PlayerScaleBig.performed -= instance.OnPlayerScaleBig;
+            @PlayerScaleBig.canceled -= instance.OnPlayerScaleBig;
+            @PlayerScaleNormal.started -= instance.OnPlayerScaleNormal;
+            @PlayerScaleNormal.performed -= instance.OnPlayerScaleNormal;
+            @PlayerScaleNormal.canceled -= instance.OnPlayerScaleNormal;
+            @PlayerScaleSmall.started -= instance.OnPlayerScaleSmall;
+            @PlayerScaleSmall.performed -= instance.OnPlayerScaleSmall;
+            @PlayerScaleSmall.canceled -= instance.OnPlayerScaleSmall;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -359,5 +446,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnPlayerScaleBig(InputAction.CallbackContext context);
+        void OnPlayerScaleNormal(InputAction.CallbackContext context);
+        void OnPlayerScaleSmall(InputAction.CallbackContext context);
     }
 }

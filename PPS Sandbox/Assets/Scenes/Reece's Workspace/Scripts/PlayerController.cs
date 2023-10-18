@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
         IsPlayerGrounded();     // If the player touches the ground enable the jump
         GetPlayerMovement();    // Gets player movement and camera controls
         GetPlayerJump();        // Get player jumping mechanic
+        
+        GetChangePlayerScaleBig();      //Get Player Big Cheat
+        GetChangePlayerScaleNormal();   //Get Player Normal Cheat
+        GetChangePlayerScaleSmall();    //Get Plater Small Cheat
     }
 
     private void IsPlayerGrounded()
@@ -66,6 +70,36 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void GetChangePlayerScaleBig()
+    {
+        float bigScaleInput = inputManager.GetPlayerScaleBig();
+
+        if(bigScaleInput > inputPress)
+        {
+            ChangePlayerScale(5);
+        }
+    }
+
+    private void GetChangePlayerScaleNormal()
+    {
+        float normalScaleInput = inputManager.GetPlayerScaleNormal();
+
+        if (normalScaleInput > inputPress)
+        {
+            ChangePlayerScale(1);
+        }
+    }
+
+    private void GetChangePlayerScaleSmall()
+    {
+        float smallScaleInput = inputManager.GetPlayerScaleSmall();
+
+        if (smallScaleInput > inputPress)
+        {
+            ChangePlayerScale(0.2f);
+        }
     }
 
     private void ChangePlayerScale(float playerScale)
