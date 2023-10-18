@@ -25,24 +25,24 @@ public class MaterialPickup : MonoBehaviour
     private void Update()
     {
         //Update the amount of mats collected on UI
-        materialsText.text = "Mats Collected: " + materialsCollected.ToString();
-        if (!rayBuilt)
-        {
-            if (materialsCollected >= materialsNeeded && Vector3.Distance(gameObject.transform.position, growthRay.transform.position) < 5)
-            {
-                pressE.SetActive(true);
-                if (inputManager.GetInteraction() > 0)
-                {
-                    Instantiate(FinishedGrowthRay, growthRay.transform.position, Quaternion.identity);
-                    Destroy(growthRay);
-                    rayBuilt = true;
-                }
-            }
-            else
-                pressE.SetActive(false);
-        }
-        else
-            pressE.SetActive(false);
+        //materialsText.text = "Mats Collected: " + materialsCollected.ToString();
+        //if (!rayBuilt)
+        //{
+        //    if (materialsCollected >= materialsNeeded && Vector3.Distance(gameObject.transform.position, growthRay.transform.position) < 5)
+        //    {
+        //        pressE.SetActive(true);
+        //        if (inputManager.GetInteraction() > 0)
+        //        {
+        //            Instantiate(FinishedGrowthRay, growthRay.transform.position, Quaternion.identity);
+        //            Destroy(growthRay);
+        //            rayBuilt = true;
+        //        }
+        //    }
+        //    else
+        //        pressE.SetActive(false);
+        //}
+        //else
+        //    pressE.SetActive(false);
     }
 
     //Called when player collides with another object
