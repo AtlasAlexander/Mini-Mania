@@ -5,34 +5,35 @@ using UnityEngine;
 public class Fan : MonoBehaviour
 {
     [SerializeField] private float fanPower;
-    private GameObject fanHeightMarker;
-    private float fanPosY;
-    private float fanHeightMarkerPosY;
-    private float fanHeight;
-    private float fanHeightRatio;
+    [SerializeField] GameObject player;
+    private float playerGravityValue;
 
     private void Start()
     {
-        fanPosY = transform.position.y;
-        fanHeightMarker= transform.GetChild(0).gameObject;
-        fanHeightMarkerPosY = fanHeightMarker.transform.position.y;
-        fanHeight = fanHeightMarkerPosY - fanPosY;
-        //fanHeightRatio = 1 / fanHeight;
+        playerGravityValue = player.GetComponent<PlayerController>().GetGravityValue();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<CharacterController>() != null)
+        {
+            other.GetComponent<PlayerController>().SetGravityValue(0);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<CharacterController>() != null)
         {
-            if(other.gameObject.transform.position.y < fanHeightMarkerPosY)
-            {
-                fanHeightRatio = 1 - ((1 / fanHeight) * other.gameObject.transform.position.y);
+            other.GetComponent<CharacterController>().Move(Vector2.up * fanPower * Time.deltaTime);
+        }
+    }
 
-                other.GetComponent<CharacterController>().Move(Vector3.up * fanPower * fanHeightRatio * Time.deltaTime);
-
-                Debug.Log(fanHeightRatio);
-            }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<CharacterController>() != null)
+        {
+            other.GetComponent<PlayerController>().SetGravityValue(playerGravityValue);
         }
     }
 }

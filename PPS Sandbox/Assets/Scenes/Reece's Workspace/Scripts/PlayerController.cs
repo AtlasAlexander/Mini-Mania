@@ -106,4 +106,14 @@ public class PlayerController : MonoBehaviour
     {
         transform.localScale = new Vector3(playerScale, playerScale, playerScale);
     }
+
+    public float GetGravityValue()
+    {
+        return gravityValue;
+    }
+
+    public void SetGravityValue(float newGravValue)
+    {
+        gravityValue= newGravValue;
+    }
 }
