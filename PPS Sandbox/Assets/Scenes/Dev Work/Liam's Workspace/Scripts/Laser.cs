@@ -8,7 +8,6 @@ public class laser : MonoBehaviour
 {
 
     private LineRenderer lr;
-    public GameObject player;
 
     void Start()
     {
