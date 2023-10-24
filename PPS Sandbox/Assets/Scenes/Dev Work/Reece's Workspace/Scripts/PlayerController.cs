@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
         GetPlayerMovement();    // Gets player movement and camera controls
         GetPlayerJump();        // Get player jumping mechanic
         
-        GetChangePlayerScaleBig();      //Get Player Big Cheat
-        GetChangePlayerScaleNormal();   //Get Player Normal Cheat
-        GetChangePlayerScaleSmall();    //Get Plater Small Cheat
+       // GetChangePlayerScaleBig();      //Get Player Big Cheat
+       // GetChangePlayerScaleNormal();   //Get Player Normal Cheat
+       // GetChangePlayerScaleSmall();    //Get Plater Small Cheat
     }
 
     private void IsPlayerGrounded()
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    private void GetChangePlayerScaleBig()
+    /*private void GetChangePlayerScaleBig()
     {
         float bigScaleInput = inputManager.GetPlayerScaleBig();
 
@@ -80,9 +80,9 @@ public class PlayerController : MonoBehaviour
         {
             ChangePlayerScale(5);
         }
-    }
+    }*/
 
-    private void GetChangePlayerScaleNormal()
+    /*private void GetChangePlayerScaleNormal()
     {
         float normalScaleInput = inputManager.GetPlayerScaleNormal();
 
@@ -90,9 +90,9 @@ public class PlayerController : MonoBehaviour
         {
             ChangePlayerScale(1);
         }
-    }
+    }*/
 
-    private void GetChangePlayerScaleSmall()
+    /*private void GetChangePlayerScaleSmall()
     {
         float smallScaleInput = inputManager.GetPlayerScaleSmall();
 
@@ -100,12 +100,12 @@ public class PlayerController : MonoBehaviour
         {
             ChangePlayerScale(0.2f);
         }
-    }
+    }*/
 
-    private void ChangePlayerScale(float playerScale)
+    /*private void ChangePlayerScale(float playerScale)
     {
         transform.localScale = new Vector3(playerScale, playerScale, playerScale);
-    }
+    }*/
 
     public float GetGravityValue()
     {
