@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 7697340046981327518}
   - component: {fileID: 6694631237889514715}
   - component: {fileID: 6703498283119442959}
+  - component: {fileID: 7228943071593988651}
   m_Layer: 0
   m_Name: IT_Player
   m_TagString: Player
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4
+  jumpHeight: 1
   gravityValue: -9.81
 --- !u!114 &6703498283119442959
 MonoBehaviour:
@@ -235,6 +237,20 @@ MonoBehaviour:
     ammoAmount: 999
   - ammoType: 2
     ammoAmount: 999
+--- !u!114 &7228943071593988651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892231389570467022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9dc44f6c833f2418bda0fc046ab3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialsText: {fileID: 0}
+  materialsNeeded: 4
 --- !u!1001 &1031853217776531207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -414,15 +430,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227297063591422384, guid: dcd2aba7f0dfcfa44bcf2d57b05edaf1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8784384161136161218, guid: dcd2aba7f0dfcfa44bcf2d57b05edaf1,
         type: 3}
       propertyPath: field of view
-      value: 28.072487
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8784384161136161218, guid: dcd2aba7f0dfcfa44bcf2d57b05edaf1,
         type: 3}
       propertyPath: m_FocalLength
-      value: 2
+      value: 0.5958768
       objectReference: {fileID: 0}
     - target: {fileID: 8784384161136161218, guid: dcd2aba7f0dfcfa44bcf2d57b05edaf1,
         type: 3}
@@ -490,6 +511,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
         type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
+        type: 3}
       propertyPath: m_Lens.FarClipPlane
       value: 500
       objectReference: {fileID: 0}
@@ -548,18 +574,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
+        type: 3}
+      propertyPath: m_VerticalAxis.m_MaxSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
+        type: 3}
+      propertyPath: m_HorizontalAxis.m_MaxSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1964706449398654121, guid: 6c549228ed5ed314a8b4292ace240162, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 785578364699141523, guid: 6c549228ed5ed314a8b4292ace240162,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9013468946896780587}
   m_SourcePrefab: {fileID: 100100000, guid: 6c549228ed5ed314a8b4292ace240162, type: 3}
+--- !u!1 &6367140001506227502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 785578364699141523, guid: 6c549228ed5ed314a8b4292ace240162,
+    type: 3}
+  m_PrefabInstance: {fileID: 5961164212467830973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9013468946896780587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367140001506227502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7911836d2fcae7440b8b6f6a8c86d1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 6450233178791892118}
+  sensitivity: 200
 --- !u!114 &6450233178791892118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
     type: 3}
   m_PrefabInstance: {fileID: 5961164212467830973}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6367140001506227502}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
