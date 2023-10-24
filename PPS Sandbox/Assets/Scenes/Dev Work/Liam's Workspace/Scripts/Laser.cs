@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -35,7 +36,8 @@ public class laser : MonoBehaviour
             {
                 lr.SetPosition(1, hit.point);
                 //Kill player
-                Destroy(hit.collider.gameObject);
+                //Destroy(hit.collider.gameObject);
+                SceneManager.LoadScene(1);
             }
             else
             {
