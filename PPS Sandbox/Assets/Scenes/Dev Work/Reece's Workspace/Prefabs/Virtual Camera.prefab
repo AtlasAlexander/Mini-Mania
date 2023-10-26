@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 808848729246188587}
   - component: {fileID: 7281996750250942115}
   - component: {fileID: 4011291479245651226}
+  - component: {fileID: 3383340904833879559}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -86,8 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f608d4790be354fb44bce295e6fb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 1
-  verticalSpeed: 1
   clampAngle: 80
 --- !u!114 &4011291479245651226
 MonoBehaviour:
@@ -105,6 +104,20 @@ MonoBehaviour:
   AutoEnableInputs: 1
   XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   ZAxis: {fileID: 0}
+--- !u!114 &3383340904833879559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785578364699141523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7911836d2fcae7440b8b6f6a8c86d1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 808848729246188587}
+  sensitivity: 75
 --- !u!1 &5453730256631449817
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,9 +193,9 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 100
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_MaxSpeed: 75
+    m_AccelTime: 0.01
+    m_DecelTime: 0.01
     m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 1
@@ -204,9 +217,9 @@ MonoBehaviour:
   m_HorizontalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 100
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_MaxSpeed: 75
+    m_AccelTime: 0.01
+    m_DecelTime: 0.01
     m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 0
