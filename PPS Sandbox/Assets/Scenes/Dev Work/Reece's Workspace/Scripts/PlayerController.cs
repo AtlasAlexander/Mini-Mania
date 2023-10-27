@@ -3,20 +3,20 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController controller;                     // CharacterController component
-    private Vector3 playerVelocity;                             // player jump/gravity force
+    [HideInInspector] public CharacterController controller;                     // CharacterController component
+    [HideInInspector] public Vector3 playerVelocity;                             // player jump/gravity force
     private bool groundedPlayer;                                // Checking if player is on the ground
     private InputManager inputManager;                          // Player input system
     private Transform cameraTransform;                          // Camera transform
 
     [SerializeField] private float playerSpeed = 2.0f;          // How fast the player will move
-    [SerializeField] private float jumpHeight = 1.0f;           // How high the player will jump
-    [SerializeField] private float gravityValue = -9.81f;       // The strength of the gravity
+    [HideInInspector] public float jumpHeight = 1.0f;           // How high the player will jump
+    [HideInInspector] public float gravityValue = -9.81f;       // The strength of the gravity
 
     private readonly float distanceFromGround = 0.0f;           // Evaluates how far player is from ground
     private readonly float none = 0.0f;                         // float with nothing in it
     private readonly float inputPress = 0.5f;                   // Evaluating jump input value
-    private readonly float force = -3.0f;                       // Evaluates the force of gravity
+    [HideInInspector] public readonly float force = -3.0f;                       // Evaluates the force of gravity
 
     private void Start()
     {
