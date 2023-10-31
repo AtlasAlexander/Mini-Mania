@@ -54,7 +54,7 @@ public class Weapon : MonoBehaviour
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
-            ProcessRaycast();
+            ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
             ammoSlot.ReduceCurrentAmmo(ammoType);
 
         }
@@ -67,11 +67,12 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-    private void ProcessRaycast()
+    private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
         RaycastHit hit;
-        if(Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
+        if(Physics.Raycast(position, direction, out hit, range))
         {
+            Debug.DrawLine(position, hit.point, Color.red, 1f);
             CreateHitImpact(hit);
 
             SizeChange target = hit.transform.GetComponent<SizeChange>();
@@ -80,6 +81,14 @@ public class Weapon : MonoBehaviour
             if (target == null)
             {
                 CreateHitImpact(hit);
+
+                if(hit.collider.gameObject.tag == "Mirror")
+                {
+                    Debug.Log("Mirror");
+                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
+                    
+                }
+
                 return;
             }
             else
@@ -96,6 +105,13 @@ public class Weapon : MonoBehaviour
             return;
         }
     }
+
+    private void ReflectRay(Vector3 position, Vector3 direction)
+    {
+        ProcessRaycast(position, direction);
+    }
+
+
 
     private void CreateHitImpact(RaycastHit hit)
     {
