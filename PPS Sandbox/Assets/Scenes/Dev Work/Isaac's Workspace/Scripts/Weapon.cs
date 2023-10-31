@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShots = 0.5f;
     [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] LineRenderer laserLine;
 
     bool canShoot = true;
 
@@ -73,11 +74,13 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
 
         Debug.DrawRay(FPCamera.transform.position, FPCamera.transform.forward, Color.green);
-
+        laserLine.SetPosition(0, transform.position);
+        StartCoroutine(ShowLaser());
         if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
         {
             CreateHitImpact(hit);
-
+            laserLine.SetPosition(1, hit.point);
+            laserLine.SetPosition(2, hit.point);
             SizeChange target = hit.transform.GetComponent<SizeChange>();
             Mirror mirror = hit.transform.GetComponent<Mirror>();
 
@@ -96,6 +99,8 @@ public class Weapon : MonoBehaviour
             }
             if(mirror != null)
             {
+                //laserLine.SetPosition(2, Quaternion.AngleAxis(180, hit.normal) * transform.forward * -10);
+                laserLine.SetPosition(2, (Vector3.Reflect(Vector3.Normalize(hit.transform.position - FPCamera.transform.position), hit.normal)) * 20);
                 CreateMirrorHitImpact(hit);
                 mirror.MirrorSizeChange(ammoType);
             }
@@ -107,8 +112,17 @@ public class Weapon : MonoBehaviour
         }
         else
         {
+            laserLine.SetPosition(1, transform.position + transform.forward * 5);
+            laserLine.SetPosition(2, transform.position + transform.forward * 5);
             return;
         }
+    }
+
+    IEnumerator ShowLaser()
+    {
+        laserLine.enabled = true;
+        yield return new WaitForSeconds(.3f);
+        laserLine.enabled = false;
     }
 
     private void CreateHitImpact(RaycastHit hit)
