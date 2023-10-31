@@ -312,6 +312,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1650655841}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &110225000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110224999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f2c5d7d9ca3a04fb4a837c55faf71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallestSize: {x: 0.1, y: 0.1, z: 0.1}
+  maxSize: {x: 10, y: 10, z: 10}
 --- !u!1 &127080691 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8316769032614255124, guid: fc845f71487be0247b132ec62c325122,
@@ -6635,6 +6649,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5867446146662322714, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.316
+      objectReference: {fileID: 0}
     - target: {fileID: 6049536808551233780, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
         type: 3}
       propertyPath: ammoText
@@ -6692,7 +6711,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1778050760}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7892231389570467022, guid: 65f2bce8b91ba0f4e9c6786b720ef536,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 110225000}
   m_SourcePrefab: {fileID: 100100000, guid: 65f2bce8b91ba0f4e9c6786b720ef536, type: 3}
 --- !u!4 &1650655842 stripped
 Transform:
