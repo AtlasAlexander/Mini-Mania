@@ -4961,25 +4961,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1315790191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5453730256631449817, guid: 6c549228ed5ed314a8b4292ace240162,
-    type: 3}
-  m_PrefabInstance: {fileID: 5961164214038532828}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1315790195
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315790191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damping: 0
 --- !u!43 &1321136528
 Mesh:
   m_ObjectHideFlags: 0
@@ -7545,19 +7526,13 @@ Transform:
   - {fileID: 426656198}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2047268242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 785578364699141523, guid: 6c549228ed5ed314a8b4292ace240162,
-    type: 3}
-  m_PrefabInstance: {fileID: 5961164214038532828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2047268248 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
     type: 3}
   m_PrefabInstance: {fileID: 5961164214038532828}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047268242}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
@@ -8161,26 +8136,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 4473069861976194815}
-    - target: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      propertyPath: m_Lens.GateFit
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      propertyPath: m_Lens.FarClipPlane
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 808848729246188587, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      propertyPath: m_Lens.NearClipPlane
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 1114320942208126514, guid: 6c549228ed5ed314a8b4292ace240162,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8231,20 +8186,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
+    - target: {fileID: 5371769087440397067, guid: 6c549228ed5ed314a8b4292ace240162,
         type: 3}
-      propertyPath: m_VerticalAxis.m_MaxSpeed
+      propertyPath: sensitivity
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
         type: 3}
-      propertyPath: m_VerticalAxis.m_AccelTime
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      propertyPath: m_VerticalAxis.m_DecelTime
-      value: 0.01
+      propertyPath: m_VerticalAxis.m_MaxSpeed
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
         type: 3}
@@ -8253,27 +8203,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
         type: 3}
-      propertyPath: m_HorizontalAxis.m_AccelTime
-      value: 0.01
+      propertyPath: m_HorizontalAxis.m_SpeedMode
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6816820866908934346, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      propertyPath: m_HorizontalAxis.m_DecelTime
-      value: 0.01
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1964706449398654121, guid: 6c549228ed5ed314a8b4292ace240162, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 785578364699141523, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9013468945317429066}
-    - targetCorrespondingSourceObject: {fileID: 5453730256631449817, guid: 6c549228ed5ed314a8b4292ace240162,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1315790195}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c549228ed5ed314a8b4292ace240162, type: 3}
 --- !u!114 &6703498281540222574 stripped
 MonoBehaviour:
@@ -8293,20 +8229,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1592577885242587096}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9013468945317429066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047268242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7911836d2fcae7440b8b6f6a8c86d1a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 2047268248}
-  sensitivity: 200
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
