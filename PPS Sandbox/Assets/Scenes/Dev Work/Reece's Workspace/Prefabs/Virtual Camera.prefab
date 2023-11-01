@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 808848729246188587}
   - component: {fileID: 7281996750250942115}
   - component: {fileID: 4011291479245651226}
-  - component: {fileID: 3383340904833879559}
+  - component: {fileID: 5371769087440397067}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -57,10 +57,10 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 28.072487
+    FieldOfView: 80
     OrthographicSize: 5
-    NearClipPlane: 0.1
-    FarClipPlane: 10000
+    NearClipPlane: 0.01
+    FarClipPlane: 500
     Dutch: 0
     ModeOverride: 3
     LensShift: {x: 0, y: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   AutoEnableInputs: 1
   XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   ZAxis: {fileID: 0}
---- !u!114 &3383340904833879559
+--- !u!114 &5371769087440397067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 808848729246188587}
-  sensitivity: 200
+  sensitivity: 100
 --- !u!1 &5453730256631449817
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,8 +128,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1682382891739524495}
   - component: {fileID: 4114714606431172440}
-  - component: {fileID: 1964706449398654121}
   - component: {fileID: 6816820866908934346}
+  - component: {fileID: 7938285988088038805}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -164,19 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1964706449398654121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5453730256631449817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damping: 0
 --- !u!114 &6816820866908934346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +180,9 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 75
-    m_AccelTime: 0.01
-    m_DecelTime: 0.01
+    m_MaxSpeed: 200
+    m_AccelTime: 0.05
+    m_DecelTime: 0.05
     m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 1
@@ -217,9 +204,9 @@ MonoBehaviour:
   m_HorizontalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 75
-    m_AccelTime: 0.01
-    m_DecelTime: 0.01
+    m_MaxSpeed: 200
+    m_AccelTime: 0.05
+    m_DecelTime: 0.05
     m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -239,3 +226,16 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_ApplyBeforeBody: 0
+--- !u!114 &7938285988088038805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453730256631449817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damping: 0
