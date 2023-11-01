@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4164351803752437309}
   - component: {fileID: 8928364499898300002}
   - component: {fileID: 2701250751512327571}
+  - component: {fileID: 4076988052093119879}
   m_Layer: 0
   m_Name: IT_Player
   m_TagString: Player
@@ -126,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee7abf6f7331c84087fb768f8c46e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  playerVelocity: {x: 0, y: 0, z: 0}
   playerSpeed: 4
   jumpHeight: 1
   gravityValue: -9.81
@@ -164,6 +167,20 @@ MonoBehaviour:
   pressE: {fileID: 0}
   FinishedGrowthRay: {fileID: 0}
   materialsNeeded: 4
+--- !u!114 &4076988052093119879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886188368725472484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f2c5d7d9ca3a04fb4a837c55faf71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallestSize: {x: 0.1, y: 0.1, z: 0.1}
+  maxSize: {x: 10, y: 10, z: 10}
 --- !u!1 &7054030398402105214
 GameObject:
   m_ObjectHideFlags: 0
