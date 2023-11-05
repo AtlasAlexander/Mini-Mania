@@ -38,7 +38,15 @@ public class CarryCheck : MonoBehaviour
             {
                 //if target is in range
                 Debug.Log("HIT");
-                carry.holding = true;
+                if (Input.GetButton("Grab"))
+                {
+                    carry.holding = true;
+                }
+
+                if (Input.GetButtonUp("Grab"))
+                {
+                    carry.holding = false;
+                }
             }
             else
             {

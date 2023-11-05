@@ -30,6 +30,7 @@ public class CarryObj : MonoBehaviour
         var step = speed * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, theseHands.transform.position, step);
         gameObject.GetComponent<Rigidbody>().useGravity = false;
+        gameObject.transform.rotation = Quaternion.identity;
 
         ///if object held is out of "arms reach"
         if (Vector3.Distance(transform.position, theseHands.transform.position) > 4f)
@@ -39,6 +40,7 @@ public class CarryObj : MonoBehaviour
 
         //transform.position = theseHands.transform.position;
         //transform.rotation = theseHands.transform.rotation;
+
     }
 
     public void Dropped()
