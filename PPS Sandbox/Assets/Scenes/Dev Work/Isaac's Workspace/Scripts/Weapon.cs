@@ -91,7 +91,7 @@ public class Weapon : MonoBehaviour
             {
                 CreateSizeHitImpact(hit);
                 //target.TakeDamage(damage);
-                target.ChangeSize(ammoType, changeAmount);
+                target.ChangeSize(ammoType /*, changeAmount*/);
                 
             }
             if(mirror != null)
