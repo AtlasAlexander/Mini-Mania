@@ -9,9 +9,13 @@ public class CarryCheck : MonoBehaviour
     [SerializeField] float range = 3f;
     [SerializeField] InputAction pickUp;
 
+    GameObject Player;
+
     private void Awake()
     {
         FPCamera = Camera.main;
+        Player = GameObject.FindGameObjectWithTag("Player");
+        
     }
     private void Update()
     {
@@ -40,7 +44,10 @@ public class CarryCheck : MonoBehaviour
                 Debug.Log("HIT");
                 if (Input.GetButton("Grab"))
                 {
-                    carry.holding = true;
+                    if (carry.gameObject.GetComponent<Stats>().Weight < Player.GetComponent<Stats>().Weight)
+                    {
+                        carry.holding = true;
+                    }
                 }
 
                 if (Input.GetButtonUp("Grab"))
