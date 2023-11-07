@@ -7,28 +7,29 @@ public class SizeChange : MonoBehaviour
     [SerializeField] Vector3 smallestSize;
     [SerializeField] Vector3 maxSize;
 
-    public void ChangeSize(AmmoType ammoType, float changeAmount)
+    public void ChangeSize(AmmoType ammoType /*, float changeAmount */)
     {
         if(ammoType.ToString() == "Shrink")
         {
-            ShrinkObject(changeAmount);
+            ShrinkObject(/*changeAmount*/);
             
         }
         if(ammoType.ToString() == "Grow")
         {
-            GrowObject(changeAmount);
+            GrowObject(/*changeAmount*/);
         }
     }
 
-    void ShrinkObject(float changeAmount)
+    void ShrinkObject(/*float changeAmount*/)
     {
         //Debug.Log("working shrink " + changeAmount);
         Vector3 currentSize = GetComponent<Transform>().localScale;
 
         if(currentSize != smallestSize)
         {
+            gameObject.transform.localScale = smallestSize;
 
-
+            /*
             Vector3 newSize = gameObject.transform.localScale -= new Vector3(changeAmount, changeAmount, changeAmount);
 
             if(newSize != smallestSize) 
@@ -38,20 +39,23 @@ public class SizeChange : MonoBehaviour
             else
             {
                 return;
-            }         
+            }
+            */
         }
     }
 
-    void GrowObject(float changeAmount)
+    void GrowObject(/*float changeAmount*/)
     {
         //Debug.Log("working increase " + changeAmount);
         Vector3 currentSize = GetComponent<Transform>().localScale;
 
         if (currentSize != maxSize)
         {
-            Vector3 newSize = gameObject.transform.localScale += new Vector3(changeAmount, changeAmount, changeAmount);
+            //Vector3 newSize = gameObject.transform.localScale += new Vector3(changeAmount, changeAmount, changeAmount);
 
-            if (newSize != maxSize)
+            gameObject.transform.localScale = maxSize;
+
+            /*if (newSize != maxSize)
             {
                 gameObject.transform.localScale = newSize;
             }
@@ -59,9 +63,10 @@ public class SizeChange : MonoBehaviour
             {
                 return;
             }
+            */
         }
     }
-
+     /*
     private void Update()
     {
         CheckSmallest();
@@ -89,4 +94,5 @@ public class SizeChange : MonoBehaviour
             //Debug.Log("too big");
         }
     }
+     */
 }
