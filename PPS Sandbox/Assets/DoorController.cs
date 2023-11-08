@@ -19,12 +19,12 @@ public class DoorController : MonoBehaviour
         
     }
 
-    void OpenDoor()
+    public void OpenDoor()
     {
         Anim.SetFloat("DoorStage", 1f);
     }
 
-    void CloseDoor()
+    public void CloseDoor()
     {
         Anim.SetFloat("DoorStage", -1f);
     }
