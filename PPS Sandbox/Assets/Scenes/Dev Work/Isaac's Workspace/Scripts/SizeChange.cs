@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SizeChange : MonoBehaviour
 {
-    [SerializeField] Vector3 smallestSize;
-    [SerializeField] Vector3 maxSize;
+    [SerializeField] Vector3 smallestSize = new Vector3(0.2f, 0.2f, 0.2f);
+    [SerializeField] Vector3 maxSize = new Vector3(1, 1, 1);
+
+    private bool shrunk = false;
 
     public void ChangeSize(AmmoType ammoType /*, float changeAmount */)
     {
@@ -28,6 +30,7 @@ public class SizeChange : MonoBehaviour
         if(currentSize != smallestSize)
         {
             gameObject.transform.localScale = smallestSize;
+            shrunk= true;
 
             /*
             Vector3 newSize = gameObject.transform.localScale -= new Vector3(changeAmount, changeAmount, changeAmount);
@@ -54,6 +57,7 @@ public class SizeChange : MonoBehaviour
             //Vector3 newSize = gameObject.transform.localScale += new Vector3(changeAmount, changeAmount, changeAmount);
 
             gameObject.transform.localScale = maxSize;
+            shrunk = false;
 
             /*if (newSize != maxSize)
             {
@@ -66,6 +70,12 @@ public class SizeChange : MonoBehaviour
             */
         }
     }
+
+    public bool GetShrunkStatus()
+    {
+        return shrunk;
+    }
+
      /*
     private void Update()
     {

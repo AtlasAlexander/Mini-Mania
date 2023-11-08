@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +14,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] GameObject sizeHitEffect;
-    [SerializeField] GameObject mirrorHitEffect;
     [SerializeField] Ammo ammoSlot;
     [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShots = 0.5f;
@@ -55,7 +54,7 @@ public class Weapon : MonoBehaviour
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
-            ProcessRaycast();
+            ProcessRaycast(FPCamera.transform.position + (FPCamera.transform.forward * 1), FPCamera.transform.forward);
             ammoSlot.ReduceCurrentAmmo(ammoType);
 
         }
@@ -68,48 +67,51 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-    private void ProcessRaycast()
+    private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
         RaycastHit hit;
-
-        Debug.DrawRay(FPCamera.transform.position, FPCamera.transform.forward, Color.green);
-
-        if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(position, direction, out hit, range))
         {
+            Debug.DrawLine(position, hit.point, Color.red, 1f);
             CreateHitImpact(hit);
 
             SizeChange target = hit.transform.GetComponent<SizeChange>();
-            Mirror mirror = hit.transform.GetComponent<Mirror>();
 
             //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-            if (target == null && mirror == null)
+            if (target == null)
             {
                 CreateHitImpact(hit);
+
+                if (hit.collider.gameObject.tag == "Mirror")
+                {
+                    Debug.Log("Mirror");
+                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
+
+                }
+
                 return;
             }
-            if(target != null)
+            else
             {
                 CreateSizeHitImpact(hit);
                 //target.TakeDamage(damage);
                 target.ChangeSize(ammoType /*, changeAmount*/);
                 
             }
-            if(mirror != null)
-            {
-                CreateMirrorHitImpact(hit);
-                mirror.MirrorSizeChange(ammoType);
-            }
-            else 
-            {
-                return;
-            }
-            
+
         }
         else
         {
             return;
         }
     }
+
+    private void ReflectRay(Vector3 position, Vector3 direction)
+    {
+        ProcessRaycast(position, direction);
+    }
+
+
 
     private void CreateHitImpact(RaycastHit hit)
     {
@@ -121,10 +123,5 @@ public class Weapon : MonoBehaviour
         GameObject impact = Instantiate(sizeHitEffect, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(impact, 1);
     }
-
-    private void CreateMirrorHitImpact(RaycastHit hit)
-    {
-        GameObject impact = Instantiate(mirrorHitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-        Destroy(impact, 1);
-    }
 }
+

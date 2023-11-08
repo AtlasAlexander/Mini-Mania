@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Fan : MonoBehaviour
 {
-    [SerializeField] private float fanPower;
-    [SerializeField] GameObject player;
+    [SerializeField] private float fanPowerForPlayer;
+    [SerializeField] private float fanPowerForObjects;
+    [SerializeField] private GameObject player;
     private float playerGravityValue;
 
     private void Start()
@@ -15,25 +16,70 @@ public class Fan : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CharacterController>() != null)
+        //If other is not player, return
+        if (other.GetComponent<CharacterController>() == null)
         {
-            other.GetComponent<PlayerController>().SetGravityValue(0);
+            return;
         }
+
+        //If player is not shrunk, return
+        if (!other.GetComponent<SizeChange>().GetShrunkStatus())
+        {
+            return;
+        }
+
+        other.GetComponent<PlayerController>().SetGravityValue(0);
     }
 
     private void OnTriggerStay(Collider other)
     {
+        //Check if player is colliding
         if (other.GetComponent<CharacterController>() != null)
         {
-            other.GetComponent<CharacterController>().Move(Vector2.up * fanPower * Time.deltaTime);
+            //Is Player Shrunk
+            if(other.GetComponent<SizeChange>().GetShrunkStatus())
+            {
+                other.GetComponent<CharacterController>().Move(Vector2.up * fanPowerForPlayer * Time.deltaTime);
+            }
+        }
+
+        //Does Object have RigidBody
+        if(other.gameObject.GetComponent<Rigidbody>() != null)
+        {
+            //If Object cannot change size
+            if(other.GetComponent<SizeChange>() == null)
+            {
+                other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+            }
+            //If Object can change size
+            else
+            {
+                //If object is shrunk
+                if(other.GetComponent<SizeChange>().GetShrunkStatus())
+                {
+                    other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+                }
+            }
+
+            
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<CharacterController>() != null)
+        //If other is not player, return
+        if (other.GetComponent<CharacterController>() == null)
         {
-            other.GetComponent<PlayerController>().SetGravityValue(playerGravityValue);
+            return;
         }
+
+
+        //If player is not shrunk, return
+        if (!other.GetComponent<SizeChange>().GetShrunkStatus())
+        {
+            return;
+        }
+
+        other.GetComponent<PlayerController>().SetGravityValue(playerGravityValue);
     }
 }
