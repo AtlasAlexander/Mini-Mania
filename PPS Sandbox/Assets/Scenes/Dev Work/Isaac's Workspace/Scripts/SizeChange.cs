@@ -44,6 +44,20 @@ public class SizeChange : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "SizeOverride")
+        {
+            Vector3 currentSize = GetComponent<Transform>().localScale;
+
+            if (currentSize != maxSize)
+            {
+                gameObject.transform.localScale = maxSize;
+                shrunk = false;
+            }
+        }
+    }
+
     public bool GetShrunkStatus()
     {
         return shrunk;
