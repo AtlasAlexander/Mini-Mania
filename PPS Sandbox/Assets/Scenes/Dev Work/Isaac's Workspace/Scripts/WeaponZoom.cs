@@ -25,31 +25,31 @@ public class WeaponZoom : MonoBehaviour
     private void OnDisable()
     {
         zoom.Disable();
-        ZoomOut();
+        //ZoomOut();
     }
 
     private void Update()
     {
         if(zoom.ReadValue<float>() > 0.5)
         {
-            ZoomIn();
+            //ZoomIn();
         }
         else
         {
-            ZoomOut();
+            //ZoomOut();
         }
     }
 
     private void ZoomIn()
     {
-        cinemachineVirtualCamera.m_Lens.FieldOfView = zoomedInFov;
+        //cinemachineVirtualCamera.m_Lens.FieldOfView = zoomedInFov;
         //fpsController.RotationSpeed = zoomInSensitivity;
         //fpsCamera.fieldOfView = zoomedInFov;
     }
 
     private void ZoomOut()
     {
-        cinemachineVirtualCamera.m_Lens.FieldOfView = zoomedOutFOV;
+        //cinemachineVirtualCamera.m_Lens.FieldOfView = zoomedOutFOV;
         //fpsController.RotationSpeed = zoomOutSensitivity;
     }
 }
