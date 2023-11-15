@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        DisplayAmmo();
+        //DisplayAmmo();
 
         if (fire.ReadValue<float>() > 0.5 && canShoot == true)
         {
@@ -42,11 +42,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void DisplayAmmo()
+    /*private void DisplayAmmo()
     {
         int currentAmmo = ammoSlot.GetCurrentAmmo(ammoType);
         ammoText.text = currentAmmo.ToString();
-    }
+    }*/
 
     IEnumerator Shoot()
     {
