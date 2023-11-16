@@ -11,7 +11,7 @@ public class Fan : MonoBehaviour
 
     private void Start()
     {
-        playerGravityValue = player.GetComponent<PlayerController>().GetGravityValue();
+        playerGravityValue = player.GetComponent<FirstPersonController>().GetGravityValue();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -19,6 +19,8 @@ public class FirstPersonController : MonoBehaviour
     private bool shouldJump => characterController.isGrounded;
     private bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded;
 
+    [HideInInspector] public float gravityValue = -9.81f;
+
     Transform CameraObject;
 
     [Header("Functional Options")]
@@ -76,7 +78,7 @@ public class FirstPersonController : MonoBehaviour
     {
         get
         {
-            if(characterController.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, 2f))
+            if (characterController.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, 2f))
             {
                 hitPointNormal = slopeHit.normal;
                 return Vector3.Angle(hitPointNormal, Vector3.up) > characterController.slopeLimit;
@@ -231,6 +233,11 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    public float GetGravityValue()
+    {
+        return gravityValue;
+    }
+
     private void HandleZoom(InputAction.CallbackContext context)
     {
         if (zoomRoutine != null)
@@ -299,7 +306,7 @@ public class FirstPersonController : MonoBehaviour
         Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
         Vector3 currentCenter = characterController.center;
 
-        while(timeElapsed < timeToCrouch)
+        while (timeElapsed < timeToCrouch)
         {
             characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
