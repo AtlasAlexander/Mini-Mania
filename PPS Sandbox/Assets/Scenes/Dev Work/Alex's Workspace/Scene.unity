@@ -2508,30 +2508,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &393476089 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2617101468091787938, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-    type: 3}
-  m_PrefabInstance: {fileID: 678224067}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &393476098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393476089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!43 &407193078
 Mesh:
   m_ObjectHideFlags: 0
@@ -5160,11 +5136,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1259797591}
-    - target: {fileID: 3078569521027287106, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      propertyPath: Weight
-      value: 69
-      objectReference: {fileID: 0}
     - target: {fileID: 3165807774312212097, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
         type: 3}
       propertyPath: m_Mesh
@@ -5240,11 +5211,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 268984511}
-    - target: {fileID: 6205121186805817282, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      propertyPath: RequiredWeight
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6335475613744226336, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
         type: 3}
       propertyPath: m_Mesh
@@ -5255,16 +5221,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 222223401}
-    - target: {fileID: 6477094043940727822, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477094043940727822, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 6580705041641970951, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
         type: 3}
       propertyPath: m_Mesh
@@ -5342,21 +5298,6 @@ PrefabInstance:
       objectReference: {fileID: 1884931953}
     - target: {fileID: 8418526414284810642, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8418526414284810642, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8418526414284810642, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8418526414284810642, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -5423,11 +5364,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2617101468091787938, guid: 1803f1cabf04ccd4da8b1bcd05d08110,
-        type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 393476098}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1803f1cabf04ccd4da8b1bcd05d08110, type: 3}
 --- !u!43 &682025178
 Mesh:
