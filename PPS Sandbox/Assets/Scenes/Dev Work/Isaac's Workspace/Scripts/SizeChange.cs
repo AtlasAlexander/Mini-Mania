@@ -6,6 +6,7 @@ public class SizeChange : MonoBehaviour
 {
     [SerializeField] Vector3 smallestSize = new Vector3(0.2f, 0.2f, 0.2f);
     [SerializeField] Vector3 maxSize = new Vector3(1, 1, 1);
+    [SerializeField] float changeDuration = 1f;
 
     private bool shrunk = false;
 
@@ -26,11 +27,32 @@ public class SizeChange : MonoBehaviour
     {
         Vector3 currentSize = GetComponent<Transform>().localScale;
 
+        if (currentSize != smallestSize)
+        {
+            StartCoroutine(LerpSize(currentSize, smallestSize, changeDuration));
+            shrunk = true;
+        }
+
+        /*
         if(currentSize != smallestSize)
         {
-            gameObject.transform.localScale = smallestSize;
+            gameObject.transform.localScale = Vector3.Lerp(currentSize, smallestSize, t * Time.deltaTime);
+            
             shrunk= true;
         }
+        */
+    }
+
+    IEnumerator LerpSize(Vector3 currentSize, Vector3 targetSize, float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            gameObject.transform.localScale = Vector3.Lerp(currentSize, targetSize, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.transform.localScale = targetSize;
     }
 
     void GrowObject()
@@ -39,7 +61,8 @@ public class SizeChange : MonoBehaviour
 
         if (currentSize != maxSize)
         {
-            gameObject.transform.localScale = maxSize;
+            //gameObject.transform.localScale = maxSize;
+            StartCoroutine(LerpSize(currentSize, maxSize, changeDuration));
             shrunk = false;
         }
     }
