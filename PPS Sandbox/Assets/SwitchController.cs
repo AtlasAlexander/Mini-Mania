@@ -17,7 +17,7 @@ public class SwitchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 3  && !doorOpen)
+/*        if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 3  && !doorOpen)
         {
             doorOpen = true;
             ObjOnSwitch++;
@@ -31,7 +31,7 @@ public class SwitchController : MonoBehaviour
                 doorOpen = false;
                 DoorToOpen.GetComponent<DoorController>().CloseDoor();
             }
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +45,7 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        ObjOnSwitch--;
         if (ObjOnSwitch == 0)
         {
             DoorToOpen.GetComponent<DoorController>().CloseDoor();
