@@ -7,6 +7,7 @@ public class CarryObj : MonoBehaviour
     public GameObject theseHands;
     public bool holding;
     private float speed;
+    public float outOfLosDist = 4f;
 
     private void Awake()
     {
@@ -23,6 +24,10 @@ public class CarryObj : MonoBehaviour
         {
             Dropped();
         }
+        if(!theseHands.GetComponent<CarryCheck>().carrying)
+        {
+            holding = false;
+        }
     }
     public void PickedUp()
     {
@@ -33,7 +38,7 @@ public class CarryObj : MonoBehaviour
         gameObject.transform.rotation = Quaternion.identity;
 
         ///if object held is out of "arms reach"
-        if (Vector3.Distance(transform.position, theseHands.transform.position) > 4f)
+        if (Vector3.Distance(transform.position, theseHands.transform.position) > outOfLosDist)
         {
             holding = false;
         }
