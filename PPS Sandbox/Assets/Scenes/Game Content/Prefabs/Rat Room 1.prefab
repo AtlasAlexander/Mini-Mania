@@ -11198,6 +11198,9 @@ GameObject:
   - component: {fileID: 547083923308790972}
   - component: {fileID: 584724275713987477}
   - component: {fileID: 4852784308547072365}
+  - component: {fileID: 1553047355592844582}
+  - component: {fileID: 4772714837223572527}
+  - component: {fileID: 3078569521027287106}
   m_Layer: 0
   m_Name: Objective Cube
   m_TagString: Untagged
@@ -11318,6 +11321,47 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1553047355592844582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617101468091787938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f2c5d7d9ca3a04fb4a837c55faf71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallestSize: {x: 0.2, y: 0.2, z: 0.2}
+  maxSize: {x: 1, y: 1, z: 1}
+--- !u!114 &4772714837223572527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617101468091787938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc51d4c4ff253384084b0258a23ae206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theseHands: {fileID: 0}
+  holding: 0
+--- !u!114 &3078569521027287106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617101468091787938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c5cd4b54e64ec409beff201070f235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weight: 100
 --- !u!1 &2826497566988334058
 GameObject:
   m_ObjectHideFlags: 0
@@ -85573,7 +85617,7 @@ PrefabInstance:
     - target: {fileID: -4382649620177720715, guid: 0ff5fc5188d9a4b47b7a2882ceee6eeb,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4382649620177720715, guid: 0ff5fc5188d9a4b47b7a2882ceee6eeb,
         type: 3}
