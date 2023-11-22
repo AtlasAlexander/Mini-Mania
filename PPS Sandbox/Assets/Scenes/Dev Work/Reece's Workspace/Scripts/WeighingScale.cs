@@ -4,15 +4,8 @@ public class WeighingScale : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform parentPlatform;
-    [SerializeField] private float fixedScale;
     [SerializeField] private Rigidbody scalePlatforms;
 
-    private FirstPersonController fpsController;
-
-    private void Awake()
-    {
-        fpsController = GetComponent<FirstPersonController>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +14,6 @@ public class WeighingScale : MonoBehaviour
             Debug.Log("A Collision has occurred!");
             player.parent = parentPlatform.transform;
             scalePlatforms.mass = 5.0f;
-            //player.position = parentPlatform.position;
         }
         else
         {
