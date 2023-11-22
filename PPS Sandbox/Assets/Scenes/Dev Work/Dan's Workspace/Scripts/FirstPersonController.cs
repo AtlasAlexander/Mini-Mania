@@ -19,7 +19,7 @@ public class FirstPersonController : MonoBehaviour
     private bool shouldJump => characterController.isGrounded;
     private bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded;
 
-    [HideInInspector] public float gravityValue = -9.81f;
+    /*[HideInInspector]*/ public float gravityValue = -9.81f;
 
     Transform CameraObject;
 
