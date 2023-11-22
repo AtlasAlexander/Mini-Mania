@@ -7,6 +7,7 @@ using TMPro;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] InputAction fire;
+    [SerializeField] InputAction toggleTrajectory;
     [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     //[SerializeField] float damage = 30f;
@@ -19,26 +20,102 @@ public class Weapon : MonoBehaviour
     [SerializeField] float timeBetweenShots = 0.5f;
     [SerializeField] TextMeshProUGUI ammoText;
 
+    [SerializeField] private LineRenderer line;
+    [SerializeField] private RaycastHit hit;
+    [SerializeField] private Transform trajectoryOrigin;
+
+    public float defaultLength = 50;
+    public int numOfReflections = 2;
+    public LayerMask layerMask;
+
+    private Ray ray;
+
+    private Vector3 direction;
+
     bool canShoot = true;
+    bool trajectoryOn = false;
 
     private void OnEnable()
     {
         fire.Enable();
         canShoot = true;
+        toggleTrajectory.Enable();
     }
 
     private void OnDisable()
     {
         fire.Disable();
+        toggleTrajectory.Disable();
     }
 
     void Update()
     {
         //DisplayAmmo();
+        Debug.Log(trajectoryOn);
 
         if (fire.ReadValue<float>() > 0.5 && canShoot == true)
         {
             StartCoroutine(Shoot());
+        }
+
+        ReflectLaser();
+
+        var wasPressed = toggleTrajectory.triggered;
+        if (wasPressed)
+        {
+            trajectoryOn = !trajectoryOn;
+        }
+
+        if (trajectoryOn)
+        {
+            turnTrajectoryOn();
+        }
+        else line.enabled = false;
+
+        
+    }
+
+    void turnTrajectoryOn()
+    {
+        line.enabled = true;
+    }
+
+    void ReflectLaser()
+    {
+        ray = new Ray(FPCamera.transform.position, FPCamera.transform.forward);
+
+        line.positionCount = 1;
+        line.SetPosition(0, trajectoryOrigin.position);
+
+        for (int i = 0; i < numOfReflections; i++)
+        {
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, defaultLength, layerMask))
+            {
+                line.positionCount += 1;
+                line.SetPosition(1, hit.point);
+
+                ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
+            }
+            else
+            {
+                line.positionCount += 1;
+                line.SetPosition(line.positionCount - 1, ray.origin + (ray.direction * defaultLength));
+            }
+        }
+       
+    }
+
+    void NormalLaser()
+    {
+        line.SetPosition(0, transform.position);
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, defaultLength, layerMask))
+        {
+            line.SetPosition(1, hit.point);
+        }
+        else
+        {
+            line.SetPosition(1, transform.position + (transform.forward * defaultLength));
         }
     }
 
@@ -66,6 +143,8 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
     }
+
+    
 
     private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
@@ -104,6 +183,8 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
+
+    
     }
 
     private void ReflectRay(Vector3 position, Vector3 direction)
