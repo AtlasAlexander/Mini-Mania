@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using System.Threading;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class AudioManager : MonoBehaviour
                                              //Sounds from here will not be played in 3D space
     public static AudioManager instance;     //Play sounds from the Audio Manager with "FindObjectOfType<AudioManager>().Play("sound_name");"
                                              //This works from any script
+    private bool muted;
     void Awake()
     {
+        muted = false;
+
         if (instance == null)             //This code allows the audio manager to remain constant between scenes
             instance = this;              //and ensures there is only ever one Audio Manager
         else
@@ -31,6 +35,15 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = muted;
+            muted = !muted;
+        }
+    }
+
     public void Play (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name); //Find the sound in the sound array where sound.name = the string passed into Play()
@@ -41,6 +54,19 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, item => item.name == sound);
         s.source.Stop();
+    }
+
+
+    public bool IsPlaying(string sound)
+    {
+        Sound s = Array.Find(sounds, item => item.name == sound);
+        return s.source.isPlaying;
+    }
+
+    public void SetPitch(string sound, float p)
+    {
+        Sound s = Array.Find(sounds, item => item.name == sound);
+        s.pitch = p;
     }
 
 }

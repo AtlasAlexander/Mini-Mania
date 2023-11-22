@@ -1018,6 +1018,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8970643876227388870, guid: 2935dd27be5c712499c88fabe4a91c81,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12947,7 +12952,7 @@ MonoBehaviour:
   - name: shoot_shrink_ray
     clip: {fileID: 8300000, guid: 1492e4c4c86381e43951d21c088b9b85, type: 3}
     pitch: 0.856
-    volume: 0.552
+    volume: 0.224
     loop: 0
     source: {fileID: 0}
   - name: object_shrink
@@ -12962,17 +12967,17 @@ MonoBehaviour:
     volume: 10
     loop: 0
     source: {fileID: 0}
-  - name: object_grow
-    clip: {fileID: 8300000, guid: f4da819a526fe7c4ead4f1c9619dd106, type: 3}
-    pitch: 0.856
-    volume: 10
-    loop: 0
-    source: {fileID: 0}
-  - name: footsteps
-    clip: {fileID: 8300000, guid: f4da819a526fe7c4ead4f1c9619dd106, type: 3}
+  - name: sprint_inside
+    clip: {fileID: 8300000, guid: 9449b466936cf924c941ffd1906c7beb, type: 3}
     pitch: 1
     volume: 10
-    loop: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: footsteps
+    clip: {fileID: 8300000, guid: b59b34e042d271547be90d738cb9e6c1, type: 3}
+    pitch: 1
+    volume: 10
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &1860726339
 Transform:

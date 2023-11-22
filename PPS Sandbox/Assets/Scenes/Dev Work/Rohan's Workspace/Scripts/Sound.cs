@@ -9,7 +9,7 @@ public class Sound                        //This class is used in the list of so
 
     public AudioClip clip;
 
-    [Range(0f,1.0f)]
+    [Range(0f,40.0f)]
     public float pitch;
 
     [Range(0.1f, 1.0f)]
