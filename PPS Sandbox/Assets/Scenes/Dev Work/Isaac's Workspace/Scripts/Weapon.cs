@@ -56,6 +56,9 @@ public class Weapon : MonoBehaviour
         if (fire.ReadValue<float>() > 0.5 && canShoot == true)
         {
             StartCoroutine(Shoot());
+
+            FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
+
         }
 
         ReflectLaser();

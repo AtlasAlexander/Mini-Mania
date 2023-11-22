@@ -14,11 +14,12 @@ public class SizeChange : MonoBehaviour
     {
         if(ammoType.ToString() == "Shrink")
         {
+            FindObjectOfType<AudioManager>().Play("object_shrink");
             ShrinkObject();
-            
         }
         if(ammoType.ToString() == "Grow")
         {
+            FindObjectOfType<AudioManager>().Play("object_grow");
             GrowObject();
         }
     }
