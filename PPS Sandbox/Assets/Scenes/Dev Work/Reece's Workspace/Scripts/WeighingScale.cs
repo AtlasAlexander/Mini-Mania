@@ -11,14 +11,8 @@ public class WeighingScale : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("A Collision has occurred!");
-            player.parent = parentPlatform.transform;
-            scalePlatforms.mass = 5.0f;
-        }
-        else
-        {
-            Debug.Log("No Collision Detected");
-            
+            player.parent = parentPlatform.transform;   // Player becomes the child of the platform
+            scalePlatforms.mass = 5.0f;                 // Increase the mass of the scale platform when player interacts
         }
     }
 
@@ -26,14 +20,8 @@ public class WeighingScale : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("A Collision was exited!");
-            player.parent = null;
-            scalePlatforms.mass = 0.1f;
+            player.parent = null;                       // Player is not a child of the platform
+            scalePlatforms.mass = 0.1f;                 // Decrease the mass of scale platform when player comes off
         }
-    }
-
-    private void Update()
-    {
-        
     }
 }
