@@ -39,8 +39,9 @@ public class AudioManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = muted;
+            FindObjectOfType<AudioListener>().enabled = muted;
             muted = !muted;
+            
         }
     }
 
