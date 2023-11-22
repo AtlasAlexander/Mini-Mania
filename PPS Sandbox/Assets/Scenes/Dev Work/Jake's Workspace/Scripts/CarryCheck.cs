@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 public class CarryCheck : MonoBehaviour
 {
     [SerializeField] Camera FPCamera;
-    [SerializeField] float range = 3f;
+    [SerializeField] float pickUpRange = 3f;
     [SerializeField] InputAction pickUp;
 
     GameObject Player;
+
+    public bool carrying;
 
     private void Awake()
     {
@@ -19,6 +21,10 @@ public class CarryCheck : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetButtonUp("Grab"))
+        {
+            carrying = false;
+        }
         //if (pickUp.ReadValue<bool>())
         {
             ProcessRaycast();
@@ -29,7 +35,7 @@ public class CarryCheck : MonoBehaviour
 
         ///checks if object is in range and centred on camera
         RaycastHit hit;
-        if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, pickUpRange))
         {
             
             CarryObj carry = hit.transform.GetComponent<CarryObj>();
@@ -47,6 +53,7 @@ public class CarryCheck : MonoBehaviour
                     if (carry.gameObject.GetComponent<Stats>().Weight < Player.GetComponent<Stats>().Weight)
                     {
                         carry.holding = true;
+                        carrying = true;
                     }
                 }
 

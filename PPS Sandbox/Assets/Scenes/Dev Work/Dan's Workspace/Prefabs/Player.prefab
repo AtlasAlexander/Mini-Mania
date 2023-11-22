@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &10954413129452450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2348335489074063250}
+  m_Layer: 0
+  m_Name: origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2348335489074063250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10954413129452450}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0036, y: 0.0881, z: 0.364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2352170663310547730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728811221020586520
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,6 +5093,37 @@ MonoBehaviour:
     m_Flags: 0
   currentWeapon: 0
   timeBetweenSwaps: 0.15
+--- !u!1 &3328375471574298360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3099141051069414094}
+  m_Layer: 0
+  m_Name: origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3099141051069414094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328375471574298360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.134, z: 0.692}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4873829879959594023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4370132678061321405
 GameObject:
   m_ObjectHideFlags: 0
@@ -5181,7 +5243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 2587972558595454403}
-  range: 3
+  pickUpRange: 3
   pickUp:
     m_Name: Pick Up
     m_Type: 0
@@ -5199,6 +5261,7 @@ MonoBehaviour:
       m_Action: Pick Up
       m_Flags: 0
     m_Flags: 0
+  carrying: 0
 --- !u!1 &4558378890206274511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5212,6 +5275,7 @@ GameObject:
   - component: {fileID: 1166172116757291893}
   - component: {fileID: 4110397418092330468}
   - component: {fileID: 4706639080619054545}
+  - component: {fileID: 6410216206091184586}
   m_Layer: 0
   m_Name: Growth Ray
   m_TagString: Untagged
@@ -5233,6 +5297,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6154920055327946200}
+  - {fileID: 3099141051069414094}
   m_Father: {fileID: 4507460325402585156}
   m_LocalEulerAnglesHint: {x: -5.46, y: -6.64, z: 0.99}
 --- !u!33 &8303759287165233847
@@ -5322,6 +5387,31 @@ MonoBehaviour:
       m_Action: Fire
       m_Flags: 0
     m_Flags: 0
+  toggleTrajectory:
+    m_Name: Toggle Trajectory
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 304ee2a2-a624-4498-9f3a-77ee36bcfbc1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f8e272cd-6b37-4e99-9d13-9c8baf3598fe
+      m_Path: <Gamepad>/dpad/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Trajectory
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b720cea-9239-4864-af08-bb8e9ab367c3
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Trajectory
+      m_Flags: 0
+    m_Flags: 0
   FPCamera: {fileID: 2587972558595454403}
   range: 45
   changeAmount: 0.5
@@ -5334,6 +5424,13 @@ MonoBehaviour:
   ammoType: 1
   timeBetweenShots: 0.5
   ammoText: {fileID: 0}
+  line: {fileID: 6410216206091184586}
+  trajectoryOrigin: {fileID: 3099141051069414094}
+  defaultLength: 50
+  numOfReflections: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &4706639080619054545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5376,6 +5473,110 @@ MonoBehaviour:
   zoomedInFov: 35
   zoomOutSensitivity: 2
   zoomInSensitivity: 0.5
+--- !u!120 &6410216206091184586
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558378890206274511}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 945af76f249de8346b35234c31e5f508, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.020476371
+        value: 0.07936555
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &4597654449533595454
 GameObject:
   m_ObjectHideFlags: 0
@@ -10363,7 +10564,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -10382,6 +10583,7 @@ GameObject:
   - component: {fileID: 4862383390254249551}
   - component: {fileID: 7243589248269511053}
   - component: {fileID: 6604264451908354345}
+  - component: {fileID: 195247069157457744}
   m_Layer: 0
   m_Name: Shrink Ray
   m_TagString: Untagged
@@ -10403,6 +10605,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8167897599177335563}
+  - {fileID: 2348335489074063250}
   m_Father: {fileID: 4507460325402585156}
   m_LocalEulerAnglesHint: {x: -9.24, y: -10.83, z: -2.31}
 --- !u!33 &4275424132293677321
@@ -10492,6 +10695,31 @@ MonoBehaviour:
       m_Action: Fire
       m_Flags: 0
     m_Flags: 0
+  toggleTrajectory:
+    m_Name: Toggle Trajectory
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c294eaf4-1aed-497a-b59b-40fc7d97bfce
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 04b05a9a-64f9-4db5-9f25-880468b54964
+      m_Path: <Gamepad>/dpad/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Trajectory
+      m_Flags: 0
+    - m_Name: 
+      m_Id: f8ee9118-a159-40e6-8f41-5cc2ca1bd241
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Trajectory
+      m_Flags: 0
+    m_Flags: 0
   FPCamera: {fileID: 2587972558595454403}
   range: 30
   changeAmount: 0.5
@@ -10504,6 +10732,13 @@ MonoBehaviour:
   ammoType: 0
   timeBetweenShots: 0.5
   ammoText: {fileID: 0}
+  line: {fileID: 195247069157457744}
+  trajectoryOrigin: {fileID: 2348335489074063250}
+  defaultLength: 50
+  numOfReflections: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &6604264451908354345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10546,6 +10781,110 @@ MonoBehaviour:
   zoomedInFov: 40
   zoomOutSensitivity: 2
   zoomInSensitivity: 0.5
+--- !u!120 &195247069157457744
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295878989204686394}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 945af76f249de8346b35234c31e5f508, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.020476371
+        value: 0.07936555
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &7913828251214828328
 GameObject:
   m_ObjectHideFlags: 0
@@ -10604,8 +10943,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.6
-  m_Radius: 0.4
+  m_Height: 2.3
+  m_Radius: 0.7
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -10705,6 +11044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallestSize: {x: 0.2, y: 0.2, z: 0.2}
   maxSize: {x: 1, y: 1, z: 1}
+  changeDuration: 1
 --- !u!114 &3356970266101371283
 MonoBehaviour:
   m_ObjectHideFlags: 0
