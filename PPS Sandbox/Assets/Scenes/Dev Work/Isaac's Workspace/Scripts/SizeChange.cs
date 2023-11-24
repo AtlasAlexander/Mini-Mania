@@ -33,8 +33,11 @@ public class SizeChange : MonoBehaviour
 
         if (forceOnSizeChange)
         {                       //This adds some force to objects when they shrink for visual player feedback
-            if (currentSize != smallestSize)gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
-            else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 90f * forceMultiplier);
+            if(GetComponent<Rigidbody>() != null)
+            {
+                if (currentSize != smallestSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
+                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 90f * forceMultiplier);
+            }
         }
 
         if (currentSize != smallestSize)
@@ -72,8 +75,11 @@ public class SizeChange : MonoBehaviour
 
         if (forceOnSizeChange)
         {           //This adds some force to objects when they grow for visual player feedback
-            if (currentSize != maxSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
-            else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 70f * forceMultiplier);
+            if(GetComponent<Rigidbody>() != null)
+            {
+                if (currentSize != maxSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
+                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 70f * forceMultiplier);
+            }
         }
 
         if (currentSize != maxSize)
