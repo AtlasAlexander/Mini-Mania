@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MusicTransition : MonoBehaviour
 {
     public AudioClip[] otherClip;
     AudioSource audioSource;
     public int i;
+
+    public TextMeshProUGUI currentSong;
 
     private void Start()
     {
@@ -19,6 +23,7 @@ public class MusicTransition : MonoBehaviour
         {
             audioSource.clip = otherClip[i];
             audioSource.Play();
+            StartCoroutine(SongDisplay());
             i += 1;
         }
     }
@@ -29,5 +34,13 @@ public class MusicTransition : MonoBehaviour
         {
             i = 0;
         }
+    }
+
+    IEnumerator SongDisplay()
+    {
+        currentSong.text = audioSource.clip.name;
+        currentSong.enabled = true;
+        yield return new WaitForSeconds(5);
+        currentSong.enabled = false;
     }
 }
