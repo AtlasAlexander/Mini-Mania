@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class SizeChange : MonoBehaviour
 {
@@ -8,18 +9,20 @@ public class SizeChange : MonoBehaviour
     [SerializeField] Vector3 maxSize = new Vector3(1, 1, 1);
     [SerializeField] float changeDuration = 1f;
 
+    [SerializeField] bool forceOnSizeChange = true;
+    [SerializeField][Range(0f, 3.0f)] float forceMultiplier = 1f;
+
     private bool shrunk = false;
 
     public void ChangeSize(AmmoType ammoType)
     {
         if(ammoType.ToString() == "Shrink")
         {
-            FindObjectOfType<AudioManager>().Play("object_shrink");
             ShrinkObject();
         }
         if(ammoType.ToString() == "Grow")
         {
-            FindObjectOfType<AudioManager>().Play("object_grow");
+            
             GrowObject();
         }
     }
@@ -28,10 +31,20 @@ public class SizeChange : MonoBehaviour
     {
         Vector3 currentSize = GetComponent<Transform>().localScale;
 
+        if (forceOnSizeChange)
+        {                       //This adds some force to objects when they shrink for visual player feedback
+            if(GetComponent<Rigidbody>() != null)
+            {
+                if (currentSize != smallestSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
+                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 90f * forceMultiplier);
+            }
+        }
+
         if (currentSize != smallestSize)
         {
             StartCoroutine(LerpSize(currentSize, smallestSize, changeDuration));
             shrunk = true;
+            FindObjectOfType<AudioManager>().Play("object_shrink");
         }
 
         /*
@@ -60,11 +73,21 @@ public class SizeChange : MonoBehaviour
     {
         Vector3 currentSize = GetComponent<Transform>().localScale;
 
+        if (forceOnSizeChange)
+        {           //This adds some force to objects when they grow for visual player feedback
+            if(GetComponent<Rigidbody>() != null)
+            {
+                if (currentSize != maxSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
+                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 70f * forceMultiplier);
+            }
+        }
+
         if (currentSize != maxSize)
         {
             //gameObject.transform.localScale = maxSize;
             StartCoroutine(LerpSize(currentSize, maxSize, changeDuration));
             shrunk = false;
+            FindObjectOfType<AudioManager>().Play("object_grow");
         }
     }
 

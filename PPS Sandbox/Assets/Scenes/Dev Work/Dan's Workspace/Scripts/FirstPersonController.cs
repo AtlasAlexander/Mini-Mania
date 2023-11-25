@@ -219,7 +219,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        //currentInput = new Vector2((isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"), (isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal"));
         currentInput = (isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * move.ReadValue<Vector2>();
         if (currentInput.x == 0 && currentInput.y == 0)
         {
@@ -255,6 +254,36 @@ public class FirstPersonController : MonoBehaviour
             isSprinting = false;
         }
     }
+    private IEnumerator CrouchStand()
+    {
+        if (isCrouching && Physics.Raycast(playerCam.transform.position, Vector3.up, 1f))
+        {
+            yield break;
+        }
+
+        duringCrouchAnimation = true;
+
+        float timeElapsed = 0;
+        float targetHeight = isCrouching ? standingHeight : crouchHeight;
+        float currentHeight = characterController.height;
+        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
+        Vector3 currentCenter = characterController.center;
+
+        while (timeElapsed < timeToCrouch)
+        {
+            characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
+            characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        characterController.height = targetHeight;
+        characterController.center = targetCenter;
+
+        isCrouching = !isCrouching;
+
+        duringCrouchAnimation = false;
+    }
 
     private void HandleHeadbob()
     {
@@ -287,19 +316,6 @@ public class FirstPersonController : MonoBehaviour
         }
 
         zoomRoutine = StartCoroutine(ToggleZoom(true));
-
-        /*
-        if (context.canceled)
-        {
-            if (zoomRoutine != null)
-            {
-                StopCoroutine(zoomRoutine);
-                zoomRoutine = null;
-            }
-
-            zoomRoutine = StartCoroutine(ToggleZoom(false));
-        }
-        */
     }
 
     private void CancelZoom(InputAction.CallbackContext context)
@@ -331,36 +347,6 @@ public class FirstPersonController : MonoBehaviour
         characterController.Move(moveDir * Time.deltaTime);
     }
 
-    private IEnumerator CrouchStand()
-    {
-        if (isCrouching && Physics.Raycast(playerCam.transform.position, Vector3.up, 1f))
-        {
-            yield break;
-        }
-
-        duringCrouchAnimation = true;
-
-        float timeElapsed = 0;
-        float targetHeight = isCrouching ? standingHeight : crouchHeight;
-        float currentHeight = characterController.height;
-        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
-        Vector3 currentCenter = characterController.center;
-
-        while (timeElapsed < timeToCrouch)
-        {
-            characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
-            characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        characterController.height = targetHeight;
-        characterController.center = targetCenter;
-
-        isCrouching = !isCrouching;
-
-        duringCrouchAnimation = false;
-    }
 
     private IEnumerator ToggleZoom(bool isEnter)
     {

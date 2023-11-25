@@ -5,14 +5,15 @@ using System.Threading;
 
 public class AudioManager : MonoBehaviour
 {
+    public bool muted = false;
+
     public Sound[] sounds;                   //This Audio Manager is here to easily play sounds
                                              //Sounds from here will not be played in 3D space
     public static AudioManager instance;     //Play sounds from the Audio Manager with "FindObjectOfType<AudioManager>().Play("sound_name");"
                                              //This works from any script
-    private bool muted;
+
     void Awake()
     {
-        muted = false;
 
         if (instance == null)             //This code allows the audio manager to remain constant between scenes
             instance = this;              //and ensures there is only ever one Audio Manager
