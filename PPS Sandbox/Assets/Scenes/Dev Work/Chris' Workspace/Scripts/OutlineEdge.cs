@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Outline : MonoBehaviour
+public class OutlineEdge : MonoBehaviour
 {
     private Camera mainCamera;
     private string edgeHighlightProperty = "_Scale";
