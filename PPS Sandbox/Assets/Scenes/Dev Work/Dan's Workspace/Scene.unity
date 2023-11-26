@@ -4569,7 +4569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc51d4c4ff253384084b0258a23ae206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theseHands: {fileID: 0}
+  theseHands: {fileID: 1390205952}
   holding: 0
   outOfLosDist: 4
 --- !u!114 &400716533
@@ -8148,7 +8148,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 18d9edd21aaab5349bd1c1ba828ac105, type: 3}
   - {fileID: 8300000, guid: 4d6263dd385036e4b8e314d067bde95c, type: 3}
   - {fileID: 8300000, guid: 1470425574e409f4189a28b11af8075e, type: 3}
-  i: 0
+  i: 5
 --- !u!43 &1094200938
 Mesh:
   m_ObjectHideFlags: 0
@@ -12477,6 +12477,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1390205952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4370132678061321405, guid: 65b0ddc7cefe7b0438005740e197a245,
+    type: 3}
+  m_PrefabInstance: {fileID: 1033681203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1394326500
 Mesh:
   m_ObjectHideFlags: 0
