@@ -48,7 +48,6 @@ public class SwitchController : MonoBehaviour
                 ObjOnSwitch++;
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)

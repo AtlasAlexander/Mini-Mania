@@ -97,9 +97,10 @@ public class SizeChange : MonoBehaviour
     {
 
         ///only does increase
-        //GrowObject();       //Taken out due to switch bug (not sure of use)
+       // GrowObject();       //Taken out due to switch bug (not sure of use)
 
-        //if(other.tag == "SizeOverride")
+        if(other.tag == "SizeOverride")
+            GrowObject();
         //{
         //    Vector3 currentSize = GetComponent<Transform>().localScale;
         //
