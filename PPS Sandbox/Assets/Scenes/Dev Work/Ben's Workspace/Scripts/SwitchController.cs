@@ -5,50 +5,53 @@ using UnityEngine;
 public class SwitchController : MonoBehaviour
 {
     public int RequiredWeight = 50;
-    [SerializeField] GameObject DoorToOpen;
+    [SerializeField] List<GameObject> DoorsToOpen;
+    [SerializeField] List<GameObject> LasersToTrigger;
+    [SerializeField] bool TriggerLasersOn = false;
     bool doorOpen = false;
     int ObjOnSwitch = 0;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-/*        if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 3  && !doorOpen)
+        if (ObjOnSwitch > 0)
         {
-            doorOpen = true;
-            ObjOnSwitch++;
-            DoorToOpen.GetComponent<DoorController>().OpenDoor();
-        }
-        else if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) > 3 && doorOpen)
-        {
-            ObjOnSwitch--;
-            if (ObjOnSwitch == 0)
+            if (DoorsToOpen.Count > 0)
             {
-                doorOpen = false;
-                DoorToOpen.GetComponent<DoorController>().CloseDoor();
+                foreach(GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
             }
-        }*/
+            if (LasersToTrigger.Count > 0)
+            {
+                foreach (GameObject laser in LasersToTrigger) { laser.SetActive(TriggerLasersOn); }
+            }
+        }           
+        else
+        {
+            if (DoorsToOpen.Count > 0)
+            {
+                foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
+            }
+            if (LasersToTrigger.Count > 0)
+            {
+                foreach (GameObject laser in LasersToTrigger) { laser.SetActive(!TriggerLasersOn); }
+            }
+        }           
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Stats>().Weight > 50)
+        if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
-            ObjOnSwitch++;
-            DoorToOpen.GetComponent<DoorController>().OpenDoor();
+            ObjOnSwitch++;           
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        ObjOnSwitch--;
-        if (ObjOnSwitch == 0)
+        if (ObjOnSwitch > 0)
         {
-            DoorToOpen.GetComponent<DoorController>().CloseDoor();
+            ObjOnSwitch--;
         }
     }
 }
