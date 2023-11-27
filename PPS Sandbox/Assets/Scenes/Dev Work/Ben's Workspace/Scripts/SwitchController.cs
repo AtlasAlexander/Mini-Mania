@@ -41,17 +41,24 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
+        if (other.gameObject.GetComponent<Stats>() != null)
         {
-            ObjOnSwitch++;           
+            if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
+            {
+                ObjOnSwitch++;
+            }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (ObjOnSwitch > 0)
+        if (other.gameObject.GetComponent<Stats>() != null)
         {
-            ObjOnSwitch--;
+            if (ObjOnSwitch > 0)
+            {
+                ObjOnSwitch--;
+            }
         }
     }
 }
