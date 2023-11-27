@@ -42,6 +42,7 @@ public class SizeChange : MonoBehaviour
 
         if (currentSize != smallestSize)
         {
+            GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 0.2f;
             StartCoroutine(LerpSize(currentSize, smallestSize, changeDuration));
             shrunk = true;
             FindObjectOfType<AudioManager>().Play("object_shrink");
@@ -85,6 +86,7 @@ public class SizeChange : MonoBehaviour
         if (currentSize != maxSize)
         {
             //gameObject.transform.localScale = maxSize;
+            GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 5f;
             StartCoroutine(LerpSize(currentSize, maxSize, changeDuration));
             shrunk = false;
             FindObjectOfType<AudioManager>().Play("object_grow");
@@ -93,16 +95,20 @@ public class SizeChange : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "SizeOverride")
-        {
-            Vector3 currentSize = GetComponent<Transform>().localScale;
 
-            if (currentSize != maxSize)
-            {
-                gameObject.transform.localScale = maxSize;
-                shrunk = false;
-            }
-        }
+        ///only does increase
+        GrowObject();
+
+        //if(other.tag == "SizeOverride")
+        //{
+        //    Vector3 currentSize = GetComponent<Transform>().localScale;
+        //
+        //    if (currentSize != maxSize)
+        //    {
+        //        gameObject.transform.localScale = maxSize;
+        //        shrunk = false;
+        //    }
+        //}
     }
 
     public bool GetShrunkStatus()
