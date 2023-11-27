@@ -7,29 +7,42 @@ public class CarryCheck : MonoBehaviour
 {
     [SerializeField] Camera FPCamera;
     [SerializeField] float pickUpRange = 3f;
-    [SerializeField] InputAction pickUp;
 
     GameObject Player;
+    public PlayerControls playerControls;
 
     public bool carrying;
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
 
     private void Awake()
     {
         FPCamera = Camera.main;
         Player = GameObject.FindGameObjectWithTag("Player");
+        playerControls = new PlayerControls();
         
     }
     private void Update()
     {
-        if (Input.GetButtonUp("Grab"))
+        playerControls.Movement.Interact.performed += x => IsCarrying();
+        //if (Input.GetButtonUp("Grab"))
         {
-            carrying = false;
+            //carrying = false;
         }
         //if (pickUp.ReadValue<bool>())
         {
             ProcessRaycast();
         }
     }
+
+    void IsCarrying()
+    {
+        carrying = !carrying;
+    }
+
     private void ProcessRaycast()
     {
 
@@ -48,16 +61,15 @@ public class CarryCheck : MonoBehaviour
             {
                 //if target is in range
                 Debug.Log("HIT");
-                if (Input.GetButton("Grab"))
+                if (carrying)
                 {
                     if (carry.gameObject.GetComponent<Stats>().Weight < Player.GetComponent<Stats>().Weight)
                     {
                         carry.holding = true;
-                        carrying = true;
                     }
                 }
 
-                if (Input.GetButtonUp("Grab"))
+                if(!carrying)
                 {
                     carry.holding = false;
                 }
