@@ -30,7 +30,7 @@ public class MusicTransition : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (i > otherClip.Length)
+        if (i >= otherClip.Length)
         {
             i = 0;
         }
