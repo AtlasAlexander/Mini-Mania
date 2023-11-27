@@ -9,8 +9,10 @@ public class MusicTransition : MonoBehaviour
     public AudioClip[] otherClip;
     AudioSource audioSource;
     public int i;
+    public bool disPlayTrack;
 
     public TextMeshProUGUI currentSong;
+    public Image SongCover, Boarder;
 
     private void Start()
     {
@@ -36,11 +38,33 @@ public class MusicTransition : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Color TextColour = currentSong.color; 
+        Color BoarderColour = Boarder.color;
+        Color SongCoverColour = SongCover.color;
+        if (disPlayTrack)
+        {
+            SongCoverColour.a += Time.deltaTime;
+            BoarderColour.a += Time.deltaTime;
+            TextColour.a += Time.deltaTime / 1.1f;
+        }
+        else
+        {
+            SongCoverColour.a -= Time.deltaTime;
+            BoarderColour.a -= Time.deltaTime;
+            TextColour.a -= Time.deltaTime * 1.1f;
+        }
+        SongCover.color = SongCoverColour;
+        Boarder.color = BoarderColour;
+        currentSong.color = TextColour;
+    }
+
     IEnumerator SongDisplay()
     {
         currentSong.text = audioSource.clip.name;
-        currentSong.enabled = true;
+        disPlayTrack = true;
         yield return new WaitForSeconds(5);
-        currentSong.enabled = false;
+        disPlayTrack = false;
     }
 }
