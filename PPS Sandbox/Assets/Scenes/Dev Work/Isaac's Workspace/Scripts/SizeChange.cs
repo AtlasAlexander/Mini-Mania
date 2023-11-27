@@ -97,7 +97,7 @@ public class SizeChange : MonoBehaviour
     {
 
         ///only does increase
-        GrowObject();
+        //GrowObject();       //Taken out due to switch bug (not sure of use)
 
         //if(other.tag == "SizeOverride")
         //{
