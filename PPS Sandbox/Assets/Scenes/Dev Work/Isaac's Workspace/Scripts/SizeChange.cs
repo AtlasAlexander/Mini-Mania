@@ -8,8 +8,8 @@ public class SizeChange : MonoBehaviour
     [SerializeField] Vector3 smallestSize = new Vector3(0.2f, 0.2f, 0.2f);
     [SerializeField] Vector3 maxSize = new Vector3(1, 1, 1);
     [SerializeField] float changeDuration = 1f;
-    
-    [SerializeField] bool forceOnSizeChange = false;
+
+    [SerializeField] bool forceOnSizeChange = true;
     [SerializeField][Range(0f, 3.0f)] float forceMultiplier = 1f;
 
     private bool shrunk = false;
