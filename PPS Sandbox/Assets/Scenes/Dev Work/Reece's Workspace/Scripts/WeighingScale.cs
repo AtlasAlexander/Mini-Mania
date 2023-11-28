@@ -6,13 +6,38 @@ public class WeighingScale : MonoBehaviour
     [SerializeField] private Transform parentPlatform;
     [SerializeField] private Rigidbody scalePlatforms;
 
+    private Stats stats;
+
+    private void Awake()
+    {
+        stats = GameObject.Find("Player").GetComponent<Stats>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && stats.Weight >= 100.0f)
         {
             player.parent = parentPlatform.transform;   // Player becomes the child of the platform
-            scalePlatforms.mass = 5.0f;                 // Increase the mass of the scale platform when player interacts
+            scalePlatforms.mass = 7.0f;                 // Increase the mass of the scale platform when player interacts
+        }
+        else if (other.CompareTag("Player") && stats.Weight <= 100.0f)
+        {
+            player.parent = parentPlatform.transform;
+            scalePlatforms.mass = 1.0f;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && stats.Weight >= 100.0f)
+        {
+            player.parent = parentPlatform.transform;   // Player becomes the child of the platform
+            scalePlatforms.mass = 7.0f;                 // Increase the mass of the scale platform when player interacts
+        }
+        else if (other.CompareTag("Player") && stats.Weight <= 100.0f)
+        {
+            player.parent = parentPlatform.transform;
+            scalePlatforms.mass = 1.0f;
         }
     }
 

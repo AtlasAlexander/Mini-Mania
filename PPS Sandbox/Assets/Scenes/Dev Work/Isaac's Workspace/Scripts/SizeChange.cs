@@ -12,7 +12,7 @@ public class SizeChange : MonoBehaviour
     [SerializeField] bool forceOnSizeChange = false;
     [SerializeField][Range(0f, 3.0f)] float forceMultiplier = 1f;
 
-    private bool shrunk = false;
+    [SerializeField] private bool shrunk = false;
 
     public void ChangeSize(AmmoType ammoType)
     {

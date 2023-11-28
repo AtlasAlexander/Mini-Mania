@@ -237,7 +237,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141791692}
   serializedVersion: 4
-  m_Mass: 0.1
+  m_Mass: 4.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -332,16 +332,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 614751190234610037, guid: 65b0ddc7cefe7b0438005740e197a245,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 633239423253177406, guid: 65b0ddc7cefe7b0438005740e197a245,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: cad9fa313f9e7c34289ce43915609b40, type: 2}
     - target: {fileID: 2773948046101183640, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -392,35 +382,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285757702004007207, guid: 65b0ddc7cefe7b0438005740e197a245,
-        type: 3}
-      propertyPath: gravity
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7913828251214828328, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       propertyPath: m_Name
-      value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690768717732337970, guid: 65b0ddc7cefe7b0438005740e197a245,
-        type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690768717732337970, guid: 65b0ddc7cefe7b0438005740e197a245,
-        type: 3}
-      propertyPath: m_SlopeLimit
-      value: 0
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8690768717732337970, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       propertyPath: m_StepOffset
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690768717732337970, guid: 65b0ddc7cefe7b0438005740e197a245,
-        type: 3}
-      propertyPath: m_LayerOverridePriority
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1020,7 +990,7 @@ PrefabInstance:
     - target: {fileID: 8933983549480365212, guid: fb6b2063786d16b45bccc7ed57b71f3e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.68
+      value: 16.56
       objectReference: {fileID: 0}
     - target: {fileID: 8933983549480365212, guid: fb6b2063786d16b45bccc7ed57b71f3e,
         type: 3}

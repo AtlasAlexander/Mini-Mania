@@ -5244,23 +5244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 2587972558595454403}
   pickUpRange: 3
-  pickUp:
-    m_Name: Pick Up
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7acfbbe1-863b-472c-bbaa-7259679cba9f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b49bd19b-116b-40b3-867d-b40d7129fde7
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pick Up
-      m_Flags: 0
-    m_Flags: 0
   carrying: 0
 --- !u!1 &4558378890206274511
 GameObject:
@@ -10525,7 +10508,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cad9fa313f9e7c34289ce43915609b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10564,7 +10547,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -10939,16 +10922,16 @@ CharacterController:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2.03
   m_Radius: 0.52
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SlopeLimit: 0
+  m_StepOffset: 0
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4285757702004007207
@@ -11046,6 +11029,9 @@ MonoBehaviour:
   smallestSize: {x: 0.2, y: 0.2, z: 0.2}
   maxSize: {x: 1, y: 1, z: 1}
   changeDuration: 1
+  forceOnSizeChange: 0
+  forceMultiplier: 1
+  shrunk: 0
 --- !u!114 &3356970266101371283
 MonoBehaviour:
   m_ObjectHideFlags: 0
