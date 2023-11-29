@@ -28,11 +28,6 @@ public class CarryCheck : MonoBehaviour
     private void Update()
     {
         playerControls.Movement.Interact.performed += x => IsCarrying();
-        //if (Input.GetButtonUp("Grab"))
-        {
-            //carrying = false;
-        }
-        //if (pickUp.ReadValue<bool>())
         {
             ProcessRaycast();
         }
@@ -55,6 +50,7 @@ public class CarryCheck : MonoBehaviour
 
             if (carry == null)
             {
+                carrying = false;
                 return;
             }
             if (carry != null)
@@ -67,6 +63,10 @@ public class CarryCheck : MonoBehaviour
                     {
                         carry.holding = true;
                     }
+                    else
+                    {
+                        carrying = false; ;
+                    }
                 }
 
                 if(!carrying)
@@ -76,6 +76,7 @@ public class CarryCheck : MonoBehaviour
             }
             else
             {
+                carrying = false;
                 return;
             }
 
