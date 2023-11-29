@@ -14,9 +14,23 @@ public class MusicTransition : MonoBehaviour
     public TextMeshProUGUI currentSong;
     public Image SongCover, Boarder;
 
+    public PlayerControls playerControls;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        i = Random.Range(0, otherClip.Length);
     }
 
     private void LateUpdate()
@@ -40,6 +54,8 @@ public class MusicTransition : MonoBehaviour
 
     private void Update()
     {
+        playerControls.Music.Skip.performed += x => songSkipped();
+
         Color TextColour = currentSong.color; 
         Color BoarderColour = Boarder.color;
         Color SongCoverColour = SongCover.color;
@@ -60,6 +76,10 @@ public class MusicTransition : MonoBehaviour
         currentSong.color = TextColour;
     }
 
+    private void songSkipped()
+    {
+        audioSource.Stop();
+    }
     IEnumerator SongDisplay()
     {
         currentSong.text = audioSource.clip.name;

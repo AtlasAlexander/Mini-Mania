@@ -343,6 +343,45 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Music"",
+            ""id"": ""cf445c17-c6b6-41bb-be6b-42227de55de1"",
+            ""actions"": [
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""4206acf3-333a-4aa5-848b-3fd5e5122cc7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9094ad27-f840-46cd-8198-c38936ac2e2c"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46400d2a-2a69-471a-878c-77a82d9c0efd"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -358,6 +397,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
+        // Music
+        m_Music = asset.FindActionMap("Music", throwIfNotFound: true);
+        m_Music_Skip = m_Music.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -547,6 +589,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // Music
+    private readonly InputActionMap m_Music;
+    private List<IMusicActions> m_MusicActionsCallbackInterfaces = new List<IMusicActions>();
+    private readonly InputAction m_Music_Skip;
+    public struct MusicActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MusicActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Skip => m_Wrapper.m_Music_Skip;
+        public InputActionMap Get() { return m_Wrapper.m_Music; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MusicActions set) { return set.Get(); }
+        public void AddCallbacks(IMusicActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MusicActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MusicActionsCallbackInterfaces.Add(instance);
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
+        }
+
+        private void UnregisterCallbacks(IMusicActions instance)
+        {
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
+        }
+
+        public void RemoveCallbacks(IMusicActions instance)
+        {
+            if (m_Wrapper.m_MusicActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMusicActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MusicActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MusicActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MusicActions @Music => new MusicActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -559,5 +647,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnLook(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+    }
+    public interface IMusicActions
+    {
+        void OnSkip(InputAction.CallbackContext context);
     }
 }
