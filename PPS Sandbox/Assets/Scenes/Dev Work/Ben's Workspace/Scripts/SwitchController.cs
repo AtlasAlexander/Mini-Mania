@@ -60,4 +60,18 @@ public class SwitchController : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (ObjOnSwitch == 0)
+        {
+            if (other.gameObject.GetComponent<Stats>() != null)
+            {
+                if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
+                {
+                    ObjOnSwitch++;
+                }
+            }
+        }
+    }
 }
