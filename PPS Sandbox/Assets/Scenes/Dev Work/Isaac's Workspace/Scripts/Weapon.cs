@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private LineRenderer line;
     [SerializeField] private RaycastHit hit;
     [SerializeField] private Transform trajectoryOrigin;
+    [SerializeField] float sphereCastWidth = 0.1f;
 
     public float defaultLength = 50;
     public int numOfReflections = 2;
@@ -152,7 +153,7 @@ public class Weapon : MonoBehaviour
     private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
         RaycastHit hit;
-        if (Physics.Raycast(position, direction, out hit, range))
+        if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range))
         {
             Debug.DrawLine(position, hit.point, Color.red, 1f);
             CreateHitImpact(hit);
