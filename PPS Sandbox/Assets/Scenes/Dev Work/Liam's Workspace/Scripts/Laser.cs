@@ -12,7 +12,7 @@ public class laser : MonoBehaviour
 
     void Start()
     {
-        //CheckpointRef = GameObject.FindGameObjectWithTag("Checkpoint").transform.parent.gameObject; 
+        CheckpointRef = GameObject.FindGameObjectWithTag("Checkpoint").transform.parent.gameObject; 
         lr = GetComponent<LineRenderer>();
     }
 
@@ -38,8 +38,8 @@ public class laser : MonoBehaviour
                 lr.SetPosition(1, hit.point);
                 //Kill player
                 //Destroy(hit.collider.gameObject);
-                SceneManager.LoadScene(1);
-                //CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
+                //SceneManager.LoadScene(1);
+                CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
             }
             else
             {

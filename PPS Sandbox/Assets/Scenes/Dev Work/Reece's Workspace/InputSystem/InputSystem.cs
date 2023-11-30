@@ -89,6 +89,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadCheckpoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""321dfbdf-5ebe-49ad-95d4-5f356d8abdc4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -234,6 +243,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae9d4bec-32b0-49aa-b268-40bf142e9152"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadCheckpoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,6 +280,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_LoadCheckpoint = m_Player.FindAction("LoadCheckpoint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +349,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Zoom;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_LoadCheckpoint;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -339,6 +361,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @LoadCheckpoint => m_Wrapper.m_Player_LoadCheckpoint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +392,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @LoadCheckpoint.started += instance.OnLoadCheckpoint;
+            @LoadCheckpoint.performed += instance.OnLoadCheckpoint;
+            @LoadCheckpoint.canceled += instance.OnLoadCheckpoint;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -394,6 +420,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @LoadCheckpoint.started -= instance.OnLoadCheckpoint;
+            @LoadCheckpoint.performed -= instance.OnLoadCheckpoint;
+            @LoadCheckpoint.canceled -= instance.OnLoadCheckpoint;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -438,5 +467,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnLoadCheckpoint(InputAction.CallbackContext context);
     }
 }
