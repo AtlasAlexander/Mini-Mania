@@ -64,4 +64,9 @@ public class InputManager : MonoBehaviour
     {
         return inputSystem.Player.Interact.ReadValue<float>();
     }
+
+    public float GetCheckpointInput()
+    {
+        return inputSystem.Player.LoadCheckpoint.ReadValue<float>();
+    }
 }

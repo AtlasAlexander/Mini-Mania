@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CheckpointChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddc622b5-3221-4ab2-ac86-a45bc57e2eff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54f99548-af7d-490e-abc8-9ecd7f9aaac3"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CheckpointChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -393,6 +413,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+        m_Movement_CheckpointChange = m_Movement.FindAction("CheckpointChange", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
@@ -466,6 +487,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Crouch;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Interact;
+    private readonly InputAction m_Movement_CheckpointChange;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -475,6 +497,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Interact => m_Wrapper.m_Movement_Interact;
+        public InputAction @CheckpointChange => m_Wrapper.m_Movement_CheckpointChange;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -499,6 +522,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @CheckpointChange.started += instance.OnCheckpointChange;
+            @CheckpointChange.performed += instance.OnCheckpointChange;
+            @CheckpointChange.canceled += instance.OnCheckpointChange;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -518,6 +544,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @CheckpointChange.started -= instance.OnCheckpointChange;
+            @CheckpointChange.performed -= instance.OnCheckpointChange;
+            @CheckpointChange.canceled -= instance.OnCheckpointChange;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -642,6 +671,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCheckpointChange(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
