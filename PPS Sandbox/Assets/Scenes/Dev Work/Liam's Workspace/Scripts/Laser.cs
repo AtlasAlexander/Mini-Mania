@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class laser : MonoBehaviour
 {
-
+    GameObject CheckpointRef;
     private LineRenderer lr;
 
     void Start()
     {
+        CheckpointRef = GameObject.FindGameObjectWithTag("Checkpoint").transform.parent.gameObject; 
         lr = GetComponent<LineRenderer>();
     }
 
@@ -37,7 +38,8 @@ public class laser : MonoBehaviour
                 lr.SetPosition(1, hit.point);
                 //Kill player
                 //Destroy(hit.collider.gameObject);
-                SceneManager.LoadScene(1);
+                //SceneManager.LoadScene(1);
+                CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
             }
             else
             {
