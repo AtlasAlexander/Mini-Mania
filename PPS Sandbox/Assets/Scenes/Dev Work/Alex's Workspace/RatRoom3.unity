@@ -648,7 +648,7 @@ RenderTexture:
   m_TextureSettings:
     serializedVersion: 2
     m_FilterMode: 1
-    m_Aniso: 1
+    m_Aniso: 0
     m_MipBias: 0
     m_WrapU: 1
     m_WrapV: 1
@@ -5774,13 +5774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b9488e8346e6445b175d59f4d2cd5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Offset: 0.01
-  m_LayerMask: -1
-  m_Scope: 0
-  m_Renderers: []
-  m_TextureScale: 1
-  m_AllowHDR: 0
-  m_AllowMSAA: 0
 --- !u!114 &1964860188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6927,12 +6920,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 543372106}
-    - target: {fileID: 3465130324881286065, guid: c339e7a4790c1e2418a7d3810a1ee45e,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -876546973899608171, guid: 1acbefaec60e7004aac25fe4b40a1436,
-        type: 3}
     - target: {fileID: 3533827987291285766, guid: c339e7a4790c1e2418a7d3810a1ee45e,
         type: 3}
       propertyPath: m_Mesh
