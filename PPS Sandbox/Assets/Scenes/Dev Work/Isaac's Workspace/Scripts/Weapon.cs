@@ -20,14 +20,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] float timeBetweenShots = 0.5f;
     [SerializeField] TextMeshProUGUI ammoText;
 
+    //RayCast
     [SerializeField] private LineRenderer line;
     [SerializeField] private RaycastHit hit;
     [SerializeField] private Transform trajectoryOrigin;
     [SerializeField] float sphereCastWidth = 0.1f;
+    [SerializeField] private float raycastClusterSpread = 0.12f;
 
     public float defaultLength = 50;
     public int numOfReflections = 2;
-    public LayerMask layerMask;
+    public LayerMask mirrorLayerMask;
+    [SerializeField] LayerMask sphereCastLayerMask;
 
     private Ray ray;
 
@@ -93,7 +96,7 @@ public class Weapon : MonoBehaviour
 
         for (int i = 0; i < numOfReflections; i++)
         {
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, defaultLength, layerMask))
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, defaultLength, mirrorLayerMask))
             {
                 line.positionCount += 1;
                 line.SetPosition(1, hit.point);
@@ -113,7 +116,7 @@ public class Weapon : MonoBehaviour
     {
         line.SetPosition(0, transform.position);
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, defaultLength, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, defaultLength, mirrorLayerMask))
         {
             line.SetPosition(1, hit.point);
         }
@@ -134,8 +137,36 @@ public class Weapon : MonoBehaviour
         canShoot = false;
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
+            Vector3 rayCastOrigin = FPCamera.transform.position;
+
             PlayMuzzleFlash();
-            ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
+
+            //Define positions for Raycast cluster
+            Vector3 up = FPCamera.transform.up * raycastClusterSpread;
+            Vector3 down = -FPCamera.transform.up * raycastClusterSpread;
+            Vector3 right = FPCamera.transform.right * raycastClusterSpread;
+            Vector3 left = -FPCamera.transform.right * raycastClusterSpread;
+
+            Vector3 upRight = (up + right).normalized * raycastClusterSpread;
+            Vector3 upLeft = (up + left).normalized * raycastClusterSpread;
+            Vector3 downRight = (down + right).normalized * raycastClusterSpread;
+            Vector3 downLeft = (down + left).normalized * raycastClusterSpread;
+
+            //Shoot cluster of raycasts
+            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward);
+
+            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward);
+
+            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward);
+
+
+            //ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
             //ProcessSpherecastAll(FPCamera.transform.position + (FPCamera.transform.forward * 1), FPCamera.transform.forward);
             ammoSlot.ReduceCurrentAmmo(ammoType);
 
@@ -151,12 +182,11 @@ public class Weapon : MonoBehaviour
 
     private void ProcessSpherecastAll(Vector3 position, Vector3 direction)
     {
-        RaycastHit[] hits = Physics.SphereCastAll(position, sphereCastWidth, direction, range, default);
+        RaycastHit[] hits = Physics.SphereCastAll(position, sphereCastWidth, direction, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore);
         
         foreach(RaycastHit hit in hits) 
         {
             SizeChange target = hit.transform.GetComponent<SizeChange>();
-            hit.transform.GetComponent<MeshRenderer>().material.color = Color.white;
 
             //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if (target == null)
@@ -169,8 +199,6 @@ public class Weapon : MonoBehaviour
                     ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
 
                 }
-
-                return;
             }
             else
             {
@@ -185,7 +213,7 @@ public class Weapon : MonoBehaviour
     private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
         RaycastHit hit;
-        if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range))
+        if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
             Debug.DrawLine(position, hit.point, Color.red, 1f);
             CreateHitImpact(hit);

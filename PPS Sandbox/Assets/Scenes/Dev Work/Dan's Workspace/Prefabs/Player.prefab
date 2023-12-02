@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 590767338755436220}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5320,7 +5320,7 @@ Transform:
   m_GameObject: {fileID: 4370132678061321405}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5577,11 +5577,15 @@ MonoBehaviour:
   line: {fileID: 6410216206091184586}
   trajectoryOrigin: {fileID: 3099141051069414094}
   sphereCastWidth: 0.1
+  raycastClusterSpread: 0.12
   defaultLength: 50
   numOfReflections: 2
-  layerMask:
+  mirrorLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  sphereCastLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &4706639080619054545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10886,11 +10890,15 @@ MonoBehaviour:
   line: {fileID: 195247069157457744}
   trajectoryOrigin: {fileID: 2348335489074063250}
   sphereCastWidth: 0.1
+  raycastClusterSpread: 0.12
   defaultLength: 50
   numOfReflections: 2
-  layerMask:
+  mirrorLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  sphereCastLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &6604264451908354345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11129,8 +11137,8 @@ MonoBehaviour:
   sprintSpeed: 6
   crouchSpeed: 1.5
   slopeSpeed: 8
-  lookSpeedX: 2
-  lookSpeedY: 2
+  lookSpeedX: 1
+  lookSpeedY: 1
   upperLookLimit: 70
   lowerLookLimit: 70
   jumpForce: 8
@@ -11201,6 +11209,7 @@ MonoBehaviour:
   forceOnSizeChange: 0
   forceMultiplier: 1
   shrunk: 0
+  startSmall: 0
 --- !u!114 &3356970266101371283
 MonoBehaviour:
   m_ObjectHideFlags: 0
