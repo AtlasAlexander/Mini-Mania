@@ -136,6 +136,7 @@ public class Weapon : MonoBehaviour
         {
             PlayMuzzleFlash();
             ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
+            //ProcessSpherecastAll(FPCamera.transform.position + (FPCamera.transform.forward * 1), FPCamera.transform.forward);
             ammoSlot.ReduceCurrentAmmo(ammoType);
 
         }
@@ -148,7 +149,38 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-    
+    private void ProcessSpherecastAll(Vector3 position, Vector3 direction)
+    {
+        RaycastHit[] hits = Physics.SphereCastAll(position, sphereCastWidth, direction, range, default);
+        
+        foreach(RaycastHit hit in hits) 
+        {
+            SizeChange target = hit.transform.GetComponent<SizeChange>();
+            hit.transform.GetComponent<MeshRenderer>().material.color = Color.white;
+
+            //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
+            if (target == null)
+            {
+                CreateHitImpact(hit);
+
+                if (hit.collider.gameObject.tag == "Mirror")
+                {
+                    Debug.Log("Mirror");
+                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
+
+                }
+
+                return;
+            }
+            else
+            {
+                CreateSizeHitImpact(hit);
+                //target.TakeDamage(damage);
+                target.ChangeSize(ammoType /*, changeAmount*/);
+
+            }
+        }
+    }
 
     private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
@@ -194,6 +226,7 @@ public class Weapon : MonoBehaviour
     private void ReflectRay(Vector3 position, Vector3 direction)
     {
         ProcessRaycast(position, direction);
+        //ProcessSpherecastAll(position, direction);
     }
 
 
