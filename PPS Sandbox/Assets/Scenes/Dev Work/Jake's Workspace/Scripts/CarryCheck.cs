@@ -40,13 +40,20 @@ public class CarryCheck : MonoBehaviour
 
     private void ProcessRaycast()
     {
-
+        Debug.DrawRay(FPCamera.transform.position, FPCamera.transform.forward * pickUpRange, Color.green);
+        //Debug.DrawRay(FPCamera.transform.position, FPCamera.transform.forward * (pickUpRange - 1.0f), Color.red);
+        //var carryObject = carry.gameObject.GetComponent<Stats>().Weight
         ///checks if object is in range and centred on camera
         RaycastHit hit;
         if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, pickUpRange))
         {
-            
+            //Debug.DrawRay(FPCamera.transform.position, FPCamera.transform.forward, Color.green);
             CarryObj carry = hit.transform.GetComponent<CarryObj>();
+            //Debug.Log($"The Ray has hit at {hit}");
+            /*var carryObject = carry.gameObject.GetComponent<Stats>().Weight;
+            var playerWeight = Player.GetComponent<Stats>().Weight;
+            Debug.Log($"This is from CarryObj class: {carryObject}");
+            Debug.Log($"This is from the weight of player: {playerWeight}");*/
 
             if (carry == null)
             {
@@ -59,9 +66,15 @@ public class CarryCheck : MonoBehaviour
                 Debug.Log("HIT");
                 if (carrying)
                 {
-                    if (carry.gameObject.GetComponent<Stats>().Weight < Player.GetComponent<Stats>().Weight)
+                    if (carry.gameObject.GetComponent<Stats>().Weight == Player.GetComponent<Stats>().Weight)
                     {
-                        carry.holding = true;
+                        carry.isHoldingLargeObject = true;
+                        carry.isHoldingSmallObject = false;
+                    }
+                    else if (carry.gameObject.GetComponent<Stats>().Weight < Player.GetComponent<Stats>().Weight)
+                    {
+                        carry.isHoldingSmallObject = true;
+                        carry.isHoldingLargeObject = false;
                     }
                     else
                     {
@@ -71,7 +84,8 @@ public class CarryCheck : MonoBehaviour
 
                 if(!carrying)
                 {
-                    carry.holding = false;
+                    carry.isHoldingLargeObject = false;
+                    carry.isHoldingSmallObject = false;
                 }
             }
             else

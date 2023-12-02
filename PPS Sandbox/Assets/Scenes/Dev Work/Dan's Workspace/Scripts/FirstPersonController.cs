@@ -326,8 +326,8 @@ public class FirstPersonController : MonoBehaviour
     private void HandleMouseLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-        Debug.Log("X: " + rotationInput.x);
-        Debug.Log("Y: " + rotationInput.y);
+        /*Debug.Log("X: " + rotationInput.x);
+        Debug.Log("Y: " + rotationInput.y);*/
         rotationX -= rotationInput.y * lookSpeedY;
         rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
         playerCam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);

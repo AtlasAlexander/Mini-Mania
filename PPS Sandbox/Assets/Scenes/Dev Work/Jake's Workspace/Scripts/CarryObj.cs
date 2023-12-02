@@ -4,43 +4,70 @@ using UnityEngine;
 
 public class CarryObj : MonoBehaviour
 {
-    public GameObject theseHands;
-    public bool holding;
+    public GameObject smallObject;
+    public GameObject largeObject;
+    public bool isHoldingLargeObject;
+    public bool isHoldingSmallObject;
     private float speed;
     public float outOfLosDist = 4f;
 
     private void Awake()
     {
-        theseHands = GameObject.FindGameObjectWithTag("Hands");
+        smallObject = GameObject.FindGameObjectWithTag("SmallObject");
+        largeObject = GameObject.FindGameObjectWithTag("LargeObject");
     }
 
     private void Update()
     {
-        if (holding)
+        if (isHoldingSmallObject)
         {
-            PickedUp();
+            PickUpSmallObject();
+        }
+        else if(isHoldingLargeObject)
+        {
+            PickUpBigObject();
         }
         else
         {
             Dropped();
         }
-        if(!theseHands.GetComponent<CarryCheck>().carrying)
+        if(!smallObject.GetComponent<CarryCheck>().carrying)
         {
-            holding = false;
+            isHoldingSmallObject = false;
+            isHoldingLargeObject = false;
         }
     }
-    public void PickedUp()
+    public void PickUpSmallObject()
     {
         ///adds flow to carrying objects
         var step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, theseHands.transform.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, smallObject.transform.position, step);
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.rotation = Quaternion.identity;
 
         ///if object held is out of "arms reach"
-        if (Vector3.Distance(transform.position, theseHands.transform.position) > outOfLosDist)
+        if (Vector3.Distance(transform.position, smallObject.transform.position) > outOfLosDist)
         {
-            holding = false;
+            isHoldingLargeObject = false;
+        }
+
+        //transform.position = theseHands.transform.position;
+        //transform.rotation = theseHands.transform.rotation;
+
+    }
+
+    public void PickUpBigObject()
+    {
+        ///adds flow to carrying objects
+        var step = speed * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, largeObject.transform.position, step);
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+        gameObject.transform.rotation = Quaternion.identity;
+
+        ///if object held is out of "arms reach"
+        if (Vector3.Distance(transform.position, largeObject.transform.position) > outOfLosDist)
+        {
+            isHoldingLargeObject = false;
         }
 
         //transform.position = theseHands.transform.position;

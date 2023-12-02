@@ -135,7 +135,7 @@ public class Weapon : MonoBehaviour
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
-            ProcessRaycast(FPCamera.transform.position + (FPCamera.transform.forward * 1), FPCamera.transform.forward);
+            ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
             ammoSlot.ReduceCurrentAmmo(ammoType);
 
         }
