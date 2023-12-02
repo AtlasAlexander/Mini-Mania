@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.HID;
 public class SizeChange : MonoBehaviour
 {
     [SerializeField] Vector3 smallestSize = new Vector3(0.2f, 0.2f, 0.2f);
-    [SerializeField] Vector3 maxSize = new Vector3(1, 1, 1);
+    [SerializeField] Vector3 maxSize = new Vector3(1.5f, 1.5f, 1.5f);
     [SerializeField] float changeDuration = 1f;
     
     [SerializeField] bool forceOnSizeChange = false;
@@ -14,6 +14,15 @@ public class SizeChange : MonoBehaviour
 
     [SerializeField] private bool shrunk = false;
 
+    public bool startSmall;
+
+    public void Awake()
+    {
+        if(startSmall)
+        {
+            ShrinkObject();
+        }
+    }
     public void ChangeSize(AmmoType ammoType)
     {
         if(ammoType.ToString() == "Shrink")

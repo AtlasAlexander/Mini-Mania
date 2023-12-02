@@ -51,7 +51,7 @@ public class PickUpForHands : MonoBehaviour
         {
             //checks for pick up script on obj
             PickUpForObj carry = hit.transform.GetComponent<PickUpForObj>();
-            if(carry != null)
+            if(carry != null && carry.GetComponent<Stats>().Weight <= Player.GetComponent<Stats>().Weight)
             {
                 carry.InHand = true;
             }
