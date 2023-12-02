@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     Animator Anim;
+    public bool reverseDoor;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +22,25 @@ public class DoorController : MonoBehaviour
 
     public void OpenDoor()
     {
-        Anim.SetFloat("DoorStage", 1f);
+        if(reverseDoor)
+        {
+            Anim.SetFloat("DoorStage", -1f);
+        }
+        else
+        {
+            Anim.SetFloat("DoorStage", 1f);
+        }
     }
 
     public void CloseDoor()
     {
-        Anim.SetFloat("DoorStage", -1f);
+        if (reverseDoor)
+        {
+            Anim.SetFloat("DoorStage", 1f);
+        }
+        else
+        {
+            Anim.SetFloat("DoorStage", -1f);
+        }
     }
 }

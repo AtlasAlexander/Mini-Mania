@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3894986128474385583}
   - component: {fileID: 6066618444058668343}
   - component: {fileID: 8723243831214068945}
+  - component: {fileID: -8289311631457333397}
   m_Layer: 0
   m_Name: CarryCube
   m_TagString: Untagged
@@ -167,3 +168,18 @@ MonoBehaviour:
   forceMultiplier: 1
   shrunk: 0
   startSmall: 0
+--- !u!114 &-8289311631457333397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108230566013914520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6910f675b44e854e87c576c6def9873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 20
+  InHand: 0
+  hands: {fileID: 0}

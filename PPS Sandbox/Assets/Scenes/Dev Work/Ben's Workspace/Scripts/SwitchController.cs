@@ -10,12 +10,11 @@ public class SwitchController : MonoBehaviour
     [SerializeField] bool TriggerLasersOn = false;
     bool doorOpen = false;
     int ObjOnSwitch = 0;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
+    public GameObject objOnButton;
     void Update()
     {
-        if (ObjOnSwitch > 0)
+        if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
             if (DoorsToOpen.Count > 0)
             {
@@ -39,17 +38,6 @@ public class SwitchController : MonoBehaviour
         }           
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<Stats>() != null)
-        {
-            if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
-            {
-                ObjOnSwitch++;
-            }
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Stats>() != null)
@@ -67,6 +55,7 @@ public class SwitchController : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Stats>() != null)
             {
+                objOnButton = other.gameObject;
                 if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
                 {
                     ObjOnSwitch++;
