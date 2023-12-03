@@ -47,6 +47,13 @@ public class SwitchController : MonoBehaviour
                 ObjOnSwitch--;
             }
         }
+        if (other.gameObject.CompareTag("PlayerTrigger"))
+        {
+            if (ObjOnSwitch > 0)
+            {
+                ObjOnSwitch--;
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -57,6 +64,14 @@ public class SwitchController : MonoBehaviour
             {
                 objOnButton = other.gameObject;
                 if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
+                {
+                    ObjOnSwitch++;
+                }
+            }
+            if (other.gameObject.CompareTag("PlayerTrigger"))
+            {
+                objOnButton = other.transform.parent.gameObject;
+                if (other.gameObject.GetComponentInParent<Stats>().Weight > RequiredWeight)
                 {
                     ObjOnSwitch++;
                 }
