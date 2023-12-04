@@ -6,7 +6,6 @@ public class Ruler_right_script : MonoBehaviour
 {
     public GameObject ruler;
     public GameObject LeftSide;
-    //public GameObject player;
     public bool right_side_down;
 
     void Update()
@@ -15,10 +14,6 @@ public class Ruler_right_script : MonoBehaviour
         {
             ruler.transform.Rotate(50 * Time.deltaTime,0,0);
         }
-        // if (ruler.transform.localRotation.eulerAngles.x = 27f)
-        // {
-        //     right_side_down = false;
-        // }
     }
 
     public void OnTriggerEnter(Collider other)

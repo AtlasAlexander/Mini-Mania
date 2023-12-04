@@ -12,7 +12,7 @@ public class Ruler_left_script : MonoBehaviour
     {
         if (left_side_down == true)
         {
-            ruler.transform.Rotate(-30 * Time.deltaTime,0,0);
+            ruler.transform.Rotate(-50 * Time.deltaTime,0,0);
         }
     }
 
