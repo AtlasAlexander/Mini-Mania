@@ -153,17 +153,17 @@ public class Weapon : MonoBehaviour
             Vector3 downLeft = (down + left).normalized * raycastClusterSpread;
 
             //Shoot cluster of raycasts
-            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward, false);
 
-            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward, false);
+            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward, false);
+            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward, false);
+            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward, false);
 
-            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward, false);
+            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward, false);
+            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward, false);
+            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward, false);
 
 
             //ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
@@ -180,37 +180,7 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-    private void ProcessSpherecastAll(Vector3 position, Vector3 direction)
-    {
-        RaycastHit[] hits = Physics.SphereCastAll(position, sphereCastWidth, direction, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore);
-        
-        foreach(RaycastHit hit in hits) 
-        {
-            SizeChange target = hit.transform.GetComponent<SizeChange>();
-
-            //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-            if (target == null)
-            {
-                CreateHitImpact(hit);
-
-                if (hit.collider.gameObject.tag == "Mirror")
-                {
-                    Debug.Log("Mirror");
-                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
-
-                }
-            }
-            else
-            {
-                CreateSizeHitImpact(hit);
-                //target.TakeDamage(damage);
-                target.ChangeSize(ammoType /*, changeAmount*/);
-
-            }
-        }
-    }
-
-    private void ProcessRaycast(Vector3 position, Vector3 direction)
+    private void ProcessRaycast(Vector3 position, Vector3 direction, bool canShootPlayer)
     {
         RaycastHit hit;
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
@@ -236,6 +206,11 @@ public class Weapon : MonoBehaviour
             }
             else
             {
+                if(hit.collider.gameObject.tag == "Player" && canShootPlayer == false)
+                {
+                    return;
+                }
+
                 CreateSizeHitImpact(hit);
                 //target.TakeDamage(damage);
                 target.ChangeSize(ammoType /*, changeAmount*/);
@@ -253,7 +228,7 @@ public class Weapon : MonoBehaviour
 
     private void ReflectRay(Vector3 position, Vector3 direction)
     {
-        ProcessRaycast(position, direction);
+        ProcessRaycast(position, direction, true);
         //ProcessSpherecastAll(position, direction);
     }
 
