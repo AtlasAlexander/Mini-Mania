@@ -140,7 +140,6 @@ public class FirstPersonController : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Disable();
-        move.Disable();
     }
     void Update()
     {

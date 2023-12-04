@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1869543726}
         m_TargetAssemblyTypeName: OptionsSettings, Assembly-CSharp
         m_MethodName: InvertLook
         m_Mode: 1
@@ -1590,10 +1590,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1869543726}
         m_TargetAssemblyTypeName: OptionsSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3999,7 +3999,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 610932292}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -7388,10 +7388,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1869543726}
         m_TargetAssemblyTypeName: OptionsSettings, Assembly-CSharp
         m_MethodName: SetSFXVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8252,7 +8252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691e3c9133e0d0d4aa00fd566410c93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GamePaused: 0
   pauseMenuUI: {fileID: 1730846607}
+  settingsMenuUI: {fileID: 1396123337}
 --- !u!43 &612309755
 Mesh:
   m_ObjectHideFlags: 0
@@ -12203,9 +12205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 610932292}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: ResetScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12343,10 +12345,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1869543726}
         m_TargetAssemblyTypeName: OptionsSettings, Assembly-CSharp
         m_MethodName: SetMainVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17375,7 +17377,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 610932292}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -18100,14 +18102,14 @@ MonoBehaviour:
   m_FillRect: {fileID: 942545192}
   m_HandleRect: {fileID: 1069524807}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 10
-  m_WholeNumbers: 1
-  m_Value: 1
+  m_MinValue: 0.1
+  m_MaxValue: 2
+  m_WholeNumbers: 0
+  m_Value: 0.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1869543726}
         m_TargetAssemblyTypeName: OptionsSettings, Assembly-CSharp
         m_MethodName: ChangeSensitivityX
         m_Mode: 0
@@ -37205,9 +37207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Menu
-
-'
+  m_text: Reset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -41045,6 +41045,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1842082969}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1869543725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869543727}
+  - component: {fileID: 1869543726}
+  m_Layer: 0
+  m_Name: OptionsSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1869543726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869543725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084020dedf071f340a87c0f1178ad358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1587961239}
+  mainAudioMixer: {fileID: 24100000, guid: fcc09262d7d3a7c468e4e8c40fb40a71, type: 2}
+  musicAudioMixer: {fileID: 24100000, guid: 386ae7017a304504484dfa43395285b2, type: 2}
+  SFXAudioMixer: {fileID: 24100000, guid: fa50b05224bb13244a5ebd4500affe5d, type: 2}
+--- !u!4 &1869543727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869543725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 804.68695, y: 475.12845, z: -3.270183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1885245585
 Mesh:
   m_ObjectHideFlags: 0
@@ -44208,14 +44256,14 @@ MonoBehaviour:
   m_FillRect: {fileID: 122381710}
   m_HandleRect: {fileID: 1728406136}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 10
-  m_WholeNumbers: 1
-  m_Value: 1
+  m_MinValue: 0.1
+  m_MaxValue: 2
+  m_WholeNumbers: 0
+  m_Value: 0.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1869543726}
         m_TargetAssemblyTypeName: OptionsSettings, Assembly-CSharp
         m_MethodName: ChangeSensitivityY
         m_Mode: 0
@@ -47032,3 +47080,4 @@ SceneRoots:
   - {fileID: 1078205228}
   - {fileID: 1932044498}
   - {fileID: 610932291}
+  - {fileID: 1869543727}

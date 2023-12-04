@@ -60,7 +60,7 @@ public class MusicTransition : MonoBehaviour
     private void Update()
     {
         playerControls.Music.Skip.performed += x => songSkipped();
-        playerControls.Music.Stop.performed += x => songStopped();
+        //playerControls.Music.Stop.performed += x => songStopped();
 
         Color TextColour = currentSong.color; 
         Color BoarderColour = Boarder.color;
@@ -90,7 +90,7 @@ public class MusicTransition : MonoBehaviour
         }
     }
 
-    private void songStopped()
+    public void songStopped()
     {
         if(audioSource.isPlaying)
         {

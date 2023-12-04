@@ -9,8 +9,15 @@ public class PauseMenu : MonoBehaviour
     public bool GamePaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject settingsMenuUI;
+    MusicTransition musicTransition;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        musicTransition = FindObjectOfType<MusicTransition>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -28,7 +35,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume ()
     {
+        musicTransition.songStopped();
         pauseMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -37,6 +46,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause ()
     {
+        musicTransition.songStopped();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
@@ -44,12 +54,17 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void LoadMenu()
+    public void ResetScene()
     {
         Time.timeScale = 1f;
-        Debug.Log("load Menu");
-        SceneManager.LoadScene(0);
-        GamePaused = false;
+        StartCoroutine(WaitThenReset(0.1f));
+    }
+
+    IEnumerator WaitThenReset(float time)
+    {
+        yield return new WaitForSeconds(time);
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
     }
 
     public void ExitGame()
