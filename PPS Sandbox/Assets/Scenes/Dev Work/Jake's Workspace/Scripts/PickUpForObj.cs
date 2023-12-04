@@ -36,7 +36,7 @@ public class PickUpForObj : MonoBehaviour
             InHand = false;
         }
         //adds flow to carrying objects
-        var step = followSpeed * Time.deltaTime; // calculate distance to move
+        var step = defaultSpeed * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, hands.transform.position, step);
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.rotation = Quaternion.identity;
