@@ -12,7 +12,7 @@ public class laser : MonoBehaviour
 
     void Start()
     {
-        CheckpointRef = GameObject.FindGameObjectWithTag("Checkpoint").transform.parent.gameObject; 
+        //CheckpointRef = GameObject.FindGameObjectWithTag("Checkpoint").transform.parent.gameObject; 
         lr = GetComponent<LineRenderer>();
     }
 
