@@ -376,6 +376,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stop"",
+                    ""type"": ""Button"",
+                    ""id"": ""099380ce-f567-4bd3-aa37-790918d12094"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -400,6 +409,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7b87f1e-a17f-463a-a303-31116adb6c95"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38cdbe32-77bb-4562-8ef6-183ec47366b9"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -421,6 +452,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Music
         m_Music = asset.FindActionMap("Music", throwIfNotFound: true);
         m_Music_Skip = m_Music.FindAction("Skip", throwIfNotFound: true);
+        m_Music_Stop = m_Music.FindAction("Stop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -623,11 +655,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Music;
     private List<IMusicActions> m_MusicActionsCallbackInterfaces = new List<IMusicActions>();
     private readonly InputAction m_Music_Skip;
+    private readonly InputAction m_Music_Stop;
     public struct MusicActions
     {
         private @PlayerControls m_Wrapper;
         public MusicActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Skip => m_Wrapper.m_Music_Skip;
+        public InputAction @Stop => m_Wrapper.m_Music_Stop;
         public InputActionMap Get() { return m_Wrapper.m_Music; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -640,6 +674,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
+            @Stop.started += instance.OnStop;
+            @Stop.performed += instance.OnStop;
+            @Stop.canceled += instance.OnStop;
         }
 
         private void UnregisterCallbacks(IMusicActions instance)
@@ -647,6 +684,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
+            @Stop.started -= instance.OnStop;
+            @Stop.performed -= instance.OnStop;
+            @Stop.canceled -= instance.OnStop;
         }
 
         public void RemoveCallbacks(IMusicActions instance)
@@ -681,5 +721,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IMusicActions
     {
         void OnSkip(InputAction.CallbackContext context);
+        void OnStop(InputAction.CallbackContext context);
     }
 }

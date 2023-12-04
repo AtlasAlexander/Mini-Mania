@@ -9,7 +9,9 @@ public class MusicTransition : MonoBehaviour
     public AudioClip[] otherClip;
     AudioSource audioSource;
     public int i;
+    public float alpha;
     public bool disPlayTrack;
+    public bool pausedMusic = false;
 
     public TextMeshProUGUI currentSong;
     public Image SongCover, Boarder;
@@ -35,12 +37,15 @@ public class MusicTransition : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!audioSource.isPlaying)
+        if(!pausedMusic)
         {
-            audioSource.clip = otherClip[i];
-            audioSource.Play();
-            StartCoroutine(SongDisplay());
-            i += 1;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = otherClip[i];
+                audioSource.Play();
+                StartCoroutine(SongDisplay());
+                i += 1;
+            }
         }
     }
 
@@ -55,22 +60,23 @@ public class MusicTransition : MonoBehaviour
     private void Update()
     {
         playerControls.Music.Skip.performed += x => songSkipped();
+        playerControls.Music.Stop.performed += x => songStopped();
 
         Color TextColour = currentSong.color; 
         Color BoarderColour = Boarder.color;
         Color SongCoverColour = SongCover.color;
-        if (disPlayTrack)
+        if (disPlayTrack && alpha <= 1)
         {
-            SongCoverColour.a += Time.deltaTime;
-            BoarderColour.a += Time.deltaTime;
-            TextColour.a += Time.deltaTime / 1.1f;
+            alpha += Time.deltaTime;
         }
-        else
+        else if(alpha >= 0)
         {
-            SongCoverColour.a -= Time.deltaTime;
-            BoarderColour.a -= Time.deltaTime;
-            TextColour.a -= Time.deltaTime * 1.1f;
+            alpha -= Time.deltaTime;
         }
+        
+        SongCoverColour.a = alpha;
+        BoarderColour.a = alpha;
+        TextColour.a = alpha;
         SongCover.color = SongCoverColour;
         Boarder.color = BoarderColour;
         currentSong.color = TextColour;
@@ -78,7 +84,24 @@ public class MusicTransition : MonoBehaviour
 
     private void songSkipped()
     {
-        audioSource.Stop();
+        if(!pausedMusic)
+        {
+            audioSource.Stop();
+        }
+    }
+
+    private void songStopped()
+    {
+        if(audioSource.isPlaying)
+        {
+            audioSource.Pause();
+            pausedMusic = true;
+        }
+        else
+        {
+            audioSource.Play();
+            pausedMusic = false;
+        }
     }
     IEnumerator SongDisplay()
     {
