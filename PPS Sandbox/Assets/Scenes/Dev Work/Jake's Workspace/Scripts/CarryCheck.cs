@@ -57,7 +57,7 @@ public class CarryCheck : MonoBehaviour
 
             if (carry == null)
             {
-                carrying = false;
+                //carrying = false;
                 return;
             }
             if (carry != null)
@@ -90,7 +90,7 @@ public class CarryCheck : MonoBehaviour
             }
             else
             {
-                carrying = false;
+                //carrying = false;
                 return;
             }
 

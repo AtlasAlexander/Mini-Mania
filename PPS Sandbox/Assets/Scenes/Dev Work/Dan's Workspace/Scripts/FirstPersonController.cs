@@ -42,6 +42,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(0, 10)] private float lookSpeedY = 2.0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
+    [SerializeField] public bool invertLook = false;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -326,12 +327,21 @@ public class FirstPersonController : MonoBehaviour
     private void HandleMouseLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-        /*Debug.Log("X: " + rotationInput.x);
-        Debug.Log("Y: " + rotationInput.y);*/
-        rotationX -= rotationInput.y * lookSpeedY;
-        rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
-        playerCam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, rotationInput.x * lookSpeedX, 0);
+        if (!invertLook)
+        {
+            rotationX -= rotationInput.y * lookSpeedY;
+            rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
+            playerCam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, rotationInput.x * lookSpeedX, 0);
+        }
+
+        if (invertLook)
+        {
+            rotationX -= rotationInput.y * lookSpeedY;
+            rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
+            playerCam.transform.localRotation = Quaternion.Euler(-rotationX, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, -rotationInput.x * lookSpeedX, 0);
+        }
     }
 
     private void ApplyFinalMovements()
