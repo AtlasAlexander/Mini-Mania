@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class FirstPersonController : MonoBehaviour
 {
     public PlayerControls playerControls;
+    PauseMenu pauseMenu;
     private InputAction move;
     private InputAction jump;
     private InputAction crouch;
@@ -105,6 +106,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+        pauseMenu = FindObjectOfType<PauseMenu>();
         playerCam = GetComponentInChildren<Camera>();
         CameraObject = Camera.main.transform;
         characterController = GetComponent<CharacterController>();
@@ -142,41 +144,45 @@ public class FirstPersonController : MonoBehaviour
     }
     void Update()
     {
-        if (canMove)
+        if (!pauseMenu.GamePaused)
         {
-            HandleMovementInput();
-            HandleMouseLook();
-
-            if (canSprint)
+            if (canMove)
             {
-                playerControls.Movement.Sprint.performed += x => SprintPressed();
-                //playerControls.Movement.Sprint.canceled += x => SprintReleased();
-            }
+                HandleMovementInput();
+                HandleMouseLook();
 
-            if (canJump)
-            {
-                jump.performed += HandleJump;
-            }
+                if (canSprint)
+                {
+                    playerControls.Movement.Sprint.performed += x => SprintPressed();
+                    //playerControls.Movement.Sprint.canceled += x => SprintReleased();
+                }
 
-            if (canCrouch)
-            {
-                crouch.performed += HandleCrouch;
-            }
+                if (canJump)
+                {
+                    jump.performed += HandleJump;
+                }
 
-            if (canUseHeadbob)
-            {
-                HandleHeadbob();
-            }
+                if (canCrouch)
+                {
+                    crouch.performed += HandleCrouch;
+                }
 
-            if (canZoom)
-            {
-                zoom.started += HandleZoom;
-                zoom.canceled += CancelZoom;
-            }
+                if (canUseHeadbob)
+                {
+                    HandleHeadbob();
+                }
 
-            ApplyFinalMovements();
-        }
-        HandleFootsteps();
+                if (canZoom)
+                {
+                    zoom.started += HandleZoom;
+                    zoom.canceled += CancelZoom;
+                }
+
+                ApplyFinalMovements();
+            }
+            HandleFootsteps();
+        }    
+        
     }
 
     private void HandleFootsteps()

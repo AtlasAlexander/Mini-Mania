@@ -16,7 +16,7 @@ public class OptionsSettings : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        fpc = player.GetComponent<FirstPersonController>();
+        fpc = FindObjectOfType<FirstPersonController>();
     }
 
     public void InvertLook()
