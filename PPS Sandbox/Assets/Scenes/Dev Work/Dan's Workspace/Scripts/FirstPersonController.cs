@@ -38,8 +38,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float slopeSpeed = 8f;
 
     [Header("Look Parameters")]
-    [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
-    [SerializeField, Range(1, 10)] private float lookSpeedY = 2.0f;
+    [SerializeField, Range(0, 10)] private float lookSpeedX = 2.0f;
+    [SerializeField, Range(0, 10)] private float lookSpeedY = 2.0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
 
