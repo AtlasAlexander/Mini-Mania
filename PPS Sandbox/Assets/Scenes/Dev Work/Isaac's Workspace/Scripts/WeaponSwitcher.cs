@@ -10,6 +10,8 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] int currentWeapon = 0;
     [SerializeField] float timeBetweenSwaps = 0.15f;
 
+    PauseMenu pauseMenu;
+
     bool canSwap = true;
 
     private void OnEnable()
@@ -27,19 +29,23 @@ public class WeaponSwitcher : MonoBehaviour
     void Start()
     {
         SetWeaponActive();
+        pauseMenu = FindObjectOfType<PauseMenu>();
     }
 
     void Update()
     {
-        int previousWeapon = currentWeapon;
-
-        ProcessKeyInput();
-        ProcessScrollWheel();
-        ProcessButtonInput();
-
-        if(previousWeapon != currentWeapon)
+        if (!pauseMenu.GamePaused)
         {
-            SetWeaponActive();
+            int previousWeapon = currentWeapon;
+
+            ProcessKeyInput();
+            ProcessScrollWheel();
+            ProcessButtonInput();
+
+            if (previousWeapon != currentWeapon)
+            {
+                SetWeaponActive();
+            }
         }
     }
 
