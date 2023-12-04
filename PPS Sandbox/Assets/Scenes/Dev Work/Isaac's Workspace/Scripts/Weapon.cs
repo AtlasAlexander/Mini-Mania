@@ -6,6 +6,7 @@ using TMPro;
 
 public class Weapon : MonoBehaviour
 {
+    PauseMenu pauseMenu;
     [SerializeField] InputAction fire;
     [SerializeField] InputAction toggleTrajectory;
     [SerializeField] Camera FPCamera;
@@ -39,6 +40,10 @@ public class Weapon : MonoBehaviour
     bool canShoot = true;
     bool trajectoryOn = false;
 
+    private void Start()
+    {
+        pauseMenu = FindObjectOfType<PauseMenu>();
+    }
     private void OnEnable()
     {
         fire.Enable();
@@ -55,29 +60,33 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         //DisplayAmmo();
-        Debug.Log(trajectoryOn);
+        //Debug.Log(trajectoryOn);
 
-        if (fire.ReadValue<float>() > 0.5 && canShoot == true)
+        if (!pauseMenu.GamePaused)
         {
-            StartCoroutine(Shoot());
+            if (fire.ReadValue<float>() > 0.5 && canShoot == true)
+            {
+                StartCoroutine(Shoot());
 
-            FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
+                FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
 
+            }
+
+            ReflectLaser();
+
+            var wasPressed = toggleTrajectory.triggered;
+            if (wasPressed)
+            {
+                trajectoryOn = !trajectoryOn;
+            }
+
+            if (trajectoryOn)
+            {
+                turnTrajectoryOn();
+            }
+            else line.enabled = false;
         }
-
-        ReflectLaser();
-
-        var wasPressed = toggleTrajectory.triggered;
-        if (wasPressed)
-        {
-            trajectoryOn = !trajectoryOn;
-        }
-
-        if (trajectoryOn)
-        {
-            turnTrajectoryOn();
-        }
-        else line.enabled = false;
+        
 
         
     }
