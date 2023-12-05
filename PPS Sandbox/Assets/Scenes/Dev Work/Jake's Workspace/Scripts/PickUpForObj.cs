@@ -16,10 +16,9 @@ public class PickUpForObj : MonoBehaviour
         hands = GameObject.FindGameObjectWithTag("Hands");
         defaultSpeed = followSpeed;
     }
-
     private void Update()
     {
-        if(InHand)
+        if (InHand)
         {
             ObjInHand();
         }

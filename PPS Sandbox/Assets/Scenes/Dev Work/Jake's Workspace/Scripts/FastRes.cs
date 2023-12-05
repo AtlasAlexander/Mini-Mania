@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FastRes : MonoBehaviour
 {
-    public GameObject resPoint;
+    public GameObject[] resPoint;
+    public int i;
     public bool test;
     public GameObject player;
 
@@ -14,17 +15,23 @@ public class FastRes : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "SizeOverride")
+        {
+            i = other.GetComponent<FastResSelect>().respoint;
+        }
         if(other.tag == "Goop")
         {
-            Instantiate(player, resPoint.transform.position,transform.rotation);
-            Destroy(gameObject);
+            player.transform.position = resPoint[i].transform.position;
+            player.GetComponent<CharacterController>().enabled = false;
+            test = true;
         }
     }
     private void Update()
     {
         if(test)
         {
-            Destroy(gameObject);
+            player.GetComponent<CharacterController>().enabled = true;
+            test = false;
         }
     }
 }
