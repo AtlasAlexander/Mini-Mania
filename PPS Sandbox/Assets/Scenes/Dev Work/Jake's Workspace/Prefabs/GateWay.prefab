@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2986870142853984256}
   - component: {fileID: 1034259920783078141}
+  - component: {fileID: 1046866226660578714}
   m_Layer: 0
   m_Name: GateWay
   m_TagString: SizeOverride
@@ -55,6 +56,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1046866226660578714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795033336009209658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9ebdd5674c4064598e9c36e332000f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respoint: 0
 --- !u!1 &6056618257161806756
 GameObject:
   m_ObjectHideFlags: 0
