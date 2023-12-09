@@ -6,6 +6,8 @@ public class FakeObj : MonoBehaviour
 {
     public Transform originalObj, mirror, otherMirror;
 
+    public bool playerCopy;
+
     private void Update()
     {
         Vector3 localObj = originalObj.position - otherMirror.position;
@@ -16,6 +18,13 @@ public class FakeObj : MonoBehaviour
         Vector3 newDirection = mirrorRotationDiff * originalObj.forward;
         transform.rotation = Quaternion.LookRotation(newDirection, Vector3.up);
 
-        transform.localScale = originalObj.localScale;
+        if(playerCopy)
+        {
+            transform.localScale = originalObj.parent.localScale;
+        }
+        else
+        {
+            transform.localScale = originalObj.localScale;
+        }
     }
 }

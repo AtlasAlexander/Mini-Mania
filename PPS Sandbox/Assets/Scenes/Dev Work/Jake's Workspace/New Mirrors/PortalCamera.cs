@@ -15,5 +15,7 @@ public class PortalCamera : MonoBehaviour
         Quaternion mirrorRotationDiff = Quaternion.AngleAxis(angularDifference, Vector3.up);
         Vector3 newCamDirection = mirrorRotationDiff * playerCamera.forward;
         transform.rotation = Quaternion.LookRotation(newCamDirection, Vector3.up);
+        transform.rotation = playerCamera.rotation;
+        gameObject.GetComponent<Camera>().fieldOfView = playerCamera.GetComponent<Camera>().fieldOfView;
     }
 }
