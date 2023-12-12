@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float sphereCastWidth = 0.1f;
     [SerializeField] private float raycastClusterSpread = 0.12f;
 
-    public float defaultLength = 50;
+    //public float range = 50;
     public int numOfReflections = 2;
     public LayerMask mirrorLayerMask;
     [SerializeField] LayerMask sphereCastLayerMask;
@@ -105,7 +105,7 @@ public class Weapon : MonoBehaviour
 
         for (int i = 0; i < numOfReflections; i++)
         {
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, defaultLength, mirrorLayerMask))
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, range, mirrorLayerMask))
             {
                 line.positionCount += 1;
                 line.SetPosition(1, hit.point);
@@ -115,7 +115,7 @@ public class Weapon : MonoBehaviour
             else
             {
                 line.positionCount += 1;
-                line.SetPosition(line.positionCount - 1, ray.origin + (ray.direction * defaultLength));
+                line.SetPosition(line.positionCount - 1, ray.origin + (ray.direction * range));
             }
         }
        
@@ -125,13 +125,13 @@ public class Weapon : MonoBehaviour
     {
         line.SetPosition(0, transform.position);
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, defaultLength, mirrorLayerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, range, mirrorLayerMask))
         {
             line.SetPosition(1, hit.point);
         }
         else
         {
-            line.SetPosition(1, transform.position + (transform.forward * defaultLength));
+            line.SetPosition(1, transform.position + (transform.forward * range));
         }
     }
 
