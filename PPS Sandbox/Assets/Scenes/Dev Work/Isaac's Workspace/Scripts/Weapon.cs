@@ -33,6 +33,11 @@ public class Weapon : MonoBehaviour
     public LayerMask mirrorLayerMask;
     [SerializeField] LayerMask sphereCastLayerMask;
 
+    [SerializeField] private TrailRenderer BulletTrail;
+    [SerializeField] private float bulletSpeed = 100f;
+    [SerializeField] private bool BouncingBullets;
+    [SerializeField] private float BounceDistance = 10f;
+
     private Ray ray;
 
     private Vector3 direction;
@@ -86,8 +91,6 @@ public class Weapon : MonoBehaviour
             }
             else line.enabled = false;
         }
-        
-
         
     }
 
@@ -147,9 +150,11 @@ public class Weapon : MonoBehaviour
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             Vector3 rayCastOrigin = FPCamera.transform.position;
+            Vector3 direction = FPCamera.transform.forward;
 
             PlayMuzzleFlash();
-
+            ProcessRaycast(rayCastOrigin, direction);
+/*
             //Define positions for Raycast cluster
             Vector3 up = FPCamera.transform.up * raycastClusterSpread;
             Vector3 down = -FPCamera.transform.up * raycastClusterSpread;
@@ -172,12 +177,12 @@ public class Weapon : MonoBehaviour
             ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward);
             ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward);
             ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward);*/
 
 
             //ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
             //ProcessSpherecastAll(FPCamera.transform.position + (FPCamera.transform.forward * 1), FPCamera.transform.forward);
-            ammoSlot.ReduceCurrentAmmo(ammoType);
+            //ammoSlot.ReduceCurrentAmmo(ammoType);
 
         }
         yield return new WaitForSeconds(timeBetweenShots);
@@ -189,7 +194,8 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-    private void ProcessSpherecastAll(Vector3 position, Vector3 direction)
+
+/*    private void ProcessSpherecastAll(Vector3 position, Vector3 direction)
     {
         RaycastHit[] hits = Physics.SphereCastAll(position, sphereCastWidth, direction, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore);
         
@@ -213,23 +219,25 @@ public class Weapon : MonoBehaviour
             {
                 CreateSizeHitImpact(hit);
                 //target.TakeDamage(damage);
-                target.ChangeSize(ammoType /*, changeAmount*/);
+                target.ChangeSize(ammoType *//*, changeAmount*//*);
 
             }
         }
-    }
+    }*/
+
 
     private void ProcessRaycast(Vector3 position, Vector3 direction)
     {
         RaycastHit hit;
+        TrailRenderer trail = Instantiate(BulletTrail, trajectoryOrigin.position, Quaternion.identity);
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
+            StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
             Debug.DrawLine(position, hit.point, Color.red, 1f);
-            CreateHitImpact(hit);
+            //CreateHitImpact(hit);
 
             SizeChange target = hit.transform.GetComponent<SizeChange>();
-
-            //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
+            
             if (target == null)
             {
                 CreateHitImpact(hit);
@@ -237,8 +245,8 @@ public class Weapon : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Mirror")
                 {
                     Debug.Log("Mirror");
+                    //BouncingBullets = true;
                     ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
-
                 }
 
                 return;
@@ -254,19 +262,97 @@ public class Weapon : MonoBehaviour
         }
         else
         {
+            StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
             return;
         }
-
-    
     }
 
     private void ReflectRay(Vector3 position, Vector3 direction)
     {
-        ProcessRaycast(position, direction);
-        //ProcessSpherecastAll(position, direction);
+        //Code had to be repeated here as I couldnt recall "ProcessRaycast(position, direction)" like that as it'd make the trails come from the camera
+        //rather than the barrel of the weapons. 
+
+        //ProcessRaycast(position, direction);
+        TrailRenderer trail = Instantiate(BulletTrail, position, Quaternion.identity);
+        if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
+        {
+            StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
+            Debug.DrawLine(position, hit.point, Color.red, 1f);
+            //CreateHitImpact(hit);
+
+            SizeChange target = hit.transform.GetComponent<SizeChange>();
+
+            if (target == null)
+            {
+                CreateHitImpact(hit);
+
+                if (hit.collider.gameObject.tag == "Mirror")
+                {
+                    Debug.Log("Mirror");
+                    //BouncingBullets = true;
+                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
+
+                }
+
+                return;
+            }
+            else
+            {
+                CreateSizeHitImpact(hit);
+                target.ChangeSize(ammoType);
+
+            }
+        }
+        else
+        {
+            StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
+            return;
+        }
     }
 
+    private IEnumerator SpawnTrail(TrailRenderer Trail, Vector3 HitPoint, Vector3 HitNormal, float BounceDistance, bool madeImpact)
+    {
+        //float time = 0f;
+        Vector3 startPosition = Trail.transform.position;
+        Vector3 direction = (HitPoint - Trail.transform.position).normalized;
+        float distance = Vector3.Distance(Trail.transform.position, HitPoint);
+        float startingDistance = distance;
 
+
+        while (distance > 0)
+        {
+            Trail.transform.position = Vector3.Lerp(startPosition, HitPoint, 1 - (distance / startingDistance));
+            distance -= Time.deltaTime * bulletSpeed;
+
+            yield return null;
+        }
+
+        // code below for boucing off muliple surfaces
+        /*
+        if(madeImpact) 
+        {
+            if(BouncingBullets && BounceDistance > 0)
+            {
+                Vector3 bounceDirection = Vector3.Reflect(direction, HitNormal);
+
+                if(Physics.Raycast(HitPoint, bounceDirection, out RaycastHit hit, BounceDistance))
+                {
+                    yield return StartCoroutine(SpawnTrail(Trail, hit.point, hit.normal, BounceDistance - Vector3.Distance(hit.point, HitPoint), true));
+                }
+                else
+                {
+                    yield return StartCoroutine(SpawnTrail(Trail, bounceDirection * BounceDistance, Vector3.zero, 0, false));
+                }
+            }
+        
+
+        }
+        */
+
+        Trail.transform.position = HitPoint;
+
+        Destroy(Trail.gameObject, Trail.time);
+    }
 
     private void CreateHitImpact(RaycastHit hit)
     {
