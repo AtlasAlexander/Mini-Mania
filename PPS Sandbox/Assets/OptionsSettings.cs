@@ -8,20 +8,31 @@ public class OptionsSettings : MonoBehaviour
     public GameObject player;
     FirstPersonController fpc;
 
-    public AudioMixer mainAudioMixer;
-    public AudioMixer musicAudioMixer;
-    public AudioMixer SFXAudioMixer;
+    GameObject radio;
+    AudioSource musicAudioSource;
+    public AudioSource musicAudioMixer;
+    public AudioSource SFXAudioMixer;
 
 
     // Start is called before the first frame update
     public void Start()
     {
         fpc = FindObjectOfType<FirstPersonController>();
+        radio = GameObject.Find("Radio");
+        musicAudioSource = radio.GetComponent<AudioSource>();
+
     }
 
-    public void InvertLook()
+    public void InvertLook(bool tickOn)
     {
-        fpc.invertLook = !fpc.invertLook;
+        if (tickOn)
+        {
+            fpc.invertLook = true;
+        }
+        else
+        {
+            fpc.invertLook = false;
+        }
     }
 
     public void ChangeSensitivityX(float xSens)
@@ -32,20 +43,5 @@ public class OptionsSettings : MonoBehaviour
     public void ChangeSensitivityY(float ySens)
     {
         fpc.lookSpeedY = ySens;
-    }
-
-    public void SetMainVolume(float MainVolume)
-    {
-        mainAudioMixer.SetFloat("volume", MainVolume);
-    }
-
-    public void SetMusicVolume(float MusicVolume)
-    {
-        musicAudioMixer.SetFloat("volume", MusicVolume);
-    }
-
-    public void SetSFXVolume(float SFXVolume)
-    {
-        SFXAudioMixer.SetFloat("volume", SFXVolume);
     }
 }

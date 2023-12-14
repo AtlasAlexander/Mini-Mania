@@ -43,7 +43,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(0, 10)] public float lookSpeedY = 2.0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
-    [SerializeField] public bool invertLook = false;
+    public bool invertLook = false;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
