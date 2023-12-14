@@ -11,26 +11,53 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
     MusicTransition musicTransition;
+    AudioSource audioSource;
+    public AudioClip[] audio;
+
+    PlayerControls playerControls;
 
     // Update is called once per frame
 
     private void Start()
     {
         musicTransition = FindObjectOfType<MusicTransition>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        playerControls.Actions.Pause.performed += x => HandlePause();
+    }
+
+    void HandlePause()
+    {
+        print("PAUSE");
+        if (GamePaused)
         {
-            if (GamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
         }
+
+        else
+        {
+            Pause();
+            audioSource.clip = audio[0];
+            audioSource.Play();
+        }
+    }
+
+    public void Transition()
+    {
+        audioSource.clip = audio[1];
+        audioSource.Play();
     }
 
     public void Resume ()
