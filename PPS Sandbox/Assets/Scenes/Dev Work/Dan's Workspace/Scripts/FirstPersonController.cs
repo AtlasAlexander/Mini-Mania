@@ -39,8 +39,12 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float slopeSpeed = 8f;
 
     [Header("Look Parameters")]
-    [SerializeField, Range(0, 10)] public float lookSpeedX = 2.0f;
-    [SerializeField, Range(0, 10)] public float lookSpeedY = 2.0f;
+    [SerializeField, Range(0, 10)] public float mouseLookSpeedX = 0.1f;
+    [SerializeField, Range(0, 10)] public float mouseLookSpeedY = 0.1f;
+    [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 2.0f;
+    [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 2.0f;
+    [SerializeField] private float lookSpeedY = 0f;
+    [SerializeField] private float lookSpeedX = 0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
     public bool invertLook = false;
@@ -180,7 +184,7 @@ public class FirstPersonController : MonoBehaviour
                 ApplyFinalMovements();
             }
             HandleFootsteps();
-        }    
+        }
         
     }
 
@@ -332,6 +336,21 @@ public class FirstPersonController : MonoBehaviour
     private void HandleMouseLook()
     {
         rotationInput = look.ReadValue<Vector2>();
+        if (look.activeControl.device.name == "Mouse")
+        {
+            print("MOUSE");
+            lookSpeedY = mouseLookSpeedY;
+            lookSpeedX = mouseLookSpeedX;
+        }
+
+        else
+        {
+            print("CONTROLLER");
+            lookSpeedY = controllerLookSpeedY;
+            lookSpeedX = controllerLookSpeedX;
+        }
+
+
         if (!invertLook)
         {
             rotationX -= rotationInput.y * lookSpeedY;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -15,6 +16,11 @@ public class PauseMenu : MonoBehaviour
     public AudioClip[] audio;
 
     PlayerControls playerControls;
+
+    [Header("First Selected Options")]
+    [SerializeField] private GameObject pauseMenuFirst;
+    [SerializeField] private GameObject pauseOptionsMenuFirst;
+
 
     // Update is called once per frame
 
@@ -65,6 +71,7 @@ public class PauseMenu : MonoBehaviour
         musicTransition.songStopped();
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
         Time.timeScale = 1f;
         GamePaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -75,10 +82,25 @@ public class PauseMenu : MonoBehaviour
     {
         musicTransition.songStopped();
         pauseMenuUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
         Time.timeScale = 0f;
         GamePaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void OptionsMenu()
+    {
+        settingsMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(pauseOptionsMenuFirst);
+    }
+
+    public void MainMenu()
+    {
+        settingsMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
     }
 
     public void ResetScene()

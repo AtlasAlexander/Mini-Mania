@@ -63,7 +63,7 @@ public class PickUpForHands : MonoBehaviour
         //if there is not an object in range
         else
         {
-            carrying = false;
+            //carrying = false;
         }
     }
 }

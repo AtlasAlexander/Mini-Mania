@@ -35,13 +35,23 @@ public class OptionsSettings : MonoBehaviour
         }
     }
 
-    public void ChangeSensitivityX(float xSens)
+    public void ChangeSensitivityXMouse(float xSens)
     {
-        fpc.lookSpeedX = xSens;
+        fpc.mouseLookSpeedX = xSens;
     }
 
-    public void ChangeSensitivityY(float ySens)
+    public void ChangeSensitivityYMouse(float ySens)
     {
-        fpc.lookSpeedY = ySens;
+        fpc.mouseLookSpeedY = ySens;
+    }
+
+    public void ChangeSensitivityXController(float xSens)
+    {
+        fpc.controllerLookSpeedX = xSens;
+    }
+
+    public void ChangeSensitivityYController(float ySens)
+    {
+        fpc.controllerLookSpeedY = ySens;
     }
 }
