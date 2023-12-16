@@ -7,8 +7,9 @@ using TMPro;
 public class Weapon : MonoBehaviour
 {
     PauseMenu pauseMenu;
-    [SerializeField] InputAction fire;
+    //[SerializeField] InputAction fire;
     [SerializeField] InputAction toggleTrajectory;
+    PlayerControls playerControls;
     [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     //[SerializeField] float damage = 30f;
@@ -49,16 +50,19 @@ public class Weapon : MonoBehaviour
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
     }
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
     private void OnEnable()
     {
-        fire.Enable();
+        playerControls.Enable();
         canShoot = true;
         toggleTrajectory.Enable();
     }
-
     private void OnDisable()
     {
-        fire.Disable();
+        playerControls.Disable();
         toggleTrajectory.Disable();
     }
 
@@ -69,7 +73,7 @@ public class Weapon : MonoBehaviour
 
         if (!pauseMenu.GamePaused)
         {
-            if (fire.ReadValue<float>() > 0.5 && canShoot == true)
+            if (UserInput.instance.ShootInput && canShoot == true)
             {
                 StartCoroutine(Shoot());
 

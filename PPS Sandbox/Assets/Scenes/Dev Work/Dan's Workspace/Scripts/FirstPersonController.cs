@@ -152,7 +152,7 @@ public class FirstPersonController : MonoBehaviour
             if (canMove)
             {
                 HandleMovementInput();
-                HandleMouseLook();
+                HandleLook();
 
                 if (canSprint)
                 {
@@ -162,7 +162,10 @@ public class FirstPersonController : MonoBehaviour
 
                 if (canJump)
                 {
-                    jump.performed += HandleJump;
+                    if (UserInput.instance.JumpInput)
+                    {
+                        HandleJump();
+                    }
                 }
 
                 if (canCrouch)
@@ -177,8 +180,16 @@ public class FirstPersonController : MonoBehaviour
 
                 if (canZoom)
                 {
-                    zoom.started += HandleZoom;
-                    zoom.canceled += CancelZoom;
+                    if (UserInput.instance.ZoomInput)
+                    {
+                        HandleZoom();
+                    }
+
+                    if (UserInput.instance.ZoomInputReleased)
+                    {
+                        CancelZoom();
+                    }
+                    
                 }
 
                 ApplyFinalMovements();
@@ -190,7 +201,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleFootsteps()
     {
-        currentInput = (isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * move.ReadValue<Vector2>();
+        currentInput = (isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * UserInput.instance.MoveInput;
 
         if ((currentInput.x == 0 && currentInput.y == 0) || 
             (characterController.isGrounded == false))                    //Checks if the player is moving or falling
@@ -229,7 +240,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        currentInput = (isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * move.ReadValue<Vector2>();
+        currentInput = (isCrouching ? crouchSpeed : isSprinting ? sprintSpeed : walkSpeed) * UserInput.instance.MoveInput;
         if (currentInput.x == 0 && currentInput.y == 0)
         {
             isSprinting = false;
@@ -248,7 +259,7 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void HandleJump(InputAction.CallbackContext context)
+    private void HandleJump()
     {
         if (shouldJump)
         {
@@ -317,7 +328,7 @@ public class FirstPersonController : MonoBehaviour
         return gravityValue;
     }
 
-    private void HandleZoom(InputAction.CallbackContext context)
+    private void HandleZoom()
     {
         if (zoomRoutine != null)
         {
@@ -328,24 +339,22 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = StartCoroutine(ToggleZoom(true));
     }
 
-    private void CancelZoom(InputAction.CallbackContext context)
+    private void CancelZoom()
     {
         zoomRoutine = StartCoroutine(ToggleZoom(false));
     }
 
-    private void HandleMouseLook()
+    private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
         if (look.activeControl.device.name == "Mouse")
         {
-            print("MOUSE");
             lookSpeedY = mouseLookSpeedY;
             lookSpeedX = mouseLookSpeedX;
         }
 
         else
         {
-            print("CONTROLLER");
             lookSpeedY = controllerLookSpeedY;
             lookSpeedX = controllerLookSpeedX;
         }
