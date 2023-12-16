@@ -27,16 +27,15 @@ public class CarryCheck : MonoBehaviour
     }
     private void Update()
     {
-        playerControls.Movement.Interact.performed += x => IsCarrying();
+        if (UserInput.instance.InteractInput)
+        {
+            carrying = !carrying;
+        }
         {
             ProcessRaycast();
         }
     }
 
-    void IsCarrying()
-    {
-        carrying = !carrying;
-    }
 
     private void ProcessRaycast()
     {

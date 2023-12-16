@@ -11,6 +11,9 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
+    public GameObject controlsMenuUI;
+    public GameObject keyboardControlsUI;
+    public GameObject gamepadControlsUI;
     MusicTransition musicTransition;
     AudioSource audioSource;
     public AudioClip[] audio;
@@ -20,6 +23,9 @@ public class PauseMenu : MonoBehaviour
     [Header("First Selected Options")]
     [SerializeField] private GameObject pauseMenuFirst;
     [SerializeField] private GameObject pauseOptionsMenuFirst;
+    [SerializeField] private GameObject controlsMenuFirst;
+    [SerializeField] private GameObject gamepadMenuFirst;
+    [SerializeField] private GameObject keyboardMenuFirst;
 
 
     // Update is called once per frame
@@ -71,6 +77,9 @@ public class PauseMenu : MonoBehaviour
         musicTransition.songStopped();
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
+        controlsMenuUI.SetActive(false);
+        keyboardControlsUI.SetActive(false);
+        gamepadControlsUI.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         Time.timeScale = 1f;
         GamePaused = false;
@@ -89,6 +98,11 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public void MainPauseMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
+    }
+
     public void OptionsMenu()
     {
         settingsMenuUI.SetActive(true);
@@ -102,6 +116,24 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
     }
+
+    public void ControlsMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(controlsMenuFirst);
+    }
+
+    public void GamepadMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(gamepadMenuFirst);
+    }
+
+    public void KeyboardMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(keyboardMenuFirst);
+    }
+
+
+
 
     public void ResetScene()
     {

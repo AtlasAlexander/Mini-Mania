@@ -27,15 +27,11 @@ public class PickUpForHands : MonoBehaviour
 
     private void Update()
     {
-        //check for input
-        playerControls.Movement.Interact.performed += x => IsCarrying();
-    }
+        if(UserInput.instance.InteractInput)
+        {
+            carrying = !carrying;
+        }
 
-    void IsCarrying()
-    {
-        //toggle
-        carrying = !carrying;
-        //raycast
         if(carrying)
         {
             ProcessRaycast();
