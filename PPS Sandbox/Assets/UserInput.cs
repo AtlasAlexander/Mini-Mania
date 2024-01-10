@@ -39,11 +39,11 @@ public class UserInput : MonoBehaviour
     }
     void SetupInputActions()
     {
-        move = playerInput.actions["Move"];
+/*        move = playerInput.Player.["Move"];
         jump = playerInput.actions["Jump"];
         interact = playerInput.actions["Interact"];
         shoot = playerInput.actions["Shoot"];
-        zoom = playerInput.actions["Zoom"];
+        zoom = playerInput.actions["Zoom"];*/
     }
     void UpdateInputs()
     {
