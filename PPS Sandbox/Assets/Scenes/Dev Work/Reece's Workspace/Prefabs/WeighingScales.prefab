@@ -2171,7 +2171,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.94, y: 16.68, z: 0.30600023}
-  m_LocalScale: {x: 1.7235026, y: 1.7235026, z: 1.7235026}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8620178924643058795}
@@ -4491,7 +4491,7 @@ Transform:
   m_GameObject: {fileID: 2668109140909742982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.411, y: -1.805, z: 0.0049996376}
+  m_LocalPosition: {x: 2.263, y: -1.805, z: 0.0049996376}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11076,7 +11076,7 @@ Transform:
   m_GameObject: {fileID: 5807924297648706165}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.39, y: -1.7869998, z: 0.0049996376}
+  m_LocalPosition: {x: -2.269, y: -1.7869998, z: 0.0049996376}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -12069,6 +12069,9 @@ MonoBehaviour:
   player: {fileID: 0}
   parentPlatform: {fileID: 3055073778606510916}
   scalePlatforms: {fileID: 6262217460578325694}
+  cube1: {fileID: 0}
+  cube2: {fileID: 0}
+  weightOfCube1: 10
 --- !u!1 &6329045333925201044
 GameObject:
   m_ObjectHideFlags: 0
@@ -13179,6 +13182,9 @@ MonoBehaviour:
   player: {fileID: 0}
   parentPlatform: {fileID: 7749922959098784069}
   scalePlatforms: {fileID: 5888307941551785805}
+  cube1: {fileID: 0}
+  cube2: {fileID: 0}
+  weightOfCube1: 10
 --- !u!1 &7112568034006577345
 GameObject:
   m_ObjectHideFlags: 0
