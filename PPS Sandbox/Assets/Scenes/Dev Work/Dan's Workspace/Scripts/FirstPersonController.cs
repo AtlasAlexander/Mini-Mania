@@ -77,6 +77,10 @@ public class FirstPersonController : MonoBehaviour
     private float defaultFOV;
     private Coroutine zoomRoutine;
 
+    [Header("Animations")]
+    [SerializeField] private Animator _animator;
+    
+
     private Vector3 hitPointNormal;
 
 
@@ -195,6 +199,17 @@ public class FirstPersonController : MonoBehaviour
                 ApplyFinalMovements();
             }
             HandleFootsteps();
+
+            if (isWalking)
+            {
+                _animator.SetFloat("Forward", 1);
+            }
+            else
+            {
+                _animator.SetFloat("Forward", 0);
+            }
+
+            
         }
         
     }
