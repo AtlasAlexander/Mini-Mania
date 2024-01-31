@@ -409,4 +409,11 @@ public class FirstPersonController : MonoBehaviour
         playerCam.fieldOfView = targetFOV;
         zoomRoutine = null;
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("HIT BY TURRET");
+        //Whoever made checkpoints, please add real code to replace pseudocode below :)
+        //(if checkpoints != null) {Respawn player at nearest checkpoint;}
+    }
 }
