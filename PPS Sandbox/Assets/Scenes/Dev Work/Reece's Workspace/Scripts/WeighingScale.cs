@@ -15,7 +15,7 @@ public class WeighingScale : MonoBehaviour
 
     private void Awake()
     {
-        playerStats = GameObject.Find("Player").GetComponent<Stats>();
+        playerStats = GameObject.Find("JakePlayer").GetComponent<Stats>();
         //cube1Stats = GameObject.Find("CarryCube").GetComponent<Stats>();
         cube1Stats = cube1.GetComponent<Stats>();
         //cube2Stats = GameObject.Find("CarryCube (1)").GetComponent<Stats>();
