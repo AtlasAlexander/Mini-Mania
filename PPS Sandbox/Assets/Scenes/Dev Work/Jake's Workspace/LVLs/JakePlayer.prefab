@@ -440,6 +440,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4285757702004007207, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285757702004007207, guid: 65b0ddc7cefe7b0438005740e197a245,
+        type: 3}
       propertyPath: lookSpeedX
       value: 0.1
       objectReference: {fileID: 0}
@@ -501,7 +506,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: JakePlayer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9205915191897584401, guid: 65b0ddc7cefe7b0438005740e197a245, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2352170663310547730, guid: 65b0ddc7cefe7b0438005740e197a245,
@@ -549,9 +555,12 @@ MonoBehaviour:
   resPoint:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   i: 0
   test: 0
-  player: {fileID: 0}
+  player: {fileID: 2343721618380659573}
 --- !u!1 &5689637510047147587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 261390825206771230, guid: 65b0ddc7cefe7b0438005740e197a245,
