@@ -19,7 +19,7 @@ public class OptionsSettings : MonoBehaviour
     {
         fpc = FindObjectOfType<FirstPersonController>();
         radio = GameObject.Find("Radio");
-        musicAudioSource = radio.GetComponent<AudioSource>();
+        //musicAudioSource = radio.GetComponent<AudioSource>();
 
     }
 

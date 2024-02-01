@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class SaveSystem : MonoBehaviour
 {
-    [SerializeField] Slider MusicSlider;
-    [SerializeField] Slider SFXSlider;
-    [SerializeField] Slider XControllersensSlider;
-    [SerializeField] Slider YControllersensSlider;
-    [SerializeField] Slider XMousesensSlider;
-    [SerializeField] Slider YMousesensSlider;
-    [SerializeField] Toggle MusicMuteToggle;
-    [SerializeField] Toggle SFXMuteToggle;
-    [SerializeField] Toggle InvertLookToggle;
+    [SerializeField] GameObject PauseOptionMenu;
+
+    Slider MusicSlider;
+    Slider SFXSlider;
+    Slider XControllersensSlider;
+    Slider YControllersensSlider;
+    Slider XMousesensSlider;
+    Slider YMousesensSlider;
+    Toggle MusicMuteToggle;
+    Toggle SFXMuteToggle;
+    Toggle InvertLookToggle;
 
 
     bool invertLook;
@@ -22,6 +24,16 @@ public class SaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MusicSlider = PauseOptionMenu.transform.Find("Music VolumeSlider").GetComponent<Slider>();
+        SFXSlider = PauseOptionMenu.transform.Find("SFX VolumeSlider").GetComponent<Slider>();
+        XControllersensSlider = PauseOptionMenu.transform.Find("XSens Slider - Controller").GetComponent<Slider>();
+        YControllersensSlider = PauseOptionMenu.transform.Find("YSens Slider - Controller").GetComponent<Slider>();
+        XMousesensSlider = PauseOptionMenu.transform.Find("XSens Slider").GetComponent<Slider>();
+        YMousesensSlider = PauseOptionMenu.transform.Find("YSens Slider - Controller").GetComponent<Slider>();
+        MusicMuteToggle = PauseOptionMenu.transform.Find("MusicToggle").GetComponent<Toggle>();
+        SFXMuteToggle = PauseOptionMenu.transform.Find("SFX Toggle").GetComponent<Toggle>();
+        InvertLookToggle = PauseOptionMenu.transform.Find("InvertToggle").GetComponent<Toggle>();
+
         if (PlayerPrefs.HasKey("MusicVolume"))
             MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         if (PlayerPrefs.HasKey("SFXVolume"))
