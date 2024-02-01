@@ -38,7 +38,7 @@ public class laser : MonoBehaviour
                 lr.SetPosition(1, hit.point);
                 //Kill player
                 //Destroy(hit.collider.gameObject);
-                //SceneManager.LoadScene(1);
+                SceneManager.LoadScene(1);
                 CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
             }
             else
