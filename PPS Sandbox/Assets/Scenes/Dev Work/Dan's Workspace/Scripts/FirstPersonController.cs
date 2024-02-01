@@ -132,7 +132,7 @@ public class FirstPersonController : MonoBehaviour
         jump = playerControls.Movement.Jump;
         crouch = playerControls.Movement.Crouch;
         look = playerControls.Camera.Look;
-        zoom = playerControls.Camera.Zoom;
+        zoom = playerControls.Movement.Zoom;
 
         move.Enable();
         jump.Enable();
