@@ -3,46 +3,44 @@ using UnityEngine;
 public class WeighingScale : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private Transform cubes;
     [SerializeField] private Transform parentPlatform;
     [SerializeField] private Rigidbody scalePlatforms;
-    [SerializeField] private GameObject cube1;
-    [SerializeField] private GameObject cube2;
-    [SerializeField] private float weightOfCube1 = 10.0f;
-
+    private float totalWeight;
     private Stats playerStats;
-    private Stats cube1Stats;
-    private Stats cube2Stats;
+    private Stats cubeStats;
 
     private void Awake()
     {
         playerStats = GameObject.Find("JakePlayer").GetComponent<Stats>();
-        //cube1Stats = GameObject.Find("CarryCube").GetComponent<Stats>();
-        cube1Stats = FindAnyObjectByType<Stats>();
-        //cube2Stats = GameObject.Find("CarryCube (1)").GetComponent<Stats>();
+        cubeStats = FindAnyObjectByType<Stats>();
+
+        totalWeight = playerStats.Weight + cubeStats.Weight; 
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && playerStats.Weight >= 100.0f)
         {
-            player.parent = parentPlatform.transform;   // Player becomes the child of the platform
             scalePlatforms.mass = 7.0f;                 // Increase the mass of the scale platform when player interacts
         }
         else if (other.CompareTag("Player") && playerStats.Weight < 100.0f)
         {
-            player.parent = parentPlatform.transform;
             scalePlatforms.mass = 1.0f;
         }
 
-        if (other.CompareTag("Hands") && cube1Stats.Weight >= 50.0f)
+        if (other.CompareTag("Pickup") && cubeStats.Weight >= 50.0f)
         {
-            player.parent = parentPlatform.transform;   // Player becomes the child of the platform
             scalePlatforms.mass = 20.0f;                // Increase the mass of the scale platform when player interacts
         }
-        else if (other.CompareTag("Hands") && cube1Stats.Weight < 50.0f)
+        else if (other.CompareTag("Pickup") && cubeStats.Weight < 50.0f)
         {
-            player.parent = parentPlatform.transform;
             scalePlatforms.mass = 1.0f;
+        }
+
+        if ((other.CompareTag("Pickup")) && (other.CompareTag("Player")) && (totalWeight >= 150))
+        {
+            scalePlatforms.mass = 20.0f;
         }
     }
 
@@ -50,24 +48,26 @@ public class WeighingScale : MonoBehaviour
     {
         if (other.CompareTag("Player") && playerStats.Weight >= 100.0f)
         {
-            player.parent = parentPlatform.transform;   // Player becomes the child of the platform
             scalePlatforms.mass = 7.0f;                // Increase the mass of the scale platform when player interacts
         }
         else if (other.CompareTag("Player") && playerStats.Weight < 100.0f)
         {
-            player.parent = parentPlatform.transform;
             scalePlatforms.mass = 1.0f;
         }
 
-        if (other.CompareTag("Hands") && cube1Stats.Weight >= 50.0f)
+        if (other.CompareTag("Pickup") && cubeStats.Weight >= 50.0f)
         {
-            player.parent = parentPlatform.transform;   // Player becomes the child of the platform
             scalePlatforms.mass = 20.0f;                 // Increase the mass of the scale platform when player interacts
         }
-        else if (other.CompareTag("Hands") && cube1Stats.Weight < 50.0f)
+        else if (other.CompareTag("Pickup") && cubeStats.Weight < 50.0f)
         {
-            player.parent = parentPlatform.transform;
             scalePlatforms.mass = 1.0f;
+        }
+
+        if ((other.CompareTag("Player") && playerStats.Weight >= 100.0f) && (other.CompareTag("Pickup") && cubeStats.Weight >= 100.0f))
+        {
+            Debug.Log("Both objects on the platform");
+            scalePlatforms.mass = 20.0f;
         }
     }
 
@@ -75,15 +75,18 @@ public class WeighingScale : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.parent = null;                       // Player is not a child of the platform
             scalePlatforms.mass = 0.1f;                 // Decrease the mass of scale platform when player comes off
         }
 
-        if (other.CompareTag("Hands"))
+        if (other.CompareTag("Pickup"))
         {
-            player.parent = null;                       // Player is not a child of the platform
             scalePlatforms.mass = 0.1f;                 // Decrease the mass of scale platform when player comes off
         }
+
+      /*  if ((other.CompareTag("Player")) || (other.CompareTag("Pickup")))
+        {
+            scalePlatforms.mass = 0.1f;
+        }*/
 
     }
 }
