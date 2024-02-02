@@ -8,16 +8,18 @@ public class Fan : MonoBehaviour
     [SerializeField] private float fanPowerForObjects;
     [SerializeField] private GameObject player;
     private float playerGravityValue;
+    private Vector3 goalPos;
 
     private void Start()
     {
         playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
+        goalPos = this.gameObject.transform.GetChild(0).position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //If other is not player, return
-        if (other.GetComponent<CharacterController>() == null)
+        if (!other.GetComponent<FirstPersonController>())
         {
             return;
         }
@@ -39,7 +41,13 @@ public class Fan : MonoBehaviour
             //Is Player Shrunk
             if(other.GetComponent<SizeChange>().GetShrunkStatus())
             {
-                other.GetComponent<CharacterController>().Move(Vector2.up * fanPowerForPlayer * Time.deltaTime);
+                /* Vector3 direction = (goalPos - other.transform.position);
+
+                 other.GetComponent<CharacterController>().Move(new Vector3(0, direction.y, 0));*/
+
+                float direction = (goalPos.y - other.transform.position.y);
+
+                other.GetComponent<CharacterController>().Move(new Vector3(0, direction * Time.deltaTime * fanPowerForPlayer, 0));
             }
         }
 
@@ -82,4 +90,5 @@ public class Fan : MonoBehaviour
 
         other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
     }
+
 }
