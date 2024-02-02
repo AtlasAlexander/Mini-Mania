@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -48,6 +49,14 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
     public bool invertLook = false;
+
+    [Header("Aim Assist")]
+    public LayerMask objectOfImportance;
+    public LayerMask ignoreMe;
+    public bool lookingAtObject;
+    public float assistLookSpeedX;
+    public float assistLookSpeedY;
+    public Image reticle;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -118,6 +127,9 @@ public class FirstPersonController : MonoBehaviour
         defaultFOV = playerCam.fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        assistLookSpeedX = lookSpeedX * 0.5f;
+        assistLookSpeedY = lookSpeedY * 0.5f;
     }
 
     private void Awake()
@@ -153,6 +165,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 HandleMovementInput();
                 HandleLook();
+               
 
                 if (canSprint)
                 {
@@ -197,6 +210,11 @@ public class FirstPersonController : MonoBehaviour
             HandleFootsteps();
         }
         
+    }
+
+    private void FixedUpdate()
+    {
+        HandleAimAssist();
     }
 
     private void HandleFootsteps()
@@ -347,17 +365,28 @@ public class FirstPersonController : MonoBehaviour
     private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-        if (look.activeControl.device.name == "Mouse")
-        {
-            lookSpeedY = mouseLookSpeedY;
-            lookSpeedX = mouseLookSpeedX;
-        }
 
-        else
+        if (!lookingAtObject)
         {
-            lookSpeedY = controllerLookSpeedY;
-            lookSpeedX = controllerLookSpeedX;
+            if (look.activeControl.device.name == "Mouse")
+            {
+                lookSpeedY = mouseLookSpeedY;
+                assistLookSpeedX = mouseLookSpeedY * 0.5f;
+                lookSpeedX = mouseLookSpeedX;
+                assistLookSpeedY = mouseLookSpeedX * 0.5f;
+            }
+
+            else
+            {
+                lookSpeedY = controllerLookSpeedY;
+                assistLookSpeedY = controllerLookSpeedY * 0.5f;
+                lookSpeedX = controllerLookSpeedX;
+                assistLookSpeedX = controllerLookSpeedX * 0.5f;
+
+            }
         }
+        
+        
 
 
         if (!invertLook)
@@ -374,6 +403,41 @@ public class FirstPersonController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
             playerCam.transform.localRotation = Quaternion.Euler(-rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, -rotationInput.x * lookSpeedX, 0);
+        }
+    }
+
+    private void HandleAimAssist()
+    {
+        int objectLayer = LayerMask.NameToLayer("ObjectOfImportance");
+        if (Physics.SphereCast(Camera.main.transform.position, 0.15f, Camera.main.transform.forward, out RaycastHit hitRange, 1000))
+        {
+            var layerMask = hitRange.collider.gameObject.layer;
+            if (layerMask == objectLayer)
+            {
+                lookingAtObject = true;
+                lookSpeedX = assistLookSpeedX;
+                lookSpeedY = assistLookSpeedY;
+            }
+
+            else
+            {
+                lookingAtObject = false;
+            }
+        }
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000))
+        {
+            var layerMask = hit.collider.gameObject.layer;
+            if (layerMask == objectLayer)
+            {
+                reticle.color = Color.red;
+            }
+
+            else
+            {
+                reticle.color = Color.white;
+            }
+            
         }
     }
 
