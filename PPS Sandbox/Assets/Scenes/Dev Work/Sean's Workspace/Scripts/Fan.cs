@@ -11,7 +11,7 @@ public class Fan : MonoBehaviour
 
     private void Start()
     {
-        playerGravityValue = player.GetComponent<FirstPersonController>().GetGravityValue();
+        playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +28,7 @@ public class Fan : MonoBehaviour
             return;
         }
 
-        other.GetComponent<PlayerController>().SetGravityValue(0);
+        other.GetComponent<FirstPersonController>().SetGravity(0f);
     }
 
     private void OnTriggerStay(Collider other)
@@ -80,6 +80,6 @@ public class Fan : MonoBehaviour
             return;
         }
 
-        other.GetComponent<PlayerController>().SetGravityValue(playerGravityValue);
+        other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
     }
 }

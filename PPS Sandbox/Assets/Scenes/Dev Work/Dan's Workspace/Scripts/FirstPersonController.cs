@@ -118,7 +118,7 @@ public class FirstPersonController : MonoBehaviour
         defaultFOV = playerCam.fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
+}
 
     private void Awake()
     {
@@ -415,5 +415,15 @@ public class FirstPersonController : MonoBehaviour
         Debug.Log("HIT BY TURRET");
         //Whoever made checkpoints, please add real code to replace pseudocode below :)
         //(if checkpoints != null) {Respawn player at nearest checkpoint;}
+    }
+
+    public void SetGravity(float newGrav)
+    {
+        gravity = newGrav;
+    }
+
+    public float GetGravity()
+    {
+        return gravity;
     }
 }
