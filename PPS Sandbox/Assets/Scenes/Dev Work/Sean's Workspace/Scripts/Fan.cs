@@ -41,10 +41,6 @@ public class Fan : MonoBehaviour
             //Is Player Shrunk
             if(other.GetComponent<SizeChange>().GetShrunkStatus())
             {
-                /* Vector3 direction = (goalPos - other.transform.position);
-
-                 other.GetComponent<CharacterController>().Move(new Vector3(0, direction.y, 0));*/
-
                 float direction = (goalPos.y - other.transform.position.y);
 
                 other.GetComponent<CharacterController>().Move(new Vector3(0, direction * Time.deltaTime * fanPowerForPlayer, 0));
@@ -57,15 +53,17 @@ public class Fan : MonoBehaviour
             //If Object cannot change size
             if(other.GetComponent<SizeChange>() == null)
             {
-                other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+                //other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
             }
             //If Object can change size
             else
             {
-                //If object is shrunk
-                if(other.GetComponent<SizeChange>().GetShrunkStatus())
+                //If object is shrunk and not in hands
+                if(other.GetComponent<SizeChange>().GetShrunkStatus() && !other.GetComponent<PickUpForObj>().InHand)
                 {
-                    other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+                    float direction = (goalPos.y - other.transform.position.y);
+
+                    other.GetComponent<Rigidbody>().velocity = new Vector3(0, direction * Time.deltaTime * fanPowerForObjects, 0);
                 }
             }
 
