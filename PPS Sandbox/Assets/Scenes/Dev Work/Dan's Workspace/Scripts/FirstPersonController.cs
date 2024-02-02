@@ -44,19 +44,13 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(0, 10)] public float mouseLookSpeedY = 0.1f;
     [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 2.0f;
     [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 2.0f;
-    [SerializeField] private float lookSpeedY = 0f;
-    [SerializeField] private float lookSpeedX = 0f;
+    [SerializeField] public float lookSpeedY = 0f;
+    [SerializeField] public float lookSpeedX = 0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
     public bool invertLook = false;
 
-    [Header("Aim Assist")]
-    public LayerMask objectOfImportance;
-    public LayerMask ignoreMe;
-    public bool lookingAtObject;
-    public float assistLookSpeedX;
-    public float assistLookSpeedY;
-    public Image reticle;
+    public AimAssist aimAssist;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -128,8 +122,8 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        assistLookSpeedX = lookSpeedX * 0.5f;
-        assistLookSpeedY = lookSpeedY * 0.5f;
+        aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
+        aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
     }
 
     private void Awake()
@@ -210,11 +204,6 @@ public class FirstPersonController : MonoBehaviour
             HandleFootsteps();
         }
         
-    }
-
-    private void FixedUpdate()
-    {
-        HandleAimAssist();
     }
 
     private void HandleFootsteps()
@@ -366,22 +355,22 @@ public class FirstPersonController : MonoBehaviour
     {
         rotationInput = look.ReadValue<Vector2>();
 
-        if (!lookingAtObject)
+        if (!aimAssist.lookingAtObject)
         {
             if (look.activeControl.device.name == "Mouse")
             {
                 lookSpeedY = mouseLookSpeedY;
-                assistLookSpeedX = mouseLookSpeedY * 0.5f;
+                aimAssist.assistLookSpeedX = mouseLookSpeedY * 0.5f;
                 lookSpeedX = mouseLookSpeedX;
-                assistLookSpeedY = mouseLookSpeedX * 0.5f;
+                aimAssist.assistLookSpeedY = mouseLookSpeedX * 0.5f;
             }
 
             else
             {
                 lookSpeedY = controllerLookSpeedY;
-                assistLookSpeedY = controllerLookSpeedY * 0.5f;
+                aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
                 lookSpeedX = controllerLookSpeedX;
-                assistLookSpeedX = controllerLookSpeedX * 0.5f;
+                aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
 
             }
         }
@@ -406,40 +395,6 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void HandleAimAssist()
-    {
-        int objectLayer = LayerMask.NameToLayer("ObjectOfImportance");
-        if (Physics.SphereCast(Camera.main.transform.position, 0.15f, Camera.main.transform.forward, out RaycastHit hitRange, 1000))
-        {
-            var layerMask = hitRange.collider.gameObject.layer;
-            if (layerMask == objectLayer)
-            {
-                lookingAtObject = true;
-                lookSpeedX = assistLookSpeedX;
-                lookSpeedY = assistLookSpeedY;
-            }
-
-            else
-            {
-                lookingAtObject = false;
-            }
-        }
-
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000))
-        {
-            var layerMask = hit.collider.gameObject.layer;
-            if (layerMask == objectLayer)
-            {
-                reticle.color = Color.red;
-            }
-
-            else
-            {
-                reticle.color = Color.white;
-            }
-            
-        }
-    }
 
     private void ApplyFinalMovements()
     {

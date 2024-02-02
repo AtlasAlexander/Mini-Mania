@@ -7,6 +7,7 @@ public class OptionsSettings : MonoBehaviour
 {
     public GameObject player;
     FirstPersonController fpc;
+    AimAssist aimAssist;
 
     GameObject radio;
     AudioSource musicAudioSource;
@@ -18,6 +19,7 @@ public class OptionsSettings : MonoBehaviour
     public void Start()
     {
         fpc = FindObjectOfType<FirstPersonController>();
+        aimAssist = FindObjectOfType<AimAssist>();
         radio = GameObject.Find("Radio");
         //musicAudioSource = radio.GetComponent<AudioSource>();
 
@@ -38,24 +40,24 @@ public class OptionsSettings : MonoBehaviour
     public void ChangeSensitivityXMouse(float xSens)
     {
         fpc.mouseLookSpeedX = xSens;
-        fpc.assistLookSpeedX = fpc.mouseLookSpeedX * 0.5f;
+        aimAssist.assistLookSpeedX = fpc.mouseLookSpeedX * 0.5f;
     }
 
     public void ChangeSensitivityYMouse(float ySens)
     {
         fpc.mouseLookSpeedY = ySens;
-        fpc.assistLookSpeedY = fpc.mouseLookSpeedY * 0.5f;
+        aimAssist.assistLookSpeedY = fpc.mouseLookSpeedY * 0.5f;
     }
 
     public void ChangeSensitivityXController(float xSens)
     {
         fpc.controllerLookSpeedX = xSens;
-        fpc.assistLookSpeedY = fpc.controllerLookSpeedX * 0.5f;
+        aimAssist.assistLookSpeedY = fpc.controllerLookSpeedX * 0.5f;
     }
 
     public void ChangeSensitivityYController(float ySens)
     {
         fpc.controllerLookSpeedY = ySens;
-        fpc.assistLookSpeedY = fpc.controllerLookSpeedY * 0.5f;
+        aimAssist.assistLookSpeedY = fpc.controllerLookSpeedY * 0.5f;
     }
 }
