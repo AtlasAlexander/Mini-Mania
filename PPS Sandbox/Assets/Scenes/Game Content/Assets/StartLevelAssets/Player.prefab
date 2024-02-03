@@ -385,17 +385,17 @@ PrefabInstance:
     - target: {fileID: 2773948046101183640, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.6
+      value: 10.96
       objectReference: {fileID: 0}
     - target: {fileID: 2773948046101183640, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.24
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2773948046101183640, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -48.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2773948046101183640, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
@@ -577,6 +577,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1836889702403117837}
   m_SourcePrefab: {fileID: 100100000, guid: 65b0ddc7cefe7b0438005740e197a245, type: 3}
+--- !u!1 &820563621340371046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4558378890206274511, guid: 65b0ddc7cefe7b0438005740e197a245,
+    type: 3}
+  m_PrefabInstance: {fileID: 3756467419338226601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1106679186617817742 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4285757702004007207, guid: 65b0ddc7cefe7b0438005740e197a245,
@@ -622,6 +628,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.000061035156, y: 0, z: 0}
+--- !u!1 &5864122662744472979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7295878989204686394, guid: 65b0ddc7cefe7b0438005740e197a245,
+    type: 3}
+  m_PrefabInstance: {fileID: 3756467419338226601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6481304293594359937 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7913828251214828328, guid: 65b0ddc7cefe7b0438005740e197a245,
@@ -669,6 +681,8 @@ MonoBehaviour:
   objectOfImportanceLayer:
     serializedVersion: 2
     m_Bits: 0
+  growthRay: {fileID: 820563621340371046}
+  shrinkRay: {fileID: 5864122662744472979}
 --- !u!4 &8611715106022530958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4873829879959594023, guid: 65b0ddc7cefe7b0438005740e197a245,
