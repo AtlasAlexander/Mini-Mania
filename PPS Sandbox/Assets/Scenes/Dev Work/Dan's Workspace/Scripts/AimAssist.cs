@@ -16,6 +16,10 @@ public class AimAssist : MonoBehaviour
     public float assistLookSpeedY;
     public LayerMask objectOfImportanceLayer;
 
+    [SerializeField] GameObject growthRay;
+    [SerializeField] GameObject shrinkRay;
+
+
     private void Start()
     {
         fpc = GetComponent<FirstPersonController>();
@@ -51,7 +55,15 @@ public class AimAssist : MonoBehaviour
             var layerMask = hit.collider.gameObject.layer;
             if (layerMask == objectLayer)
             {
-                reticle.color = Color.red;
+                if(growthRay.activeInHierarchy)
+                {
+                    //reticle.color = Color.red;
+                    reticle.color = new Color32(255, 155, 0, 255);
+                }
+                if(shrinkRay.activeInHierarchy)
+                {
+                    reticle.color = new Color32(126, 255, 227, 255);
+                }
             }
 
             else
