@@ -8,16 +8,18 @@ public class Fan : MonoBehaviour
     [SerializeField] private float fanPowerForObjects;
     [SerializeField] private GameObject player;
     private float playerGravityValue;
+    private Vector3 goalPos;
 
     private void Start()
     {
-        playerGravityValue = player.GetComponent<FirstPersonController>().GetGravityValue();
+        playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
+        goalPos = this.gameObject.transform.GetChild(0).position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //If other is not player, return
-        if (other.GetComponent<CharacterController>() == null)
+        if (!other.GetComponent<FirstPersonController>())
         {
             return;
         }
@@ -28,7 +30,7 @@ public class Fan : MonoBehaviour
             return;
         }
 
-        other.GetComponent<PlayerController>().SetGravityValue(0);
+        other.GetComponent<FirstPersonController>().SetGravity(0f);
     }
 
     private void OnTriggerStay(Collider other)
@@ -39,7 +41,9 @@ public class Fan : MonoBehaviour
             //Is Player Shrunk
             if(other.GetComponent<SizeChange>().GetShrunkStatus())
             {
-                other.GetComponent<CharacterController>().Move(Vector2.up * fanPowerForPlayer * Time.deltaTime);
+                float direction = (goalPos.y - other.transform.position.y);
+
+                other.GetComponent<CharacterController>().Move(new Vector3(0, direction * Time.deltaTime * fanPowerForPlayer, 0));
             }
         }
 
@@ -49,15 +53,17 @@ public class Fan : MonoBehaviour
             //If Object cannot change size
             if(other.GetComponent<SizeChange>() == null)
             {
-                other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+                //other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
             }
             //If Object can change size
             else
             {
-                //If object is shrunk
-                if(other.GetComponent<SizeChange>().GetShrunkStatus())
+                //If object is shrunk and not in hands
+                if(other.GetComponent<SizeChange>().GetShrunkStatus() && !other.GetComponent<PickUpForObj>().InHand)
                 {
-                    other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+                    float direction = (goalPos.y - other.transform.position.y);
+
+                    other.GetComponent<Rigidbody>().velocity = new Vector3(0, direction * Time.deltaTime * fanPowerForObjects, 0);
                 }
             }
 
@@ -80,6 +86,7 @@ public class Fan : MonoBehaviour
             return;
         }
 
-        other.GetComponent<PlayerController>().SetGravityValue(playerGravityValue);
+        other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
     }
+
 }
