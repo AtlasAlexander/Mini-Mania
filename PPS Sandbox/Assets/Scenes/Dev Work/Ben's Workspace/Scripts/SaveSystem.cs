@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SaveSystem : MonoBehaviour
 {
     [SerializeField] GameObject PauseOptionMenu;
+    GameObject CheckpointsOBJ;
 
     Slider MusicSlider;
     Slider SFXSlider;
@@ -24,6 +25,8 @@ public class SaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CheckpointsOBJ = GameObject.Find("Checkpoints");
+
         MusicSlider = PauseOptionMenu.transform.Find("Music VolumeSlider").GetComponent<Slider>();
         SFXSlider = PauseOptionMenu.transform.Find("SFX VolumeSlider").GetComponent<Slider>();
         XControllersensSlider = PauseOptionMenu.transform.Find("XSens Slider - Controller").GetComponent<Slider>();
@@ -39,40 +42,47 @@ public class SaveSystem : MonoBehaviour
         if (PlayerPrefs.HasKey("SFXVolume"))
             SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume");
 
-        if (PlayerPrefs.HasKey("XMouseSensitivity"))
+/*        if (PlayerPrefs.HasKey("XMouseSensitivity"))
             XMousesensSlider.value = PlayerPrefs.GetFloat("XMouseSensitivity");
         if (PlayerPrefs.HasKey("YMouseSensitivity"))
             YMousesensSlider.value = PlayerPrefs.GetFloat("YMouseSensitivity");
         if (PlayerPrefs.HasKey("XControllerSensitivity"))
             XControllersensSlider.value = PlayerPrefs.GetFloat("XControllerSensitivity");
         if (PlayerPrefs.HasKey("YControllerSensitivity"))
-            YControllersensSlider.value = PlayerPrefs.GetFloat("YControllerSensitivity");
+            YControllersensSlider.value = PlayerPrefs.GetFloat("YControllerSensitivity");*/
 
-        if (PlayerPrefs.HasKey("InvertLook"))
+/*        if (PlayerPrefs.HasKey("InvertLook"))
         {
-            if (PlayerPrefs.GetString("InvertLook") == "true")
+            if (PlayerPrefs.GetInt("InvertLook") == 1)
                 invertLook = true;
             else
                 invertLook = false;
             InvertLookToggle.isOn = invertLook;
-        }
+        }*/
 
         if (PlayerPrefs.HasKey("MusicMute"))
         {
-            if (PlayerPrefs.GetString("MusicMute") == "true")
+            if (PlayerPrefs.GetInt("MusicMute") == 1)
                 MusicMuteToggle.isOn = true;
             else
                 MusicMuteToggle.isOn = false;
         }
         if (PlayerPrefs.HasKey("SFXMute"))
         {
-            if (PlayerPrefs.GetString("SFXMute") == "true")
+            if (PlayerPrefs.GetInt("SFXMute") == 1)
                 SFXMute = true;
             else
                 SFXMute = false;
             SFXMuteToggle.isOn = SFXMute;
         }
 
+
+        //checkpoints saves
+        if (PlayerPrefs.HasKey("Checkpoint"))
+        {
+            CheckpointsOBJ.GetComponent<CheckpointController>().SetCheckpoint(CheckpointsOBJ.GetComponent<CheckpointController>().Checkpoints[PlayerPrefs.GetInt("Checkpoint")]);
+            CheckpointsOBJ.GetComponent<CheckpointController>().LoadCheckpoint();
+        }
     }
 
     public void SaveMusicVolume(float value)
@@ -87,12 +97,18 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveMusicMute(bool value)
     {
-        PlayerPrefs.SetString("MusicMute", value.ToString());
+        if(value)
+            PlayerPrefs.SetInt("MusicMute", 1);
+        else
+            PlayerPrefs.SetInt("MusicMute", -1);
     }
 
     public void SaveSFXMute(bool value)
     {
-        PlayerPrefs.SetString("SFXMute", value.ToString());
+        if (value)
+            PlayerPrefs.SetInt("SFXMute", 1);
+        else
+            PlayerPrefs.SetInt("SFXMute", -1);
     }
 
     public void SaveXMouseSens(float value)
@@ -114,6 +130,14 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveInvertLook(bool value)
     {
-        PlayerPrefs.SetString("InvertLook", value.ToString());
+        if (value)
+            PlayerPrefs.SetInt("InvertLook", 1);
+        else
+            PlayerPrefs.SetInt("InvertLook", -1);
+    }
+
+    public void SaveCheckpoint(int value)
+    {
+        PlayerPrefs.SetInt("Checkpoint", value);
     }
 }
