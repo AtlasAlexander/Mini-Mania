@@ -17,14 +17,6 @@ public class FakeObj : MonoBehaviour
         Quaternion mirrorRotationDiff = Quaternion.AngleAxis(angularDifference, Vector3.up);
         Vector3 newDirection = mirrorRotationDiff * originalObj.forward;
         transform.rotation = Quaternion.LookRotation(newDirection, Vector3.up);
-
-        if(playerCopy)
-        {
-            transform.localScale = originalObj.parent.localScale;
-        }
-        else
-        {
-            transform.localScale = originalObj.localScale;
-        }
+        transform.localScale = originalObj.localScale;
     }
 }
