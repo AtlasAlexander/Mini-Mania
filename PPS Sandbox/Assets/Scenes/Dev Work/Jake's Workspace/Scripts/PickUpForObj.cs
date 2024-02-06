@@ -51,7 +51,7 @@ public class PickUpForObj : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         //stops phasing through objects if "hands" are too far away
-        followSpeed = defaultSpeed/10;
+        followSpeed = defaultSpeed/100;
     }
 
     private void OnCollisionExit(Collision collision)
