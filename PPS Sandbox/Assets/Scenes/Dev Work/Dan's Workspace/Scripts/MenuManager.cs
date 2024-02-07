@@ -35,6 +35,5 @@ public class MenuManager : MonoBehaviour
             isPaused = false;
         }
 
-        print(isPaused);
     }
 }

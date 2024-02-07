@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -43,11 +44,13 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(0, 10)] public float mouseLookSpeedY = 0.1f;
     [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 2.0f;
     [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 2.0f;
-    [SerializeField] private float lookSpeedY = 0f;
-    [SerializeField] private float lookSpeedX = 0f;
+    [SerializeField] public float lookSpeedY = 0f;
+    [SerializeField] public float lookSpeedX = 0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
     public bool invertLook = false;
+
+    public AimAssist aimAssist;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -122,6 +125,9 @@ public class FirstPersonController : MonoBehaviour
         defaultFOV = playerCam.fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
+        aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
     }
 
     private void Awake()
@@ -136,7 +142,7 @@ public class FirstPersonController : MonoBehaviour
         jump = playerControls.Movement.Jump;
         crouch = playerControls.Movement.Crouch;
         look = playerControls.Camera.Look;
-        zoom = playerControls.Camera.Zoom;
+        zoom = playerControls.Movement.Zoom;
 
         move.Enable();
         jump.Enable();
@@ -157,6 +163,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 HandleMovementInput();
                 HandleLook();
+               
 
                 if (canSprint)
                 {
@@ -362,17 +369,28 @@ public class FirstPersonController : MonoBehaviour
     private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-        if (look.activeControl.device.name == "Mouse")
-        {
-            lookSpeedY = mouseLookSpeedY;
-            lookSpeedX = mouseLookSpeedX;
-        }
 
-        else
+        if (!aimAssist.lookingAtObject)
         {
-            lookSpeedY = controllerLookSpeedY;
-            lookSpeedX = controllerLookSpeedX;
+            if (look.activeControl.device.name == "Mouse")
+            {
+                lookSpeedY = mouseLookSpeedY;
+                aimAssist.assistLookSpeedX = mouseLookSpeedY * 0.5f;
+                lookSpeedX = mouseLookSpeedX;
+                aimAssist.assistLookSpeedY = mouseLookSpeedX * 0.5f;
+            }
+
+            else
+            {
+                lookSpeedY = controllerLookSpeedY;
+                aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
+                lookSpeedX = controllerLookSpeedX;
+                aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
+
+            }
         }
+        
+        
 
 
         if (!invertLook)
@@ -391,6 +409,7 @@ public class FirstPersonController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, -rotationInput.x * lookSpeedX, 0);
         }
     }
+
 
     private void ApplyFinalMovements()
     {
@@ -423,5 +442,22 @@ public class FirstPersonController : MonoBehaviour
 
         playerCam.fieldOfView = targetFOV;
         zoomRoutine = null;
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("HIT BY TURRET");
+        //Whoever made checkpoints, please add real code to replace pseudocode below :)
+        //(if checkpoints != null) {Respawn player at nearest checkpoint;}
+    }
+
+    public void SetGravity(float newGrav)
+    {
+        gravity = newGrav;
+    }
+
+    public float GetGravity()
+    {
+        return gravity;
     }
 }

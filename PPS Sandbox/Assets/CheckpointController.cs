@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class CheckpointController : MonoBehaviour
 {
+    GameObject SaveSystemOBJ;
     public PlayerControls playerControls;
     GameObject player;
-    [SerializeField] List<GameObject> Checkpoints;
+    public List<GameObject> Checkpoints;
     GameObject currentCheckpoint;
     int checkp = 0;
     bool checkChange = false;
@@ -21,6 +22,7 @@ public class CheckpointController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        SaveSystemOBJ = GameObject.Find("SaveSystem");
         player = GameObject.FindGameObjectWithTag("Player");
         currentCheckpoint = Checkpoints[checkp];
         playerControls = new PlayerControls();
@@ -61,6 +63,7 @@ public class CheckpointController : MonoBehaviour
             if (currentCheckpoint == Checkpoints[i])
             {
                 checkp = i;
+                SaveSystemOBJ.GetComponent<SaveSystem>().SaveCheckpoint(checkp);
             }
         }
     }

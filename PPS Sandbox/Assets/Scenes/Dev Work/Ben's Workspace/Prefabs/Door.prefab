@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1302a670e8fc84c822699b331c21e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reverseDoor: 0
 --- !u!1 &1571297874389369269
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2187443255009449117}
-  - component: {fileID: 5225380563882406981}
   - component: {fileID: 4796188132796760578}
   - component: {fileID: 7033214542465859062}
   m_Layer: 0
@@ -136,14 +136,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2949910224459954793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5225380563882406981
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3656900888804403365}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &4796188132796760578
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -321,7 +313,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4069253521465247792}
-  - component: {fileID: 6655499535333849619}
   - component: {fileID: 6483625009873012127}
   - component: {fileID: 8508612309511593059}
   m_Layer: 0
@@ -346,14 +337,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2949910224459954793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6655499535333849619
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6458822356703808018}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &6483625009873012127
 MeshRenderer:
   m_ObjectHideFlags: 0
