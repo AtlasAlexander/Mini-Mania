@@ -5369,31 +5369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f26ebab90a64a4e82b2feff1c75b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire:
-    m_Name: Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1389c20e-28b4-406d-bc8a-af7390071212
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 00a9d2c7-7ed7-4239-ac2f-f341d6388c5a
-      m_Path: <Gamepad>/rightTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 3d01960f-db6a-4f22-ac3f-a75d2db4cabb
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
-    m_Flags: 0
   toggleTrajectory:
     m_Name: Toggle Trajectory
     m_Type: 0
@@ -5435,7 +5410,6 @@ MonoBehaviour:
   trajectoryOrigin: {fileID: 3099141051069414094}
   sphereCastWidth: 0.1
   raycastClusterSpread: 0.12
-  defaultLength: 50
   numOfReflections: 2
   mirrorLayerMask:
     serializedVersion: 2
@@ -5443,6 +5417,10 @@ MonoBehaviour:
   sphereCastLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  BulletTrail: {fileID: 0}
+  bulletSpeed: 100
+  BouncingBullets: 0
+  BounceDistance: 10
 --- !u!114 &4706639080619054545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5481,10 +5459,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   cinemachineVirtualCamera: {fileID: 0}
-  zoomedOutFOV: 80
-  zoomedInFov: 35
-  zoomOutSensitivity: 2
-  zoomInSensitivity: 0.5
 --- !u!120 &6410216206091184586
 LineRenderer:
   serializedVersion: 2
@@ -10710,31 +10684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f26ebab90a64a4e82b2feff1c75b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire:
-    m_Name: Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1389c20e-28b4-406d-bc8a-af7390071212
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 00a9d2c7-7ed7-4239-ac2f-f341d6388c5a
-      m_Path: <Gamepad>/rightTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 3d01960f-db6a-4f22-ac3f-a75d2db4cabb
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
-    m_Flags: 0
   toggleTrajectory:
     m_Name: Toggle Trajectory
     m_Type: 0
@@ -10776,7 +10725,6 @@ MonoBehaviour:
   trajectoryOrigin: {fileID: 2348335489074063250}
   sphereCastWidth: 0.1
   raycastClusterSpread: 0.12
-  defaultLength: 50
   numOfReflections: 2
   mirrorLayerMask:
     serializedVersion: 2
@@ -10784,6 +10732,10 @@ MonoBehaviour:
   sphereCastLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  BulletTrail: {fileID: 0}
+  bulletSpeed: 100
+  BouncingBullets: 0
+  BounceDistance: 10
 --- !u!114 &6604264451908354345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10822,10 +10774,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   cinemachineVirtualCamera: {fileID: 0}
-  zoomedOutFOV: 80
-  zoomedInFov: 40
-  zoomOutSensitivity: 2
-  zoomInSensitivity: 0.5
 --- !u!120 &195247069157457744
 LineRenderer:
   serializedVersion: 2
@@ -11022,10 +10970,16 @@ MonoBehaviour:
   sprintSpeed: 6
   crouchSpeed: 1.5
   slopeSpeed: 8
-  lookSpeedX: 1
+  mouseLookSpeedX: 0.1
+  mouseLookSpeedY: 0.1
+  controllerLookSpeedX: 2
+  controllerLookSpeedY: 2
   lookSpeedY: 1
+  lookSpeedX: 1
   upperLookLimit: 70
   lowerLookLimit: 70
+  invertLook: 0
+  aimAssist: {fileID: 0}
   jumpForce: 8
   gravity: 30
   crouchHeight: 0.5
@@ -11041,6 +10995,7 @@ MonoBehaviour:
   crouchBobAmount: 0.01
   timeToZoom: 0.3
   zoomFOV: 30
+  _animator: {fileID: 0}
 --- !u!114 &7740266739797032193
 MonoBehaviour:
   m_ObjectHideFlags: 0
