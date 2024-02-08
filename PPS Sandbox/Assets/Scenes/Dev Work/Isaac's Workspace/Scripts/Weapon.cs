@@ -157,8 +157,8 @@ public class Weapon : MonoBehaviour
             Vector3 direction = FPCamera.transform.forward;
 
             PlayMuzzleFlash();
-            ProcessRaycast(rayCastOrigin, direction);
-/*
+            //ProcessRaycast(rayCastOrigin, direction);
+
             //Define positions for Raycast cluster
             Vector3 up = FPCamera.transform.up * raycastClusterSpread;
             Vector3 down = -FPCamera.transform.up * raycastClusterSpread;
@@ -171,17 +171,17 @@ public class Weapon : MonoBehaviour
             Vector3 downLeft = (down + left).normalized * raycastClusterSpread;
 
             //Shoot cluster of raycasts
-            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward, false, true);
 
-            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward);
+            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward, false, false);
 
-            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward);
-            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward);*/
+            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward, false, false);
 
 
             //ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
@@ -198,45 +198,18 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-
-/*    private void ProcessSpherecastAll(Vector3 position, Vector3 direction)
-    {
-        RaycastHit[] hits = Physics.SphereCastAll(position, sphereCastWidth, direction, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore);
-        
-        foreach(RaycastHit hit in hits) 
-        {
-            SizeChange target = hit.transform.GetComponent<SizeChange>();
-
-            //EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-            if (target == null)
-            {
-                CreateHitImpact(hit);
-
-                if (hit.collider.gameObject.tag == "Mirror")
-                {
-                    Debug.Log("Mirror");
-                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
-
-                }
-            }
-            else
-            {
-                CreateSizeHitImpact(hit);
-                //target.TakeDamage(damage);
-                target.ChangeSize(ammoType *//*, changeAmount*//*);
-
-            }
-        }
-    }*/
-
-
-    private void ProcessRaycast(Vector3 position, Vector3 direction)
+    private void ProcessRaycast(Vector3 position, Vector3 direction, bool canShootSelf, bool canShowTrail)
     {
         RaycastHit hit;
         TrailRenderer trail = Instantiate(BulletTrail, trajectoryOrigin.position, Quaternion.identity);
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
-            StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
+            //StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
+            if (canShowTrail)
+            {
+                StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
+            }
+
             Debug.DrawLine(position, hit.point, Color.red, 1f);
             //CreateHitImpact(hit);
 
@@ -250,7 +223,7 @@ public class Weapon : MonoBehaviour
                 {
                     Debug.Log("Mirror");
                     //BouncingBullets = true;
-                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
+                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
                 }
 
                 return;
@@ -259,19 +232,35 @@ public class Weapon : MonoBehaviour
             {
                 CreateSizeHitImpact(hit);
                 //target.TakeDamage(damage);
-                target.ChangeSize(ammoType /*, changeAmount*/);
-                
+
+                //If target is not the player
+                if(hit.transform.GetComponent<CharacterController>() == null)
+                {
+                    target.ChangeSize(ammoType /*, changeAmount*/);
+                }
+                else
+                {
+                    if(canShootSelf)
+                    {
+                        target.ChangeSize(ammoType /*, changeAmount*/);
+                    }
+                }
             }
 
         }
         else
         {
-            StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
+            //StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
+            if (canShowTrail)
+            {
+                StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
+            }
+
             return;
         }
     }
 
-    private void ReflectRay(Vector3 position, Vector3 direction)
+    private void ReflectRay(Vector3 position, Vector3 direction, bool canShootSelf)
     {
         //Code had to be repeated here as I couldnt recall "ProcessRaycast(position, direction)" like that as it'd make the trails come from the camera
         //rather than the barrel of the weapons. 
@@ -294,7 +283,7 @@ public class Weapon : MonoBehaviour
                 {
                     Debug.Log("Mirror");
                     //BouncingBullets = true;
-                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal));
+                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
 
                 }
 
@@ -303,8 +292,19 @@ public class Weapon : MonoBehaviour
             else
             {
                 CreateSizeHitImpact(hit);
-                target.ChangeSize(ammoType);
 
+                //If target is not the player
+                if (hit.transform.GetComponent<CharacterController>() == null)
+                {
+                    target.ChangeSize(ammoType /*, changeAmount*/);
+                }
+                else
+                {
+                    if (canShootSelf)
+                    {
+                        target.ChangeSize(ammoType /*, changeAmount*/);
+                    }
+                }
             }
         }
         else
