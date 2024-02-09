@@ -22,6 +22,8 @@ public class SplineWalker : MonoBehaviour
 				if (progress >= 1)
 				{
 					active = false;
+
+					//ping pong
 					//progress = 2 - progress;
 					//goingForward = false;
 				}
