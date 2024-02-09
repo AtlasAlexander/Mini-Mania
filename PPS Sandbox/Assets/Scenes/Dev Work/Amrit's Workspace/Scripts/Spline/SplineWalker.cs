@@ -4,7 +4,6 @@ public class SplineWalker : MonoBehaviour
 {
 	public GameObject splineWalker;
 
-	public GameObject playerTarget;
 	public BezierSpline spline;
 	public float duration = 10;
 
@@ -31,7 +30,6 @@ public class SplineWalker : MonoBehaviour
 
 			Vector3 position = spline.GetPoint(progress);
 			transform.localPosition = position;
-			transform.LookAt(playerTarget.transform);
 		}
 		else
         {

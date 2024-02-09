@@ -5245,6 +5245,37 @@ Transform:
   - {fileID: 4695325817640384683}
   m_Father: {fileID: 1323684705916438321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3872264152904257156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5020358651801938012}
+  m_Layer: 0
+  m_Name: PlayerDialogueCutsceneCameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5020358651801938012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872264152904257156}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.011000156, y: 0.62900007, z: 5.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1323684705916438321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4861714044247628812
 GameObject:
   m_ObjectHideFlags: 0
@@ -11361,6 +11392,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 35442172908853298}
+    - targetCorrespondingSourceObject: {fileID: 2773948046101183640, guid: 65b0ddc7cefe7b0438005740e197a245,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5020358651801938012}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7913828251214828328, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
