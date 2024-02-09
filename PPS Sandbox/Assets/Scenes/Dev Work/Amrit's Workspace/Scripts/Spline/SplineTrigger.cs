@@ -15,6 +15,8 @@ public class SplineTrigger : MonoBehaviour
 
     public GameObject playerCamPosition;
 
+    public GameObject nextSplineCutscene;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -64,6 +66,7 @@ public class SplineTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            nextSplineCutscene.SetActive(true);
             Destroy(gameObject.GetComponentInParent<Transform>().parent.gameObject);
         }
     }
