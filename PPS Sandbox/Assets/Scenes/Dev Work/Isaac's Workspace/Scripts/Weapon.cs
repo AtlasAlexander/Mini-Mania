@@ -46,6 +46,8 @@ public class Weapon : MonoBehaviour
     bool canShoot = true;
     bool trajectoryOn = false;
 
+    
+
     private void Start()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
@@ -76,8 +78,8 @@ public class Weapon : MonoBehaviour
             if (UserInput.instance.ShootInput && canShoot == true)
             {
                 StartCoroutine(Shoot());
-
-                FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("shootShrinkRay", gameObject);
+                //FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
 
             }
 

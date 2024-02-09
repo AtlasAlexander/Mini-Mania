@@ -15,10 +15,12 @@ public class SizeChange : MonoBehaviour
     [SerializeField] private bool shrunk = false;
 
     public bool startSmall;
+    
 
     public void Awake()
     {
-        if(startSmall)
+        
+        if (startSmall)
         {
             ShrinkObject();
         }
@@ -54,7 +56,8 @@ public class SizeChange : MonoBehaviour
             GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 0.2f;
             StartCoroutine(LerpSize(currentSize, smallestSize, changeDuration));
             shrunk = true;
-            FindObjectOfType<AudioManager>().Play("object_shrink");
+            //FindObjectOfType<AudioManager>().Play("object_shrink");
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectShrink", gameObject);
         }
 
         /*
@@ -98,7 +101,7 @@ public class SizeChange : MonoBehaviour
             GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 5f;
             StartCoroutine(LerpSize(currentSize, maxSize, changeDuration));
             shrunk = false;
-            FindObjectOfType<AudioManager>().Play("object_grow");
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectGrow", gameObject);
         }
     }
 

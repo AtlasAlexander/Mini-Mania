@@ -10,12 +10,18 @@ public class SwitchController : MonoBehaviour
     [SerializeField] bool TriggerLasersOn = false;
     bool doorOpen = false;
     int ObjOnSwitch = 0;
+    private bool buttonClicked = false;
 
     public GameObject objOnButton;
     void Update()
     {
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
+            if(buttonClicked == false)
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
+                buttonClicked = true;
+            }
             if (DoorsToOpen.Count > 0)
             {
                 foreach(GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
@@ -29,10 +35,12 @@ public class SwitchController : MonoBehaviour
         {
             if (DoorsToOpen.Count > 0)
             {
+                buttonClicked = false;
                 foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
             }
             if (LasersToTrigger.Count > 0)
             {
+                buttonClicked = false;
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(!TriggerLasersOn); }
             }
         }           
