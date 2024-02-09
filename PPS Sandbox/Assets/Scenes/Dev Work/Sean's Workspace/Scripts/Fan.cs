@@ -6,12 +6,13 @@ public class Fan : MonoBehaviour
 {
     [SerializeField] private float fanPowerForPlayer;
     [SerializeField] private float fanPowerForObjects;
-    [SerializeField] private GameObject player;
+    private GameObject player;
     private float playerGravityValue;
     private Vector3 goalPos;
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
         goalPos = this.gameObject.transform.GetChild(0).position;
     }
