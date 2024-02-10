@@ -460,4 +460,9 @@ public class FirstPersonController : MonoBehaviour
     {
         return gravity;
     }
+
+    public void SetMoveDirY(float newMoveDirY)
+    {
+        moveDir.y = newMoveDirY;
+    }
 }
