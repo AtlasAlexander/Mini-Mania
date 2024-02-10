@@ -31,6 +31,8 @@ public class Fan : MonoBehaviour
             return;
         }
 
+        //other.GetComponent<CharacterController>().Move(Vector3.zero);
+        other.GetComponent<FirstPersonController>().SetMoveDirY(0);
         other.GetComponent<FirstPersonController>().SetGravity(0f);
     }
 

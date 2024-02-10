@@ -221,7 +221,6 @@ public class Weapon : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Mirror")
                 {
-                    Debug.Log("Mirror");
                     //BouncingBullets = true;
                     ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
                 }
