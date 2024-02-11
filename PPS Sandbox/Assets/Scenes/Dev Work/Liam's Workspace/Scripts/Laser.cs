@@ -33,12 +33,12 @@ public class laser : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("PlayerTrigger"))
             {
                 lr.SetPosition(1, hit.point);
                 //Kill player
                 //Destroy(hit.collider.gameObject);
-                //SceneManager.LoadScene(1);
+                SceneManager.LoadScene(1);
                 CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
             }
             else
