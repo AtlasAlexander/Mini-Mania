@@ -14,9 +14,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject controlsMenuUI;
     public GameObject keyboardControlsUI;
     public GameObject gamepadControlsUI;
-    MusicTransition musicTransition;
-    AudioSource audioSource;
-    public AudioClip[] audio;
+    //MusicTransition musicTransition;
+    //AudioSource audioSource;
+    //public AudioClip[] audio;
 
     PlayerControls playerControls;
 
@@ -32,8 +32,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        musicTransition = FindObjectOfType<MusicTransition>();
-        audioSource = GetComponent<AudioSource>();
+        //musicTransition = FindObjectOfType<MusicTransition>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
     private void Awake()
@@ -61,20 +61,20 @@ public class PauseMenu : MonoBehaviour
         else
         {
             Pause();
-            audioSource.clip = audio[0];
-            audioSource.Play();
+            //audioSource.clip = audio[0];
+            //audioSource.Play();
         }
     }
 
     public void Transition()
     {
-        audioSource.clip = audio[1];
-        audioSource.Play();
+        //audioSource.clip = audio[1];
+        //audioSource.Play();
     }
 
     public void Resume ()
     {
-        musicTransition.songStopped();
+        //musicTransition.songStopped();
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
         controlsMenuUI.SetActive(false);
@@ -89,7 +89,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause ()
     {
-        musicTransition.songStopped();
+        //musicTransition.songStopped();
         pauseMenuUI.SetActive(true);
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
         Time.timeScale = 0f;

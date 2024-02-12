@@ -229,34 +229,10 @@ public class FirstPersonController : MonoBehaviour
             (characterController.isGrounded == false))                    //Checks if the player is moving or falling
         {
             isWalking = false;                                            //assigns the isWalking bool, can help with other scripts
-            if ((FindObjectOfType<AudioManager>().IsPlaying("footsteps")) ||
-                FindObjectOfType<AudioManager>().IsPlaying("sprint_inside"))
-            { 
-                FindObjectOfType<AudioManager>().StopPlaying("footsteps");   //Stops the footsteps sound when the player isn't moving
-                FindObjectOfType<AudioManager>().StopPlaying("sprint_inside");
-            }
         }
         else
         {
             isWalking = true;
-            if (isSprinting)
-            {
-                if (!FindObjectOfType<AudioManager>().IsPlaying("sprint_inside"))    //Only plays looping sound if it is not already playing, or it will never play.
-                {
-                    FindObjectOfType<AudioManager>().StopPlaying("footsteps");
-                    FindObjectOfType<AudioManager>().Play("sprint_inside");              //Plays faster footsteps when sprinting
-                }
-            }
-            else
-            {
-                if (!FindObjectOfType<AudioManager>().IsPlaying("footsteps"))
-                { 
-                    FindObjectOfType<AudioManager>().StopPlaying("sprint_inside");
-                    FindObjectOfType<AudioManager>().Play("footsteps");           //begins the footsteps sounds when the player is moving
-                }
-                   
-            }
-              
         }
     }
 
