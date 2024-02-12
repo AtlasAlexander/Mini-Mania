@@ -13,8 +13,12 @@ public class VolumeSetting : MonoBehaviour
     public Sound[] sounds;
     public AudioSource menuAuidos;
 
+    private FmodAudioManager audioManager;
+
     private void Start()
     {
+        audioManager = FindAnyObjectByType<FmodAudioManager>();
+
         sounds = FindObjectOfType<AudioManager>().sounds;
         menuAuidos = FindObjectOfType<PauseMenu>().GetComponent<AudioSource>();
     }

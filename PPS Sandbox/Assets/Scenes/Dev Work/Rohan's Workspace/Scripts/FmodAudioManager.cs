@@ -3,9 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using FMOD.Studio;
 
 public class FmodAudioManager : MonoBehaviour
 {
+    [Header("Volume")]
+    [Range(0.0f, 1.0f)]
+    public float soundEffectsVolume;
+    //[Range(0, 1)]
+    //public float musicVolume = 1;
+
+    private Bus sfxBus;
+    private Bus musicBus;
+
     public EventReference[] gameplaySounds;     //Creates the array of sounds so that sounds can be easily added from the inspector
      
     [SerializeField] float footstepsRate;       //changes the speed of footsteps
@@ -13,6 +23,12 @@ public class FmodAudioManager : MonoBehaviour
     [SerializeField] FirstPersonController controller;
 
     float time;
+
+    private void Awake()
+    {
+        sfxBus = RuntimeManager.GetBus("bus:/");
+        //musicBus = RuntimeManager.GetBus("bus:/Music");
+    }
 
     public void QuickPlaySound(string soundName, GameObject soundSource) 
     {
@@ -41,6 +57,9 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
+        sfxBus.setVolume(soundEffectsVolume);
+        //musicBus.setVolume(musicVolume);
+
         time += Time.deltaTime;
         if (controller.isWalking)    //controls player footsteps
         {
