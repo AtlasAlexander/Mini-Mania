@@ -356,6 +356,11 @@ public class FirstPersonController : MonoBehaviour
                 //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
             }
 
+            else if (look.activeControl.device.name == null)
+            {
+                print("No device detected");
+            }
+
             else
             {
                 lookSpeedY = controllerLookSpeedY;
