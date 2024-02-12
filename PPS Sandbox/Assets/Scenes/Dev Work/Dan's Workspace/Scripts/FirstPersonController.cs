@@ -21,7 +21,8 @@ public class FirstPersonController : MonoBehaviour
     private bool shouldJump => characterController.isGrounded;
     private bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded;
 
-    /*[HideInInspector]*/ public float gravityValue = -9.81f;
+    /*[HideInInspector]*/
+    public float gravityValue = -9.81f;
 
     Transform CameraObject;
 
@@ -49,8 +50,6 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
     public bool invertLook = false;
-
-    public AimAssist aimAssist;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -114,6 +113,8 @@ public class FirstPersonController : MonoBehaviour
 
     private float rotationX = 0;
 
+    public int i;
+
 
     void Start()
     {
@@ -126,8 +127,8 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
-        aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
+        //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
+        //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
     }
 
     private void Awake()
@@ -218,7 +219,6 @@ public class FirstPersonController : MonoBehaviour
 
             
         }
-        
     }
 
     private void HandleFootsteps()
@@ -369,23 +369,23 @@ public class FirstPersonController : MonoBehaviour
     private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-
-        if (!aimAssist.lookingAtObject)
+        
+        //if (!aimAssist.lookingAtObject)
         {
             if (look.activeControl.device.name == "Mouse")
             {
                 lookSpeedY = mouseLookSpeedY;
-                aimAssist.assistLookSpeedX = mouseLookSpeedY * 0.5f;
+                //aimAssist.assistLookSpeedX = mouseLookSpeedX * 0.5f;
                 lookSpeedX = mouseLookSpeedX;
-                aimAssist.assistLookSpeedY = mouseLookSpeedX * 0.5f;
+                //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
             }
 
             else
             {
                 lookSpeedY = controllerLookSpeedY;
-                aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
+                //aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
                 lookSpeedX = controllerLookSpeedX;
-                aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
+                //aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
 
             }
         }
