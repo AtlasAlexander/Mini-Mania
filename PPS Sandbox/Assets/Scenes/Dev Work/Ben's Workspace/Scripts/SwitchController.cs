@@ -19,8 +19,8 @@ public class SwitchController : MonoBehaviour
         {
             if(buttonClicked == false)
             {
-                //FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
-                //FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
                 buttonClicked = true;
             }
             if (DoorsToOpen.Count > 0)
