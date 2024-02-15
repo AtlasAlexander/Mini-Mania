@@ -35,7 +35,7 @@ public class FmodAudioManager : MonoBehaviour
         //Use this function form any script to play a sound
         //Use the name of the sound in Assets/Sounds for soundName
         //Pass in the object you want the sound to play from into soundSource
-
+        Debug.Log(gameplaySounds[FindEventReferenceByName(soundName)]);
         RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);     
     }
 
@@ -44,9 +44,11 @@ public class FmodAudioManager : MonoBehaviour
         int soundIndex = 0;
         foreach (EventReference eventRef in gameplaySounds)
         {
+            
             string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
             if (soundName == eventName)
-            { 
+            {
+                
                 return soundIndex;
             }
             soundIndex++;
