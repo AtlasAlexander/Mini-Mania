@@ -28,6 +28,7 @@ public class DoorController : MonoBehaviour
         }
         else
         {
+            
             Anim.SetFloat("DoorStage", 1f);
         }
     }

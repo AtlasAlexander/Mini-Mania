@@ -150,6 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 6705317592379029211}
   mirror: {fileID: 2489645427761019970}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &484937029114137554
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +166,7 @@ GameObject:
   - component: {fileID: 6226025663738401967}
   - component: {fileID: 4190669852875068400}
   - component: {fileID: 4886162338630251704}
+  - component: {fileID: 2735244277469382232}
   m_Layer: 0
   m_Name: Lvl5MirrorCam
   m_TagString: Untagged
@@ -303,6 +307,19 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 2028077973241197856}
   otherMirror: {fileID: 2539636889509347272}
+--- !u!114 &2735244277469382232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484937029114137554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &613253889866286734
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +919,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 6409253815405876052}
   mirror: {fileID: 8164757476346173579}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &1148428412923923775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1072,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 7151523560211172805}
   mirror: {fileID: 8805341624708804410}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &1352544569935036740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,7 +1591,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586717831036090782}
-  - component: {fileID: 2377099815885253577}
   - component: {fileID: 1620485648366614404}
   - component: {fileID: 4831168068814444680}
   m_Layer: 0
@@ -1598,102 +1620,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!82 &2377099815885253577
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2178446509351051510}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.05
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 10
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 50
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!222 &1620485648366614404
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3214,6 +3140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 6128008363323500110}
   mirror: {fileID: 2028077973241197856}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &4111444985840278429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,6 +3724,7 @@ GameObject:
   - component: {fileID: 7454656218836466433}
   - component: {fileID: 1754456482865795497}
   - component: {fileID: 7979068426290825680}
+  - component: {fileID: 2157734109049928390}
   m_Layer: 0
   m_Name: Lvl3MirrorCam
   m_TagString: Untagged
@@ -3935,6 +3865,19 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 8164757476346173579}
   otherMirror: {fileID: 2012443380907648775}
+--- !u!114 &2157734109049928390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5080455454921396897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &5243767622938922416
 GameObject:
   m_ObjectHideFlags: 0
@@ -16214,6 +16157,7 @@ GameObject:
   - component: {fileID: 7329785102272376528}
   - component: {fileID: 3383712162939136287}
   - component: {fileID: 8555245502305957341}
+  - component: {fileID: 2010964825057906090}
   m_Layer: 0
   m_Name: Lvl2MirrorCam
   m_TagString: Untagged
@@ -16354,6 +16298,19 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 2489645427761019970}
   otherMirror: {fileID: 1846669914885079547}
+--- !u!114 &2010964825057906090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306409872332712460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &6325351204267166036
 GameObject:
   m_ObjectHideFlags: 0
@@ -29907,6 +29864,7 @@ GameObject:
   - component: {fileID: 5022787039522540219}
   - component: {fileID: 1892325026728925190}
   - component: {fileID: 1776349077943694638}
+  - component: {fileID: 3152760395405371833}
   m_Layer: 0
   m_Name: Lvl4MirrorCam
   m_TagString: Untagged
@@ -30047,6 +30005,19 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 8805341624708804410}
   otherMirror: {fileID: 4780230112534650345}
+--- !u!114 &3152760395405371833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998873169459801395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &9076152292677897034
 GameObject:
   m_ObjectHideFlags: 0
@@ -31335,6 +31306,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 4915349549134930630}
   mirror: {fileID: 2489645427761019970}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &5633869443922021833 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8727462909136594722, guid: e36f203856735d045a24485f085414ef,
@@ -31826,6 +31800,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 1625006252450814872}
   mirror: {fileID: 8164757476346173579}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!4 &6036829318825815093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1280203877810987053, guid: 722cab5b79909ea418170aac48e20304,
@@ -33972,6 +33949,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 179629598356266452}
   mirror: {fileID: 8805341624708804410}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1001 &8781836567606532570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34183,6 +34163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 1667601980951808329}
   mirror: {fileID: 2028077973241197856}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!4 &750725482850217245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8337364732820845767, guid: d366b8903548b13449ed4579fee88520,
@@ -34209,6 +34192,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToCopy: {fileID: 5701611020783800586}
   mirror: {fileID: 2028077973241197856}
+  isPlayer: 0
+  Player: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &1740190897924024962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7059743927428461400, guid: d366b8903548b13449ed4579fee88520,

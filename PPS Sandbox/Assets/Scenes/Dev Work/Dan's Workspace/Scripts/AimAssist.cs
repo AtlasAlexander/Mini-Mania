@@ -9,39 +9,56 @@ public class AimAssist : MonoBehaviour
     private GameObject player;
     public FirstPersonController fpc;
     public Image reticle;
+    public Transform camTrans;
 
     [Header("Aim Assist")]
     public bool lookingAtObject;
     public float assistLookSpeedX;
     public float assistLookSpeedY;
     public LayerMask objectOfImportanceLayer;
+    public float originalSensX;
+    public float originalSensY;
 
     [SerializeField] GameObject growthRay;
     [SerializeField] GameObject shrinkRay;
-
+    public AimAssistManager assman;
 
     private void Start()
     {
-        fpc = GetComponent<FirstPersonController>();
+        fpc = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        originalSensX = fpc.lookSpeedX;
+        originalSensY = fpc.lookSpeedY;
     }
 
 
     private void Update()
     {
         HandleAimAssist();
+        Debug.DrawRay(camTrans.position, camTrans.forward * 100, Color.red);
+
+        //if (lookingAtObject)
+        //{
+        //    fpc.mouseLookSpeedX = originalSensX * 0.5f;
+        //    fpc.mouseLookSpeedY = originalSensY * 0.5f;
+        //}
+        //
+        //else if (!lookingAtObject)
+        //{
+        //    fpc.mouseLookSpeedX = originalSensX;
+        //    fpc.mouseLookSpeedY = originalSensY;
+        //}
     }
 
     private void HandleAimAssist()
     {
         int objectLayer = LayerMask.NameToLayer("ObjectOfImportance");
-        if (Physics.SphereCast(Camera.main.transform.position, 0.15f, Camera.main.transform.forward, out RaycastHit hitRange, 1000))
+        if (Physics.SphereCast(camTrans.position, 0.15f, camTrans.forward, out RaycastHit hitRange, 1000))
         {
             var layerMask = hitRange.collider.gameObject.layer;
             if (layerMask == objectLayer)
             {
+                assman.TestFunc();
                 lookingAtObject = true;
-                fpc.lookSpeedX = assistLookSpeedX;
-                fpc.lookSpeedY = assistLookSpeedY;
             }
 
             else
@@ -50,14 +67,18 @@ public class AimAssist : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000))
+        else
+        {
+            lookingAtObject = false;
+        }
+
+        if (Physics.Raycast(camTrans.position, camTrans.forward, out RaycastHit hit, 1000))
         {
             var layerMask = hit.collider.gameObject.layer;
             if (layerMask == objectLayer)
             {
                 if(growthRay.activeInHierarchy)
                 {
-                    //reticle.color = Color.red;
                     reticle.color = new Color32(255, 155, 0, 255);
                 }
                 if(shrinkRay.activeInHierarchy)
