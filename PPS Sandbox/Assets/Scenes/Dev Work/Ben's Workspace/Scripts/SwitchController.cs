@@ -23,10 +23,13 @@ public class SwitchController : MonoBehaviour
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
                 buttonClicked = true;
             }
+            
             if (DoorsToOpen.Count > 0)
             {
-                foreach(GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
+                foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
             }
+            
+
             if (LasersToTrigger.Count > 0)
             {
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(TriggerLasersOn); }
@@ -34,11 +37,14 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
-            if (DoorsToOpen.Count > 0)
-            {
-                buttonClicked = false;
-                foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
-            }
+
+                if (DoorsToOpen.Count > 0)
+                {
+                    buttonClicked = false;
+                    foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
+                }
+            
+
             if (LasersToTrigger.Count > 0)
             {
                 buttonClicked = false;
@@ -51,7 +57,10 @@ public class SwitchController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Stats>() != null)
         {
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+            
+
             if (ObjOnSwitch > 0)
             {
                 ObjOnSwitch--;
@@ -59,7 +68,10 @@ public class SwitchController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerTrigger"))
         {
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+            
+
             if (ObjOnSwitch > 0)
             {
                 ObjOnSwitch--;
