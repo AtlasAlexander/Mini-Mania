@@ -19,7 +19,7 @@ public class mirroredObj : MonoBehaviour
     {
         Vector3 localObj = mirror.InverseTransformPoint(objToCopy.position);
         transform.position = mirror.TransformPoint(new Vector3(localObj.x, -localObj.y, localObj.z));
-        transform.rotation = Quaternion.Euler(objToCopy.rotation.x, -objToCopy.eulerAngles.y, objToCopy.rotation.z);
+        transform.rotation = Quaternion.Euler(objToCopy.rotation.x, -objToCopy.eulerAngles.y + 180, objToCopy.rotation.z);
         transform.localScale = objToCopy.localScale;
         if(isPlayer)
         {
