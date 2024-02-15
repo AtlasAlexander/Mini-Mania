@@ -54,24 +54,18 @@ public class SplineTrigger : MonoBehaviour
                 returnCamToOrigin = true;
             }
         }
-        else
-        
-            //move camera back to player view
+        else if (returnCamToOrigin == true)
+        {
+            playerCamera.transform.position = Vector3.MoveTowards(playerCamera.transform.position, playerCamPosition.transform.position, Time.deltaTime * 10);
+        }
 
-            if (returnCamToOrigin == true)
-            {
-                playerCamera.transform.position = Vector3.MoveTowards(playerCamera.transform.position, playerCamPosition.transform.position, Time.deltaTime * 10);
-            }
-
-            //enable player movement and weapons
-
-            if (playerCamera.transform.position == playerCamPosition.transform.position)
-            {
-                player.GetComponent<FirstPersonController>().enabled = true;
-                playerWeapons.SetActive(true);
-                crosshairUI.SetActive(true);
-                audioManager.SetActive(true);
-            }
+        //enable player movement and weapons
+        if (playerCamera.transform.position == playerCamPosition.transform.position)
+        {
+            player.GetComponent<FirstPersonController>().enabled = true;
+            playerWeapons.SetActive(true);
+            crosshairUI.SetActive(true);
+            audioManager.SetActive(true);
         }
     }
 
