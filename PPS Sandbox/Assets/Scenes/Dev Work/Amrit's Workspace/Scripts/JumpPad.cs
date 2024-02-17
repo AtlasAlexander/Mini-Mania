@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
+    private FirstPersonController firstPersonController;
 
-    private PlayerController playerControllerScript;
+    public float jumpForce = 16.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerControllerScript = GameObject.Find("IT_Player").GetComponent<PlayerController>();
+        firstPersonController = GameObject.FindWithTag("Player").GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
@@ -17,18 +18,11 @@ public class JumpPad : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("trigger entered");
-            //rb.AddForce(Vector2.up * playerControllerScript.jumpForce * 2.5f);
-            // playerControllerScript.jumpForce = 20;
-            // playerControllerScript.moveDir.y = playerControllerScript.jumpForce;
-            playerControllerScript.jumpHeight = 3;
-            playerControllerScript.playerVelocity.y += Mathf.Sqrt(playerControllerScript.jumpHeight * playerControllerScript.force * playerControllerScript.gravityValue);
-            playerControllerScript.playerVelocity.y += playerControllerScript.gravityValue * Time.deltaTime;
-            playerControllerScript.controller.Move(playerControllerScript.playerVelocity * Time.deltaTime);
+            firstPersonController.moveDir.y = jumpForce;
         }
     }
 
@@ -36,11 +30,7 @@ public class JumpPad : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("trigger exit");
-            //rb.AddForce(Vector2.up * playerControllerScript.jumpForce * 2.5f);
-            // playerControllerScript.jumpForce = 8;
-
-            playerControllerScript.jumpHeight = 1;
+            firstPersonController.jumpForce = 8.0f;
         }
     }
 }

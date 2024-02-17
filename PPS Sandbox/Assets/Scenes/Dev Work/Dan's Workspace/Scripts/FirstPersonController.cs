@@ -52,7 +52,7 @@ public class FirstPersonController : MonoBehaviour
     public bool invertLook = false;
 
     [Header("Jumping Parameters")]
-    [SerializeField] private float jumpForce = 8.0f;
+    [SerializeField] public float jumpForce = 8.0f;
     [SerializeField] private float gravity = 30.0f;
 
     [Header("Crouch Parameters")]
@@ -106,7 +106,7 @@ public class FirstPersonController : MonoBehaviour
     private Camera playerCam;
     private CharacterController characterController;
 
-    private Vector3 moveDir;
+    public Vector3 moveDir;
     private Vector2 currentInput = Vector2.zero;
 
     private Vector2 rotationInput = Vector2.zero;
