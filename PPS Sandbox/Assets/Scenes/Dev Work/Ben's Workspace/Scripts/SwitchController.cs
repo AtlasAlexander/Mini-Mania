@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwitchController : MonoBehaviour
 {
+    public Material offMat, onMat;
+
     public int RequiredWeight = 50;
     [SerializeField] List<GameObject> DoorsToOpen;
     [SerializeField] List<GameObject> LasersToTrigger;
@@ -12,12 +14,22 @@ public class SwitchController : MonoBehaviour
     int ObjOnSwitch = 0;
     private bool buttonClicked = false;
 
+    public GameObject[] circuitBoard;
+
     public GameObject objOnButton;
     void Update()
     {
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
-            if(buttonClicked == false)
+            if (circuitBoard != null)
+            {
+                foreach (var item in circuitBoard)
+                {
+                    item.GetComponent<MeshRenderer>().material = onMat;
+                }
+            }
+
+            if (buttonClicked == false)
             {
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
@@ -37,8 +49,15 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
+            if(circuitBoard != null)
+            {
+                foreach (var item in circuitBoard)
+                {
+                    item.GetComponent<MeshRenderer>().material = offMat;
+                }
+            }
 
-                if (DoorsToOpen.Count > 0)
+            if (DoorsToOpen.Count > 0)
                 {
                     buttonClicked = false;
                     foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
