@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using FMOD.Studio;
+using System;
+using System.Data.SqlTypes;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -27,7 +29,12 @@ public class FmodAudioManager : MonoBehaviour
     private void Awake()
     {
         sfxBus = RuntimeManager.GetBus("bus:/");
+        
         //musicBus = RuntimeManager.GetBus("bus:/Music");
+    }
+    private void Start()
+    {
+        QuickPlaySound("roomAmbience", player);
     }
 
     public void QuickPlaySound(string soundName, GameObject soundSource) 
@@ -44,9 +51,8 @@ public class FmodAudioManager : MonoBehaviour
         int soundIndex = 0;
         foreach (EventReference eventRef in gameplaySounds)
         {
-            string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
-            if (soundName == eventName)
-            { 
+            if (eventRef.ToString().Contains(eventName))
+            {
                 return soundIndex;
             }
             soundIndex++;
@@ -71,4 +77,10 @@ public class FmodAudioManager : MonoBehaviour
         }
     }
         
+
+    public void SetFootstepsRate(float rate)
+    {
+        
+        footstepsRate = rate;
+    }
 }

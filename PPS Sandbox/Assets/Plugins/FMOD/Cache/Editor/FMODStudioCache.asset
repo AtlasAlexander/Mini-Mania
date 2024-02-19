@@ -189,6 +189,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3599813808018907027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/gatePassthrough
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/gatePassthrough
+  Guid:
+    Data1: -1125085549
+    Data2: 1089990979
+    Data3: 884697239
+    Data4: 974679179
+  Banks:
+  - {fileID: 1009189241228228745}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 570
 --- !u!114 &-856034245050154670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,10 +284,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/GameSoundEffects/playerShrink
   Guid:
-    Data1: -684629190
-    Data2: 1285227230
-    Data3: -44055398
-    Data4: 800689786
+    Data1: 597308501
+    Data2: 1337982483
+    Data3: -1613681224
+    Data4: 1254494419
   Banks:
   - {fileID: 1009189241228228745}
   IsStream: 0
@@ -269,7 +296,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 544
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,13 +336,15 @@ MonoBehaviour:
   - {fileID: 3642140751951014077}
   - {fileID: 7369924605015335781}
   - {fileID: 6508641672482123053}
+  - {fileID: 4176505944192076569}
+  - {fileID: -3599813808018907027}
   EditorParameters:
   - {fileID: 1596909605030764348}
   MasterBanks:
   - {fileID: 1009189241228228745}
   StringsBanks:
   - {fileID: 5821088899876044034}
-  cacheTime: 638434254824648664
+  cacheTime: 638439549501119393
   cacheVersion: 131616
 --- !u!114 &124184924208844083
 MonoBehaviour:
@@ -413,10 +442,10 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638434254824481055
+  lastModified: 638439549501099433
   FileSizes:
   - Name: Desktop
-    Value: 16726784
+    Value: 18279360
   Exists: 1
 --- !u!114 &1596909605030764348
 MonoBehaviour:
@@ -523,6 +552,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4176505944192076569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/roomAmbience
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/roomAmbience
+  Guid:
+    Data1: -661398227
+    Data2: 1085833916
+    Data3: -1120974710
+    Data4: -46814777
+  Banks:
+  - {fileID: 1009189241228228745}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 118000
 --- !u!114 &5019891648108497183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,10 +621,10 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638434254824648664
+  lastModified: 638439549501119393
   FileSizes:
   - Name: Desktop
-    Value: 1954
+    Value: 2122
   Exists: 1
 --- !u!114 &6508641672482123053
 MonoBehaviour:
