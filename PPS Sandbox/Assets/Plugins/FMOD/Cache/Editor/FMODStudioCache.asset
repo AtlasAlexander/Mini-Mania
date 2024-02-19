@@ -81,6 +81,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7080969101775703272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FmodBanks/Desktop/Master.bank
+  Name: Master
+  StudioPath: 
+  lastModified: 638439620983914369
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7003108834192862663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +149,7 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Labels: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-6664370439566749904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +327,8 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 1776674818135145260}
   - {fileID: 4104975363019153794}
+  - {fileID: 6457295310269770276}
+  - {fileID: -7080969101775703272}
   EditorEvents:
   - {fileID: 4701305126454694652}
   - {fileID: 8509935231532088364}
@@ -339,7 +359,8 @@ MonoBehaviour:
   - {fileID: 4104975363019153794}
   StringsBanks:
   - {fileID: 5821088899876044034}
-  cacheTime: 638434254824648664
+  - {fileID: 6457295310269770276}
+  cacheTime: 638439620983934378
   cacheVersion: 131616
 --- !u!114 &46502047429599030
 MonoBehaviour:
@@ -435,13 +456,19 @@ MonoBehaviour:
   m_Name: "event:/Soundtrack/Shake me, I\u2019m sleeping - \U0001F921"
   m_EditorClassIdentifier: 
   Path: Assets/FmodBanks/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638434254824481055
-  FileSizes:
-  - Name: Desktop
-    Value: 16726784
-  Exists: 1
+  Guid:
+    Data1: 0
+    Data2: 0
+    Data3: 0
+    Data4: 0
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &1596909605030764348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +515,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1954
-  Exists: 1
+  Exists: 0
 --- !u!114 &2978371945802742872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,7 +616,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 16726784
-  Exists: 1
+  Exists: 0
 --- !u!114 &4701305126454694652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,6 +671,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6457295310269770276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FmodBanks/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638439620983934378
+  FileSizes:
+  - Name: Desktop
+    Value: 2034
+  Exists: 1
 --- !u!114 &7163952184026815359
 MonoBehaviour:
   m_ObjectHideFlags: 0
