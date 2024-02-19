@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwitchController : MonoBehaviour
 {
+    public Material offMat, onMat;
+
     public int RequiredWeight = 50;
     [SerializeField] List<GameObject> DoorsToOpen;
     [SerializeField] List<GameObject> LasersToTrigger;
@@ -12,21 +14,34 @@ public class SwitchController : MonoBehaviour
     int ObjOnSwitch = 0;
     private bool buttonClicked = false;
 
+    public GameObject[] circuitBoard;
+
     public GameObject objOnButton;
     void Update()
     {
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
-            if(buttonClicked == false)
+            if (circuitBoard != null)
+            {
+                foreach (var item in circuitBoard)
+                {
+                    item.GetComponent<MeshRenderer>().material = onMat;
+                }
+            }
+
+            if (buttonClicked == false)
             {
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
                 buttonClicked = true;
             }
+            
             if (DoorsToOpen.Count > 0)
             {
-                foreach(GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
+                foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
             }
+            
+
             if (LasersToTrigger.Count > 0)
             {
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(TriggerLasersOn); }
@@ -34,11 +49,21 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
-            if (DoorsToOpen.Count > 0)
+            if(circuitBoard != null)
             {
-                buttonClicked = false;
-                foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
+                foreach (var item in circuitBoard)
+                {
+                    item.GetComponent<MeshRenderer>().material = offMat;
+                }
             }
+
+            if (DoorsToOpen.Count > 0)
+                {
+                    buttonClicked = false;
+                    foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
+                }
+            
+
             if (LasersToTrigger.Count > 0)
             {
                 buttonClicked = false;
@@ -51,7 +76,10 @@ public class SwitchController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Stats>() != null)
         {
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+            
+
             if (ObjOnSwitch > 0)
             {
                 ObjOnSwitch--;
@@ -59,7 +87,10 @@ public class SwitchController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerTrigger"))
         {
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+            
+
             if (ObjOnSwitch > 0)
             {
                 ObjOnSwitch--;
