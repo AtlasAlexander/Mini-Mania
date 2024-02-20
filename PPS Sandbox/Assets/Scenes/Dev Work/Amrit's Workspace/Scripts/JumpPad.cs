@@ -18,12 +18,14 @@ public class JumpPad : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
             firstPersonController.moveDir.y = jumpForce;
         }
+
+
     }
 
     private void OnTriggerExit(Collider collider)
