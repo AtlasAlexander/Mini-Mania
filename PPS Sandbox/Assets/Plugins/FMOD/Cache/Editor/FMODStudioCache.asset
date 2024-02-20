@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9213442346815917131
+--- !u!114 &-8448728312007437427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/openDoor
+  m_Name: event:/GameSoundEffects/playerGrow
   m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/openDoor
+  Path: event:/GameSoundEffects/playerGrow
   Guid:
-    Data1: 61561665
-    Data2: 1327412969
-    Data3: -1517685080
-    Data4: 1875527914
+    Data1: 1490438571
+    Data2: 1081464658
+    Data3: -509706828
+    Data4: -119888094
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-8022937018115395479
+--- !u!114 &-8174511749905994267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
     Data3: 1200521856
     Data4: 236230633
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -54,196 +54,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6850768530952062196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: "event:/Soundtrack/No Way, No How - \U0001F921"
-  m_EditorClassIdentifier: 
-  Path: "event:/Soundtrack/No Way, No How - \U0001F921"
-  Guid:
-    Data1: 1920015270
-    Data2: 1263049973
-    Data3: 2084953253
-    Data4: 1080912650
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6327641369827815726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/objectGrow
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/objectGrow
-  Guid:
-    Data1: 1916202289
-    Data2: 1295723467
-    Data3: 1312217521
-    Data4: 1456045595
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6134600537279472809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/objectShrink
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/objectShrink
-  Guid:
-    Data1: 1864957002
-    Data2: 1083873800
-    Data3: 1083511431
-    Data4: 1331490290
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-5580163704029704565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/malfunction
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/malfunction
-  Guid:
-    Data1: -1869770748
-    Data2: 1123666964
-    Data3: -1619617647
-    Data4: -1578977520
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4885760207979646915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 'event:/Soundtrack/Eazy Rider '
-  m_EditorClassIdentifier: 
-  Path: 'event:/Soundtrack/Eazy Rider '
-  Guid:
-    Data1: -625613690
-    Data2: 1305724733
-    Data3: -1076691271
-    Data4: 506440022
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-856034245050154670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Soundtrack/Love & Roses - demo
-  m_EditorClassIdentifier: 
-  Path: event:/Soundtrack/Love & Roses - demo
-  Guid:
-    Data1: -110467395
-    Data2: 1111862604
-    Data3: 163862701
-    Data4: 676255995
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-203959825192740562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: "event:/Soundtrack/Shake me, I\u2019m sleeping - \U0001F921"
-  m_EditorClassIdentifier: 
-  Path: "event:/Soundtrack/Shake me, I\u2019m sleeping - \U0001F921"
-  Guid:
-    Data1: -214967677
-    Data2: 1186241381
-    Data3: -1751795025
-    Data4: -792122678
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-184504041289624727
+--- !u!114 &-6910529548191356762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,8 +73,278 @@ MonoBehaviour:
     Data3: -44055398
     Data4: 800689786
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6850624672065569543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/buttonClick
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/buttonClick
+  Guid:
+    Data1: -1802574069
+    Data2: 1242195728
+    Data3: -640887143
+    Data4: 836877797
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6673414829295618071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/laserOn
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/laserOn
+  Guid:
+    Data1: -1009803032
+    Data2: 1191359495
+    Data3: -463368530
+    Data4: -2100379070
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6617522158460361034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/malfunction
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/malfunction
+  Guid:
+    Data1: -1869770748
+    Data2: 1123666964
+    Data3: -1619617647
+    Data4: -1578977520
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3263908239359124502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/objectGrow
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/objectGrow
+  Guid:
+    Data1: 1916202289
+    Data2: 1295723467
+    Data3: 1312217521
+    Data4: 1456045595
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2897527076566132788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/shootShrinkRay
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/shootShrinkRay
+  Guid:
+    Data1: -148436135
+    Data2: 1094470594
+    Data3: -1908537470
+    Data4: 1345117934
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2612275328142854694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/wobble
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/wobble
+  Guid:
+    Data1: -1182678997
+    Data2: 1082512211
+    Data3: 366950326
+    Data4: 192831681
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2119074916707571906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UISoundEffects/notification
+  m_EditorClassIdentifier: 
+  Path: event:/UISoundEffects/notification
+  Guid:
+    Data1: -1326331436
+    Data2: 1096255496
+    Data3: -771341890
+    Data4: 735849963
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1689834495621794984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UISoundEffects/puase
+  m_EditorClassIdentifier: 
+  Path: event:/UISoundEffects/puase
+  Guid:
+    Data1: -11047005
+    Data2: 1325810698
+    Data3: 1086710973
+    Data4: -683702559
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1589556901471659088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/playerGrowHuge
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/playerGrowHuge
+  Guid:
+    Data1: 1153336977
+    Data2: 1234941193
+    Data3: 1585211575
+    Data4: 344388366
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-947323868912528362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Love & Roses - demo
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Love & Roses - demo
+  Guid:
+    Data1: -110467395
+    Data2: 1111862604
+    Data3: 163862701
+    Data4: 676255995
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -283,45 +364,122 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 5821088899876044034}
-  - {fileID: 1009189241228228745}
+  - {fileID: 5574422406342197526}
+  - {fileID: 1968123732461023002}
   EditorEvents:
-  - {fileID: -5580163704029704565}
-  - {fileID: 2069755460213932739}
-  - {fileID: 7477635879900373738}
-  - {fileID: 3535848241498155391}
-  - {fileID: -6327641369827815726}
-  - {fileID: -184504041289624727}
-  - {fileID: 730911683798524948}
-  - {fileID: -9213442346815917131}
-  - {fileID: -6134600537279472809}
-  - {fileID: 5019891648108497183}
-  - {fileID: -203959825192740562}
-  - {fileID: -4885760207979646915}
-  - {fileID: -8022937018115395479}
-  - {fileID: 514594637041794573}
-  - {fileID: 7352266661980557773}
-  - {fileID: -6850768530952062196}
-  - {fileID: 124184924208844083}
-  - {fileID: 7921732251807483746}
-  - {fileID: 6680240656108818363}
-  - {fileID: -856034245050154670}
-  - {fileID: 3642140751951014077}
-  - {fileID: 7369924605015335781}
-  - {fileID: 6508641672482123053}
+  - {fileID: -6617522158460361034}
+  - {fileID: -6850624672065569543}
+  - {fileID: 8255444373820330637}
+  - {fileID: -2612275328142854694}
+  - {fileID: -3263908239359124502}
+  - {fileID: -6910529548191356762}
+  - {fileID: 2434344567105361390}
+  - {fileID: 5284695123900905631}
+  - {fileID: 1489664180469954208}
+  - {fileID: -2897527076566132788}
+  - {fileID: 560576652667231641}
+  - {fileID: 2409091910224598803}
+  - {fileID: -8174511749905994267}
+  - {fileID: -1589556901471659088}
+  - {fileID: -1689834495621794984}
+  - {fileID: 753105744290174183}
+  - {fileID: 758130995432177489}
+  - {fileID: -8448728312007437427}
+  - {fileID: 3726362261186203645}
+  - {fileID: -947323868912528362}
+  - {fileID: -2119074916707571906}
+  - {fileID: -6673414829295618071}
+  - {fileID: 571202541287525915}
   EditorParameters:
-  - {fileID: 1596909605030764348}
+  - {fileID: 3506667375084719000}
   MasterBanks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   StringsBanks:
-  - {fileID: 5821088899876044034}
-<<<<<<< HEAD
-  cacheTime: 638434254824648664
-=======
+  - {fileID: 5574422406342197526}
   cacheTime: 638435985557135528
->>>>>>> Liam2
   cacheVersion: 131616
---- !u!114 &124184924208844083
+--- !u!114 &560576652667231641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Soundtrack/Shake me, I\u2019m sleeping - \U0001F921"
+  m_EditorClassIdentifier: 
+  Path: "event:/Soundtrack/Shake me, I\u2019m sleeping - \U0001F921"
+  Guid:
+    Data1: -214967677
+    Data2: 1186241381
+    Data3: -1751795025
+    Data4: -792122678
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &571202541287525915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Familiar paces No1
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Familiar paces No1
+  Guid:
+    Data1: 123846640
+    Data2: 1231098645
+    Data3: 427777467
+    Data4: -1134716438
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &753105744290174183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Soundtrack/No Way, No How - \U0001F921"
+  m_EditorClassIdentifier: 
+  Path: "event:/Soundtrack/No Way, No How - \U0001F921"
+  Guid:
+    Data1: 1920015270
+    Data2: 1263049973
+    Data3: 2084953253
+    Data4: 1080912650
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &758130995432177489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,7 +498,7 @@ MonoBehaviour:
     Data3: 203587231
     Data4: 1654674320
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -348,7 +506,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &514594637041794573
+--- !u!114 &1489664180469954208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,16 +516,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/playerGrowHuge
+  m_Name: event:/GameSoundEffects/objectShrink
   m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/playerGrowHuge
+  Path: event:/GameSoundEffects/objectShrink
   Guid:
-    Data1: 1153336977
-    Data2: 1234941193
-    Data3: 1585211575
-    Data4: 344388366
+    Data1: 1864957002
+    Data2: 1083873800
+    Data3: 1083511431
+    Data4: 1331490290
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -375,7 +533,54 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &730911683798524948
+--- !u!114 &1968123732461023002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FmodBanks/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638435985557115601
+  FileSizes:
+  - Name: Desktop
+    Value: 16726784
+  Exists: 1
+--- !u!114 &2409091910224598803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 'event:/Soundtrack/Eazy Rider '
+  m_EditorClassIdentifier: 
+  Path: 'event:/Soundtrack/Eazy Rider '
+  Guid:
+    Data1: -625613690
+    Data2: 1305724733
+    Data3: -1076691271
+    Data4: 506440022
+  Banks:
+  - {fileID: 1968123732461023002}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2434344567105361390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,7 +599,7 @@ MonoBehaviour:
     Data3: 732980916
     Data4: 969214804
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -402,31 +607,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1009189241228228745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FmodBanks/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-<<<<<<< HEAD
-  lastModified: 638434254824481055
-=======
-  lastModified: 638435985557115601
->>>>>>> Liam2
-  FileSizes:
-  - Name: Desktop
-    Value: 16726784
-  Exists: 1
---- !u!114 &1596909605030764348
+--- !u!114 &3506667375084719000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -450,166 +631,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &2069755460213932739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/buttonClick
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/buttonClick
-  Guid:
-    Data1: -1802574069
-    Data2: 1242195728
-    Data3: -640887143
-    Data4: 836877797
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &3535848241498155391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/wobble
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/wobble
-  Guid:
-    Data1: -1182678997
-    Data2: 1082512211
-    Data3: 366950326
-    Data4: 192831681
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &3642140751951014077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UISoundEffects/notification
-  m_EditorClassIdentifier: 
-  Path: event:/UISoundEffects/notification
-  Guid:
-    Data1: -1326331436
-    Data2: 1096255496
-    Data3: -771341890
-    Data4: 735849963
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5019891648108497183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/shootShrinkRay
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/shootShrinkRay
-  Guid:
-    Data1: -148436135
-    Data2: 1094470594
-    Data3: -1908537470
-    Data4: 1345117934
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5821088899876044034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FmodBanks/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-<<<<<<< HEAD
-  lastModified: 638434254824648664
-=======
-  lastModified: 638435985557135528
->>>>>>> Liam2
-  FileSizes:
-  - Name: Desktop
-    Value: 1954
-  Exists: 1
---- !u!114 &6508641672482123053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Soundtrack/Familiar paces No1
-  m_EditorClassIdentifier: 
-  Path: event:/Soundtrack/Familiar paces No1
-  Guid:
-    Data1: 123846640
-    Data2: 1231098645
-    Data3: 427777467
-    Data4: -1134716438
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &6680240656108818363
+--- !u!114 &3726362261186203645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -628,7 +650,7 @@ MonoBehaviour:
     Data3: -1394888292
     Data4: 1171668533
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -636,7 +658,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 570
---- !u!114 &7352266661980557773
+--- !u!114 &5284695123900905631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -646,16 +668,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UISoundEffects/puase
+  m_Name: event:/GameSoundEffects/openDoor
   m_EditorClassIdentifier: 
-  Path: event:/UISoundEffects/puase
+  Path: event:/GameSoundEffects/openDoor
   Guid:
-    Data1: -11047005
-    Data2: 1325810698
-    Data3: 1086710973
-    Data4: -683702559
+    Data1: 61561665
+    Data2: 1327412969
+    Data3: -1517685080
+    Data4: 1875527914
   Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -663,7 +685,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7369924605015335781
+--- !u!114 &5574422406342197526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -672,25 +694,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/laserOn
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/laserOn
-  Guid:
-    Data1: -1009803032
-    Data2: 1191359495
-    Data3: -463368530
-    Data4: -2100379070
-  Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7477635879900373738
+  Path: Assets/FmodBanks/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638435985557135528
+  FileSizes:
+  - Name: Desktop
+    Value: 1954
+  Exists: 1
+--- !u!114 &8255444373820330637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -709,34 +724,7 @@ MonoBehaviour:
     Data3: 366427577
     Data4: -834238561
   Banks:
-  - {fileID: 1009189241228228745}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7921732251807483746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/playerGrow
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/playerGrow
-  Guid:
-    Data1: 1490438571
-    Data2: 1081464658
-    Data3: -509706828
-    Data4: -119888094
-  Banks:
-  - {fileID: 1009189241228228745}
+  - {fileID: 1968123732461023002}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
