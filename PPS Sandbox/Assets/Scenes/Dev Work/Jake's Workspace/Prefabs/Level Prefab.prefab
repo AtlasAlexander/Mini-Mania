@@ -163,10 +163,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3166258104556996793}
   - component: {fileID: 2703802637849841621}
-  - component: {fileID: 6226025663738401967}
   - component: {fileID: 4190669852875068400}
   - component: {fileID: 4886162338630251704}
-  - component: {fileID: 2735244277469382232}
   m_Layer: 0
   m_Name: Lvl5MirrorCam
   m_TagString: Untagged
@@ -240,14 +238,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6226025663738401967
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484937029114137554}
-  m_Enabled: 1
 --- !u!114 &4190669852875068400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,19 +297,6 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 2028077973241197856}
   otherMirror: {fileID: 2539636889509347272}
---- !u!114 &2735244277469382232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484937029114137554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!1 &613253889866286734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3721,10 +3698,8 @@ GameObject:
   m_Component:
   - component: {fileID: 62909938642980701}
   - component: {fileID: 5538947976813413622}
-  - component: {fileID: 7454656218836466433}
   - component: {fileID: 1754456482865795497}
   - component: {fileID: 7979068426290825680}
-  - component: {fileID: 2157734109049928390}
   m_Layer: 0
   m_Name: Lvl3MirrorCam
   m_TagString: Untagged
@@ -3798,14 +3773,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7454656218836466433
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5080455454921396897}
-  m_Enabled: 1
 --- !u!114 &1754456482865795497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3865,19 +3832,6 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 8164757476346173579}
   otherMirror: {fileID: 2012443380907648775}
---- !u!114 &2157734109049928390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5080455454921396897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!1 &5243767622938922416
 GameObject:
   m_ObjectHideFlags: 0
@@ -16154,10 +16108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2983793611138297550}
   - component: {fileID: 8357888137031979651}
-  - component: {fileID: 7329785102272376528}
   - component: {fileID: 3383712162939136287}
   - component: {fileID: 8555245502305957341}
-  - component: {fileID: 2010964825057906090}
   m_Layer: 0
   m_Name: Lvl2MirrorCam
   m_TagString: Untagged
@@ -16231,14 +16183,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7329785102272376528
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6306409872332712460}
-  m_Enabled: 1
 --- !u!114 &3383712162939136287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16298,19 +16242,6 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 2489645427761019970}
   otherMirror: {fileID: 1846669914885079547}
---- !u!114 &2010964825057906090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6306409872332712460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!1 &6325351204267166036
 GameObject:
   m_ObjectHideFlags: 0
@@ -29861,10 +29792,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3123921069825505663}
   - component: {fileID: 439284054865206016}
-  - component: {fileID: 5022787039522540219}
   - component: {fileID: 1892325026728925190}
   - component: {fileID: 1776349077943694638}
-  - component: {fileID: 3152760395405371833}
   m_Layer: 0
   m_Name: Lvl4MirrorCam
   m_TagString: Untagged
@@ -29938,14 +29867,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5022787039522540219
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8998873169459801395}
-  m_Enabled: 1
 --- !u!114 &1892325026728925190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30005,19 +29926,6 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   mirror: {fileID: 8805341624708804410}
   otherMirror: {fileID: 4780230112534650345}
---- !u!114 &3152760395405371833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8998873169459801395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!1 &9076152292677897034
 GameObject:
   m_ObjectHideFlags: 0

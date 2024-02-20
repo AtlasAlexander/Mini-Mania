@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2002059858221337200
+--- !u!1 &5306928952005390351
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6871326561941371400}
-  - component: {fileID: 8275530669282364141}
+  - component: {fileID: 5371027908397970503}
+  - component: {fileID: 1799354880606308515}
   m_Layer: 0
-  m_Name: FmodAudioManager 1 1
+  m_Name: FmodAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6871326561941371400
+--- !u!4 &5371027908397970503
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002059858221337200}
+  m_GameObject: {fileID: 5306928952005390351}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8275530669282364141
+--- !u!114 &1799354880606308515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002059858221337200}
+  m_GameObject: {fileID: 5306928952005390351}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d26e6af708568468990436782b6b65, type: 3}
@@ -88,6 +88,36 @@ MonoBehaviour:
       Data3: -1517685080
       Data4: 1875527914
     Path: event:/GameSoundEffects/openDoor
+  - Guid:
+      Data1: -1125085549
+      Data2: 1089990979
+      Data3: 884697239
+      Data4: 974679179
+    Path: event:/GameSoundEffects/gatePassthrough
+  - Guid:
+      Data1: -661398227
+      Data2: 1085833916
+      Data3: -1120974710
+      Data4: -46814777
+    Path: event:/GameSoundEffects/roomAmbience
+  - Guid:
+      Data1: 1490438571
+      Data2: 1081464658
+      Data3: -509706828
+      Data4: -119888094
+    Path: event:/GameSoundEffects/playerGrow
+  - Guid:
+      Data1: 597308501
+      Data2: 1337982483
+      Data3: -1613681224
+      Data4: 1254494419
+    Path: event:/GameSoundEffects/playerShrink
+  - Guid:
+      Data1: 597308501
+      Data2: 1337982483
+      Data3: -1613681224
+      Data4: 1254494419
+    Path: event:/GameSoundEffects/playerShrink
   footstepsRate: 0.4
   player: {fileID: 0}
   controller: {fileID: 0}

@@ -25,6 +25,7 @@ public class FastRes : MonoBehaviour
             player.GetComponent<CharacterController>().enabled = false;
             test = true;
         }
+        
     }
     private void Update()
     {

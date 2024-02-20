@@ -10,7 +10,7 @@ public class SizeChange : MonoBehaviour
     [SerializeField] float changeDuration = 1f;
     
     [SerializeField] bool forceOnSizeChange = false;
-    [SerializeField][Range(0f, 3.0f)] float forceMultiplier = 1f;
+    [SerializeField][Range(0f, 1.0f)] float forceMultiplier = 0.1f;
 
     [SerializeField] private bool shrunk = false;
 
@@ -22,7 +22,16 @@ public class SizeChange : MonoBehaviour
         
         if (startSmall)
         {
-            ShrinkObject();
+            //ShrinkObject();
+            //gameObject.transform.localScale = smallestSize;
+            //shrunk = true;
+            // GetComponent<Stats>().Weight = 50;
+            //ShrinkObject();
+            Vector3 currentSize = GetComponent<Transform>().localScale;
+
+            GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 0.2f;
+            StartCoroutine(LerpSize(currentSize, smallestSize, 0.1f));
+            shrunk = true;
         }
     }
     public void ChangeSize(AmmoType ammoType)
@@ -30,11 +39,16 @@ public class SizeChange : MonoBehaviour
         if(ammoType.ToString() == "Shrink")
         {
             ShrinkObject();
+
+            if (gameObject.tag == "Player")
+            { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
         }
         if(ammoType.ToString() == "Grow")
         {
-            
             GrowObject();
+
+            if (gameObject.tag == "Player")
+            { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
         }
     }
 
@@ -57,7 +71,14 @@ public class SizeChange : MonoBehaviour
             StartCoroutine(LerpSize(currentSize, smallestSize, changeDuration));
             shrunk = true;
             //FindObjectOfType<AudioManager>().Play("object_shrink");
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectShrink", gameObject);
+            if (gameObject.tag == "Player")
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("playerShrink", gameObject);
+            }
+            else
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectShrink", gameObject);
+            }
         }
 
         /*
@@ -101,9 +122,16 @@ public class SizeChange : MonoBehaviour
             GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 5f;
             StartCoroutine(LerpSize(currentSize, maxSize, changeDuration));
             shrunk = false;
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectGrow", gameObject);
+            if (gameObject.tag == "Player")
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("playerGrow", gameObject);
+            }
+            else
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectGrow", gameObject);
+            }
         }
-    }
+        }
 
     private void OnTriggerExit(Collider other)
     {
