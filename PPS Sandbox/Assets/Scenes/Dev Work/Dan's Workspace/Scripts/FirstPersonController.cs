@@ -115,6 +115,8 @@ public class FirstPersonController : MonoBehaviour
 
     public int i;
 
+    GameObject CheckpointControllerRef;
+
 
     void Start()
     {
@@ -126,6 +128,7 @@ public class FirstPersonController : MonoBehaviour
         defaultFOV = playerCam.fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        CheckpointControllerRef = GameObject.Find("CheckpointController");
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
@@ -429,7 +432,9 @@ public class FirstPersonController : MonoBehaviour
     {
         Debug.Log("HIT BY TURRET");
         GetComponent<CharacterController>().enabled = false;
-        transform.position = new Vector3(0f, 6f, -3.92f); //(if checkpoints != null) {Respawn player at nearest checkpoint;}
+        if (CheckpointControllerRef != null)
+            CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
+
         GetComponent<CharacterController>().enabled = true;
     }
 
