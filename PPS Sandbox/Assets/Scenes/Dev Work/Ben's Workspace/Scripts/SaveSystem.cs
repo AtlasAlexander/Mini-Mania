@@ -25,7 +25,7 @@ public class SaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CheckpointsOBJ = GameObject.Find("Checkpoints");
+        CheckpointsOBJ = GameObject.Find("CheckpointController");
 
         MusicSlider = PauseOptionMenu.transform.Find("Music VolumeSlider").GetComponent<Slider>();
         SFXSlider = PauseOptionMenu.transform.Find("SFX VolumeSlider").GetComponent<Slider>();
