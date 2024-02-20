@@ -125,8 +125,10 @@ MonoBehaviour:
   smallestSize: {x: 0.2, y: 0.2, z: 0.2}
   maxSize: {x: 1, y: 1, z: 1}
   changeDuration: 0.13
-  forceOnShrink: 1
-  forceMultiplier: 1.07
+  forceOnSizeChange: 0
+  forceMultiplier: 1
+  shrunk: 0
+  startSmall: 0
 --- !u!54 &5916045392747908079
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,8 +186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc51d4c4ff253384084b0258a23ae206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theseHands: {fileID: 0}
-  holding: 0
+  smallObject: {fileID: 0}
+  largeObject: {fileID: 0}
+  isHoldingLargeObject: 0
+  isHoldingSmallObject: 0
   outOfLosDist: 4
 --- !u!114 &9156885460883832233
 MonoBehaviour:
