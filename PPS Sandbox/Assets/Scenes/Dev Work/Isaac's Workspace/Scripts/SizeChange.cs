@@ -8,18 +8,18 @@ public class SizeChange : MonoBehaviour
     [SerializeField] Vector3 smallestSize = new Vector3(0.2f, 0.2f, 0.2f);
     [SerializeField] Vector3 maxSize = new Vector3(1.5f, 1.5f, 1.5f);
     [SerializeField] float changeDuration = 1f;
-    
+
     [SerializeField] bool forceOnSizeChange = false;
-    [SerializeField][Range(0f, 1.0f)] float forceMultiplier = 0.1f;
+    [SerializeField][Range(0f, 2f)] float forceMultiplier;
 
     [SerializeField] private bool shrunk = false;
 
     public bool startSmall;
-    
+
 
     public void Awake()
     {
-        
+
         if (startSmall)
         {
             //ShrinkObject();
@@ -36,14 +36,14 @@ public class SizeChange : MonoBehaviour
     }
     public void ChangeSize(AmmoType ammoType)
     {
-        if(ammoType.ToString() == "Shrink")
+        if (ammoType.ToString() == "Shrink")
         {
             ShrinkObject();
 
             if (gameObject.tag == "Player")
             { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
         }
-        if(ammoType.ToString() == "Grow")
+        if (ammoType.ToString() == "Grow")
         {
             GrowObject();
 
@@ -58,10 +58,17 @@ public class SizeChange : MonoBehaviour
 
         if (forceOnSizeChange)
         {                       //This adds some force to objects when they shrink for visual player feedback
-            if(GetComponent<Rigidbody>() != null)
+            if (GetComponent<Rigidbody>() != null)
             {
-                if (currentSize != smallestSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
-                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 90f * forceMultiplier);
+                Vector3 upForce = new Vector3(Random.Range(-0.90f, 0.90f), 1.0f, Random.Range(-0.90f, 0.90f));
+                if (currentSize != smallestSize)
+                {
+                    gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 7f * forceMultiplier);
+                }
+                else
+                {
+                    gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 10f * forceMultiplier);
+                }
             }
         }
 
@@ -109,10 +116,11 @@ public class SizeChange : MonoBehaviour
 
         if (forceOnSizeChange)
         {           //This adds some force to objects when they grow for visual player feedback
-            if(GetComponent<Rigidbody>() != null)
+            if (GetComponent<Rigidbody>() != null)
             {
-                if (currentSize != maxSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 180f * forceMultiplier);
-                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 70f * forceMultiplier);
+                Vector3 upForce = new Vector3(Random.Range(-0.90f, 0.90f), 1f, Random.Range(-0.90f, 0.90f));
+                if (currentSize != maxSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 7.77f * forceMultiplier);
+                else gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 10f * forceMultiplier);
             }
         }
 
@@ -131,7 +139,7 @@ public class SizeChange : MonoBehaviour
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectGrow", gameObject);
             }
         }
-        }
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -139,7 +147,7 @@ public class SizeChange : MonoBehaviour
         ///only does increase
        // GrowObject();       //Taken out due to switch bug (not sure of use)
 
-        if(other.tag == "SizeOverride")
+        if (other.tag == "SizeOverride")
             GrowObject();
         //{
         //    Vector3 currentSize = GetComponent<Transform>().localScale;
