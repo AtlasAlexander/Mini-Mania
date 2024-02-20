@@ -428,8 +428,9 @@ public class FirstPersonController : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("HIT BY TURRET");
-        //Whoever made checkpoints, please add real code to replace pseudocode below :)
-        //(if checkpoints != null) {Respawn player at nearest checkpoint;}
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = new Vector3(0f, 6f, -3.92f); //(if checkpoints != null) {Respawn player at nearest checkpoint;}
+        GetComponent<CharacterController>().enabled = true;
     }
 
     public void SetGravity(float newGrav)
