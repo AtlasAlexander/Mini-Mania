@@ -115,6 +115,7 @@ public class FirstPersonController : MonoBehaviour
 
     public int i;
 
+    GameObject CheckpointControllerRef;
 
     void Start()
     {
@@ -126,6 +127,7 @@ public class FirstPersonController : MonoBehaviour
         defaultFOV = playerCam.fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        CheckpointControllerRef = GameObject.Find("CheckpointController");
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
@@ -425,13 +427,16 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = null;
     }
 
-    private void OnParticleCollision(GameObject other)
+   /* private void OnParticleCollision(GameObject other)
     {
+        if(CheckpointControllerRef != null)
+            CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
+
         Debug.Log("HIT BY TURRET");
         //Whoever made checkpoints, please add real code to replace pseudocode below :)
         //(if checkpoints != null) {Respawn player at nearest checkpoint;}
-    }
-
+    }*/
+    
     public void SetGravity(float newGrav)
     {
         gravity = newGrav;

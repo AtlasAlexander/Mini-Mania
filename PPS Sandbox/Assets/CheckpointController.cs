@@ -63,7 +63,7 @@ public class CheckpointController : MonoBehaviour
             if (currentCheckpoint == Checkpoints[i])
             {
                 checkp = i;
-                SaveSystemOBJ.GetComponent<SaveSystem>().SaveCheckpoint(checkp);
+                //SaveSystemOBJ.GetComponent<SaveSystem>().SaveCheckpoint(checkp);
             }
         }
     }
