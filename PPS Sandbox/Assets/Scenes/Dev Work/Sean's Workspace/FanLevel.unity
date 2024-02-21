@@ -8275,6 +8275,100 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 650303427}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &749929136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 2002059858221337200, guid: 85261975f07913b4e84bf1a5f1495de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003036960}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 749929138}
+  - component: {fileID: 749929137}
+  m_Layer: 0
+  m_Name: FmodAudioManager 1 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &749929137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 8275530669282364141, guid: 85261975f07913b4e84bf1a5f1495de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003036960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749929136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d26e6af708568468990436782b6b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectsVolume: 1
+  gameplaySounds:
+  - Guid:
+      Data1: -1126437195
+      Data2: 1125950740
+      Data3: -1394888292
+      Data4: 1171668533
+    Path: event:/GameSoundEffects/footsteps
+  - Guid:
+      Data1: -148436135
+      Data2: 1094470594
+      Data3: -1908537470
+      Data4: 1345117934
+    Path: event:/GameSoundEffects/shootShrinkRay
+  - Guid:
+      Data1: 1864957002
+      Data2: 1083873800
+      Data3: 1083511431
+      Data4: 1331490290
+    Path: event:/GameSoundEffects/objectShrink
+  - Guid:
+      Data1: 1916202289
+      Data2: 1295723467
+      Data3: 1312217521
+      Data4: 1456045595
+    Path: event:/GameSoundEffects/objectGrow
+  - Guid:
+      Data1: -1802574069
+      Data2: 1242195728
+      Data3: -640887143
+      Data4: 836877797
+    Path: event:/GameSoundEffects/buttonClick
+  - Guid:
+      Data1: -1492128889
+      Data2: 1185409624
+      Data3: 1200521856
+      Data4: 236230633
+    Path: event:/GameSoundEffects/closeDoor
+  - Guid:
+      Data1: 61561665
+      Data2: 1327412969
+      Data3: -1517685080
+      Data4: 1875527914
+    Path: event:/GameSoundEffects/openDoor
+  footstepsRate: 0.4
+  player: {fileID: 0}
+  controller: {fileID: 0}
+--- !u!4 &749929138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6871326561941371400, guid: 85261975f07913b4e84bf1a5f1495de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003036960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749929136}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &750974892
 GameObject:
   m_ObjectHideFlags: 0
@@ -9104,17 +9198,17 @@ PrefabInstance:
     - target: {fileID: 1323684705916438321, guid: 8c23e16385431e747be160a3ca160380,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.357
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1323684705916438321, guid: 8c23e16385431e747be160a3ca160380,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.3
+      value: 1.42
       objectReference: {fileID: 0}
     - target: {fileID: 1323684705916438321, guid: 8c23e16385431e747be160a3ca160380,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.26
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: 1323684705916438321, guid: 8c23e16385431e747be160a3ca160380,
         type: 3}
