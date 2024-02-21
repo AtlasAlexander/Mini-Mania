@@ -83,6 +83,12 @@ public class SaveSystem : MonoBehaviour
             CheckpointsOBJ.GetComponent<CheckpointController>().SetCheckpoint(CheckpointsOBJ.GetComponent<CheckpointController>().Checkpoints[PlayerPrefs.GetInt("Checkpoint")]);
             CheckpointsOBJ.GetComponent<CheckpointController>().LoadCheckpoint();
         }
+
+        //LevelSaves
+        if (!PlayerPrefs.HasKey("Level"))
+        {
+            PlayerPrefs.SetInt("Level", 1);
+        }
     }
 
     public void SaveMusicVolume(float value)
@@ -139,5 +145,10 @@ public class SaveSystem : MonoBehaviour
     public void SaveCheckpoint(int value)
     {
         PlayerPrefs.SetInt("Checkpoint", value);
+    }
+
+    public void SetLevel(int value)
+    {
+        PlayerPrefs.SetInt("Level", value);
     }
 }
