@@ -150,7 +150,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Exit game");
-        Application.Quit();
+        SceneManager.LoadScene(0);
+        //Debug.Log("Exit game");
+        //Application.Quit();
     }
 }
