@@ -147,8 +147,8 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("Checkpoint", value);
     }
 
-    public void SetLevel(int value)
+    public void SetLevel()
     {
-        PlayerPrefs.SetInt("Level", value);
+        PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
     }
 }
