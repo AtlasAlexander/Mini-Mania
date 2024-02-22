@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d26e6af708568468990436782b6b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 1
   soundEffectsVolume: 1
+  musicVolume: 1
   gameplaySounds:
   - Guid:
       Data1: -1126437195
@@ -113,11 +115,23 @@ MonoBehaviour:
       Data4: 1254494419
     Path: event:/GameSoundEffects/playerShrink
   - Guid:
-      Data1: 597308501
-      Data2: 1337982483
-      Data3: -1613681224
-      Data4: 1254494419
-    Path: event:/GameSoundEffects/playerShrink
+      Data1: -1009803032
+      Data2: 1191359495
+      Data3: -463368530
+      Data4: -2100379070
+    Path: event:/GameSoundEffects/laserOn
+  - Guid:
+      Data1: -1960195780
+      Data2: 1137747677
+      Data3: 732980916
+      Data4: 969214804
+    Path: event:/GameSoundEffects/menuSelection
+  - Guid:
+      Data1: -11047005
+      Data2: 1325810698
+      Data3: 1086710973
+      Data4: -683702559
+    Path: event:/GameSoundEffects/pause
   footstepsRate: 0.4
   player: {fileID: 0}
   controller: {fileID: 0}
