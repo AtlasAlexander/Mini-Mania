@@ -24,7 +24,8 @@ public class VolumeSetting : MonoBehaviour
     }
     public void SetMainVolume (float volume)
     {
-
+        audioManager.masterVolume = volume;
+        Debug.Log(volume);
     }
 
     public void SetMusicVolume (float volume)
