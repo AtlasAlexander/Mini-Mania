@@ -38,8 +38,8 @@ public class CheckpointController : MonoBehaviour
             if(SceneManager.GetActiveScene().buildIndex - 1 >= PlayerPrefs.GetInt("Level"))
                 SaveSystemOBJ.GetComponent<SaveSystem>().SetLevel();
             PlayerPrefs.SetInt("Checkpoint", 0);
-            if(SceneManager.GetActiveScene().buildIndex < 4)
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //if(SceneManager.GetActiveScene().buildIndex < 4)
+               // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
     private void FixedUpdate()
