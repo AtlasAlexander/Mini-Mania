@@ -21,7 +21,7 @@ public class LevelTransitionCutscene : MonoBehaviour
     private Camera playerCamera;
     private GameObject playerWeapons;
     private GameObject crosshairUI;
-    private GameObject audioManager;
+    //private GameObject audioManager;
     [SerializeField] private Animator grandpaAnimator;
 
     private LevelTransitionTrigger levelTransitionTrigger;
@@ -33,7 +33,7 @@ public class LevelTransitionCutscene : MonoBehaviour
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         playerWeapons = GameObject.Find("Weapons");
         crosshairUI = GameObject.Find("IT_UI");
-        audioManager = GameObject.Find("FmodAudioManager");
+        //audioManager = GameObject.Find("FmodAudioManager");
 
         levelTransitionTrigger = GameObject.Find("LevelTransitionTrigger").GetComponent<LevelTransitionTrigger>();
         grandpaAnimationHashes = gameObject.AddComponent<GrandpaAnimationHashes>();
@@ -59,7 +59,7 @@ public class LevelTransitionCutscene : MonoBehaviour
             player.GetComponent<FirstPersonController>().enabled = false;
             playerWeapons.SetActive(false);
             crosshairUI.SetActive(false);
-            audioManager.SetActive(false);
+            //audioManager.SetActive(false);
             playerCamera.transform.SetPositionAndRotation(Vector3.MoveTowards(playerCamera.transform.position, transitionCamPos.transform.position, 2.8f * Time.deltaTime),
                 Quaternion.RotateTowards(playerCamera.transform.rotation, transitionCamPos.transform.rotation, 40 * Time.deltaTime));
 
