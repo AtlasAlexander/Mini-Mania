@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    public float Weight = 100;
-    float DefaultWeight = 100;
+    public float Weight = 50;
+    public float DefaultWeight = 50;
 
     private void Awake()
     {
         DefaultWeight = Weight;
         if(GetComponent<SizeChange>().startSmall)
         {
-            DefaultWeight = Weight * 5;
+            DefaultWeight = 50;
         }
     }
     private void LateUpdate()
