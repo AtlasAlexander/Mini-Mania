@@ -14,6 +14,15 @@ public class NewGrabbing : MonoBehaviour
     public float pickUpRange = 5.0f;
     public float pickUpForce = 150f;
 
+    [Header("REFERENCES")]
+    public Camera cam;
+    SizeChange sizeChange;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
+
     private void Update()
     {
         if (Input.GetButtonDown("Grab"))
@@ -21,9 +30,17 @@ public class NewGrabbing : MonoBehaviour
             if (heldObj == null)
             {
                 RaycastHit hitData;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitData, pickUpRange))
+                Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * pickUpRange, Color.red);
+                if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hitData, pickUpRange))
                 {
-                    PickUpObject(hitData.transform.gameObject);
+                    if (hitData.transform.gameObject.GetComponent<SizeChange>())
+                    {
+                        sizeChange = hitData.transform.gameObject.GetComponent<SizeChange>();
+                        if (!sizeChange.isChangingSize)
+                        {
+                            PickUpObject(hitData.transform.gameObject);
+                        }
+                    }
                 }
             }
 
