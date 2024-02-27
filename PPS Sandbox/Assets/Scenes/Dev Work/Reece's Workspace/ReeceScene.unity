@@ -1734,6 +1734,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 643208594}
+    - target: {fileID: 5156681719049888937, guid: 874f5afc01c82224a9b85280c2f4e368,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 117973217}
+    - target: {fileID: 5156681719049888937, guid: 874f5afc01c82224a9b85280c2f4e368,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156681719049888937, guid: 874f5afc01c82224a9b85280c2f4e368,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 576
+      objectReference: {fileID: 0}
     - target: {fileID: 5371964471143681516, guid: 874f5afc01c82224a9b85280c2f4e368,
         type: 3}
       propertyPath: m_Mesh
@@ -1819,10 +1834,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3025485757941435507, guid: 874f5afc01c82224a9b85280c2f4e368,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2627294421110986987, guid: 874f5afc01c82224a9b85280c2f4e368,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
