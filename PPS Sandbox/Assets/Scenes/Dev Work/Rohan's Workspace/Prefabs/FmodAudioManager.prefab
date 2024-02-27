@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5306928952005390351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5371027908397970503}
+  - component: {fileID: 1799354880606308515}
+  m_Layer: 0
+  m_Name: FmodAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5371027908397970503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306928952005390351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799354880606308515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306928952005390351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d26e6af708568468990436782b6b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  soundEffectsVolume: 1
+  musicVolume: 1
+  gameplaySounds:
+  - Guid:
+      Data1: -1126437195
+      Data2: 1125950740
+      Data3: -1394888292
+      Data4: 1171668533
+    Path: event:/GameSoundEffects/footsteps
+  - Guid:
+      Data1: -148436135
+      Data2: 1094470594
+      Data3: -1908537470
+      Data4: 1345117934
+    Path: event:/GameSoundEffects/shootShrinkRay
+  - Guid:
+      Data1: 1864957002
+      Data2: 1083873800
+      Data3: 1083511431
+      Data4: 1331490290
+    Path: event:/GameSoundEffects/objectShrink
+  - Guid:
+      Data1: 1916202289
+      Data2: 1295723467
+      Data3: 1312217521
+      Data4: 1456045595
+    Path: event:/GameSoundEffects/objectGrow
+  - Guid:
+      Data1: -1802574069
+      Data2: 1242195728
+      Data3: -640887143
+      Data4: 836877797
+    Path: event:/GameSoundEffects/buttonClick
+  - Guid:
+      Data1: -1492128889
+      Data2: 1185409624
+      Data3: 1200521856
+      Data4: 236230633
+    Path: event:/GameSoundEffects/closeDoor
+  - Guid:
+      Data1: 61561665
+      Data2: 1327412969
+      Data3: -1517685080
+      Data4: 1875527914
+    Path: event:/GameSoundEffects/openDoor
+  - Guid:
+      Data1: -1125085549
+      Data2: 1089990979
+      Data3: 884697239
+      Data4: 974679179
+    Path: event:/GameSoundEffects/gatePassthrough
+  - Guid:
+      Data1: -661398227
+      Data2: 1085833916
+      Data3: -1120974710
+      Data4: -46814777
+    Path: event:/GameSoundEffects/roomAmbience
+  - Guid:
+      Data1: 1490438571
+      Data2: 1081464658
+      Data3: -509706828
+      Data4: -119888094
+    Path: event:/GameSoundEffects/playerGrow
+  - Guid:
+      Data1: 597308501
+      Data2: 1337982483
+      Data3: -1613681224
+      Data4: 1254494419
+    Path: event:/GameSoundEffects/playerShrink
+  - Guid:
+      Data1: -1009803032
+      Data2: 1191359495
+      Data3: -463368530
+      Data4: -2100379070
+    Path: event:/GameSoundEffects/laserOn
+  - Guid:
+      Data1: -1960195780
+      Data2: 1137747677
+      Data3: 732980916
+      Data4: 969214804
+    Path: event:/GameSoundEffects/menuSelection
+  - Guid:
+      Data1: -11047005
+      Data2: 1325810698
+      Data3: 1086710973
+      Data4: -683702559
+    Path: event:/GameSoundEffects/pause
+  footstepsRate: 0.4
+  player: {fileID: 0}
+  controller: {fileID: 0}

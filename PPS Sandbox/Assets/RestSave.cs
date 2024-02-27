@@ -7,5 +7,6 @@ public class RestSave : MonoBehaviour
     public void NewGame()
     {
         PlayerPrefs.DeleteKey("Checkpoint");
+        PlayerPrefs.SetInt("Level", 1);
     }
 }

@@ -79,7 +79,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{7a18c46b-1f36-4f08-84e6-8d0269dd2f56}">
 		<property name="volume">
-			<value>-24</value>
+			<value>-44</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{7343f9a9-4533-4813-97e5-1d4b90d0da83}</destination>
@@ -116,5 +116,9 @@
 	</object>
 	<object class="MixerBusFader" id="{1d8d70f9-b79e-4e34-8686-ecfad636440d}" />
 	<object class="MixerBusFader" id="{88af56bd-1627-4291-8e4c-ec1b2cc9eeb0}" />
-	<object class="SpatialiserEffect" id="{46b2be30-da81-4b61-a924-fb32a1e839db}" />
+	<object class="SpatialiserEffect" id="{46b2be30-da81-4b61-a924-fb32a1e839db}">
+		<property name="userStereoSeparation">
+			<value>162</value>
+		</property>
+	</object>
 </objects>

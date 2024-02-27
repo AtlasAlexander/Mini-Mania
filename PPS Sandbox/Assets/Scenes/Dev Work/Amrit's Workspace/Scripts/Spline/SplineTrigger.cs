@@ -6,6 +6,7 @@ public class SplineTrigger : MonoBehaviour
 {
     private Camera playerCamera;
     private GameObject player;
+    private Animator playerAnimator;
 
     public SplineWalker splineWalker;
     public BezierSpline spline;
@@ -15,7 +16,7 @@ public class SplineTrigger : MonoBehaviour
 
     private GameObject playerWeapons;
     private GameObject crosshairUI;
-    private GameObject audioManager;
+    //private GameObject audioManager;
 
     public GameObject nextSplineCutscene;
 
@@ -27,7 +28,8 @@ public class SplineTrigger : MonoBehaviour
         playerCamera = player.GetComponentInChildren<Camera>();
         playerWeapons = GameObject.Find("Weapons");
         crosshairUI = GameObject.Find("IT_UI");
-        audioManager = GameObject.Find("AudioManager");
+        //audioManager = GameObject.Find("FmodAudioManager");
+        playerAnimator = GameObject.Find("Character_Male_Jacket_01").GetComponent<Animator>();
     }
 
     private void LateUpdate()
@@ -38,7 +40,7 @@ public class SplineTrigger : MonoBehaviour
             returnCamToOrigin = false;
 
             // move the players camera to start of the spline
-            playerCamera.transform.position = Vector3.MoveTowards(playerCamera.transform.position, spline.GetPoint(splineWalker.progress), Time.deltaTime * 10);
+            playerCamera.transform.position = Vector3.MoveTowards(playerCamera.transform.position, spline.GetPoint(splineWalker.progress), Time.deltaTime * 5);
 
             // look at player
             playerCamera.transform.LookAt(lookAtTarget.transform);
@@ -47,7 +49,9 @@ public class SplineTrigger : MonoBehaviour
             player.GetComponent<FirstPersonController>().enabled = false;
             playerWeapons.SetActive(false);
             crosshairUI.SetActive(false);
-            audioManager.SetActive(false);
+            //audioManager.SetActive(false);
+            playerAnimator.SetFloat("Forward", 0);
+
 
             if (splineWalker.progress >= 0.98f)
             {
@@ -65,7 +69,7 @@ public class SplineTrigger : MonoBehaviour
             player.GetComponent<FirstPersonController>().enabled = true;
             playerWeapons.SetActive(true);
             crosshairUI.SetActive(true);
-            audioManager.SetActive(true);
+            //audioManager.SetActive(true);
         }
     }
 

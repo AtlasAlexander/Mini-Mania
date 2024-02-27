@@ -5,31 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Dev Work/Ion's Workspace/Menu.unity
-    guid: bd765e40d78964843aa8ba4d5e06f2db
   - enabled: 1
-    path: Assets/Scenes/Dev Work/Ben's Workspace/NewContinue Menu.unity
-    guid: 6dc042659bb3db341bc5d22e93285ecb
+    path: Assets/Scenes/Game Content/Menu.unity
+    guid: d8c3baf17bb65834d940e5e84d9aaf87
+  - enabled: 1
+    path: Assets/Scenes/Game Content/LevelSelect.unity
+    guid: 460442e34ffbeea479d04df6dd9e05f1
   - enabled: 1
     path: Assets/Scenes/Game Content/Main Scene.unity
     guid: 87d56ddb2749e6a46a6585ac14a894ff
   - enabled: 0
-    path: Assets/Scenes/Dev Work/Jake's Workspace/Scenes/Putting stuff together.unity
     path: Assets/Scenes/Game Content/Main Scene.unity
     guid: 87d56ddb2749e6a46a6585ac14a894ff
-  - enabled: 0
-    path: Assets/Scenes/Dev Work/Jake's Workspace/Putting stuff together.unity
-    guid: 69982c4e1bc97384a8451f368032bc50
-  - enabled: 0
-    path: Assets/Scenes/Dev Work/Ion's Workspace/pauseMenu.unity
-    guid: 326ff64eb77667b4a9a22fa04c863cfc
-  - enabled: 0
-    path: Assets/Scenes/Dev Work/Sean's Workspace/Sandbox Scene.unity
-    guid: 3acf4f6ecaade5b47aa2024e4db8c798
-  - enabled: 0
-    path: Assets/Scenes/Dev Work/Alex's Workspace/Scene.unity
-    guid: 1674d34a0ee3ff4458c6e816f8fea77a
+  - enabled: 1
+    path: Assets/Scenes/Game Content/Lasers.unity
+    guid: 781ac87c327d8674a9aaa370c3af6b0f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2280f80e8b69f8d4baf2cc850a32b740,
       type: 2}

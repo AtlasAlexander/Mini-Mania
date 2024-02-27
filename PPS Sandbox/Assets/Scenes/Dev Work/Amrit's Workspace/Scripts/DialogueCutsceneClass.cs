@@ -22,7 +22,7 @@ public class DialogueCutsceneClass : MonoBehaviour
         playerCamera = player.GetComponentInChildren<Camera>();
         playerWeapons = GameObject.Find("Weapons");
         crosshairUI = GameObject.Find("IT_UI");
-        audioManager = GameObject.Find("AudioManager");
+        audioManager = GameObject.Find("FmodAudioManager 1 1");
     }
 
     void Start()

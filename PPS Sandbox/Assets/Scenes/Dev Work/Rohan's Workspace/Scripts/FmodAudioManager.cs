@@ -4,15 +4,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using FMOD.Studio;
+using System;
+using System.Data.SqlTypes;
 
 public class FmodAudioManager : MonoBehaviour
 {
     [Header("Volume")]
-    [Range(0.0f, 1.0f)]
-    public float soundEffectsVolume;
-    //[Range(0, 1)]
-    //public float musicVolume = 1;
+    [Range(0, 1)]
+    public float masterVolume = 1;
 
+    [Range(0, 1)]
+    public float soundEffectsVolume = 1;
+
+    [Range(0, 1)]
+    public float musicVolume = 1;
+    
+
+    private Bus masterBus;
     private Bus sfxBus;
     private Bus musicBus;
 
@@ -26,8 +34,14 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Awake()
     {
-        sfxBus = RuntimeManager.GetBus("bus:/");
-        //musicBus = RuntimeManager.GetBus("bus:/Music");
+        masterBus = RuntimeManager.GetBus("bus:/");
+        sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
+        musicBus = RuntimeManager.GetBus("bus:/Music");
+    }
+
+    private void Start()
+    {
+        QuickPlaySound("roomAmbience", player);
     }
 
     public void QuickPlaySound(string soundName, GameObject soundSource) 
@@ -44,9 +58,12 @@ public class FmodAudioManager : MonoBehaviour
         int soundIndex = 0;
         foreach (EventReference eventRef in gameplaySounds)
         {
-            string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
-            if (soundName == eventName)
-            { 
+            //string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
+            //if (soundName == eventName)
+            // {
+            if (eventRef.ToString().Contains(eventName))
+            {
+                
                 return soundIndex;
             }
             soundIndex++;
@@ -57,8 +74,9 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
+        masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
-        //musicBus.setVolume(musicVolume);
+        musicBus.setVolume(musicVolume);
 
         time += Time.deltaTime;
         if (controller.isWalking)    //controls player footsteps
@@ -70,5 +88,11 @@ public class FmodAudioManager : MonoBehaviour
             }
         }
     }
-        
+
+
+    public void SetFootstepsRate(float rate)
+    {
+
+        footstepsRate = rate;
+    }
 }

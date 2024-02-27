@@ -141,9 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8775117998640369679}
   - component: {fileID: 2587972558595454403}
-  - component: {fileID: 5860758725417690063}
   - component: {fileID: 7267197722301688822}
-  - component: {fileID: 833268664066112947}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -219,14 +217,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5860758725417690063
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728811221020586520}
-  m_Enabled: 1
 --- !u!114 &7267197722301688822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,19 +261,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &833268664066112947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728811221020586520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!1 &3294823835170834123
 GameObject:
   m_ObjectHideFlags: 0
@@ -10993,7 +10970,6 @@ MonoBehaviour:
   upperLookLimit: 70
   lowerLookLimit: 70
   invertLook: 0
-  aimAssist: {fileID: 0}
   jumpForce: 8
   gravity: 30
   crouchHeight: 0.5
@@ -11010,6 +10986,8 @@ MonoBehaviour:
   timeToZoom: 0.3
   zoomFOV: 30
   _animator: {fileID: 0}
+  moveDir: {x: 0, y: 0, z: 0}
+  i: 0
 --- !u!114 &7740266739797032193
 MonoBehaviour:
   m_ObjectHideFlags: 0

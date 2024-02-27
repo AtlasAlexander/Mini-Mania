@@ -77,8 +77,10 @@ public class SwitchController : MonoBehaviour
         if (other.gameObject.GetComponent<Stats>() != null)
         {
 
+            if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
+            {
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
-            
+            }
 
             if (ObjOnSwitch > 0)
             {
