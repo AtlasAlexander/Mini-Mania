@@ -22,14 +22,20 @@ public class DestroyedByGoop : RespawnPoints
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Destroyed!");
+            Debug.Log("Respawned Back to Checkpoint");
             SetPlayerSpawnpoint();
         }
 
-        if (other.CompareTag("Pickup"))
+        if (other.name == "CarryCube Big")
         {
-            Debug.Log("Cube Destroyed!");
-            SetCubePosition();
+            Debug.Log("Cube 1 Respawned!");
+            SetCube1Position();
+        }
+
+        if (other.name == "CarryCube Big (1)")
+        {
+            Debug.Log("Cube 2 Respawned!");
+            SetCube2Position();
         }
     }
 }
