@@ -57,6 +57,14 @@ public class AimAssist : MonoBehaviour
             var layerMask = hitRange.collider.gameObject.layer;
             if (layerMask == objectLayer)
             {
+                if (growthRay.activeInHierarchy)
+                {
+                    reticle.color = new Color32(255, 155, 0, 255);
+                }
+                if (shrinkRay.activeInHierarchy)
+                {
+                    reticle.color = new Color32(126, 255, 227, 255);
+                }
                 assman.TestFunc();
                 lookingAtObject = true;
             }
@@ -64,14 +72,16 @@ public class AimAssist : MonoBehaviour
             else
             {
                 lookingAtObject = false;
+                reticle.color = Color.white;
             }
         }
 
         else
         {
             lookingAtObject = false;
+            reticle.color = Color.white;
         }
-
+        /*
         if (Physics.Raycast(camTrans.position, camTrans.forward, out RaycastHit hit, 1000))
         {
             var layerMask = hit.collider.gameObject.layer;
@@ -93,5 +103,6 @@ public class AimAssist : MonoBehaviour
             }
 
         }
+        */
     }
 }
