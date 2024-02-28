@@ -13,6 +13,7 @@ public class SizeChange : MonoBehaviour
     [SerializeField][Range(0f, 2f)] float forceMultiplier;
 
     [SerializeField] private bool shrunk = false;
+    [SerializeField] private bool canBePickedUp = true;
 
     public bool startSmall;
     public bool isChangingSize;
@@ -180,5 +181,10 @@ public class SizeChange : MonoBehaviour
     public bool GetShrunkStatus()
     {
         return shrunk;
+    }
+
+    public bool Pickupable()
+    {
+        return canBePickedUp;
     }
 }
