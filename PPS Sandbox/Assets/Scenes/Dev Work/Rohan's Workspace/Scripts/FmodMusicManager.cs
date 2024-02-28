@@ -45,8 +45,10 @@ public class FmodMusicManager : MonoBehaviour
 
     public void togglePause()
     {
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("static", gameObject);
         if (paused)  //Unpausing the game
         {
+            
             songPlaying = FMODUnity.RuntimeManager.CreateInstance(tracks[songIndex]);
             songPlaying.start();
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(songPlaying, GetComponent<Transform>(), GetComponent<Rigidbody>());

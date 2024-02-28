@@ -78,7 +78,16 @@ public class Weapon : MonoBehaviour
             if (UserInput.instance.ShootInput && canShoot == true)
             {
                 StartCoroutine(Shoot());
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("shootShrinkRay", gameObject);
+                if (ammoType.ToString() == "Shrink")
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("shootShrinkRay", gameObject);
+                }
+                else
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("shootGrowthRay", gameObject);
+                }
+                
+                
                 //FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
 
             }
