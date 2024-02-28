@@ -36,7 +36,7 @@ public class NewGrabbing : MonoBehaviour
                     if (hitData.transform.gameObject.GetComponent<SizeChange>())
                     {
                         sizeChange = hitData.transform.gameObject.GetComponent<SizeChange>();
-                        if (!sizeChange.isChangingSize)
+                        if (!sizeChange.isChangingSize && sizeChange.Pickupable())
                         {
                             PickUpObject(hitData.transform.gameObject);
                         }
