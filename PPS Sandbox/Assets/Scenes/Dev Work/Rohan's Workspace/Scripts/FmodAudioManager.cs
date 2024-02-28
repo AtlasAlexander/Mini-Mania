@@ -6,6 +6,7 @@ using UnityEngine;
 using FMOD.Studio;
 using System;
 using System.Data.SqlTypes;
+using UnityEngine.SceneManagement;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -37,11 +38,25 @@ public class FmodAudioManager : MonoBehaviour
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
+
+        
     }
 
     private void Start()
     {
-        QuickPlaySound("roomAmbience", player);
+        
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        
+        if (sceneName == "Main Scene 1")
+        {
+            print(sceneName);
+            QuickPlaySound("gameTheme-StuckInTheWormHole", GameObject.FindWithTag("MainCamera"));
+        }
+        else
+        {
+            QuickPlaySound("roomAmbience", player);
+        }
     }
 
     public void QuickPlaySound(string soundName, GameObject soundSource) 
@@ -74,6 +89,7 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
+        
         masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
         musicBus.setVolume(musicVolume);

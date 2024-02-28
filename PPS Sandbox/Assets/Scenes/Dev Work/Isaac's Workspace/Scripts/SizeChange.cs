@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.UIElements;
 
 public class SizeChange : MonoBehaviour
 {
@@ -45,20 +46,29 @@ public class SizeChange : MonoBehaviour
     {
         if (!grabbing.grab)
         {
-            if (ammoType.ToString() == "Shrink")
+            if(gameObject.name == "Radio")
             {
-                ShrinkObject();
-
-                if (gameObject.tag == "Player")
-                { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
+                gameObject.GetComponent<FmodMusicManager>().togglePause();
+               
             }
-            if (ammoType.ToString() == "Grow")
+            else
             {
-                GrowObject();
+                if (ammoType.ToString() == "Shrink")
+                {
+                    ShrinkObject();
 
-                if (gameObject.tag == "Player")
-                { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
+                    if (gameObject.tag == "Player")
+                    { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
+                }
+                if (ammoType.ToString() == "Grow")
+                {
+                    GrowObject();
+
+                    if (gameObject.tag == "Player")
+                    { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
+                }
             }
+            
         }
 
     }
