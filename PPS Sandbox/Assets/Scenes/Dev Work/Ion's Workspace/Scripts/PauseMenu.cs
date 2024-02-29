@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
     {
         print("PAUSE");
         if (GamePaused)
-        {
+         {
             Resume();
         }
 
