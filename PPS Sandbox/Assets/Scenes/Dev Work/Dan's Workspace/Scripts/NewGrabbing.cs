@@ -12,6 +12,9 @@ public class NewGrabbing : MonoBehaviour
     public bool grab;
     InputAction grabInput;
 
+    bool startTimer = false;
+    float time;
+
 
     [Header("PHYSICS")]
     public float pickUpRange = 5.0f;
@@ -74,6 +77,21 @@ public class NewGrabbing : MonoBehaviour
         {
             MoveObject();
         }
+
+        if (grab)
+        {
+            time += Time.deltaTime;
+        }
+
+        if (heldObj != null)
+        {
+            float dis = Vector3.Distance(heldObj.transform.position, holdArea.transform.position);
+            print(dis);
+            if (dis >= 1f && time > 1f)
+            {
+                DropObject();
+            }
+        }
               
     }
 
@@ -110,6 +128,15 @@ public class NewGrabbing : MonoBehaviour
         heldObj.transform.parent = null;
         heldObj = null;
         grab = false;
+        time = 0;
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Pickup")
+        {
+            DropObject();
+        }
     }
 }
