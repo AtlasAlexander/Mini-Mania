@@ -98,7 +98,7 @@ MonoBehaviour:
   StudioPath: 
   lastModified: 638443110817326928
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-7003108834192862663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +329,8 @@ MonoBehaviour:
   - {fileID: 4104975363019153794}
   - {fileID: 6457295310269770276}
   - {fileID: -7080969101775703272}
+  - {fileID: 7453934947783168419}
+  - {fileID: 8037747471675322982}
   EditorEvents:
   - {fileID: 4701305126454694652}
   - {fileID: 8509935231532088364}
@@ -360,7 +362,12 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 5821088899876044034}
   - {fileID: 6457295310269770276}
+<<<<<<< HEAD
   cacheTime: 638443110817326928
+=======
+  - {fileID: 7453934947783168419}
+  cacheTime: 638448368608476177
+>>>>>>> ReeceLevelDesign
   cacheVersion: 131616
 --- !u!114 &46502047429599030
 MonoBehaviour:
@@ -690,7 +697,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 2166
-  Exists: 1
+  Exists: 0
 --- !u!114 &7163952184026815359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +725,44 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7453934947783168419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638448368608013493
+  FileSizes:
+  - Name: Desktop
+    Value: 2436
+  Exists: 1
+--- !u!114 &8037747471675322982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: 
+  lastModified: 638448368608476177
+  FileSizes: []
+  Exists: 1
 --- !u!114 &8509935231532088364
 MonoBehaviour:
   m_ObjectHideFlags: 0
