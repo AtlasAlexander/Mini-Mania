@@ -111,4 +111,7 @@ public class FmodAudioManager : MonoBehaviour
 
         footstepsRate = rate;
     }
+
+    
+
 }

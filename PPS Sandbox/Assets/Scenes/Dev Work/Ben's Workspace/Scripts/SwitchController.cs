@@ -76,7 +76,10 @@ public class SwitchController : MonoBehaviour
             if (LasersToTrigger.Count > 0)
             {
                 buttonClicked = false;
-                foreach (GameObject laser in LasersToTrigger) { laser.SetActive(!TriggerLasersOn); }
+                foreach (GameObject laser in LasersToTrigger) { 
+                    laser.SetActive(!TriggerLasersOn);
+                    
+                }
             }
         }
     }
