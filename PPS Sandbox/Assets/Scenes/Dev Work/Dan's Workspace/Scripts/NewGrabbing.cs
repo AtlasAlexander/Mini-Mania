@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewGrabbing : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class NewGrabbing : MonoBehaviour
     public GameObject heldObj;
     private Rigidbody heldObjRb;
     public bool grab;
+    InputAction grabInput;
+
 
     [Header("PHYSICS")]
     public float pickUpRange = 5.0f;
@@ -17,6 +20,23 @@ public class NewGrabbing : MonoBehaviour
     [Header("REFERENCES")]
     public Camera cam;
     SizeChange sizeChange;
+    PlayerControls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+        grabInput = playerControls.Movement.Interact;
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 
     private void Start()
     {
@@ -25,7 +45,7 @@ public class NewGrabbing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Grab"))
+        if (grabInput.WasPressedThisFrame())
         {
             if (heldObj == null)
             {
