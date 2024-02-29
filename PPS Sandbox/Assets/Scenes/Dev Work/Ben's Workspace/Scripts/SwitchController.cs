@@ -49,6 +49,7 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
+
             if(circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
@@ -69,7 +70,7 @@ public class SwitchController : MonoBehaviour
                 buttonClicked = false;
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(!TriggerLasersOn); }
             }
-        }           
+        }
     }
 
     private void OnTriggerExit(Collider other)

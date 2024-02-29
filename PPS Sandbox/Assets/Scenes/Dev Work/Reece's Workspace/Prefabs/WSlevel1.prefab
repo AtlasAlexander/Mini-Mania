@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 23
+  m_VersionIndex: 26
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3482,7 +3482,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2028
+  m_VersionIndex: 2031
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4788,7 +4788,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 17
+  m_VersionIndex: 20
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4811,7 +4811,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 576
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4820,7 +4820,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &690644232799376807
@@ -10716,13 +10716,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Cable_Crossing_Machine_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1528863732336900, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4475891200291490, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9121
       objectReference: {fileID: 0}
     - target: {fileID: 4475891200291490, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7137362
+      value: 2.2518106
       objectReference: {fileID: 0}
     - target: {fileID: 4475891200291490, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
       propertyPath: m_LocalScale.z
@@ -10734,11 +10738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475891200291490, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.929
+      value: 9.15
       objectReference: {fileID: 0}
     - target: {fileID: 4475891200291490, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.263
+      value: 17.26
       objectReference: {fileID: 0}
     - target: {fileID: 4475891200291490, guid: cbceef30a3e489d49b0d717018a71050, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15476,6 +15480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Bank_Door_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1291294226849262, guid: 38b38aed3140a8f4aac8bab6dace13da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4623880327411890, guid: 38b38aed3140a8f4aac8bab6dace13da, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2824012
@@ -16546,7 +16554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 990508569a868c646882a9fa348e3066, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.5552664
+      value: 5.0459538
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 990508569a868c646882a9fa348e3066, type: 3}
       propertyPath: m_LocalScale.y
@@ -16566,7 +16574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 990508569a868c646882a9fa348e3066, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.63
+      value: -6.05
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 990508569a868c646882a9fa348e3066, type: 3}
       propertyPath: m_LocalRotation.w
