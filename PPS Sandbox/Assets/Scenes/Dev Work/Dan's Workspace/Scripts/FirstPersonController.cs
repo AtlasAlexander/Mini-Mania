@@ -129,6 +129,7 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         CheckpointControllerRef = GameObject.Find("CheckpointController");
+        PlayerPrefs.SetInt("Checkpoint", 0);
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
