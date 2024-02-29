@@ -17,6 +17,11 @@ public class NewBehaviourScript : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void Exit()
     {
         Application.Quit();
