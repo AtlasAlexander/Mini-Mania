@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchController : MonoBehaviour
+public class SwitchController1 : MonoBehaviour
 {
     public Material offMat, onMat;
 
@@ -17,6 +17,8 @@ public class SwitchController : MonoBehaviour
     public GameObject[] circuitBoard;
 
     public GameObject objOnButton;
+
+    DoorController1 doorController;
     void Update()
     {
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
@@ -31,8 +33,8 @@ public class SwitchController : MonoBehaviour
 
             if (buttonClicked == false)
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
+                //FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
+                //FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
                 buttonClicked = true;
             }
             
@@ -49,7 +51,6 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
-
             if(circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
@@ -70,7 +71,7 @@ public class SwitchController : MonoBehaviour
                 buttonClicked = false;
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(!TriggerLasersOn); }
             }
-        }
+        }           
     }
 
     private void OnTriggerExit(Collider other)
@@ -78,10 +79,8 @@ public class SwitchController : MonoBehaviour
         if (other.gameObject.GetComponent<Stats>() != null)
         {
 
-            if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
-            {
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
-            }
+            
 
             if (ObjOnSwitch > 0)
             {
@@ -110,6 +109,7 @@ public class SwitchController : MonoBehaviour
                 objOnButton = other.gameObject;
                 if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
                 {
+                    doorController.reverseDoor = true;
                     ObjOnSwitch++;
                 }
             }

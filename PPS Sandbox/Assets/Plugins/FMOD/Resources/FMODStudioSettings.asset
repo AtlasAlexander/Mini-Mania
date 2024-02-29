@@ -330,9 +330,15 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
+  - Master.strings
+  Banks:
   - Master
+<<<<<<< HEAD
   Banks:
   - Music
+=======
+  - Master.strings
+>>>>>>> ReeceLevelDesign
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
