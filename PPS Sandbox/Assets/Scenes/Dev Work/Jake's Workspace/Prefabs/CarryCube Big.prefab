@@ -136,12 +136,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108230566013914520}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7c5cd4b54e64ec409beff201070f235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 50
+  DefaultWeight: 50
 --- !u!114 &8723243831214068945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +161,9 @@ MonoBehaviour:
   forceOnSizeChange: 0
   forceMultiplier: 1
   shrunk: 0
+  canBePickedUp: 1
   startSmall: 0
+  isChangingSize: 0
 --- !u!114 &-8289311631457333397
 MonoBehaviour:
   m_ObjectHideFlags: 0

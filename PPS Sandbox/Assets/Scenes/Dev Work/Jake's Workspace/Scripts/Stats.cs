@@ -5,12 +5,7 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     public float Weight = 50;
-    public float DefaultWeight;
-
-    private void Awake()
-    {
-        DefaultWeight = Weight;
-    }
+    public float DefaultWeight = 50;
     private void LateUpdate()
     {
         if(Weight < DefaultWeight/5)
