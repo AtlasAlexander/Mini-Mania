@@ -15,11 +15,38 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638448163654177942
+  lastModified: 638448205991135427
   FileSizes:
   - Name: Desktop
-    Value: 15936160
+    Value: 14782368
   Exists: 1
+--- !u!114 &-7858461965377478274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/gameTheme-StuckInTheWormHoleRadio
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/gameTheme-StuckInTheWormHoleRadio
+  Guid:
+    Data1: -1645105565
+    Data2: 1132199078
+    Data3: 100383399
+    Data4: -961290801
+  Banks:
+  - {fileID: -9198758702751471855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39810
 --- !u!114 &-7435397211666211792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +62,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638448163655533704
+  lastModified: 638448205991414454
   FileSizes:
   - Name: Desktop
     Value: 1069536
@@ -118,6 +145,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-4482803047897529617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Soundtrack/No Way, No How - \U0001F921"
+  m_EditorClassIdentifier: 
+  Path: "event:/Soundtrack/No Way, No How - \U0001F921"
+  Guid:
+    Data1: 1284173067
+    Data2: 1292636455
+    Data3: 1682586541
+    Data4: 113879690
+  Banks:
+  - {fileID: -9198758702751471855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40000
 --- !u!114 &-3581305083061981961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,10 +186,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Soundtrack/Familiar paces No1
   Guid:
-    Data1: 123846640
-    Data2: 1231098645
-    Data3: 427777467
-    Data4: -1134716438
+    Data1: 89019841
+    Data2: 1173941287
+    Data3: 161802415
+    Data4: -1951048355
   Banks:
   - {fileID: -9198758702751471855}
   IsStream: 1
@@ -144,7 +198,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 92377
+  Length: 80000
 --- !u!114 &-3237686065887162282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,10 +214,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638448163654187946
+  lastModified: 638448205991155423
   FileSizes:
   - Name: Desktop
-    Value: 2320
+    Value: 2366
   Exists: 1
 --- !u!114 &-2862249879808423438
 MonoBehaviour:
@@ -342,10 +396,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: "event:/Soundtrack/Shake me, I\u2019m sleeping - \U0001F921"
   Guid:
-    Data1: -214967677
-    Data2: 1186241381
-    Data3: -1751795025
-    Data4: -792122678
+    Data1: 1715087043
+    Data2: 1334027683
+    Data3: -1354158937
+    Data4: 649452958
   Banks:
   - {fileID: -9198758702751471855}
   IsStream: 1
@@ -354,7 +408,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 291974
+  Length: 60000
 --- !u!114 &-616419629945684910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +467,6 @@ MonoBehaviour:
   - {fileID: 2363069307607947489}
   - {fileID: 6785602395986057949}
   - {fileID: -680721437298382565}
-  - {fileID: 7715366778872349851}
   - {fileID: -616419629945684910}
   - {fileID: -1773377619623095731}
   - {fileID: -7310162575829521269}
@@ -426,13 +479,16 @@ MonoBehaviour:
   - {fileID: -1743539120972335720}
   - {fileID: 1708640528843849672}
   - {fileID: -3581305083061981961}
+  - {fileID: -4482803047897529617}
+  - {fileID: -7858461965377478274}
+  - {fileID: 554770795181083429}
   EditorParameters:
   - {fileID: -5940508467157516231}
   MasterBanks:
   - {fileID: -9198758702751471855}
   StringsBanks:
   - {fileID: -3237686065887162282}
-  cacheTime: 638448163655533704
+  cacheTime: 638448205991414454
   cacheVersion: 131616
 --- !u!114 &461444138362664949
 MonoBehaviour:
@@ -461,6 +517,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &554770795181083429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Eazy Rider
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Eazy Rider
+  Guid:
+    Data1: 578847610
+    Data2: 1137404868
+    Data3: -80004471
+    Data4: -1548498944
+  Banks:
+  - {fileID: -9198758702751471855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 35000
 --- !u!114 &1708640528843849672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,33 +841,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
---- !u!114 &7715366778872349851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 'event:/Soundtrack/Eazy Rider '
-  m_EditorClassIdentifier: 
-  Path: 'event:/Soundtrack/Eazy Rider '
-  Guid:
-    Data1: -625613690
-    Data2: 1305724733
-    Data3: -1076691271
-    Data4: 506440022
-  Banks:
-  - {fileID: -9198758702751471855}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 149103
 --- !u!114 &8269351948657046645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,10 +909,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Soundtrack/Love & Roses - demo
   Guid:
-    Data1: -110467395
-    Data2: 1111862604
-    Data3: 163862701
-    Data4: 676255995
+    Data1: 1240482013
+    Data2: 1138442873
+    Data3: 1134368671
+    Data4: 717844341
   Banks:
   - {fileID: -9198758702751471855}
   IsStream: 1
@@ -865,4 +921,4 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 138043
+  Length: 45000

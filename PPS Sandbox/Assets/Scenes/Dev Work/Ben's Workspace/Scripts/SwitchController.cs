@@ -17,8 +17,11 @@ public class SwitchController : MonoBehaviour
     public GameObject[] circuitBoard;
 
     public GameObject objOnButton;
+
+    private float noiseTimer;
     void Update()
     {
+        noiseTimer += Time.deltaTime;
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
             if (circuitBoard != null)
@@ -32,7 +35,12 @@ public class SwitchController : MonoBehaviour
             if (buttonClicked == false)
             {
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
+                if(noiseTimer > 0.4f)
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
+                    noiseTimer = 0;
+                }
+                
                 buttonClicked = true;
             }
             
@@ -80,7 +88,12 @@ public class SwitchController : MonoBehaviour
 
             if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+                if(noiseTimer> 0.4f)
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+                    noiseTimer = 0;
+                }
+                
             }
 
             if (ObjOnSwitch > 0)
@@ -90,9 +103,11 @@ public class SwitchController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerTrigger"))
         {
-
+            if (noiseTimer > 0.4f)
+            {
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
-            
+                noiseTimer = 0;
+            }
 
             if (ObjOnSwitch > 0)
             {
