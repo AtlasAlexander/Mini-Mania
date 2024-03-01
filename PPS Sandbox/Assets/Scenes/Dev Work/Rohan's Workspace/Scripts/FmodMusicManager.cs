@@ -10,17 +10,23 @@ public class FmodMusicManager : MonoBehaviour
     public EventReference[] tracks;
     EventInstance songPlaying;
 
-    public int songIndex;
+    public int startingSong;
+    private int songIndex;
     public bool paused;
+
+    private float pauseTimer;
 
     private void Awake()
     {
-        songIndex = 0;
-        paused = true;
+        
+        pauseTimer = 0f;
+        songIndex = startingSong;
     }
 
     private void Update()
     {
+        pauseTimer += Time.deltaTime;
+
         FMOD.Studio.PLAYBACK_STATE playbackState;        //Finds if a song is currently playing
         songPlaying.getPlaybackState(out playbackState);
 
@@ -34,6 +40,8 @@ public class FmodMusicManager : MonoBehaviour
             songPlaying.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             songPlaying.clearHandle();
             songPlaying.release();
+            GetComponent<Wiggle>().StartWiggle();
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("static", gameObject);
             songIndex = songIndex+ 1;
             if (songIndex > tracks.Length - 1)
             { songIndex = 0; }
@@ -41,27 +49,34 @@ public class FmodMusicManager : MonoBehaviour
             songPlaying.start();
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(songPlaying, GetComponent<Transform>(), GetComponent<Rigidbody>());
         }
+       
+        
     }
 
     public void togglePause()
     {
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("static", gameObject);
-        if (paused)  //Unpausing the game
+        if (pauseTimer > 0.2f)
         {
-            
-            songPlaying = FMODUnity.RuntimeManager.CreateInstance(tracks[songIndex]);
-            songPlaying.start();
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(songPlaying, GetComponent<Transform>(), GetComponent<Rigidbody>());
-            paused = false;
+            pauseTimer = 0.0f;
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("static", gameObject);
+            if (paused)  //Unpausing the game
+            {
+
+                songPlaying = FMODUnity.RuntimeManager.CreateInstance(tracks[songIndex]);
+                songPlaying.start();
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(songPlaying, GetComponent<Transform>(), GetComponent<Rigidbody>());
+                paused = false;
+            }
+            else         //Pausing the game
+            {
+                songPlaying.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                songIndex = songIndex + 1;
+                if (songIndex > tracks.Length - 1)
+                { songIndex = 0; }
+                paused = true;
+            }
         }
-        else         //Pausing the game
-        {
-            songPlaying.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            songIndex = songIndex + 1;
-            if (songIndex > tracks.Length - 1)
-            {songIndex = 0;}
-            paused = true;
-        }
+        
     }
 
 }

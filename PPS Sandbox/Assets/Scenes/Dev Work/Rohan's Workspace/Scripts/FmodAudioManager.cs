@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using FMOD.Studio;
+
 using System;
 using System.Data.SqlTypes;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -33,8 +35,15 @@ public class FmodAudioManager : MonoBehaviour
 
     float time;
 
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    private float navigationTimer;
+
     private void Awake()
     {
+        navigationTimer = 0.0f;
+
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
@@ -89,7 +98,8 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
-        
+        navigationTimer += Time.deltaTime;
+
         masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
         musicBus.setVolume(musicVolume);
@@ -112,6 +122,35 @@ public class FmodAudioManager : MonoBehaviour
         footstepsRate = rate;
     }
 
-    
+    public void MusicSliderChanged(float volume)
+    {
+        if (navigationTimer > 0.15f)
+        {
+            QuickPlaySound("navigateMenu", player);
+            musicVolume = volume;
+            navigationTimer = 0;
+        }
+        
+    }
+
+    public void SFXSliderChanged(float volume)
+    {
+        if (navigationTimer > 0.15f)
+        {
+            QuickPlaySound("navigateMenu", player);
+            soundEffectsVolume = volume;
+            navigationTimer = 0;
+        }
+    }
+
+    public void MasterSliderChanged(float volume)
+    {
+        if (navigationTimer > 0.15f)
+        {
+            QuickPlaySound("navigateMenu", player);
+            masterVolume = volume;
+            navigationTimer = 0;
+        }
+    }
 
 }
