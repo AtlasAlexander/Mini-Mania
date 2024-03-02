@@ -10,7 +10,10 @@ public class FmodMusicManager : MonoBehaviour
     public EventReference[] tracks;
     EventInstance songPlaying;
 
-    public int startingSong;
+    [SerializeField]
+    private int startingSong;
+
+
     private int songIndex;
     public bool paused;
 

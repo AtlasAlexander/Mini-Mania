@@ -46,7 +46,7 @@ public class SizeChange : MonoBehaviour
     {
         if (!grabbing.grab)
         {
-            if(gameObject.name == "Radio")
+            if(gameObject.name.Contains("Radio"))
             {
                 gameObject.GetComponent<FmodMusicManager>().togglePause();
                 GetComponent<Wiggle>().StartWiggle();
