@@ -9,6 +9,7 @@ public class gateSound : MonoBehaviour
         if (other.tag == "Player")
         {
             FindObjectOfType<FmodAudioManager>().QuickPlaySound("gatePassthrough", gameObject);
+            FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f);
         }
     }
 }

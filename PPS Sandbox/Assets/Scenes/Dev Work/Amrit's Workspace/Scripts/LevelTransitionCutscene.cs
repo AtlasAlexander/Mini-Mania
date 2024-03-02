@@ -16,6 +16,7 @@ public class LevelTransitionCutscene : MonoBehaviour
     [SerializeField] [Range(0.1f, 1)] private float fadeSpeed = 0.5f;
 
     private bool pickup;
+    private bool audioPlaying;
 
     private GameObject player;
     private Camera playerCamera;
@@ -29,6 +30,7 @@ public class LevelTransitionCutscene : MonoBehaviour
 
     private void Awake()
     {
+        audioPlaying = false;
         player = GameObject.FindWithTag("Player");
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         playerWeapons = GameObject.Find("Weapons");
@@ -55,6 +57,13 @@ public class LevelTransitionCutscene : MonoBehaviour
         if (levelTransitionTrigger.levelTransitioning == true)
         {
             StartCoroutine(fadeInOut.FadeOut(0));
+            if (!audioPlaying)                           //cutscene1 plays
+            {
+                player.GetComponent<FirstPersonController>().isWalking = false;
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("Cutscene1", player);
+                audioPlaying = true;
+            }
+            
 
             player.GetComponent<FirstPersonController>().enabled = false;
             playerWeapons.SetActive(false);
@@ -134,6 +143,10 @@ public class LevelTransitionCutscene : MonoBehaviour
         if (other.CompareTag("MainCamera"))
         {
             pickup = true;
+            print("HERE");
+
+            
+
         }
 
         if (other.CompareTag("PositionalObject"))
