@@ -7,12 +7,12 @@ public class mirroredObj : MonoBehaviour
     public Transform objToCopy;
     public Transform mirror;
     public bool isPlayer;
-    public GameObject Player;
+    public GameObject player;
     [SerializeField] private Animator _animator;
 
     private void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -21,15 +21,41 @@ public class mirroredObj : MonoBehaviour
         transform.position = mirror.TransformPoint(new Vector3(localObj.x, -localObj.y, localObj.z));
         transform.rotation = Quaternion.Euler(objToCopy.rotation.x, -objToCopy.eulerAngles.y, objToCopy.rotation.z);
         transform.localScale = objToCopy.localScale;
-        if(isPlayer)
+
+
+        //in your level change all player animators to PlayerAnimator from Amrit folder
+        //this includes the mirrored player animator in each mirror and the actual player animator
+
+        // 1 = idle
+        // 2 = forward
+        // 3 = backward
+        // 4 = strafe right
+        // 5 = strafe left
+
+        if (isPlayer)
         {
-            if(Player.GetComponent<FirstPersonController>().isWalking)
+            if (player.GetComponent<FirstPersonController>().isWalking)
             {
-                _animator.SetFloat("Forward", 1);
+                if (player.GetComponent<FirstPersonController>().currentInput.x > 0.2)
+                {
+                    _animator.SetFloat("Decider", 4);  // 4 = strafe right
+                }
+                if (player.GetComponent<FirstPersonController>().currentInput.x < -0.2)
+                {
+                    _animator.SetFloat("Decider", 5); // 5 = strafe left
+                }
+                if (player.GetComponent<FirstPersonController>().currentInput.y > 0.2)
+                {
+                    _animator.SetFloat("Decider", 2); // 2 = forward
+                }
+                if (player.GetComponent<FirstPersonController>().currentInput.y < -0.2)
+                {
+                    _animator.SetFloat("Decider", 3); // 3 = backward
+                }
             }
             else
             {
-                _animator.SetFloat("Forward", 0);
+                _animator.SetFloat("Decider", 1); // 1 = idle
             }
         }
     }
