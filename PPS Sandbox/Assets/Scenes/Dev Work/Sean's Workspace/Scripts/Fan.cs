@@ -9,14 +9,12 @@ public class Fan : MonoBehaviour
     private GameObject player;
     private float playerGravityValue;
     private Vector3 goalPos;
-    private GameObject hands;
 
     private void Start()
     {
         player = GameObject.Find("Player");
         playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
         goalPos = this.gameObject.transform.GetChild(0).position;
-        hands = GameObject.Find("Hands");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,26 +43,27 @@ public class Fan : MonoBehaviour
             }
         }
 
+        //Does Object have RigidBody
+        if(other.gameObject.GetComponent<Rigidbody>() != null)
+        {
+            //If Object cannot change size
+            if(other.GetComponent<SizeChange>() == null)
+            {
+                //other.GetComponent<Rigidbody>().velocity = (Vector2.up * fanPowerForObjects * Time.deltaTime);
+            }
+            //If Object can change size
+            else
+            {
+                //If object is shrunk and not in hands
+                if(other.GetComponent<SizeChange>().GetShrunkStatus() && !other.GetComponent<PickUpForObj>().InHand)
+                {
+                    float direction = (goalPos.y - other.transform.position.y);
 
-        if (other.gameObject.GetComponent<Rigidbody>() == null)
-        {
-            return;
-        }
-        if (other.GetComponent<SizeChange>() == null)
-        {
-            return;
-        }
-        if(other.gameObject.transform.parent == hands.transform)
-        {
-            return;
-        }
+                    other.GetComponent<Rigidbody>().velocity = new Vector3(0, direction * Time.deltaTime * fanPowerForObjects, 0);
+                }
+            }
 
-        //If object is shrunk and not in hands
-        if (other.GetComponent<SizeChange>().GetShrunkStatus())
-        {
-            float direction = (goalPos.y - other.transform.position.y);
-
-            other.GetComponent<Rigidbody>().velocity = new Vector3(0, direction * Time.deltaTime * fanPowerForObjects, 0);
+            
         }
     }
 
