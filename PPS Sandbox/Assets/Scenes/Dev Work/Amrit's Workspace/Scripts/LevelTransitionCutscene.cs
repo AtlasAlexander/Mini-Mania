@@ -143,7 +143,7 @@ public class LevelTransitionCutscene : MonoBehaviour
         if (other.CompareTag("MainCamera"))
         {
             pickup = true;
-            print("HERE");
+            
 
             
 

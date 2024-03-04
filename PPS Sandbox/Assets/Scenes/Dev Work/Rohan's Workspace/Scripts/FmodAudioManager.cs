@@ -21,14 +21,28 @@ public class FmodAudioManager : MonoBehaviour
 
     [Range(0, 1)]
     public float musicVolume = 1;
-    
+
+    private string[] UnityBuildWorkAround =
+    {
+        "footsteps","shootShrinkRay","objectShrink","objectGrow",
+        "buttonClick","closeDoor","openDoor","gatePassthrough",
+        "roomAmbience","playerGrow","playerShrink","laserOn",
+        "menuSelection","pause","gameTheme-StuckInTheWormHole",
+        "shootGrowthRay","static","laserConstant","navigateMenu",
+        "Cutscene1"
+
+    };
 
     private Bus masterBus;
     private Bus sfxBus;
     private Bus musicBus;
 
     public EventReference[] gameplaySounds;     //Creates the array of sounds so that sounds can be easily added from the inspector
-     
+
+
+    FMOD.Studio.EventDescription eventDescription;
+
+
     [SerializeField] float footstepsRate;       //changes the speed of footsteps
     [SerializeField] GameObject player;         
     [SerializeField] FirstPersonController controller;
@@ -80,12 +94,15 @@ public class FmodAudioManager : MonoBehaviour
     public int FindEventReferenceByName(string eventName)  //Finds the position of a sound name in the gameplaySounds Array
     {
         int soundIndex = 0;
-        foreach (EventReference eventRef in gameplaySounds)
+        //foreach (EventReference eventRef in gameplaySounds)
+        foreach (string eventRef in UnityBuildWorkAround)
         {
+
+            
             //string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
             //if (soundName == eventName)
             // {
-            if (eventRef.ToString().Contains(eventName))
+            if (eventRef.Contains(eventName))
             {
                 
                 return soundIndex;

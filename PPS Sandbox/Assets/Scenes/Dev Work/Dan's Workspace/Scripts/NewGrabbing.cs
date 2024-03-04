@@ -86,7 +86,7 @@ public class NewGrabbing : MonoBehaviour
         if (heldObj != null)
         {
             float dis = Vector3.Distance(heldObj.transform.position, holdArea.transform.position);
-            print(dis);
+            //print(dis);
             if (dis >= 1f && time > 1f)
             {
                 DropObject();
