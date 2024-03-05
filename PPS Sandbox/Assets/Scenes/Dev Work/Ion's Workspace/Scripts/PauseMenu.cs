@@ -155,8 +155,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene(0);
+        
+        FindObjectOfType<FmodMusicManager>().killMusic();
+        //Invoke("SceneManager.LoadScene(0);", 3);
         //Debug.Log("Exit game");
         //Application.Quit();
     }
+   
 }
