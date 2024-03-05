@@ -120,6 +120,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         _animator = GetComponentInChildren<Animator>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         playerCam = GetComponentInChildren<Camera>();
