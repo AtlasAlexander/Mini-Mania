@@ -31,7 +31,6 @@ public class FmodAudioManager : MonoBehaviour
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
         "Cutscene1"
-
     };
 
     private Bus masterBus;
@@ -71,11 +70,12 @@ public class FmodAudioManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         
-        if (sceneName == "Main Scene 1")
+        if (sceneName.Contains("MAIN MENU"))
         {
             FMOD.Studio.PLAYBACK_STATE playbackState; 
             
             menuMusic.getPlaybackState(out playbackState);
+           
 
         
             if (!playbackState.ToString().Contains("PLAYING")){
