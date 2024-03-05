@@ -44,11 +44,12 @@ public class LevelTransitionCutscene : MonoBehaviour
         fadeInOut = FindObjectOfType<FadeInOut>();
 
         fadeInOut.timeToFade = timeToFade;
+        StartCoroutine(fadeInOut.FadeIn(timeToWaitForFadeIn));
     }
 
     private void Start()
     {
-        StartCoroutine(fadeInOut.FadeIn(timeToWaitForFadeIn));
+        
         grandpaAnimationHashes.animator.SetBool(grandpaAnimationHashes.isSittingBool, true);
     }
 

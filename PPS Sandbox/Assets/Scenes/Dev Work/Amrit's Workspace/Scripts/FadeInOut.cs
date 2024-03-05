@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
 {
-    [HideInInspector] public bool fadeIn = false;
-    [HideInInspector] public bool fadeOut = false;
+    public bool fadeIn = false;
+    public bool fadeOut = false;
 
     [HideInInspector] public float timeToFade;
 
