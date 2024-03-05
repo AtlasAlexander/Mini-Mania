@@ -89,7 +89,13 @@ public class FmodMusicManager : MonoBehaviour
 
     public void killMusic()
     {
-        exitScene = true;
+        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+
+        // Call YourFunction on each instance
+        foreach (FmodMusicManager script in scripts)
+        {
+            script.songPlaying.setVolume(0);
+        }
         songPlaying.setVolume(0);
         SceneManager.LoadScene(0);
     }
