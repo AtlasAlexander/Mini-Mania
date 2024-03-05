@@ -50,18 +50,14 @@ public class FmodAudioManager : MonoBehaviour
 
     float time;
 
-    public Slider musicSlider;
-    public Slider sfxSlider;
-
-    private float navigationTimer;
+  
 
     EventInstance menuMusic;
 
     private void Awake()
     {
         menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("gameTheme-StuckInTheWormHole")]);
-        navigationTimer = 0.0f;
-
+        
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
@@ -135,7 +131,7 @@ public class FmodAudioManager : MonoBehaviour
         {
             killMusic();                 //Temporary method of playing/pausing until we find another way
         }
-        navigationTimer += Time.deltaTime;
+
 
         masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
@@ -161,33 +157,28 @@ public class FmodAudioManager : MonoBehaviour
 
     public void MusicSliderChanged(float volume)
     {
-        if (navigationTimer > 0.15f)
-        {
+
             QuickPlaySound("navigateMenu", player);
             musicVolume = volume;
-            navigationTimer = 0;
-        }
+
+
         
     }
 
     public void SFXSliderChanged(float volume)
     {
-        if (navigationTimer > 0.15f)
-        {
+
             QuickPlaySound("navigateMenu", player);
             soundEffectsVolume = volume;
-            navigationTimer = 0;
-        }
+
     }
 
     public void MasterSliderChanged(float volume)
     {
-        if (navigationTimer > 0.15f)
-        {
+        
             QuickPlaySound("navigateMenu", player);
             masterVolume = volume;
-            navigationTimer = 0;
-        }
+
     }
 
     public void killMusic()
