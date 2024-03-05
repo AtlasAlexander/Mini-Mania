@@ -9,6 +9,7 @@ using System;
 using System.Data.SqlTypes;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -49,15 +50,14 @@ public class FmodAudioManager : MonoBehaviour
 
     float time;
 
-    public Slider musicSlider;
-    public Slider sfxSlider;
+  
 
-    private float navigationTimer;
+    EventInstance menuMusic;
 
     private void Awake()
     {
-        navigationTimer = 0.0f;
-
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("gameTheme-StuckInTheWormHole")]);
+        
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
@@ -73,8 +73,20 @@ public class FmodAudioManager : MonoBehaviour
         
         if (sceneName == "Main Scene 1")
         {
-            print(sceneName);
-            QuickPlaySound("gameTheme-StuckInTheWormHole", GameObject.FindWithTag("MainCamera"));
+            FMOD.Studio.PLAYBACK_STATE playbackState; 
+            
+            menuMusic.getPlaybackState(out playbackState);
+
+        
+            if (!playbackState.ToString().Contains("PLAYING")){
+                
+                menuMusic.start();
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(menuMusic, GameObject.FindWithTag("MainCamera").transform);
+            }
+           
+            
+
+
         }
         else
         {
@@ -115,7 +127,11 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
-        navigationTimer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            killMusic();                 //Temporary method of playing/pausing until we find another way
+        }
+
 
         masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
@@ -141,33 +157,33 @@ public class FmodAudioManager : MonoBehaviour
 
     public void MusicSliderChanged(float volume)
     {
-        if (navigationTimer > 0.15f)
-        {
+
             QuickPlaySound("navigateMenu", player);
             musicVolume = volume;
-            navigationTimer = 0;
-        }
+
+
         
     }
 
     public void SFXSliderChanged(float volume)
     {
-        if (navigationTimer > 0.15f)
-        {
+
             QuickPlaySound("navigateMenu", player);
             soundEffectsVolume = volume;
-            navigationTimer = 0;
-        }
+
     }
 
     public void MasterSliderChanged(float volume)
     {
-        if (navigationTimer > 0.15f)
-        {
+        
             QuickPlaySound("navigateMenu", player);
             masterVolume = volume;
-            navigationTimer = 0;
-        }
+
+    }
+
+    public void killMusic()
+    {
+        menuMusic.setVolume(0);
     }
 
 }

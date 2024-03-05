@@ -69,7 +69,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Transition()
     {
-        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.FindWithTag("Player").gameObject);
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.FindWithTag("Player").gameObject);
         //audioSource.clip = audio[1];
         //audioSource.Play();
     }
@@ -155,8 +155,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene(0);
+        
+        FindObjectOfType<FmodMusicManager>().killMusic();
+        //Invoke("SceneManager.LoadScene(0);", 3);
         //Debug.Log("Exit game");
         //Application.Quit();
     }
+   
 }
