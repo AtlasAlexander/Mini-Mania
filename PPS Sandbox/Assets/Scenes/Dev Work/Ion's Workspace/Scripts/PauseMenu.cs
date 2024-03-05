@@ -69,7 +69,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Transition()
     {
-        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.FindWithTag("Player").gameObject);
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.FindWithTag("Player").gameObject);
         //audioSource.clip = audio[1];
         //audioSource.Play();
     }
