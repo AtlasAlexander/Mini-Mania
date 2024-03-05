@@ -35,4 +35,9 @@ public class LevelSelectController : MonoBehaviour
         PlayerPrefs.SetInt("Checkpoint", 0);
         SceneManager.LoadScene(num + 1);
     }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
