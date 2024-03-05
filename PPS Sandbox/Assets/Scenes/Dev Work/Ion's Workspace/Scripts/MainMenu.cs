@@ -27,7 +27,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LoadMenu()
     {
-        FindObjectOfType<FmodAudioManager>().killMusic();
+        if(FindObjectOfType<FmodAudioManager>() != null)
+            FindObjectOfType<FmodAudioManager>().killMusic();
         SceneManager.LoadScene(0);
     }
 
