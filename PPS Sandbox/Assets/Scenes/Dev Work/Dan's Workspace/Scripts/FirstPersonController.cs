@@ -107,6 +107,7 @@ public class FirstPersonController : MonoBehaviour
     private CharacterController characterController;
 
     public Vector3 moveDir;
+    //private Vector2 currentInput = Vector2.zero;
     [HideInInspector] public Vector2 currentInput = Vector2.zero;
 
     private Vector2 rotationInput = Vector2.zero;
@@ -116,7 +117,6 @@ public class FirstPersonController : MonoBehaviour
     public int i;
 
     GameObject CheckpointControllerRef;
-
 
     void Start()
     {
@@ -130,7 +130,6 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         CheckpointControllerRef = GameObject.Find("CheckpointController");
-        PlayerPrefs.SetInt("Checkpoint", 0);
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
@@ -160,7 +159,6 @@ public class FirstPersonController : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Disable();
-        look.Disable();
     }
     void Update()
     {
@@ -170,7 +168,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 HandleMovementInput();
                 HandleLook();
-
+               
 
                 if (canSprint)
                 {
@@ -207,7 +205,7 @@ public class FirstPersonController : MonoBehaviour
                     {
                         CancelZoom();
                     }
-
+                    
                 }
 
                 ApplyFinalMovements();
@@ -246,6 +244,8 @@ public class FirstPersonController : MonoBehaviour
             {
                 _animator.SetFloat("Decider", 1); // 1 = idle
             }
+
+            
         }
     }
 
@@ -376,17 +376,17 @@ public class FirstPersonController : MonoBehaviour
         
         //if (!aimAssist.lookingAtObject)
         {
-            if (look.activeControl.device == null)
-            {
-                print("NO DEVICE DETECTED");
-            }
-
-            else if (look.activeControl.device.name == "Mouse")
+            if (look.activeControl.device.name == "Mouse")
             {
                 lookSpeedY = mouseLookSpeedY;
                 //aimAssist.assistLookSpeedX = mouseLookSpeedX * 0.5f;
                 lookSpeedX = mouseLookSpeedX;
                 //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
+            }
+
+            else if (look.activeControl.device.name == null)
+            {
+                print("No device detected");
             }
 
             else
@@ -397,9 +397,6 @@ public class FirstPersonController : MonoBehaviour
                 //aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
 
             }
-
-            
-
         }
         
         
@@ -456,16 +453,16 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = null;
     }
 
-    private void OnParticleCollision(GameObject other)
+   /* private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("HIT BY TURRET");
-        GetComponent<CharacterController>().enabled = false;
-        if (CheckpointControllerRef != null)
+        if(CheckpointControllerRef != null)
             CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
 
-        GetComponent<CharacterController>().enabled = true;
-    }
-
+        Debug.Log("HIT BY TURRET");
+        //Whoever made checkpoints, please add real code to replace pseudocode below :)
+        //(if checkpoints != null) {Respawn player at nearest checkpsoint;}
+    }*/
+    
     public void SetGravity(float newGrav)
     {
         gravity = newGrav;
