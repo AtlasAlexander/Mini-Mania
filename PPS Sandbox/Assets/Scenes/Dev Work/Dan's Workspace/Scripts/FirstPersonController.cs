@@ -138,6 +138,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        Time.timeScale = 1;
     }
 
     private void OnEnable()
