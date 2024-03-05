@@ -4,8 +4,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using FMOD.Studio;
+
 using System;
 using System.Data.SqlTypes;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -18,30 +22,76 @@ public class FmodAudioManager : MonoBehaviour
 
     [Range(0, 1)]
     public float musicVolume = 1;
-    
+
+    private string[] UnityBuildWorkAround =
+    {
+        "footsteps","shootShrinkRay","objectShrink","objectGrow",
+        "buttonClick","closeDoor","openDoor","gatePassthrough",
+        "roomAmbience","playerGrow","playerShrink","laserOn",
+        "menuSelection","pause","gameTheme-StuckInTheWormHole",
+        "shootGrowthRay","static","laserConstant","navigateMenu",
+        "Cutscene1"
+
+    };
 
     private Bus masterBus;
     private Bus sfxBus;
     private Bus musicBus;
 
     public EventReference[] gameplaySounds;     //Creates the array of sounds so that sounds can be easily added from the inspector
-     
+
+
+    FMOD.Studio.EventDescription eventDescription;
+
+
     [SerializeField] float footstepsRate;       //changes the speed of footsteps
     [SerializeField] GameObject player;         
     [SerializeField] FirstPersonController controller;
 
     float time;
 
+  
+
+    EventInstance menuMusic;
+
     private void Awake()
     {
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("gameTheme-StuckInTheWormHole")]);
+        
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
+
+        
     }
 
     private void Start()
     {
-        QuickPlaySound("roomAmbience", player);
+        
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        
+        if (sceneName == "Main Scene 1")
+        {
+            FMOD.Studio.PLAYBACK_STATE playbackState; 
+            
+            menuMusic.getPlaybackState(out playbackState);
+
+        
+            if (!playbackState.ToString().Contains("PLAYING")){
+                
+                menuMusic.start();
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(menuMusic, GameObject.FindWithTag("MainCamera").transform);
+            }
+           
+            
+
+
+        }
+        else
+        {
+            QuickPlaySound("roomAmbience", player);
+        }
     }
 
     public void QuickPlaySound(string soundName, GameObject soundSource) 
@@ -56,12 +106,15 @@ public class FmodAudioManager : MonoBehaviour
     public int FindEventReferenceByName(string eventName)  //Finds the position of a sound name in the gameplaySounds Array
     {
         int soundIndex = 0;
-        foreach (EventReference eventRef in gameplaySounds)
+        //foreach (EventReference eventRef in gameplaySounds)
+        foreach (string eventRef in UnityBuildWorkAround)
         {
+
+            
             //string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
             //if (soundName == eventName)
             // {
-            if (eventRef.ToString().Contains(eventName))
+            if (eventRef.Contains(eventName))
             {
                 
                 return soundIndex;
@@ -74,6 +127,12 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            killMusic();                 //Temporary method of playing/pausing until we find another way
+        }
+
+
         masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
         musicBus.setVolume(musicVolume);
@@ -95,4 +154,36 @@ public class FmodAudioManager : MonoBehaviour
 
         footstepsRate = rate;
     }
+
+    public void MusicSliderChanged(float volume)
+    {
+
+            QuickPlaySound("navigateMenu", player);
+            musicVolume = volume;
+
+
+        
+    }
+
+    public void SFXSliderChanged(float volume)
+    {
+
+            QuickPlaySound("navigateMenu", player);
+            soundEffectsVolume = volume;
+
+    }
+
+    public void MasterSliderChanged(float volume)
+    {
+        
+            QuickPlaySound("navigateMenu", player);
+            masterVolume = volume;
+
+    }
+
+    public void killMusic()
+    {
+        menuMusic.setVolume(0);
+    }
+
 }

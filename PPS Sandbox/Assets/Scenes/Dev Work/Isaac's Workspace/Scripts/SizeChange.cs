@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.UIElements;
 
 public class SizeChange : MonoBehaviour
 {
@@ -13,12 +14,19 @@ public class SizeChange : MonoBehaviour
     [SerializeField][Range(0f, 2f)] float forceMultiplier;
 
     [SerializeField] private bool shrunk = false;
+    [SerializeField] private bool canBePickedUp = true;
 
     public bool startSmall;
+    public bool isChangingSize;
+
+    private GameObject player;
+    NewGrabbing grabbing;
 
 
     public void Awake()
     {
+        player = GameObject.Find("Player");
+        grabbing = player.GetComponent<NewGrabbing>();
 
         if (startSmall)
         {
@@ -36,20 +44,33 @@ public class SizeChange : MonoBehaviour
     }
     public void ChangeSize(AmmoType ammoType)
     {
-        if (ammoType.ToString() == "Shrink")
+        if (!grabbing.grab)
         {
-            ShrinkObject();
+            if(gameObject.name.Contains("Radio"))
+            {
+                gameObject.GetComponent<FmodMusicManager>().togglePause();
+                GetComponent<Wiggle>().StartWiggle();
+            }
+            else
+            {
+                if (ammoType.ToString() == "Shrink")
+                {
+                    ShrinkObject();
 
-            if (gameObject.tag == "Player")
-            { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
-        }
-        if (ammoType.ToString() == "Grow")
-        {
-            GrowObject();
+                    if (gameObject.tag == "Player")
+                    { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
+                }
+                if (ammoType.ToString() == "Grow")
+                {
+                    GrowObject();
 
-            if (gameObject.tag == "Player")
-            { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
+                    if (gameObject.tag == "Player")
+                    { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
+                }
+            }
+            
         }
+
     }
 
     void ShrinkObject()
@@ -103,10 +124,12 @@ public class SizeChange : MonoBehaviour
         float time = 0;
         while (time < duration)
         {
+            isChangingSize = true;
             gameObject.transform.localScale = Vector3.Lerp(currentSize, targetSize, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
+        isChangingSize = false;
         gameObject.transform.localScale = targetSize;
     }
 
@@ -148,7 +171,12 @@ public class SizeChange : MonoBehaviour
        // GrowObject();       //Taken out due to switch bug (not sure of use)
 
         if (other.tag == "SizeOverride")
-            GrowObject();
+        {
+            if (tag == "Player")
+            {
+                GrowObject();
+            }
+        }
         //{
         //    Vector3 currentSize = GetComponent<Transform>().localScale;
         //
@@ -163,5 +191,10 @@ public class SizeChange : MonoBehaviour
     public bool GetShrunkStatus()
     {
         return shrunk;
+    }
+
+    public bool Pickupable()
+    {
+        return canBePickedUp;
     }
 }

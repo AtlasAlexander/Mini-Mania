@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Content/Menu.unity
     guid: d8c3baf17bb65834d940e5e84d9aaf87
+  - enabled: 1
+    path: Assets/Scenes/Game Content/Main Scene 1.unity
+    guid: 928e79868aff2df418c1d867e24eb5e8
   - enabled: 1
     path: Assets/Scenes/Game Content/LevelSelect.unity
     guid: 460442e34ffbeea479d04df6dd9e05f1
@@ -20,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Content/Lasers.unity
     guid: 781ac87c327d8674a9aaa370c3af6b0f
+  - enabled: 1
+    path: Assets/Scenes/Game Content/Medieval Levels.unity
+    guid: 4085ab026aba06d42bf8abbfe67c5383
+  - enabled: 1
+    path: Assets/Scenes/Game Content/BonusLevels.unity
+    guid: bd8547e883b6954489b7f45eb941c6f1
+  - enabled: 1
+    path: Assets/Scenes/Game Content/Game Over.unity
+    guid: 3c8b235972d2709489a1ee65aefc588b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2280f80e8b69f8d4baf2cc850a32b740,
       type: 2}

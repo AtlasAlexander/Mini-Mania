@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewGrabbing : MonoBehaviour
 {
@@ -9,21 +10,60 @@ public class NewGrabbing : MonoBehaviour
     public GameObject heldObj;
     private Rigidbody heldObjRb;
     public bool grab;
+    InputAction grabInput;
+
+    bool startTimer = false;
+    float time;
+
 
     [Header("PHYSICS")]
     public float pickUpRange = 5.0f;
     public float pickUpForce = 150f;
 
+    [Header("REFERENCES")]
+    public Camera cam;
+    SizeChange sizeChange;
+    PlayerControls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+        grabInput = playerControls.Movement.Interact;
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
+
     private void Update()
     {
-        if (Input.GetButtonDown("Grab"))
+        if (grabInput.WasPressedThisFrame())
         {
             if (heldObj == null)
             {
                 RaycastHit hitData;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitData, pickUpRange))
+                Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * pickUpRange, Color.red);
+                if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hitData, pickUpRange))
                 {
-                    PickUpObject(hitData.transform.gameObject);
+                    if (hitData.transform.gameObject.GetComponent<SizeChange>())
+                    {
+                        sizeChange = hitData.transform.gameObject.GetComponent<SizeChange>();
+                        if (!sizeChange.isChangingSize && sizeChange.Pickupable())
+                        {
+                            PickUpObject(hitData.transform.gameObject);
+                        }
+                    }
                 }
             }
 
@@ -36,6 +76,21 @@ public class NewGrabbing : MonoBehaviour
         if (heldObj != null)
         {
             MoveObject();
+        }
+
+        if (grab)
+        {
+            time += Time.deltaTime;
+        }
+
+        if (heldObj != null)
+        {
+            float dis = Vector3.Distance(heldObj.transform.position, holdArea.transform.position);
+            //print(dis);
+            if (dis >= 1f && time > 1f)
+            {
+                DropObject();
+            }
         }
               
     }
@@ -73,6 +128,15 @@ public class NewGrabbing : MonoBehaviour
         heldObj.transform.parent = null;
         heldObj = null;
         grab = false;
+        time = 0;
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Pickup")
+        {
+            DropObject();
+        }
     }
 }

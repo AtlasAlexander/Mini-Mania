@@ -80,7 +80,7 @@ public class FirstPersonController : MonoBehaviour
     private Coroutine zoomRoutine;
 
     [Header("Animations")]
-    [SerializeField] private Animator _animator;
+    private Animator _animator;
     
 
     private Vector3 hitPointNormal;
@@ -107,7 +107,8 @@ public class FirstPersonController : MonoBehaviour
     private CharacterController characterController;
 
     public Vector3 moveDir;
-    private Vector2 currentInput = Vector2.zero;
+    //private Vector2 currentInput = Vector2.zero;
+    [HideInInspector] public Vector2 currentInput = Vector2.zero;
 
     private Vector2 rotationInput = Vector2.zero;
 
@@ -117,9 +118,9 @@ public class FirstPersonController : MonoBehaviour
 
     GameObject CheckpointControllerRef;
 
-
     void Start()
     {
+        _animator = GetComponentInChildren<Animator>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         playerCam = GetComponentInChildren<Camera>();
         CameraObject = Camera.main.transform;
@@ -211,13 +212,37 @@ public class FirstPersonController : MonoBehaviour
             }
             HandleFootsteps();
 
+            //in your level change all player animators to PlayerAnimator from Amrit folder
+            //this includes the mirrored player animator in each mirror and the actual player animator
+
+            // 1 = idle
+            // 2 = forward
+            // 3 = backward
+            // 4 = strafe right
+            // 5 = strafe left
+
             if (isWalking)
             {
-                _animator.SetFloat("Forward", 1);
+                if (currentInput.x > 0.2)
+                {
+                    _animator.SetFloat("Decider", 4); // 4 = strafe right
+                }
+                if (currentInput.x < -0.2)
+                {                       
+                    _animator.SetFloat("Decider", 5); // 5 = strafe left
+                }
+                if (currentInput.y > 0.2)
+                {
+                    _animator.SetFloat("Decider", 2); // 2 = forward
+                }
+                if (currentInput.y < -0.2)
+                {
+                    _animator.SetFloat("Decider", 3); // 3 = backward
+                }
             }
             else
             {
-                _animator.SetFloat("Forward", 0);
+                _animator.SetFloat("Decider", 1); // 1 = idle
             }
 
             
@@ -428,16 +453,16 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = null;
     }
 
-    private void OnParticleCollision(GameObject other)
+   /* private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("HIT BY TURRET");
-        GetComponent<CharacterController>().enabled = false;
-        if (CheckpointControllerRef != null)
+        if(CheckpointControllerRef != null)
             CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
 
-        GetComponent<CharacterController>().enabled = true;
-    }
-
+        Debug.Log("HIT BY TURRET");
+        //Whoever made checkpoints, please add real code to replace pseudocode below :)
+        //(if checkpoints != null) {Respawn player at nearest checkpsoint;}
+    }*/
+    
     public void SetGravity(float newGrav)
     {
         gravity = newGrav;

@@ -10,24 +10,28 @@ public class laser : MonoBehaviour
     GameObject CheckpointRef;
     private LineRenderer lr;
 
+
     void Start()
     {
-        //CheckpointRef = GameObject.FindGameObjectWithTag("Checkpoint").transform.parent.gameObject; 
+
+        CheckpointRef = GameObject.Find("CheckpointController"); 
         lr = GetComponent<LineRenderer>();
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("laserConstant", gameObject);
     }
 
-  /*  private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player killed");
-            Destroy(other.gameObject);
-        }
-    }*/
+    /*  private void OnTriggerEnter(Collider other)
+      {
+          if (other.CompareTag("Player"))
+          {
+              Debug.Log("Player killed");
+              Destroy(other.gameObject);
+          }
+      }*/
 
     // Update is called once per frame
     void Update()
     {
+
         lr.SetPosition(0, transform.position);
         RaycastHit hit;
 
@@ -38,8 +42,9 @@ public class laser : MonoBehaviour
                 lr.SetPosition(1, hit.point);
                 //Kill player
                 //Destroy(hit.collider.gameObject);
-                SceneManager.LoadScene(1);
-                CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                //CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
             }
             else
             {
@@ -49,3 +54,4 @@ public class laser : MonoBehaviour
         else lr.SetPosition(1, transform.forward * 5000);
     }
 }
+    
