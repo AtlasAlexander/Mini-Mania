@@ -9,6 +9,7 @@ using System;
 using System.Data.SqlTypes;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -54,8 +55,11 @@ public class FmodAudioManager : MonoBehaviour
 
     private float navigationTimer;
 
+    EventInstance menuMusic;
+
     private void Awake()
     {
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("gameTheme-StuckInTheWormHole")]);
         navigationTimer = 0.0f;
 
         masterBus = RuntimeManager.GetBus("bus:/");
@@ -73,8 +77,20 @@ public class FmodAudioManager : MonoBehaviour
         
         if (sceneName == "Main Scene 1")
         {
-            print(sceneName);
-            QuickPlaySound("gameTheme-StuckInTheWormHole", GameObject.FindWithTag("MainCamera"));
+            FMOD.Studio.PLAYBACK_STATE playbackState; 
+            
+            menuMusic.getPlaybackState(out playbackState);
+
+        
+            if (!playbackState.ToString().Contains("PLAYING")){
+                
+                menuMusic.start();
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(menuMusic, GameObject.FindWithTag("MainCamera").transform);
+            }
+           
+            
+
+
         }
         else
         {
@@ -115,6 +131,10 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            killMusic();                 //Temporary method of playing/pausing until we find another way
+        }
         navigationTimer += Time.deltaTime;
 
         masterBus.setVolume(masterVolume);
@@ -168,6 +188,11 @@ public class FmodAudioManager : MonoBehaviour
             masterVolume = volume;
             navigationTimer = 0;
         }
+    }
+
+    public void killMusic()
+    {
+        menuMusic.setVolume(0);
     }
 
 }

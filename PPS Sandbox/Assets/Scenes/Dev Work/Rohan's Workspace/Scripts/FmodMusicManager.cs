@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UnityEngine.ParticleSystem;
 
 public class FmodMusicManager : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class FmodMusicManager : MonoBehaviour
 
     private float pauseTimer;
 
+    private bool exitScene = false;
     private void Awake()
     {
         
@@ -35,8 +38,11 @@ public class FmodMusicManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.I))
         {
-            togglePause();                 //Temporary method of playing/pausing until we find another way
+            songPlaying.setVolume(0);
+            //togglePause();                 //Temporary method of playing/pausing until we find another way
         }
+
+        if (exitScene) songPlaying.setVolume(0);
 
         if (playbackState.ToString() == "STOPPED" && paused == false)   //Plays the next track when a song ends
         {
@@ -79,7 +85,13 @@ public class FmodMusicManager : MonoBehaviour
                 paused = true;
             }
         }
-        
+    }
+
+    public void killMusic()
+    {
+        exitScene = true;
+        songPlaying.setVolume(0);
+        SceneManager.LoadScene(0);
     }
 
 }
