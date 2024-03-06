@@ -454,15 +454,14 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = null;
     }
 
-   /* private void OnParticleCollision(GameObject other)
+    private void OnParticleCollision(GameObject other)
     {
+        //Needed for turrets
+        characterController.enabled = false;
         if(CheckpointControllerRef != null)
             CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
-
-        Debug.Log("HIT BY TURRET");
-        //Whoever made checkpoints, please add real code to replace pseudocode below :)
-        //(if checkpoints != null) {Respawn player at nearest checkpsoint;}
-    }*/
+        characterController.enabled = true;
+    }
     
     public void SetGravity(float newGrav)
     {
