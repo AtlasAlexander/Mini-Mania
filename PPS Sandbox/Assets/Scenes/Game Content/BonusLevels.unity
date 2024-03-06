@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5196,7 +5196,7 @@ PrefabInstance:
     - target: {fileID: 9557904, guid: 5f6cbb0f4dd572e47ab1ee6c2a3a36d1, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: fdf863b0de990d64ea46759dd85723a2, type: 2}
+      objectReference: {fileID: 9100000, guid: 70452b9563937054e8e520f6c181ed0e, type: 2}
     - target: {fileID: 9557904, guid: 5f6cbb0f4dd572e47ab1ee6c2a3a36d1, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -6583,6 +6583,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 9004270798189534927, guid: 8c23e16385431e747be160a3ca160380,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 70452b9563937054e8e520f6c181ed0e, type: 2}
     - target: {fileID: 9215306416955519864, guid: 8c23e16385431e747be160a3ca160380,
         type: 3}
       propertyPath: m_Layer
@@ -11288,7 +11293,7 @@ MonoBehaviour:
   objToCopy: {fileID: 2044366018}
   mirror: {fileID: 0}
   isPlayer: 1
-  Player: {fileID: 0}
+  player: {fileID: 0}
   _animator: {fileID: 917185374}
 --- !u!54 &1682956510
 Rigidbody:
