@@ -81,6 +81,11 @@ public class CheckpointController : MonoBehaviour
     {
         return currentCheckpoint;
     }
+
+    public int GetCheckP()
+    {
+        return checkp;
+    }
      
     public void LoadCheckpoint()
     {
