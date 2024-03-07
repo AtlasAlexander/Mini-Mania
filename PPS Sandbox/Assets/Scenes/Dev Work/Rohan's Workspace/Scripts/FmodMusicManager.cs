@@ -10,7 +10,7 @@ using static UnityEngine.ParticleSystem;
 public class FmodMusicManager : MonoBehaviour
 {
     public EventReference[] tracks;
-    EventInstance songPlaying;
+    public EventInstance songPlaying;
 
     [SerializeField]
     private int startingSong;
@@ -66,6 +66,7 @@ public class FmodMusicManager : MonoBehaviour
     {
         if (pauseTimer > 0.2f)
         {
+            GetComponent<Wiggle>().StartWiggle();
             pauseTimer = 0.0f;
             FindObjectOfType<FmodAudioManager>().QuickPlaySound("static", gameObject);
             if (paused)  //Unpausing the game
@@ -97,7 +98,7 @@ public class FmodMusicManager : MonoBehaviour
             script.songPlaying.setVolume(0);
         }
         songPlaying.setVolume(0);
-        SceneManager.LoadScene(0);
+        
     }
 
 }

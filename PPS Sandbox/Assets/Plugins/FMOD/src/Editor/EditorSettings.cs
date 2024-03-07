@@ -207,8 +207,8 @@ namespace FMODUnity
                 
                 if (platform.LegacyIdentifier != Legacy.Platform.None)
                 {
-                    if (platform.ToString().Contains("ndroid")) { Debug.Log("NOPE"); }
-                    else { platformMap.Add(platform.LegacyIdentifier, platform); }
+                    if (platform.ToString().Contains("ndroid")) { Debug.Log(" "); }  //Workaround for a bug that I can't find a solution for
+                    else { platformMap.Add(platform.LegacyIdentifier, platform); }   //At least it works
                     
                 }
             }

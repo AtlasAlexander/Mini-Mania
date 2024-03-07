@@ -215,6 +215,7 @@ public class Weapon : MonoBehaviour
         TrailRenderer trail = Instantiate(BulletTrail, trajectoryOrigin.position, Quaternion.identity);
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
+            if (hit.transform.tag == "Radio") { hit.transform.GetComponent<FmodMusicManager>().togglePause(); }
             //StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
             if (canShowTrail)
             {

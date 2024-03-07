@@ -46,13 +46,7 @@ public class SizeChange : MonoBehaviour
     {
         if (!grabbing.grab)
         {
-            if(gameObject.name.Contains("Radio"))
-            {
-                gameObject.GetComponent<FmodMusicManager>().togglePause();
-                GetComponent<Wiggle>().StartWiggle();
-            }
-            else
-            {
+           
                 if (ammoType.ToString() == "Shrink")
                 {
                     ShrinkObject();
@@ -67,7 +61,7 @@ public class SizeChange : MonoBehaviour
                     if (gameObject.tag == "Player")
                     { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
                 }
-            }
+            
             
         }
 
