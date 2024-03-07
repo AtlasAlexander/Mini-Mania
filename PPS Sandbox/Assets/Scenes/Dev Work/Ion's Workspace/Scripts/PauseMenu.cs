@@ -155,8 +155,15 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+
+        // Call YourFunction on each instance
+        foreach (FmodMusicManager script in scripts)
+        {
+            script.songPlaying.setVolume(0);
+        }
         
-        FindObjectOfType<FmodMusicManager>().killMusic();
+        SceneManager.LoadScene(0);
         //Invoke("SceneManager.LoadScene(0);", 3);
         //Debug.Log("Exit game");
         //Application.Quit();

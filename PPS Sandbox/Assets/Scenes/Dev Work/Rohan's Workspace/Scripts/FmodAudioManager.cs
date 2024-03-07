@@ -44,8 +44,8 @@ public class FmodAudioManager : MonoBehaviour
 
 
     [SerializeField] float footstepsRate;       //changes the speed of footsteps
-    [SerializeField] GameObject player;         
-    [SerializeField] FirstPersonController controller;
+    GameObject player;         
+    FirstPersonController controller;
 
     float time;
 
@@ -61,7 +61,8 @@ public class FmodAudioManager : MonoBehaviour
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
 
-        
+        player = FindObjectOfType<FirstPersonController>().gameObject;
+        controller = player.GetComponent<FirstPersonController>();
     }
 
     private void Start()
