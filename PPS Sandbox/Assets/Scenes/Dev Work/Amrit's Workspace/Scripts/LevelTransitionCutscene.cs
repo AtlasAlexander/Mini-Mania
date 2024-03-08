@@ -7,6 +7,7 @@ public class LevelTransitionCutscene : MonoBehaviour
 {
     [SerializeField] private GameObject grandpa;
     [SerializeField] private GameObject grandpaHandPos;
+    [SerializeField] private GameObject grandpaHead;
     [SerializeField] private GameObject transitionCamPos;
 
     private FadeInOut fadeInOut;
@@ -64,7 +65,7 @@ public class LevelTransitionCutscene : MonoBehaviour
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("Cutscene1", player);
                 audioPlaying = true;
             }
-            
+
 
             player.GetComponent<FirstPersonController>().enabled = false;
             playerWeapons.SetActive(false);
@@ -73,12 +74,11 @@ public class LevelTransitionCutscene : MonoBehaviour
             playerCamera.transform.SetPositionAndRotation(Vector3.MoveTowards(playerCamera.transform.position, transitionCamPos.transform.position, 2.8f * Time.deltaTime),
                 Quaternion.RotateTowards(playerCamera.transform.rotation, transitionCamPos.transform.rotation, 40 * Time.deltaTime));
 
-            /*            player.transform.position = Vector3.MoveTowards(player.transform.position, transitionCamPos.transform.position, 2.7f * Time.deltaTime);
-                        playerCamera.transform.rotation = Quaternion.RotateTowards(playerCamera.transform.rotation, transitionCamPos.transform.rotation, 35 * Time.deltaTime);
-            */
             grandpa.transform.rotation = Quaternion.Euler(0, 0, 0);
+            grandpaHead.transform.localRotation = Quaternion.RotateTowards(grandpaHead.transform.localRotation, Quaternion.Euler(65, 30, 110), 100 * Time.deltaTime);
 
             grandpaAnimationHashes.animator.SetBool(grandpaAnimationHashes.isIdleBool, true);
+
 
             if (playerCamera.transform.position == transitionCamPos.transform.position &&
                 playerCamera.transform.rotation == transitionCamPos.transform.rotation)
@@ -86,10 +86,9 @@ public class LevelTransitionCutscene : MonoBehaviour
                 StartCoroutine(fadeInOut.FadeIn(0));
 
                 grandpa.transform.position = new Vector3(grandpa.transform.position.x - 15.5f, transitionCamPos.transform.position.y - 15, grandpa.transform.position.z + 26.8f);
-                
+
                 grandpaAnimationHashes.animator.SetBool(grandpaAnimationHashes.isPickingUpBool, true);
 
-                //player.GetComponent<CapsuleCollider>().enabled = true;
                 playerCamera.GetComponent<BoxCollider>().enabled = true;
                 levelTransitionTrigger.levelTransitioning = false;
             }
@@ -102,20 +101,15 @@ public class LevelTransitionCutscene : MonoBehaviour
             Destroy(playerCamera.GetComponent<BoxCollider>());
 
             playerCamera.transform.SetPositionAndRotation(Vector3.Lerp(playerCamera.transform.position, grandpaHandPos.transform.position, 0.5f * Time.deltaTime),
-            Quaternion.Lerp(playerCamera.transform.rotation, grandpaHandPos.transform.rotation, 0.5f * Time.deltaTime));
+            Quaternion.Lerp(playerCamera.transform.rotation, grandpaHandPos.transform.rotation, 0.8f * Time.deltaTime));
 
-            /*
-                        player.transform.parent = gameObject.transform;
-                        Destroy(GameObject.FindWithTag("Player").GetComponent<CapsuleCollider>());
-
-                        player.transform.position = Vector3.Lerp(player.transform.position, grandpaHandPos.transform.position, 0.5f * Time.deltaTime);
-                        playerCamera.transform.rotation = Quaternion.Lerp(playerCamera.transform.rotation, grandpaHandPos.transform.rotation, 0.5f * Time.deltaTime);*/
+            grandpaHead.transform.localRotation = Quaternion.RotateTowards(grandpaHead.transform.localRotation, Quaternion.Euler(40, 65, 145), 65 * Time.deltaTime);
         }
 
         if (grandpaAnimator.GetCurrentAnimatorStateInfo(0).IsName("PutDown(PickupReverse)"))
         {
             transitionCamPos.SetActive(true);
-            grandpa.transform.position = Vector3.Lerp(grandpa.transform.position, new Vector3(grandpa.transform.position.x, grandpa.transform.position.y, grandpa.transform.position.z + 25), 2.5f * Time.deltaTime);
+            grandpa.transform.position = Vector3.Lerp(grandpa.transform.position, new Vector3(grandpa.transform.position.x, grandpa.transform.position.y, grandpa.transform.position.z + 20), 2.5f * Time.deltaTime);
 
             if (pickup == false)
             {
@@ -123,11 +117,6 @@ public class LevelTransitionCutscene : MonoBehaviour
 
                 playerCamera.transform.SetPositionAndRotation(Vector3.Lerp(playerCamera.transform.position, transitionCamPos.transform.position, 0.5f * Time.deltaTime),
                     Quaternion.Lerp(playerCamera.transform.rotation, transitionCamPos.transform.rotation, 0.5f * Time.deltaTime));
-
-                /*                player.transform.parent = transitionCamPos.transform;
-
-                                player.transform.position = Vector3.Lerp(player.transform.position, transitionCamPos.transform.position, 0.5f * Time.deltaTime);
-                                playerCamera.transform.rotation = Quaternion.Lerp(player.transform.rotation, transitionCamPos.transform.rotation, 0.5f * Time.deltaTime);*/
             }
 
             StartCoroutine(fadeInOut.FadeOut(timeToWaitForFadeOut));
