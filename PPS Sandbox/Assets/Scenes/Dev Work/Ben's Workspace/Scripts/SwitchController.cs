@@ -19,11 +19,20 @@ public class SwitchController : MonoBehaviour
     public GameObject objOnButton;
 
     private float noiseTimer;
+
+    Animator Anim;
+
+    private void Start()
+    {
+        Anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
         noiseTimer += Time.deltaTime;
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
+            Anim.SetFloat("Pressed", 1f);
             if (circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
@@ -57,7 +66,7 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
-
+            Anim.SetFloat("Pressed", 0);
             if(circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
