@@ -66,10 +66,7 @@ public class FmodMusicManager : MonoBehaviour
     {
         if (pauseTimer > 0.2f)
         {
-<<<<<<< HEAD
             GetComponent<Wiggle>().StartWiggle();
-=======
->>>>>>> Liam2
             pauseTimer = 0.0f;
             FindObjectOfType<FmodAudioManager>().QuickPlaySound("static", gameObject);
             if (paused)  //Unpausing the game
@@ -93,7 +90,6 @@ public class FmodMusicManager : MonoBehaviour
 
     public void killMusic()
     {
-<<<<<<< HEAD
         FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
 
         // Call YourFunction on each instance
@@ -103,11 +99,6 @@ public class FmodMusicManager : MonoBehaviour
         }
         songPlaying.setVolume(0);
         
-=======
-        exitScene = true;
-        songPlaying.setVolume(0);
-        SceneManager.LoadScene(0);
->>>>>>> Liam2
     }
 
 }

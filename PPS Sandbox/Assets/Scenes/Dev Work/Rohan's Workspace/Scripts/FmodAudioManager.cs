@@ -31,10 +31,6 @@ public class FmodAudioManager : MonoBehaviour
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
         "Cutscene1"
-<<<<<<< HEAD
-=======
-
->>>>>>> Liam2
     };
 
     private Bus masterBus;
@@ -65,12 +61,8 @@ public class FmodAudioManager : MonoBehaviour
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
 
-<<<<<<< HEAD
         player = FindObjectOfType<FirstPersonController>().gameObject;
         controller = player.GetComponent<FirstPersonController>();
-=======
-        
->>>>>>> Liam2
     }
 
     private void Start()
@@ -79,19 +71,12 @@ public class FmodAudioManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         
-<<<<<<< HEAD
         if (sceneName.Contains("MAIN MENU"))
-=======
-        if (sceneName == "Main Scene 1")
->>>>>>> Liam2
         {
             FMOD.Studio.PLAYBACK_STATE playbackState; 
             
             menuMusic.getPlaybackState(out playbackState);
-<<<<<<< HEAD
            
-=======
->>>>>>> Liam2
 
         
             if (!playbackState.ToString().Contains("PLAYING")){
