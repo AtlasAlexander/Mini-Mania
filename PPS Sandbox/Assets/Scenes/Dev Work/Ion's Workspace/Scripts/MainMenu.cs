@@ -27,12 +27,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LoadMenu()
     {
-<<<<<<< HEAD
         if(FindObjectOfType<FmodAudioManager>() != null)
             FindObjectOfType<FmodAudioManager>().killMusic();
-=======
-        FindObjectOfType<FmodAudioManager>().killMusic();
->>>>>>> Liam2
         SceneManager.LoadScene(0);
     }
 
