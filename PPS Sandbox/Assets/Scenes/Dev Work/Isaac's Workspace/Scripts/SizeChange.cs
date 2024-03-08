@@ -46,7 +46,17 @@ public class SizeChange : MonoBehaviour
     {
         if (!grabbing.grab)
         {
+<<<<<<< HEAD
            
+=======
+            if(gameObject.name.Contains("Radio"))
+            {
+                gameObject.GetComponent<FmodMusicManager>().togglePause();
+                GetComponent<Wiggle>().StartWiggle();
+            }
+            else
+            {
+>>>>>>> Liam2
                 if (ammoType.ToString() == "Shrink")
                 {
                     ShrinkObject();
@@ -61,7 +71,11 @@ public class SizeChange : MonoBehaviour
                     if (gameObject.tag == "Player")
                     { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
                 }
+<<<<<<< HEAD
             
+=======
+            }
+>>>>>>> Liam2
             
         }
 
