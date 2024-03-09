@@ -13,7 +13,7 @@ public class SizeChange : MonoBehaviour
     [SerializeField] bool forceOnSizeChange = false;
     [SerializeField][Range(0f, 2f)] float forceMultiplier;
 
-    [SerializeField] private bool shrunk = false;
+    [SerializeField] public bool shrunk = false;
     [SerializeField] private bool canBePickedUp = true;
 
     public bool startSmall;
