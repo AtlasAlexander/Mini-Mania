@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
 
     private Vector3 direction;
 
-    bool canShoot = true;
+    public bool canShoot = true;
     bool trajectoryOn = false;
 
     
