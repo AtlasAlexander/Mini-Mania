@@ -475,6 +475,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""f13c3547-a65d-4d72-9a88-5a452ca60ef8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -565,6 +574,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""NavigateMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e43bec1-970b-4fff-b59d-3936bec8a5f8"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8c0bab7-f52e-412c-86e8-e8bea1de9d14"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -620,6 +651,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Pause = m_Actions.FindAction("Pause", throwIfNotFound: true);
         m_Actions_NavigateMenu = m_Actions.FindAction("NavigateMenu", throwIfNotFound: true);
+        m_Actions_Play = m_Actions.FindAction("Play", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -885,12 +917,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
     private readonly InputAction m_Actions_Pause;
     private readonly InputAction m_Actions_NavigateMenu;
+    private readonly InputAction m_Actions_Play;
     public struct ActionsActions
     {
         private @PlayerControls m_Wrapper;
         public ActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Actions_Pause;
         public InputAction @NavigateMenu => m_Wrapper.m_Actions_NavigateMenu;
+        public InputAction @Play => m_Wrapper.m_Actions_Play;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -906,6 +940,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @NavigateMenu.started += instance.OnNavigateMenu;
             @NavigateMenu.performed += instance.OnNavigateMenu;
             @NavigateMenu.canceled += instance.OnNavigateMenu;
+            @Play.started += instance.OnPlay;
+            @Play.performed += instance.OnPlay;
+            @Play.canceled += instance.OnPlay;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -916,6 +953,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @NavigateMenu.started -= instance.OnNavigateMenu;
             @NavigateMenu.performed -= instance.OnNavigateMenu;
             @NavigateMenu.canceled -= instance.OnNavigateMenu;
+            @Play.started -= instance.OnPlay;
+            @Play.performed -= instance.OnPlay;
+            @Play.canceled -= instance.OnPlay;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -975,5 +1015,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnPause(InputAction.CallbackContext context);
         void OnNavigateMenu(InputAction.CallbackContext context);
+        void OnPlay(InputAction.CallbackContext context);
     }
 }

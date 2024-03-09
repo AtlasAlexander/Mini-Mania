@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject[] MainMenuOptions;
     public GameObject[] camLocations;
     public GameObject[] levelText;
+    public GameObject[] buttons;
     public Transform mainCamPos;
     Light levelSelectLight;
     PlayerControls playerControls;
@@ -21,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
     public bool levelSelect = false;
     public float speed = 1;
     public int i = 0;
+    public bool isMoving;
 
     private void Awake()
     {
@@ -45,6 +48,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             button.SetActive(false);
         }
+
+        foreach (GameObject arrows in buttons)
+        {
+            arrows.SetActive(false);
+        }
         mainCamPos = GameObject.Find("MenuCamPos").transform;
         levelSelectLight = cam.GetComponent<Light>();
         levelSelectLight.enabled = false;
@@ -52,8 +60,19 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+
+        if(cam.transform.hasChanged)
+        {
+            isMoving = true;
+        }
+
+        else
+        {
+            isMoving = false;
+        }
+
         float moveSpeed = Time.deltaTime * speed;
-        if (playerControls.Actions.Pause.IsPressed() && !startPressed)
+        if (playerControls.Actions.Play.IsPressed() && !startPressed)
         {
             startPressed = true;
             foreach (GameObject button in MainMenuOptions)
@@ -69,13 +88,21 @@ public class NewBehaviourScript : MonoBehaviour
             cam.transform.position = Vector3.Lerp(cam.transform.position, mainCamPos.position, moveSpeed);
             cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, mainCamPos.rotation, moveSpeed * 10);
         }
+
         float dirPressed = playerControls.Actions.NavigateMenu.ReadValue<Vector2>().x;
         if (levelSelect)
         {
+            GameObject myEvent = GameObject.Find("EventSystem");
+            myEvent.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(buttons[2]);
             levelSelectLight.enabled = true;
             cam.transform.position = Vector3.Lerp(cam.transform.position, camLocations[i].transform.position, moveSpeed);
             cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, camLocations[i].transform.rotation, moveSpeed * 10);
             levelText[i].SetActive(true);
+            foreach (GameObject arrows in buttons)
+            {
+                arrows.SetActive(true);
+            }
+
             if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
             {
                 i += 1;
@@ -88,23 +115,31 @@ public class NewBehaviourScript : MonoBehaviour
                 levelText[i + 1].SetActive(false);
             }
 
-            if (i >= camLocations.Length)
-            {
-                i = 0;
-            }
-
-            if (i < 0)
-            {
-                i = camLocations.Length - 1;
-            }
 
             if (playerControls.Actions.Pause.IsPressed())
             {
                 levelSelect = !levelSelect;
                 levelText[i].SetActive(false);
                 levelSelectLight.enabled = false;
+                foreach (GameObject arrows in buttons)
+                {
+                    arrows.SetActive(false);
+                }
             }
+
+
         }
+
+        if (i >= camLocations.Length)
+        {
+            i = 0;
+        }
+
+        if (i < 0)
+        {
+            i = camLocations.Length - 1;
+        }
+
     }
     public void Play()
     {
@@ -139,4 +174,30 @@ public class NewBehaviourScript : MonoBehaviour
         Application.Quit();
         Debug.Log("gg");
     }
+
+    public void FowardLevel()
+    {
+        i += 1;
+        levelText[i - 1].SetActive(false);
+        if (i >= camLocations.Length)
+        {
+            i = 0;
+        }
+    }
+    public void BackLevel()
+    {
+        i -= 1;
+        levelText[i + 1].SetActive(false);
+        if (i < 0)
+        {
+            i = camLocations.Length - 1;
+        }
+        
+    }
+
+    public void PlaySelected()
+    {
+        SceneManager.LoadScene(i + 2);
+    }
+
 }
