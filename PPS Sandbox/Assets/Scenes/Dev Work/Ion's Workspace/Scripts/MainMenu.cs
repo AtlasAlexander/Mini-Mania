@@ -94,12 +94,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             GameObject myEvent = GameObject.Find("EventSystem");
             myEvent.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(buttons[2]);
-
-            if (i >= PlayerPrefs.GetInt("Level"))
-                levelSelectLight.enabled = false;
-            else
-                levelSelectLight.enabled = true;
-
+            levelSelectLight.enabled = true;
             cam.transform.position = Vector3.Lerp(cam.transform.position, camLocations[i].transform.position, moveSpeed);
             cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, camLocations[i].transform.rotation, moveSpeed * 10);
             levelText[i].SetActive(true);
@@ -202,8 +197,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void PlaySelected()
     {
-        if(levelSelectLight.enabled == true)
-            SceneManager.LoadScene(i + 2);
+        SceneManager.LoadScene(i + 2);
     }
 
 }
