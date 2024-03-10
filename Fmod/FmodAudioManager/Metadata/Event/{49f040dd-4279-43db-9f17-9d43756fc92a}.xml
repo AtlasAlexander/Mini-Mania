@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{42657a9b-42f0-45a6-98a4-f4cad345bfe9}">
 		<relationship name="modules">
 			<destination>{701ff276-fa7f-4a63-bb82-d0bdae3df968}</destination>
+			<destination>{8c1dab2e-4fca-4e2a-8d40-56881567d472}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{52119a62-47e7-419d-bd34-2f301d866fd2}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{ccbfc080-7a2e-497a-9dd9-28860fbddd14}">
 		<relationship name="modules">
 			<destination>{701ff276-fa7f-4a63-bb82-d0bdae3df968}</destination>
+			<destination>{8c1dab2e-4fca-4e2a-8d40-56881567d472}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{ae3e292d-02a7-45fa-af6a-85798d2e23ed}">
@@ -90,13 +92,30 @@
 	<object class="MixerBusPanner" id="{26b77705-2841-4e21-a6fb-a2851429b2ea}" />
 	<object class="SingleSound" id="{701ff276-fa7f-4a63-bb82-d0bdae3df968}">
 		<property name="length">
-			<value>45</value>
+			<value>40</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>195</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{f1c65f5f-cec0-4755-a48a-1b9c4de3ea56}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{8c1dab2e-4fca-4e2a-8d40-56881567d472}">
+		<property name="start">
+			<value>40</value>
+		</property>
+		<property name="length">
+			<value>0.53999999999999915</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.39999999999999858</value>
+		</property>
+		<property name="volume">
+			<value>10</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{c1ecb48e-5aa5-4544-ac06-d69b9afa1d51}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{52119a62-47e7-419d-bd34-2f301d866fd2}">
@@ -133,7 +152,7 @@
 	<object class="MixerBusFader" id="{4a89c9aa-1187-47cd-aeef-eb4d8cb9ca44}" />
 	<object class="SpatialiserEffect" id="{ec534a98-2637-45c6-a630-64672faff9df}">
 		<property name="maximumDistance">
-			<value>10</value>
+			<value>15</value>
 		</property>
 		<property name="overrideRange">
 			<value>true</value>

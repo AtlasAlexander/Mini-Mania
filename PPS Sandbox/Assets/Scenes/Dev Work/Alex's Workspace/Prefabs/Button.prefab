@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1947072198738696551}
   - component: {fileID: -4382649620177720715}
   - component: {fileID: 7424428931507038277}
+  - component: {fileID: 5427385784175875711}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -79,6 +80,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.2, z: 1}
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!95 &5427385784175875711
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112292708524785573}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f95ae90703a6ed547b920e8863089e14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4990453762350671502
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 8259072912325392303}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.08499992, z: 0}
+  m_LocalPosition: {x: 0, y: 0.143, z: 0}
   m_LocalScale: {x: 0.95295614, y: 0.067805745, z: 0.95295614}
   m_ConstrainProportionsScale: 0
   m_Children: []

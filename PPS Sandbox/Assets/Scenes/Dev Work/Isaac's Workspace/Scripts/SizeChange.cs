@@ -13,7 +13,7 @@ public class SizeChange : MonoBehaviour
     [SerializeField] bool forceOnSizeChange = false;
     [SerializeField][Range(0f, 2f)] float forceMultiplier;
 
-    [SerializeField] private bool shrunk = false;
+    [SerializeField] public bool shrunk = false;
     [SerializeField] private bool canBePickedUp = true;
 
     public bool startSmall;
@@ -46,13 +46,7 @@ public class SizeChange : MonoBehaviour
     {
         if (!grabbing.grab)
         {
-            if(gameObject.name == "Radio")
-            {
-                gameObject.GetComponent<FmodMusicManager>().togglePause();
-                GetComponent<Wiggle>().StartWiggle();
-            }
-            else
-            {
+           
                 if (ammoType.ToString() == "Shrink")
                 {
                     ShrinkObject();
@@ -67,7 +61,7 @@ public class SizeChange : MonoBehaviour
                     if (gameObject.tag == "Player")
                     { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
                 }
-            }
+            
             
         }
 

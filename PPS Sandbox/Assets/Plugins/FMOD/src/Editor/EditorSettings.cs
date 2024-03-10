@@ -204,9 +204,12 @@ namespace FMODUnity
 
             foreach (Platform platform in RuntimeSettings.Platforms.Concat(newPlatforms))
             {
+                
                 if (platform.LegacyIdentifier != Legacy.Platform.None)
                 {
-                    platformMap.Add(platform.LegacyIdentifier, platform);
+                    if (platform.ToString().Contains("ndroid")) { Debug.Log(" "); }  //Workaround for a bug that I can't find a solution for
+                    else { platformMap.Add(platform.LegacyIdentifier, platform); }   //At least it works
+                    
                 }
             }
 

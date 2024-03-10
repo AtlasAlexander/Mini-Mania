@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         playerControls.Actions.Pause.performed += x => HandlePause();
+        
     }
 
     void HandlePause()
@@ -68,7 +69,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Transition()
     {
-        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.FindWithTag("Player").gameObject);
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.FindWithTag("Player").gameObject);
         //audioSource.clip = audio[1];
         //audioSource.Play();
     }
@@ -91,10 +92,9 @@ public class PauseMenu : MonoBehaviour
 
     void Pause ()
     {
-        
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
-        //musicTransition.songStopped()
         pauseMenuUI.SetActive(true);
+        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
+        //musicTransition.songStopped()
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
         Time.timeScale = 0f;
         GamePaused = true;
@@ -154,8 +154,18 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+
+        // Call YourFunction on each instance
+        foreach (FmodMusicManager script in scripts)
+        {
+            script.songPlaying.setVolume(0);
+        }
+        
         SceneManager.LoadScene(0);
+        //Invoke("SceneManager.LoadScene(0);", 3);
         //Debug.Log("Exit game");
         //Application.Quit();
     }
+   
 }

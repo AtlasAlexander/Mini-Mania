@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8230379570394949607}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: GoalPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6165650418733394087}
   - component: {fileID: 1947934517217330305}
   - component: {fileID: 5476108740850216016}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.325
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3757,9 +3757,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3926,11 +3926,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 4
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 64767
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4977,6 +4977,10 @@ PrefabInstance:
     - target: {fileID: 1033549128127578, guid: 43a23ba7d46ab234abe49791c0812130, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Vent_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033549128127578, guid: 43a23ba7d46ab234abe49791c0812130, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4711071603421824, guid: 43a23ba7d46ab234abe49791c0812130, type: 3}
       propertyPath: m_LocalScale.x

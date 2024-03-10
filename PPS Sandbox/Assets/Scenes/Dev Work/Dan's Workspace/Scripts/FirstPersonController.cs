@@ -80,7 +80,9 @@ public class FirstPersonController : MonoBehaviour
     private Coroutine zoomRoutine;
 
     [Header("Animations")]
-    [SerializeField] private Animator _animator;
+    private Animator _animator;
+
+    public bool isFocus;
     
 
     private Vector3 hitPointNormal;
@@ -107,7 +109,8 @@ public class FirstPersonController : MonoBehaviour
     private CharacterController characterController;
 
     public Vector3 moveDir;
-    private Vector2 currentInput = Vector2.zero;
+    //private Vector2 currentInput = Vector2.zero;
+    [HideInInspector] public Vector2 currentInput = Vector2.zero;
 
     private Vector2 rotationInput = Vector2.zero;
 
@@ -117,9 +120,9 @@ public class FirstPersonController : MonoBehaviour
 
     GameObject CheckpointControllerRef;
 
-
     void Start()
     {
+        _animator = GetComponentInChildren<Animator>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         playerCam = GetComponentInChildren<Camera>();
         CameraObject = Camera.main.transform;
@@ -129,7 +132,6 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         CheckpointControllerRef = GameObject.Find("CheckpointController");
-        PlayerPrefs.SetInt("Checkpoint", 0);
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
@@ -138,6 +140,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        Time.timeScale = 1;
     }
 
     private void OnEnable()
@@ -159,7 +162,6 @@ public class FirstPersonController : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Disable();
-        look.Disable();
     }
     void Update()
     {
@@ -213,13 +215,37 @@ public class FirstPersonController : MonoBehaviour
             }
             HandleFootsteps();
 
+            //in your level change all player animators to PlayerAnimator from Amrit folder
+            //this includes the mirrored player animator in each mirror and the actual player animator
+
+            // 1 = idle
+            // 2 = forward
+            // 3 = backward
+            // 4 = strafe right
+            // 5 = strafe left
+
             if (isWalking)
             {
-                _animator.SetFloat("Forward", 1);
+                if (currentInput.x > 0.2)
+                {
+                    _animator.SetFloat("Decider", 4); // 4 = strafe right
+                }
+                if (currentInput.x < -0.2)
+                {                       
+                    _animator.SetFloat("Decider", 5); // 5 = strafe left
+                }
+                if (currentInput.y > 0.2)
+                {
+                    _animator.SetFloat("Decider", 2); // 2 = forward
+                }
+                if (currentInput.y < -0.2)
+                {
+                    _animator.SetFloat("Decider", 3); // 3 = backward
+                }
             }
             else
             {
-                _animator.SetFloat("Forward", 0);
+                _animator.SetFloat("Decider", 1); // 1 = idle
             }
 
             
@@ -347,18 +373,17 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = StartCoroutine(ToggleZoom(false));
     }
 
+    private void OnApplicationFocus(bool focus)
+    {
+        isFocus = focus;
+    }
     private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-        
-        //if (!aimAssist.lookingAtObject)
+        var controllers = Input.GetJoystickNames();
+        if (isFocus)
         {
-            if (look.activeControl.device == null)
-            {
-                print("NO DEVICE DETECTED");
-            }
-
-            else if (look.activeControl.device.name == "Mouse")
+            if (look.activeControl.device.name == "Mouse")
             {
                 lookSpeedY = mouseLookSpeedY;
                 //aimAssist.assistLookSpeedX = mouseLookSpeedX * 0.5f;
@@ -366,17 +391,19 @@ public class FirstPersonController : MonoBehaviour
                 //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
             }
 
-            else
+            else if (Gamepad.all.Count > 0)
             {
                 lookSpeedY = controllerLookSpeedY;
                 //aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
                 lookSpeedX = controllerLookSpeedX;
                 //aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
-
             }
 
-            
+            else
+            {
+                return;
 
+            }
         }
         
         
@@ -435,14 +462,13 @@ public class FirstPersonController : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("HIT BY TURRET");
-        GetComponent<CharacterController>().enabled = false;
-        if (CheckpointControllerRef != null)
+        //Needed for turrets
+        characterController.enabled = false;
+        if(CheckpointControllerRef != null)
             CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
-
-        GetComponent<CharacterController>().enabled = true;
+        characterController.enabled = true;
     }
-
+    
     public void SetGravity(float newGrav)
     {
         gravity = newGrav;
