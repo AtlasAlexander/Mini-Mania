@@ -61,8 +61,23 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
 
-        if(cam.transform.hasChanged)
+        if (sceneName.Contains("MAIN MENU"))
+        {
+            if (startPressed && !levelSelect)
+            {
+                if (playerControls.Actions.NavigateMenu.WasPressedThisFrame())
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", FindObjectOfType<Camera>().gameObject);
+                }
+            }
+            //Workaround for the audiomanager being set to disabled in main menu
+            FindObjectOfType<FmodAudioManager>().gameObject.GetComponent<FmodAudioManager>().enabled = true;
+        }
+
+        if (cam.transform.hasChanged)
         {
             isMoving = true;
         }
@@ -75,6 +90,7 @@ public class NewBehaviourScript : MonoBehaviour
         float moveSpeed = Time.deltaTime * speed;
         if (playerControls.Actions.Play.IsPressed() && !startPressed)
         {
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
             startPressed = true;
             foreach (GameObject button in MainMenuOptions)
             {
@@ -109,19 +125,22 @@ public class NewBehaviourScript : MonoBehaviour
 
             if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
             {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", FindObjectOfType<Camera>().gameObject);
                 i += 1;
                 levelText[i - 1].SetActive(false);
             }
 
             if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed < 0)
             {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", FindObjectOfType<Camera>().gameObject);
                 i -= 1;
                 levelText[i + 1].SetActive(false);
             }
 
 
-            if (playerControls.Actions.Pause.IsPressed())
+            if (playerControls.Actions.Pause.IsPressed() || playerControls.Actions.Return.IsPressed())
             {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
                 levelSelect = !levelSelect;
                 levelText[i].SetActive(false);
                 levelSelectLight.enabled = false;

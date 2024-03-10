@@ -484,6 +484,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""6dbdbfda-6b27-4ad7-9d8b-919957f48c8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -596,6 +605,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Play"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80bbfa71-2ffa-4aba-bbb1-2f1fca6dedc8"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -652,6 +672,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Actions_Pause = m_Actions.FindAction("Pause", throwIfNotFound: true);
         m_Actions_NavigateMenu = m_Actions.FindAction("NavigateMenu", throwIfNotFound: true);
         m_Actions_Play = m_Actions.FindAction("Play", throwIfNotFound: true);
+        m_Actions_Return = m_Actions.FindAction("Return", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -918,6 +939,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Pause;
     private readonly InputAction m_Actions_NavigateMenu;
     private readonly InputAction m_Actions_Play;
+    private readonly InputAction m_Actions_Return;
     public struct ActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -925,6 +947,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Actions_Pause;
         public InputAction @NavigateMenu => m_Wrapper.m_Actions_NavigateMenu;
         public InputAction @Play => m_Wrapper.m_Actions_Play;
+        public InputAction @Return => m_Wrapper.m_Actions_Return;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -943,6 +966,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Play.started += instance.OnPlay;
             @Play.performed += instance.OnPlay;
             @Play.canceled += instance.OnPlay;
+            @Return.started += instance.OnReturn;
+            @Return.performed += instance.OnReturn;
+            @Return.canceled += instance.OnReturn;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -956,6 +982,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Play.started -= instance.OnPlay;
             @Play.performed -= instance.OnPlay;
             @Play.canceled -= instance.OnPlay;
+            @Return.started -= instance.OnReturn;
+            @Return.performed -= instance.OnReturn;
+            @Return.canceled -= instance.OnReturn;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -1016,5 +1045,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnNavigateMenu(InputAction.CallbackContext context);
         void OnPlay(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
 }
