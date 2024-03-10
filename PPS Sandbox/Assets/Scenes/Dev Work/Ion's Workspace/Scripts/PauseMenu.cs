@@ -92,10 +92,9 @@ public class PauseMenu : MonoBehaviour
 
     void Pause ()
     {
-        
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
-        //musicTransition.songStopped()
         pauseMenuUI.SetActive(true);
+        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
+        //musicTransition.songStopped()
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
         Time.timeScale = 0f;
         GamePaused = true;

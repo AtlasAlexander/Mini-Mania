@@ -8,6 +8,7 @@ public class AimAssist : MonoBehaviour
     [Header("References")]
     private GameObject player;
     public FirstPersonController fpc;
+    private GameObject reticleObj;
     public Image reticle;
     public Transform camTrans;
 
@@ -26,6 +27,8 @@ public class AimAssist : MonoBehaviour
     private void Start()
     {
         fpc = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        reticleObj = GameObject.Find("Reticle");
+        reticle = reticleObj.GetComponent<Image>();
         originalSensX = fpc.lookSpeedX;
         originalSensY = fpc.lookSpeedY;
     }

@@ -63,6 +63,11 @@ public class SwitchController : MonoBehaviour
             {
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(TriggerLasersOn); }
             }
+
+            if (LasersToTrigger.Count == 0)
+            {
+                return;
+            }
         }           
         else
         {

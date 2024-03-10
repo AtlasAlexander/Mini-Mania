@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -92,8 +93,8 @@ public class NewBehaviourScript : MonoBehaviour
         float dirPressed = playerControls.Actions.NavigateMenu.ReadValue<Vector2>().x;
         if (levelSelect)
         {
-            GameObject myEvent = GameObject.Find("EventSystem");
-            myEvent.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(buttons[2]);
+            EventSystem.current.SetSelectedGameObject(buttons[2]);
+            
             if(i >= PlayerPrefs.GetInt("Level"))
                 levelSelectLight.enabled = false;
             else
