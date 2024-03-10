@@ -5412,6 +5412,7 @@ MonoBehaviour:
   bulletSpeed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  canShoot: 1
 --- !u!114 &4706639080619054545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10727,6 +10728,7 @@ MonoBehaviour:
   bulletSpeed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  canShoot: 1
 --- !u!114 &6604264451908354345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10885,7 +10887,7 @@ GameObject:
   - component: {fileID: 3578074033972775712}
   - component: {fileID: 3356970266101371283}
   - component: {fileID: 3369448322526671820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10985,8 +10987,9 @@ MonoBehaviour:
   crouchBobAmount: 0.01
   timeToZoom: 0.3
   zoomFOV: 30
-  _animator: {fileID: 0}
+  isFocus: 0
   moveDir: {x: 0, y: 0, z: 0}
+  currentInput: {x: 0, y: 0}
   i: 0
 --- !u!114 &7740266739797032193
 MonoBehaviour:
@@ -11041,7 +11044,9 @@ MonoBehaviour:
   forceOnSizeChange: 0
   forceMultiplier: 1
   shrunk: 0
+  canBePickedUp: 1
   startSmall: 0
+  isChangingSize: 0
 --- !u!114 &3356970266101371283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11055,6 +11060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 100
+  DefaultWeight: 50
 --- !u!136 &3369448322526671820
 CapsuleCollider:
   m_ObjectHideFlags: 0
