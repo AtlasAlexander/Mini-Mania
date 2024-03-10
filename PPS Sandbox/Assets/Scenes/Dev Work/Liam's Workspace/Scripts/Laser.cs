@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +12,13 @@ public class laser : MonoBehaviour
     GameObject CheckpointRef;
     private LineRenderer lr;
 
-
+    public EventInstance laserSound;
     void Start()
     {
-
+        laserSound = FMODUnity.RuntimeManager.CreateInstance(FindObjectOfType<FmodAudioManager>().gameplaySounds[FindObjectOfType<FmodAudioManager>().FindEventReferenceByName("laserConstant")]);
         CheckpointRef = GameObject.Find("CheckpointController"); 
         lr = GetComponent<LineRenderer>();
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("laserConstant", gameObject);
+        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("laserConstant", gameObject);
     }
 
     /*  private void OnTriggerEnter(Collider other)
@@ -31,6 +33,13 @@ public class laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        laserSound.getPlaybackState(out playbackState);
+        if (!playbackState.ToString().Contains("PLAYING"))
+        {
+            laserSound.start();
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(laserSound, gameObject.transform);
+        }
 
         lr.SetPosition(0, transform.position);
         RaycastHit hit;
