@@ -466,6 +466,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavigateMenu"",
+                    ""type"": ""Value"",
+                    ""id"": ""c86a7cb2-2787-414f-8e1d-76b3a4aecb61"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""2315287e-94e9-44ea-b7c7-08e46d0e616b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -488,6 +506,72 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""7181fc61-f817-4786-9725-ebd6c444a41c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateMenu"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""27bf6300-bd56-49ef-a934-56322d184aec"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d7dc273b-8889-46c7-9b89-5eb3cb0335b6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2af0da9e-1658-4480-a809-5c3f251bc470"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97608c1f-80fc-42ab-a21b-4bb328819f47"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e7e1d83-7a3b-4b2f-8122-b3f6c682a486"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -544,6 +628,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Pause = m_Actions.FindAction("Pause", throwIfNotFound: true);
+        m_Actions_NavigateMenu = m_Actions.FindAction("NavigateMenu", throwIfNotFound: true);
+        m_Actions_Play = m_Actions.FindAction("Play", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -808,11 +894,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Actions;
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
     private readonly InputAction m_Actions_Pause;
+    private readonly InputAction m_Actions_NavigateMenu;
+    private readonly InputAction m_Actions_Play;
     public struct ActionsActions
     {
         private @PlayerControls m_Wrapper;
         public ActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Actions_Pause;
+        public InputAction @NavigateMenu => m_Wrapper.m_Actions_NavigateMenu;
+        public InputAction @Play => m_Wrapper.m_Actions_Play;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -825,6 +915,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @NavigateMenu.started += instance.OnNavigateMenu;
+            @NavigateMenu.performed += instance.OnNavigateMenu;
+            @NavigateMenu.canceled += instance.OnNavigateMenu;
+            @Play.started += instance.OnPlay;
+            @Play.performed += instance.OnPlay;
+            @Play.canceled += instance.OnPlay;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -832,6 +928,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @NavigateMenu.started -= instance.OnNavigateMenu;
+            @NavigateMenu.performed -= instance.OnNavigateMenu;
+            @NavigateMenu.canceled -= instance.OnNavigateMenu;
+            @Play.started -= instance.OnPlay;
+            @Play.performed -= instance.OnPlay;
+            @Play.canceled -= instance.OnPlay;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -890,5 +992,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IActionsActions
     {
         void OnPause(InputAction.CallbackContext context);
+        void OnNavigateMenu(InputAction.CallbackContext context);
+        void OnPlay(InputAction.CallbackContext context);
     }
 }
