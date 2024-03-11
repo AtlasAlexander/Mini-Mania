@@ -30,7 +30,7 @@ public class FmodAudioManager : MonoBehaviour
         "roomAmbience","playerGrow","playerShrink","laserOn",
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
-        "Cutscene1"
+        "Cutscene1","enterMenu"
     };
 
     private Bus masterBus;
@@ -192,6 +192,9 @@ public class FmodAudioManager : MonoBehaviour
 
     public void killMusic()
     {
+        menuMusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        menuMusic.clearHandle();
+        menuMusic.release();
         menuMusic.setVolume(0);
     }
 

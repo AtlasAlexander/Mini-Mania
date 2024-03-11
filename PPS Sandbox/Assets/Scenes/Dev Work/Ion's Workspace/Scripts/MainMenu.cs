@@ -90,7 +90,7 @@ public class NewBehaviourScript : MonoBehaviour
         float moveSpeed = Time.deltaTime * speed;
         if (playerControls.Actions.Play.IsPressed() && !startPressed)
         {
-            //FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
             startPressed = true;
             foreach (GameObject button in MainMenuOptions)
             {
@@ -193,6 +193,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LevelSelect()
     {
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", FindObjectOfType<Camera>().gameObject);
         levelSelect = !levelSelect;
     }
 

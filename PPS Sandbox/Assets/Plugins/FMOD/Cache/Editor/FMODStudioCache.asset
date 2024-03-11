@@ -285,7 +285,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638457674552386089
+  lastModified: 638457856155955595
   FileSizes:
   - Name: Desktop
     Value: 1069888
@@ -317,6 +317,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 40540
+--- !u!114 &-6289850133210806389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UISoundEffects/enterMenu
+  m_EditorClassIdentifier: 
+  Path: event:/UISoundEffects/enterMenu
+  Guid:
+    Data1: 565784480
+    Data2: 1093446745
+    Data3: 788562098
+    Data4: -614389634
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 925
 --- !u!114 &-6178413511664897478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +931,6 @@ MonoBehaviour:
   - {fileID: 7004126900689557932}
   - {fileID: 4150831308050366915}
   - {fileID: 982786741118599496}
-  - {fileID: -9016622306580605916}
   - {fileID: 3679467404516995544}
   - {fileID: -1911720481399558736}
   - {fileID: -6823304369417316992}
@@ -926,13 +952,15 @@ MonoBehaviour:
   - {fileID: 5337079979292577315}
   - {fileID: -6508093239213644183}
   - {fileID: -4932452830234707055}
+  - {fileID: 6013463536366441877}
+  - {fileID: -6289850133210806389}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638457700366946013
+  cacheTime: 638457856156801676
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1243,10 +1271,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638457674552386089
+  lastModified: 638457856155865832
   FileSizes:
   - Name: Desktop
-    Value: 2490
+    Value: 2520
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1538,6 +1566,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1500
+--- !u!114 &6013463536366441877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UISoundEffects/menuSelection
+  m_EditorClassIdentifier: 
+  Path: event:/UISoundEffects/menuSelection
+  Guid:
+    Data1: -1960195780
+    Data2: 1137747677
+    Data3: 732980916
+    Data4: 969214804
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1275
 --- !u!114 &6328808678049494088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,10 +1741,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638457700366946013
+  lastModified: 638457856156801676
   FileSizes:
   - Name: Desktop
-    Value: 16685504
+    Value: 16689664
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
@@ -1771,7 +1826,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 22700
+  Length: 22500
 --- !u!114 &7991408564512354376
 MonoBehaviour:
   m_ObjectHideFlags: 0

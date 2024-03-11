@@ -142,6 +142,16 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetScene()
     {
+        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+
+        // Call YourFunction on each instance
+        foreach (FmodMusicManager script in scripts)
+        {
+            script.songPlaying.setVolume(0);
+            
+            print("STopped radio " + script.gameObject.name);
+        }
+
         Time.timeScale = 1f;
         StartCoroutine(WaitThenReset(0.1f));
     }
@@ -161,6 +171,7 @@ public class PauseMenu : MonoBehaviour
         foreach (FmodMusicManager script in scripts)
         {
             script.songPlaying.setVolume(0);
+            print("STopped radio " + script.gameObject.name);
         }
         
         SceneManager.LoadScene(0);
