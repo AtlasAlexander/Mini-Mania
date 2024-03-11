@@ -9,5 +9,6 @@ public class ButtonSelectionSound : MonoBehaviour, ISelectHandler
     {
         // Play sound when the button is selected
         FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", FindObjectOfType<Camera>().gameObject);
+        
     }
 }

@@ -43,8 +43,8 @@ public class FirstPersonController : MonoBehaviour
     [Header("Look Parameters")]
     [SerializeField, Range(0, 10)] public float mouseLookSpeedX = 0.1f;
     [SerializeField, Range(0, 10)] public float mouseLookSpeedY = 0.1f;
-    [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 2.0f;
-    [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 2.0f;
+    [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 4.0f;
+    [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 4.0f;
     [SerializeField] public float lookSpeedY = 0f;
     [SerializeField] public float lookSpeedX = 0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;

@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +12,30 @@ public class Fan : MonoBehaviour
     private Vector3 goalPos;
     private GameObject hands;
 
+    public EventInstance fanSound;
+
     private void Start()
     {
         player = GameObject.Find("Player");
         playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
         goalPos = this.gameObject.transform.GetChild(0).position;
         hands = GameObject.Find("Hands");
+
+        fanSound = FMODUnity.RuntimeManager.CreateInstance(FindObjectOfType<FmodAudioManager>().gameplaySounds[FindObjectOfType<FmodAudioManager>().FindEventReferenceByName("fanBuzz")]);
+        fanSound.start();
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(fanSound, gameObject.transform);
     }
 
     private void OnTriggerEnter(Collider other)
     {
- 
+        if (other.GetComponent<CharacterController>() != null)
+        {
+            //Is Player Shrunk
+            if (other.GetComponent<SizeChange>().GetShrunkStatus())
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)

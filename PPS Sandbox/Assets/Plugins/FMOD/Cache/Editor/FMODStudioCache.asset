@@ -243,6 +243,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 544
+--- !u!114 &-6764782131252921157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/fanBoost
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/fanBoost
+  Guid:
+    Data1: -121507856
+    Data2: 1084354775
+    Data3: 770554002
+    Data4: 880162893
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1142
 --- !u!114 &-6707377617523990400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +312,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638457933572416648
+  lastModified: 638457948467158690
   FileSizes:
   - Name: Desktop
     Value: 1069888
@@ -926,7 +953,6 @@ MonoBehaviour:
   - {fileID: -1809406791267567511}
   - {fileID: -4826066574620965816}
   - {fileID: 7158179574695658217}
-  - {fileID: 4426366153457892685}
   - {fileID: 7985045131037303091}
   - {fileID: 7004126900689557932}
   - {fileID: 4150831308050366915}
@@ -954,13 +980,15 @@ MonoBehaviour:
   - {fileID: -4932452830234707055}
   - {fileID: 6013463536366441877}
   - {fileID: -6289850133210806389}
+  - {fileID: 8758076282392316768}
+  - {fileID: -6764782131252921157}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638457933572416648
+  cacheTime: 638457951888700409
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1271,10 +1299,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638457933572356807
+  lastModified: 638457951888700409
   FileSizes:
   - Name: Desktop
-    Value: 2520
+    Value: 2566
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1458,33 +1486,6 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1069888
   Exists: 1
---- !u!114 &4426366153457892685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/fanBoost
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/fanBoost
-  Guid:
-    Data1: -1897613039
-    Data2: 1282126937
-    Data3: 366427577
-    Data4: -834238561
-  Banks:
-  - {fileID: 7539504792668824982}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &4571315806214685373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,8 +1718,8 @@ MonoBehaviour:
     Data3: 2138948269
     Data4: 1689374981
   Banks:
-  - {fileID: 7539504792668824982}
   - {fileID: -6586294020853849464}
+  - {fileID: 7539504792668824982}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -1741,10 +1742,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638457933572346836
+  lastModified: 638457951888690744
   FileSizes:
   - Name: Desktop
-    Value: 16689664
+    Value: 17682400
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
@@ -1826,7 +1827,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 22500
+  Length: 22700
 --- !u!114 &7991408564512354376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1908,6 +1909,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8758076282392316768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/fanBuzz
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/fanBuzz
+  Guid:
+    Data1: 343843516
+    Data2: 1135763829
+    Data3: -2012149357
+    Data4: -160363966
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 62560
 --- !u!114 &8863607384172809941
 MonoBehaviour:
   m_ObjectHideFlags: 0

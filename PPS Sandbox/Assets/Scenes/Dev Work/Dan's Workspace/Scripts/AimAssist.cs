@@ -45,13 +45,13 @@ public class AimAssist : MonoBehaviour
             {
                 //reticle.color = new Color32(255, 155, 0, 255);
                 reticle.color = Color.red;
-                print("GROW COLOUR");
+                
             }
             if (shrinkRay.activeInHierarchy)
             {
                 //reticle.color = new Color32(126, 255, 227, 255);
                 reticle.color = Color.cyan;
-                print("SHRINK COLOUR");
+                
             }
         }
 

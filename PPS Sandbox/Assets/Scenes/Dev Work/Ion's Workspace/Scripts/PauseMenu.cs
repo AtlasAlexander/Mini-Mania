@@ -159,6 +159,13 @@ public class PauseMenu : MonoBehaviour
             print("STopped radio " + laserScript.gameObject.name);
         }
 
+        Fan[] fans = FindObjectsOfType<Fan>();
+
+        foreach (Fan fan in fans)
+        {
+            fan.fanSound.setVolume(0);
+            print("STopped radio " + fan.gameObject.name);
+        }
 
         Time.timeScale = 1f;
         StartCoroutine(WaitThenReset(0.1f));
@@ -188,6 +195,15 @@ public class PauseMenu : MonoBehaviour
             laserScript.laserSound.setVolume(0);
             print("STopped radio " + laserScript.gameObject.name);
         }
+
+        Fan[] fans = FindObjectsOfType<Fan>();
+
+        foreach (Fan fan in fans)
+        {
+            fan.fanSound.setVolume(0);
+            print("STopped radio " + fan.gameObject.name);
+        }
+
 
         SceneManager.LoadScene(0);
         
