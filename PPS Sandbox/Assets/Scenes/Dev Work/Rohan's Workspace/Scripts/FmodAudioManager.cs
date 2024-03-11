@@ -61,8 +61,7 @@ public class FmodAudioManager : MonoBehaviour
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
 
-        player = FindObjectOfType<FirstPersonController>().gameObject;
-        controller = player.GetComponent<FirstPersonController>();
+        
     }
 
     private void Start()
@@ -91,6 +90,9 @@ public class FmodAudioManager : MonoBehaviour
         }
         else
         {
+           
+            player = FindObjectOfType<FirstPersonController>().gameObject;
+            controller = player.GetComponent<FirstPersonController>();
             QuickPlaySound("roomAmbience", player);
         }
     }
@@ -138,13 +140,19 @@ public class FmodAudioManager : MonoBehaviour
         sfxBus.setVolume(soundEffectsVolume);
         musicBus.setVolume(musicVolume);
 
-        time += Time.deltaTime;
-        if (controller.isWalking)    //controls player footsteps
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        if (!sceneName.Contains("MAIN MENU"))
         {
-            if (time >= footstepsRate)
+            time += Time.deltaTime;
+            if (controller.isWalking)    //controls player footsteps
             {
-                QuickPlaySound("footsteps", player);
-                time = 0;
+                if (time >= footstepsRate)
+                {
+                    QuickPlaySound("footsteps", player);
+                    time = 0;
+                }
             }
         }
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class SwitchController : MonoBehaviour
 {
     public Material offMat, onMat;
+    Animator anim;
+    public Material ButtonOnMatt, ButtonOffMat;
 
     public int RequiredWeight = 50;
     [SerializeField] List<GameObject> DoorsToOpen;
@@ -19,11 +21,19 @@ public class SwitchController : MonoBehaviour
     public GameObject objOnButton;
 
     private float noiseTimer;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
+    }
     void Update()
     {
         noiseTimer += Time.deltaTime;
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
+            anim.SetFloat("Pressed", 1f);
+            GetComponentInChildren<MeshRenderer>().material = ButtonOnMatt;
             if (circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
@@ -57,6 +67,8 @@ public class SwitchController : MonoBehaviour
         }           
         else
         {
+            anim.SetFloat("Pressed", 0f);
+            GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
 
             if(circuitBoard != null)
             {
