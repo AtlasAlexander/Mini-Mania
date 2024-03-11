@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1947072198738696551}
   - component: {fileID: -4382649620177720715}
   - component: {fileID: 7424428931507038277}
+  - component: {fileID: 4568757681104658824}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -51,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offMat: {fileID: 2100000, guid: da5e8c7723df6bc46992fbcd069c60f1, type: 2}
   onMat: {fileID: 2100000, guid: e5fa464cec5191042b52fc2c5e809844, type: 2}
+  ButtonOnMatt: {fileID: 2100000, guid: 1eafe3e110b5d8d43859d056ad000c69, type: 2}
+  ButtonOffMat: {fileID: 2100000, guid: 948ad3bd8700efb4cb7f25955e575dfb, type: 2}
   RequiredWeight: 10
   DoorsToOpen:
   - {fileID: 0}
@@ -79,6 +82,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.2, z: 1}
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!95 &4568757681104658824
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112292708524785573}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2b2cb1e210ef29479ad99f574a60815, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4990453762350671502
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 8259072912325392303}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.08499992, z: 0}
+  m_LocalPosition: {x: 0, y: 0.13, z: 0}
   m_LocalScale: {x: 0.95295614, y: 0.067805745, z: 0.95295614}
   m_ConstrainProportionsScale: 0
   m_Children: []
