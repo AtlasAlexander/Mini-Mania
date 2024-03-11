@@ -169,8 +169,12 @@ public class NewBehaviourScript : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //Load Current Saved Level
         FindObjectOfType<FmodAudioManager>().killMusic();
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);
-        
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);       
+    }
+
+    public void ResetSave()
+    {
+        PlayerPrefs.SetInt("Level", 1);
     }
 
     public void LoadLevelSelect()

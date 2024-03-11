@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class tutorialController : MonoBehaviour
 {
+    GameObject weaponRef;
+    GameObject weaponRef2;
     TextMeshProUGUI tutorialText;
     GameObject Player;
     GameObject CheckpointController;
@@ -27,10 +29,27 @@ public class tutorialController : MonoBehaviour
         keyboardInstructions.Add(""); //Gap Between Rooms
         keyboardInstructions.Add("Use right mouse click to zoom in");
 
+        controllerInstructions.Add("Use Left Stick to move");
+        controllerInstructions.Add("Use Y/Triangle to change weapon");
+        controllerInstructions.Add("Use Right Trigger to shoot");
+        controllerInstructions.Add("Look at a cube and use X/Square to pickup");
+        controllerInstructions.Add("");
+        controllerInstructions.Add("Use Left Trigger to zoom in");
+
         Player = GameObject.Find("Player");
         tutorialText = GetComponentInChildren<TextMeshProUGUI>();
         CheckpointController = GameObject.Find("Checkpoints");
         Anim = GetComponent<Animator>();
+
+        weaponRef = GameObject.Find("Shrink Ray");
+        weaponRef2 = GameObject.Find("Growth Ray");
+
+        if (Input.GetJoystickNames().Length > 0)
+            tutorialText.text = controllerInstructions[currentInstruction];
+        else
+            tutorialText.text = keyboardInstructions[currentInstruction];
+
+        print("Joysticks connected = " + Input.GetJoystickNames().Length);
     }
 
     // Update is called once per frame
@@ -54,7 +73,7 @@ public class tutorialController : MonoBehaviour
             currentInstruction++;
             StartCoroutine(Transition());
         }
-        else if (currentInstruction == 2 && Input.GetKeyDown(KeyCode.Mouse0))
+        else if (currentInstruction == 2 && (UserInput.instance.ShootInput))
         {
             currentInstruction++;
             StartCoroutine(Transition());
@@ -71,7 +90,7 @@ public class tutorialController : MonoBehaviour
 
             // tutorialText.text = keyboardInstructions[currentInstruction];
         }
-        else if (currentInstruction == 5 && Input.GetKeyDown(KeyCode.Mouse1))
+        else if (currentInstruction == 5 && UserInput.instance.ZoomInput)
         {
             currentInstruction++;
             StartCoroutine(Transition());
@@ -85,12 +104,12 @@ public class tutorialController : MonoBehaviour
             currentInstruction++;
             StartCoroutine(Transition());
         }
-        else if (currentInstruction == 1 && Input.GetKeyDown("joystick button 4"))
+        else if (currentInstruction == 1 && Input.GetKeyDown("joystick button 3"))
         {
             currentInstruction++;
             StartCoroutine(Transition());
         }
-        else if (currentInstruction == 2 && Input.GetKeyDown("joystick button 33"))
+        else if (currentInstruction == 2 && (UserInput.instance.ShootInput))
         {
             currentInstruction++;
             StartCoroutine(Transition());
@@ -107,7 +126,7 @@ public class tutorialController : MonoBehaviour
 
             // tutorialText.text = keyboardInstructions[currentInstruction];
         }
-        else if (currentInstruction == 5 && Input.GetKeyDown("joystick button 32"))
+        else if (currentInstruction == 5 && UserInput.instance.ZoomInput)
         {
             currentInstruction++;
             StartCoroutine(Transition());
@@ -116,7 +135,7 @@ public class tutorialController : MonoBehaviour
 
     IEnumerator Transition()
     {
-        if(currentInstruction != 5)
+        if (currentInstruction != 5)
         {
             tutorialText.color = Color.green;
             Anim.Play("Fade Out");
@@ -127,7 +146,12 @@ public class tutorialController : MonoBehaviour
         if (currentInstruction == 6)
             gameObject.SetActive(false);
         else
-            tutorialText.text = keyboardInstructions[currentInstruction];
+        {
+            if (Input.GetJoystickNames().Length > 0)
+                tutorialText.text = controllerInstructions[currentInstruction];
+            else
+                tutorialText.text = keyboardInstructions[currentInstruction];
+    }
 
         tutorialText.color = Color.white;
         Anim.Play("Fade In");
