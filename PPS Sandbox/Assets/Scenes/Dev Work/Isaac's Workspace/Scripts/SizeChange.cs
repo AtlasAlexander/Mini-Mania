@@ -91,6 +91,7 @@ public class SizeChange : MonoBehaviour
         {
             GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 0.2f;
             StartCoroutine(LerpSize(currentSize, smallestSize, changeDuration));
+
             shrunk = true;
             //FindObjectOfType<AudioManager>().Play("object_shrink");
             if (gameObject.tag == "Player")
