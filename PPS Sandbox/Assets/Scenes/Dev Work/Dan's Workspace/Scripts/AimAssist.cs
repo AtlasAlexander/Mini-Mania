@@ -8,6 +8,7 @@ public class AimAssist : MonoBehaviour
     [Header("References")]
     private GameObject player;
     public FirstPersonController fpc;
+    private GameObject reticleObj;
     public Image reticle;
     public Transform camTrans;
 
@@ -26,6 +27,8 @@ public class AimAssist : MonoBehaviour
     private void Start()
     {
         fpc = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        reticleObj = GameObject.Find("Reticle");
+        reticle = reticleObj.GetComponent<Image>();
         originalSensX = fpc.lookSpeedX;
         originalSensY = fpc.lookSpeedY;
     }
@@ -47,6 +50,22 @@ public class AimAssist : MonoBehaviour
         //    fpc.mouseLookSpeedX = originalSensX;
         //    fpc.mouseLookSpeedY = originalSensY;
         //}
+
+        if (lookingAtObject)
+        {
+            if (growthRay.activeInHierarchy)
+            {
+                //reticle.color = new Color32(255, 155, 0, 255);
+                reticle.color = Color.red;
+                print("GROW COLOUR");
+            }
+            if (shrinkRay.activeInHierarchy)
+            {
+                //reticle.color = new Color32(126, 255, 227, 255);
+                reticle.color = Color.cyan;
+                print("SHRINK COLOUR");
+            }
+        }
     }
 
     private void HandleAimAssist()
@@ -57,14 +76,6 @@ public class AimAssist : MonoBehaviour
             var layerMask = hitRange.collider.gameObject.layer;
             if (layerMask == objectLayer)
             {
-                if (growthRay.activeInHierarchy)
-                {
-                    reticle.color = new Color32(255, 155, 0, 255);
-                }
-                if (shrinkRay.activeInHierarchy)
-                {
-                    reticle.color = new Color32(126, 255, 227, 255);
-                }
                 assman.TestFunc();
                 lookingAtObject = true;
             }

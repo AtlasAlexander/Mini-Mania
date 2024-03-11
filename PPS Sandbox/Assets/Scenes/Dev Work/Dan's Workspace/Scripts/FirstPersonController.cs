@@ -81,6 +81,8 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("Animations")]
     private Animator _animator;
+
+    public bool isFocus;
     
 
     private Vector3 hitPointNormal;
@@ -371,11 +373,16 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = StartCoroutine(ToggleZoom(false));
     }
 
+    private void OnApplicationFocus(bool focus)
+    {
+        isFocus = focus;
+    }
+
     private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
         
-        //if (!aimAssist.lookingAtObject)
+        if (isFocus)
         {
             if (look.activeControl.device.name == "Mouse")
             {
@@ -385,17 +392,17 @@ public class FirstPersonController : MonoBehaviour
                 //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
             }
 
-            else if (look.activeControl.device.name == null)
-            {
-                print("No device detected");
-            }
-
-            else
+            else if (Gamepad.all.Count > 0)
             {
                 lookSpeedY = controllerLookSpeedY;
                 //aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
                 lookSpeedX = controllerLookSpeedX;
                 //aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
+            }
+
+            else
+            {
+                return;
 
             }
         }
