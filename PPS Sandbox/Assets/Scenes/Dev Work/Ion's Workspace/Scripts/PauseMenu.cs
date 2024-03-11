@@ -152,6 +152,15 @@ public class PauseMenu : MonoBehaviour
             print("STopped radio " + script.gameObject.name);
         }
 
+        laser[] lasers = FindObjectsOfType<laser>();
+
+        foreach (laser laserScript in lasers)
+        {
+            laserScript.laserSound.setVolume(0);
+            print("STopped radio " + laserScript.gameObject.name);
+        }
+
+
         Time.timeScale = 1f;
         StartCoroutine(WaitThenReset(0.1f));
     }
@@ -165,19 +174,24 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+        FmodMusicManager[] radios = FindObjectsOfType<FmodMusicManager>();
 
-        // Call YourFunction on each instance
-        foreach (FmodMusicManager script in scripts)
+        foreach (FmodMusicManager musicManager in radios)
         {
-            script.songPlaying.setVolume(0);
-            print("STopped radio " + script.gameObject.name);
+            musicManager.songPlaying.setVolume(0);
+            print("STopped radio " + musicManager.gameObject.name);
         }
-        
+
+        laser[] lasers = FindObjectsOfType<laser>();
+
+        foreach (laser laserScript in lasers)
+        {
+            laserScript.laserSound.setVolume(0);
+            print("STopped radio " + laserScript.gameObject.name);
+        }
+
         SceneManager.LoadScene(0);
-        //Invoke("SceneManager.LoadScene(0);", 3);
-        //Debug.Log("Exit game");
-        //Application.Quit();
+        
     }
    
 }

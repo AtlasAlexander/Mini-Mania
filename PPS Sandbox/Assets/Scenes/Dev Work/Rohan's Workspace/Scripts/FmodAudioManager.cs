@@ -112,14 +112,8 @@ public class FmodAudioManager : MonoBehaviour
         //foreach (EventReference eventRef in gameplaySounds)
         foreach (string eventRef in UnityBuildWorkAround)
         {
-
-            
-            //string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
-            //if (soundName == eventName)
-            // {
             if (eventRef.Contains(eventName))
             {
-                
                 return soundIndex;
             }
             soundIndex++;
