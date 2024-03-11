@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
     {
        
         if (GamePaused)
-         {
+        {
             Resume();
         }
 
@@ -92,13 +92,12 @@ public class PauseMenu : MonoBehaviour
 
     void Pause ()
     {
-        
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
-        //musicTransition.songStopped()
-        pauseMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(true); 
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
         Time.timeScale = 0f;
         GamePaused = true;
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
+        //musicTransition.songStopped()
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
