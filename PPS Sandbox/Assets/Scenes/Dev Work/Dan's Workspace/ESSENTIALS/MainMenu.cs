@@ -208,7 +208,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (levelSelectLight.enabled == true)
         {
-            SceneManager.LoadScene(i + 2);
+            SceneManager.LoadScene(i + 1);
         }
     }
 
