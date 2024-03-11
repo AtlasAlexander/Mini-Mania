@@ -39,7 +39,13 @@ public class CheckpointController : MonoBehaviour
                 SaveSystemOBJ.GetComponent<SaveSystem>().SetLevel();
             PlayerPrefs.SetInt("Checkpoint", 0);
             if(GameObject.Find("LevelTransitionStuff") == null)
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            {
+                if(SceneManager.GetActiveScene().buildIndex < 6)
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                else
+                    SceneManager.LoadScene(0);
+            }
+                
         }
     }
     private void FixedUpdate()
