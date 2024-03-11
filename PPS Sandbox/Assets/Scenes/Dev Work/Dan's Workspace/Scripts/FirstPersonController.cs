@@ -385,18 +385,17 @@ public class FirstPersonController : MonoBehaviour
                 //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
             }
 
-            else if (look.activeControl.device.name == null)
-            {
-                print("No device detected");
-            }
-
-            else
+            else if (Gamepad.all.Count > 0)
             {
                 lookSpeedY = controllerLookSpeedY;
                 //aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
                 lookSpeedX = controllerLookSpeedX;
                 //aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
 
+            }
+            else
+            {
+                return;
             }
         }
         
