@@ -18,7 +18,19 @@ public class NewBehaviourScript : MonoBehaviour
         
     }
 
-    public void LoadLevelSelect()
+    private void Update()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        if (sceneName.Contains("MAIN MENU"))
+        {
+            //Workaround for the audiomanager being set to disabled in main menu
+            FindObjectOfType<FmodAudioManager>().gameObject.GetComponent<FmodAudioManager>().enabled = true;
+        }
+    }
+
+        public void LoadLevelSelect()
     {
         FindObjectOfType<FmodAudioManager>().killMusic();
         SceneManager.LoadScene(1);
