@@ -30,10 +30,8 @@ public class CarryCheck : MonoBehaviour
         if (UserInput.instance.InteractInput)
         {
             carrying = !carrying;
-           
         }
         {
-           
             ProcessRaycast();
         }
     }

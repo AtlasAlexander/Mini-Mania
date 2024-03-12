@@ -30,8 +30,7 @@ public class FmodAudioManager : MonoBehaviour
         "roomAmbience","playerGrow","playerShrink","laserOn",
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
-        "Cutscene1","enterMenu","fanBoost","fanBuzz","airWhoosh",
-        "thump"
+        "Cutscene1","enterMenu","fanBoost","fanBuzz","airWhoosh"
     };
 
     private Bus masterBus;
@@ -50,9 +49,9 @@ public class FmodAudioManager : MonoBehaviour
 
     float time;
 
-    EventInstance menuMusic;
+  
 
-    public float hitWallTimer;
+    EventInstance menuMusic;
 
     private void Awake()
     {
@@ -62,8 +61,8 @@ public class FmodAudioManager : MonoBehaviour
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
 
-        hitWallTimer = 0f;
-}
+        
+    }
 
     private void Start()
     {
@@ -103,19 +102,8 @@ public class FmodAudioManager : MonoBehaviour
         //Use this function form any script to play a sound
         //Use the name of the sound in Assets/Sounds for soundName
         //Pass in the object you want the sound to play from into soundSource
-        if(soundName == "thump")
-        {
-            if(hitWallTimer > 0.35f)
-            {
-                RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);
-                hitWallTimer = 0f;
-            }
-        }
-        else
-        {
-            RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);
-        }
-           
+
+        RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);     
     }
 
 
@@ -137,7 +125,6 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
-        hitWallTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.J))
         {
             killMusic();                 //Temporary method of playing/pausing until we find another way

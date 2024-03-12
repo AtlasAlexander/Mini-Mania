@@ -312,7 +312,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638458600953283368
+  lastModified: 638458349760000000
   FileSizes:
   - Name: Desktop
     Value: 2352672
@@ -743,33 +743,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-1805630286675762891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/thump
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/thump
-  Guid:
-    Data1: -345854659
-    Data2: 1244416654
-    Data3: 1277549478
-    Data4: 384165603
-  Banks:
-  - {fileID: 7539504792668824982}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 380
 --- !u!114 &-1541967149121859432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,15 +1012,13 @@ MonoBehaviour:
   - {fileID: 8486088487034724372}
   - {fileID: -3767180675111544118}
   - {fileID: 1378152288912365899}
-  - {fileID: -1805630286675762891}
-  - {fileID: 8538478540087548109}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638458617906451886
+  cacheTime: 638458534380000000
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1385,10 +1356,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638458617906451886
+  lastModified: 638458534380000000
   FileSizes:
   - Name: Desktop
-    Value: 2806
+    Value: 2722
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1827,10 +1798,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638458617906421964
+  lastModified: 638458534380000000
   FileSizes:
   - Name: Desktop
-    Value: 21764736
+    Value: 21893888
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
@@ -1912,7 +1883,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 23500
+  Length: 25000
 --- !u!114 &7991408564512354376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1994,33 +1965,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200800
---- !u!114 &8538478540087548109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/pickUp
-  m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/pickUp
-  Guid:
-    Data1: -1383394777
-    Data2: 1193752727
-    Data3: -2105598807
-    Data4: -1342374468
-  Banks:
-  - {fileID: 7539504792668824982}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1200
 --- !u!114 &8560530393390793279
 MonoBehaviour:
   m_ObjectHideFlags: 0
