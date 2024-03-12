@@ -33,7 +33,19 @@ public class Fan : MonoBehaviour
             //Is Player Shrunk
             if (other.GetComponent<SizeChange>().GetShrunkStatus())
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);
+                other.GetComponent<FirstPersonController>().SetMoveDirY(0);
+                other.GetComponent<FirstPersonController>().SetGravity(0f);
+
+                float direction = (goalPos.y - other.transform.position.y);
+                print(direction);
+                if(direction > 2f)
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);
+                }else if(direction > .5f)
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoostTiny", player);
+                }
+                
             }
         }
     }
@@ -50,7 +62,7 @@ public class Fan : MonoBehaviour
                 other.GetComponent<FirstPersonController>().SetGravity(0f);
 
                 float direction = (goalPos.y - other.transform.position.y);
-
+                
                 other.GetComponent<CharacterController>().Move(new Vector3(0, direction * Time.deltaTime * fanPowerForPlayer, 0));
             }
             else
