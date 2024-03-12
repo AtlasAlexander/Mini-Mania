@@ -9,6 +9,8 @@ public class WeighingScale : MonoBehaviour
 
     // Used for putting weight on the platforms
     [SerializeField] private Rigidbody scalePlatforms;
+
+    [SerializeField] private Transform playerTransform; 
     
     // Weighing scale conditions
     private bool isBigCube;
@@ -41,7 +43,7 @@ public class WeighingScale : MonoBehaviour
         if (other.CompareTag("Player") && playerWeight.Weight >= 100.0f && !isSwitchingWeights)
         {
             // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 7.0f;
+            scalePlatforms.mass = 10.0f;
             // Tracks if the player is on the platform
             isNormalPlayer = true;
         }
@@ -59,9 +61,10 @@ public class WeighingScale : MonoBehaviour
         if (other.name == carryCube1 && cube1Weight.Weight >= 50 && !isSwitchingWeights)
         {
             // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 20.0f;
+            scalePlatforms.mass = 50.0f;
             // Tracks if the cube is on the platform
             isBigCube = true;
+            //cube1.SetParent(parentPlatform);
         }
 
         // Detects if the small cube is on the platform by itself
@@ -93,7 +96,7 @@ public class WeighingScale : MonoBehaviour
         if (other.name == carryCube2 && cube2Weight.Weight >= 50)
         {
             //Debug.Log("Big cube 2");
-            scalePlatforms.mass = 20.0f;
+            scalePlatforms.mass = 50.0f;
             isBigCube2 = true;
         }
 
@@ -107,37 +110,37 @@ public class WeighingScale : MonoBehaviour
         if ((isBigCube && cube1Weight.Weight >= 50) && (isBigCube2 && cube2Weight.Weight >= 50))
         {
             Debug.Log("Big cube 1 & Big cube 2");
-            scalePlatforms.mass = 40.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if ((isBigCube2 && cube2Weight.Weight >= 50) && (isBigCube && cube1Weight.Weight >= 50))
         {
             //Debug.Log("2");
-            scalePlatforms.mass = 40.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if ((isBigCube && cube1Weight.Weight >= 50) && (isSmallCube2 && cube2Weight.Weight < 50))
         {
             //Debug.Log("1");
-            scalePlatforms.mass = 21.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if ((isSmallCube2 && cube2Weight.Weight < 50) && (isBigCube && cube1Weight.Weight >= 50))
         {
             //Debug.Log("Small cube 2 & Big cube 1");
-            scalePlatforms.mass = 21.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if ((isBigCube2 && cube2Weight.Weight >= 50) && (isSmallCube && cube1Weight.Weight < 50))
         {
             //Debug.Log("1");
-            scalePlatforms.mass = 21.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if ((isSmallCube && cube1Weight.Weight < 50) && (isBigCube2 && cube2Weight.Weight >= 50))
         {
             //Debug.Log("Small cube 1 & Big cube 2");
-            scalePlatforms.mass = 21.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if ((isSmallCube && cube1Weight.Weight < 50) && (isSmallCube2 && cube2Weight.Weight < 50))
@@ -162,7 +165,7 @@ public class WeighingScale : MonoBehaviour
         if (isBigCube && isNormalPlayer)
         {
             // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 27.0f;
+            scalePlatforms.mass = 50.0f;
             // Tracks if the cube is on the platform
             isSwitchingWeights = true;
         }
@@ -171,7 +174,7 @@ public class WeighingScale : MonoBehaviour
         if (isBigCube && isSmallPlayer)
         {
             // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 21.0f;
+            scalePlatforms.mass = 50.0f;
             // Tracks if the cube is on the platform
             isSwitchingWeights = true;
         }
@@ -180,7 +183,7 @@ public class WeighingScale : MonoBehaviour
         if (isSmallCube && isNormalPlayer)
         {
             // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 8.0f;
+            scalePlatforms.mass = 50.0f;
             // Tracks if the cube is on the platform
             isSwitchingWeights = true;
         }
@@ -198,7 +201,7 @@ public class WeighingScale : MonoBehaviour
 
         if ((other.name == "CarryCube Big" && cube1Weight.Weight >= 50))
         {
-            scalePlatforms.mass = 20.0f;
+            scalePlatforms.mass = 50.0f;
             Debug.Log("3");
             isBigCube = true;
         }
@@ -211,7 +214,7 @@ public class WeighingScale : MonoBehaviour
 
         if (other.CompareTag("Player") && playerWeight.Weight >= 100.0f)
         {
-            scalePlatforms.mass = 7.0f;
+            scalePlatforms.mass = 10.0f;
         }
 
         if (other.CompareTag("Player") && playerWeight.Weight < 100.0f)
@@ -221,12 +224,12 @@ public class WeighingScale : MonoBehaviour
 
         if (cube1Weight.Weight >= 50 && playerWeight.Weight >= 100 && isSwitchingWeights)
         {
-            scalePlatforms.mass = 27.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if (cube1Weight.Weight < 50 && playerWeight.Weight >= 100 && isSwitchingWeights)
         {
-            scalePlatforms.mass = 8.0f;
+            scalePlatforms.mass = 50.0f;
         }
 
         if (cube1Weight.Weight < 50 && playerWeight.Weight < 50 && isSwitchingWeights)
@@ -236,7 +239,7 @@ public class WeighingScale : MonoBehaviour
 
         if (cube1Weight.Weight >= 50 && playerWeight.Weight < 100 && isSwitchingWeights)
         {
-            scalePlatforms.mass = 21.0f;
+            scalePlatforms.mass = 50.0f;
         }
         ///
     }
