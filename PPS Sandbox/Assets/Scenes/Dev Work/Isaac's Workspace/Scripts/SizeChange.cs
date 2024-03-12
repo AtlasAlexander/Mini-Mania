@@ -46,24 +46,27 @@ public class SizeChange : MonoBehaviour
     {
         if (!grabbing.grab)
         {
-           
-                if (ammoType.ToString() == "Shrink")
-                {
-                    ShrinkObject();
+            if (ammoType.ToString() == "Shrink")
+            {
+                 ShrinkObject();
+                 if (gameObject.tag == "Player")
+                 { 
+                      FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f);
+                      if(player.GetComponent<FirstPersonController>().inFan == true)
+                      {
+                           FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);
+                      }
+                 }
+            }
+            if (ammoType.ToString() == "Grow")
+            {
+                GrowObject();
 
-                    if (gameObject.tag == "Player")
-                    { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.2f); }
-                }
-                if (ammoType.ToString() == "Grow")
-                {
-                    GrowObject();
-
-                    if (gameObject.tag == "Player")
-                    { FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
-                }
-            
-            
-        }
+                if (gameObject.tag == "Player")
+                { 
+                       FindObjectOfType<FmodAudioManager>().SetFootstepsRate(0.4f); }
+                }  
+            }
 
     }
 

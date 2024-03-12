@@ -83,7 +83,7 @@ public class FirstPersonController : MonoBehaviour
     private Animator _animator;
 
     public bool isFocus;
-    
+    public bool inFan;
 
     private Vector3 hitPointNormal;
 
@@ -135,7 +135,9 @@ public class FirstPersonController : MonoBehaviour
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
-    }
+
+        inFan = false;
+}
 
     private void Awake()
     {
@@ -248,6 +250,7 @@ public class FirstPersonController : MonoBehaviour
                 _animator.SetFloat("Decider", 1); // 1 = idle
             }
 
+            
             
         }
     }
