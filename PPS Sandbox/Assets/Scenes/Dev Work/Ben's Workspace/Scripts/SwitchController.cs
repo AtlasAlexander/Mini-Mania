@@ -17,6 +17,7 @@ public class SwitchController : MonoBehaviour
     private bool buttonClicked = false;
 
     public GameObject[] circuitBoard;
+    public GameObject mirroredButton;
 
     public GameObject objOnButton;
 
@@ -40,6 +41,10 @@ public class SwitchController : MonoBehaviour
                 {
                     item.GetComponent<MeshRenderer>().material = onMat;
                 }
+            }
+            if(mirroredButton != null)
+            {
+                mirroredButton.GetComponentInChildren<MeshRenderer>().material = ButtonOnMatt;
             }
 
             if (buttonClicked == false)
@@ -69,8 +74,12 @@ public class SwitchController : MonoBehaviour
         {
             anim.SetFloat("Pressed", 0f);
             GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
+            if (mirroredButton != null)
+            {
+                mirroredButton.GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
+            }
 
-            if(circuitBoard != null)
+            if (circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
                 {
