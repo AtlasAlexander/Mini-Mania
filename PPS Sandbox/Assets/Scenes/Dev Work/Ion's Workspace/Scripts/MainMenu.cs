@@ -29,6 +29,12 @@ public class NewBehaviourScript : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        i = 0;
+        startPressed = false;
+        levelSelect = false;
+        dis = 0;
+        mainCamPos = GameObject.Find("MenuCamPos").transform;
+        Time.timeScale = 1f;
     }
 
     private void OnEnable()
@@ -54,7 +60,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             arrows.SetActive(false);
         }
-        mainCamPos = GameObject.Find("MenuCamPos").transform;
         levelSelectLight = cam.GetComponent<Light>();
         levelSelectLight.enabled = false;
     }
@@ -169,8 +174,12 @@ public class NewBehaviourScript : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //Load Current Saved Level
         FindObjectOfType<FmodAudioManager>().killMusic();
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);
-        
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);       
+    }
+
+    public void ResetSave()
+    {
+        PlayerPrefs.SetInt("Level", 1);
     }
 
     public void LoadLevelSelect()
@@ -189,6 +198,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LevelSelect()
     {
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", FindObjectOfType<Camera>().gameObject);
         levelSelect = !levelSelect;
     }
 
@@ -216,6 +226,17 @@ public class NewBehaviourScript : MonoBehaviour
             i = camLocations.Length - 1;
         }
         
+    }
+
+    public void ExitLevelSelect()
+    {
+        levelSelect = false;
+        levelText[i].SetActive(false);
+        levelSelectLight.enabled = false;
+        foreach (GameObject arrows in buttons)
+        {
+            arrows.SetActive(false);
+        }
     }
 
     public void PlaySelected()

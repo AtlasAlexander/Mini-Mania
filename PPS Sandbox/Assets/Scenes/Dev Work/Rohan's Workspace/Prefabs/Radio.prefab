@@ -27,12 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2687585223729358054}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.12, y: 0, z: -0.6}
-  m_LocalScale: {x: 0.8730567, y: 0.24674971, z: 0.8730567}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.22147341, y: 0, z: -0.23194593}
+  m_LocalScale: {x: 0.72893924, y: 0.4554093, z: 0.33750227}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4974373307350511962}
+  m_Father: {fileID: 4774899101527483787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &1655467996903550066
 MeshFilter:
@@ -134,12 +134,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4023854804015102976}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.11999887, y: 0, z: 0.6}
-  m_LocalScale: {x: 0.8730567, y: 0.24674971, z: 0.8730567}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.22147341, y: 0, z: 0.23194593}
+  m_LocalScale: {x: 0.72893924, y: 0.4554093, z: 0.33750227}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4974373307350511962}
+  m_Father: {fileID: 4774899101527483787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &2639360872713141650
 MeshFilter:
@@ -248,8 +248,6 @@ Transform:
   m_Children:
   - {fileID: 4873555610204095344}
   - {fileID: 4774899101527483787}
-  - {fileID: 3781981196728530316}
-  - {fileID: 2319225125232742578}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7167912398239591732
@@ -287,6 +285,12 @@ MonoBehaviour:
       Data4: -961290801
     Path: event:/Soundtrack/gameTheme-StuckInTheWormHoleRadio
   - Guid:
+      Data1: 1856735556
+      Data2: 1135290852
+      Data3: -1312167798
+      Data4: -1956155977
+    Path: event:/Soundtrack/girl From Ipanema radio
+  - Guid:
       Data1: 578847610
       Data2: 1137404868
       Data3: -80004471
@@ -298,12 +302,6 @@ MonoBehaviour:
       Data3: 161802415
       Data4: -1951048355
     Path: event:/Soundtrack/Familiar paces No1
-  - Guid:
-      Data1: 1240482013
-      Data2: 1138442873
-      Data3: 1134368671
-      Data4: 717844341
-    Path: event:/Soundtrack/Love & Roses - demo
   - Guid:
       Data1: 1284173067
       Data2: 1292636455
@@ -453,7 +451,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5418197, y: 1.1977085, z: 2.5868173}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3781981196728530316}
+  - {fileID: 2319225125232742578}
   m_Father: {fileID: 4974373307350511962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &583669037775265703

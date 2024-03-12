@@ -39,17 +39,26 @@ public class AimAssist : MonoBehaviour
         HandleAimAssist();
         Debug.DrawRay(camTrans.position, camTrans.forward * 100, Color.red);
 
-        //if (lookingAtObject)
-        //{
-        //    fpc.mouseLookSpeedX = originalSensX * 0.5f;
-        //    fpc.mouseLookSpeedY = originalSensY * 0.5f;
-        //}
-        //
-        //else if (!lookingAtObject)
-        //{
-        //    fpc.mouseLookSpeedX = originalSensX;
-        //    fpc.mouseLookSpeedY = originalSensY;
-        //}
+        if (lookingAtObject)
+        {
+            if (growthRay.activeInHierarchy)
+            {
+                //reticle.color = new Color32(255, 155, 0, 255);
+                reticle.color = Color.red;
+                
+            }
+            if (shrinkRay.activeInHierarchy)
+            {
+                //reticle.color = new Color32(126, 255, 227, 255);
+                reticle.color = Color.cyan;
+                
+            }
+        }
+
+        else
+        {
+            reticle.color = Color.white;
+        }
     }
 
     private void HandleAimAssist()
@@ -60,14 +69,6 @@ public class AimAssist : MonoBehaviour
             var layerMask = hitRange.collider.gameObject.layer;
             if (layerMask == objectLayer)
             {
-                if (growthRay.activeInHierarchy)
-                {
-                    reticle.color = new Color32(255, 155, 0, 255);
-                }
-                if (shrinkRay.activeInHierarchy)
-                {
-                    reticle.color = new Color32(126, 255, 227, 255);
-                }
                 assman.TestFunc();
                 lookingAtObject = true;
             }
@@ -75,37 +76,7 @@ public class AimAssist : MonoBehaviour
             else
             {
                 lookingAtObject = false;
-                reticle.color = Color.white;
             }
         }
-
-        else
-        {
-            lookingAtObject = false;
-            reticle.color = Color.white;
-        }
-        /*
-        if (Physics.Raycast(camTrans.position, camTrans.forward, out RaycastHit hit, 1000))
-        {
-            var layerMask = hit.collider.gameObject.layer;
-            if (layerMask == objectLayer)
-            {
-                if(growthRay.activeInHierarchy)
-                {
-                    reticle.color = new Color32(255, 155, 0, 255);
-                }
-                if(shrinkRay.activeInHierarchy)
-                {
-                    reticle.color = new Color32(126, 255, 227, 255);
-                }
-            }
-
-            else
-            {
-                reticle.color = Color.white;
-            }
-
-        }
-        */
     }
 }

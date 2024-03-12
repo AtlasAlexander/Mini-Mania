@@ -21,11 +21,10 @@ public class NewGrabbing : MonoBehaviour
     public float pickUpForce = 150f;
 
     [Header("REFERENCES")]
-    GameObject player;
     public Camera cam;
     SizeChange sizeChange;
-    SizeChange playerSizeChange;
     PlayerControls playerControls;
+    SizeChange playerSize;
 
     private void Awake()
     {
@@ -46,9 +45,7 @@ public class NewGrabbing : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-        player = GameObject.Find("Player");
-        playerSizeChange = player.GetComponent<SizeChange>();
-
+        playerSize = GameObject.Find("Player").GetComponent<SizeChange>();
     }
 
     private void Update()
@@ -64,19 +61,25 @@ public class NewGrabbing : MonoBehaviour
                     if (hitData.transform.gameObject.GetComponent<SizeChange>())
                     {
                         sizeChange = hitData.transform.gameObject.GetComponent<SizeChange>();
-                        if (sizeChange.shrunk)
+                        if (!sizeChange.isChangingSize && sizeChange.Pickupable())
                         {
-                            if (!sizeChange.isChangingSize)
+                            if (sizeChange.shrunk)
                             {
                                 PickUpObject(hitData.transform.gameObject);
                             }
-                        }
-
-                        else if (!sizeChange.shrunk && !playerSizeChange.shrunk)
-                        {
-                            if (!sizeChange.isChangingSize)
+                            else if (sizeChange.shrunk && playerSize.shrunk)
                             {
                                 PickUpObject(hitData.transform.gameObject);
+                            }
+
+                            else if (!sizeChange.shrunk && !playerSize.shrunk)
+                            {
+                                PickUpObject(hitData.transform.gameObject);
+                            }
+
+                            else
+                            {
+                                return;
                             }
                         }
                     }
@@ -94,14 +97,14 @@ public class NewGrabbing : MonoBehaviour
             MoveObject();
         }
 
-        if (grab)
-        {
-            time += Time.deltaTime;
-        }
-
         if (heldObj != null)
         {
             float dis = Vector3.Distance(heldObj.transform.position, holdArea.transform.position);
+
+            if (dis > 1f)
+            {
+                time += Time.deltaTime;
+            }
             //print(dis);
             if (dis >= 1f && time > 1f)
             {

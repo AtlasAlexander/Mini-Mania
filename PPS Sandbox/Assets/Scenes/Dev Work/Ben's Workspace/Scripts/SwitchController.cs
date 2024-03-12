@@ -5,6 +5,8 @@ using UnityEngine;
 public class SwitchController : MonoBehaviour
 {
     public Material offMat, onMat;
+    Animator anim;
+    public Material ButtonOnMatt, ButtonOffMat;
 
     public int RequiredWeight = 50;
     [SerializeField] List<GameObject> DoorsToOpen;
@@ -15,30 +17,34 @@ public class SwitchController : MonoBehaviour
     private bool buttonClicked = false;
 
     public GameObject[] circuitBoard;
+    public GameObject mirroredButton;
 
     public GameObject objOnButton;
 
     private float noiseTimer;
 
-    Animator Anim;
-
     private void Start()
     {
-        Anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
     }
-
     void Update()
     {
         noiseTimer += Time.deltaTime;
         if (ObjOnSwitch > 0 && objOnButton.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
         {
-            Anim.SetFloat("Pressed", 1f);
+            anim.SetFloat("Pressed", 1f);
+            GetComponentInChildren<MeshRenderer>().material = ButtonOnMatt;
             if (circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
                 {
                     item.GetComponent<MeshRenderer>().material = onMat;
                 }
+            }
+            if(mirroredButton != null)
+            {
+                mirroredButton.GetComponentInChildren<MeshRenderer>().material = ButtonOnMatt;
             }
 
             if (buttonClicked == false)
@@ -63,16 +69,17 @@ public class SwitchController : MonoBehaviour
             {
                 foreach (GameObject laser in LasersToTrigger) { laser.SetActive(TriggerLasersOn); }
             }
-
-            if (LasersToTrigger.Count == 0)
-            {
-                return;
-            }
         }           
         else
         {
-            Anim.SetFloat("Pressed", 0);
-            if(circuitBoard != null)
+            anim.SetFloat("Pressed", 0f);
+            GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
+            if (mirroredButton != null)
+            {
+                mirroredButton.GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
+            }
+
+            if (circuitBoard != null)
             {
                 foreach (var item in circuitBoard)
                 {

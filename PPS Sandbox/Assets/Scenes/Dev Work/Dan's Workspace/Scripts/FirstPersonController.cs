@@ -43,8 +43,8 @@ public class FirstPersonController : MonoBehaviour
     [Header("Look Parameters")]
     [SerializeField, Range(0, 10)] public float mouseLookSpeedX = 0.1f;
     [SerializeField, Range(0, 10)] public float mouseLookSpeedY = 0.1f;
-    [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 2.0f;
-    [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 2.0f;
+    [SerializeField, Range(0, 10)] public float controllerLookSpeedX = 4.0f;
+    [SerializeField, Range(0, 10)] public float controllerLookSpeedY = 4.0f;
     [SerializeField] public float lookSpeedY = 0f;
     [SerializeField] public float lookSpeedX = 0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
@@ -83,7 +83,7 @@ public class FirstPersonController : MonoBehaviour
     private Animator _animator;
 
     public bool isFocus;
-    
+    public bool inFan;
 
     private Vector3 hitPointNormal;
 
@@ -135,7 +135,9 @@ public class FirstPersonController : MonoBehaviour
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
-    }
+
+        inFan = false;
+}
 
     private void Awake()
     {
@@ -248,6 +250,7 @@ public class FirstPersonController : MonoBehaviour
                 _animator.SetFloat("Decider", 1); // 1 = idle
             }
 
+            
             
         }
     }
@@ -377,10 +380,11 @@ public class FirstPersonController : MonoBehaviour
     {
         isFocus = focus;
     }
+
     private void HandleLook()
     {
         rotationInput = look.ReadValue<Vector2>();
-        var controllers = Input.GetJoystickNames();
+        
         if (isFocus)
         {
             if (look.activeControl.device.name == "Mouse")

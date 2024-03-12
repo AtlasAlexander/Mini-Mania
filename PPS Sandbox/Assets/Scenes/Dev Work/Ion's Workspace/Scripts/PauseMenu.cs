@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
     {
        
         if (GamePaused)
-         {
+        {
             Resume();
         }
 
@@ -92,12 +92,12 @@ public class PauseMenu : MonoBehaviour
 
     void Pause ()
     {
-        pauseMenuUI.SetActive(true);
-        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
-        //musicTransition.songStopped()
+        pauseMenuUI.SetActive(true); 
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
         Time.timeScale = 0f;
         GamePaused = true;
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", GameObject.FindWithTag("Player").gameObject);
+        //musicTransition.songStopped()
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -141,6 +141,32 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetScene()
     {
+        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+
+        // Call YourFunction on each instance
+        foreach (FmodMusicManager script in scripts)
+        {
+            script.songPlaying.setVolume(0);
+            
+            print("STopped radio " + script.gameObject.name);
+        }
+
+        laser[] lasers = FindObjectsOfType<laser>();
+
+        foreach (laser laserScript in lasers)
+        {
+            laserScript.laserSound.setVolume(0);
+            print("STopped radio " + laserScript.gameObject.name);
+        }
+
+        Fan[] fans = FindObjectsOfType<Fan>();
+
+        foreach (Fan fan in fans)
+        {
+            fan.fanSound.setVolume(0);
+            print("STopped radio " + fan.gameObject.name);
+        }
+
         Time.timeScale = 1f;
         StartCoroutine(WaitThenReset(0.1f));
     }
@@ -154,18 +180,33 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        FmodMusicManager[] scripts = FindObjectsOfType<FmodMusicManager>();
+        FmodMusicManager[] radios = FindObjectsOfType<FmodMusicManager>();
 
-        // Call YourFunction on each instance
-        foreach (FmodMusicManager script in scripts)
+        foreach (FmodMusicManager musicManager in radios)
         {
-            script.songPlaying.setVolume(0);
+            musicManager.songPlaying.setVolume(0);
+            print("STopped radio " + musicManager.gameObject.name);
         }
-        
+
+        laser[] lasers = FindObjectsOfType<laser>();
+
+        foreach (laser laserScript in lasers)
+        {
+            laserScript.laserSound.setVolume(0);
+            print("STopped radio " + laserScript.gameObject.name);
+        }
+
+        Fan[] fans = FindObjectsOfType<Fan>();
+
+        foreach (Fan fan in fans)
+        {
+            fan.fanSound.setVolume(0);
+            print("STopped radio " + fan.gameObject.name);
+        }
+
+
         SceneManager.LoadScene(0);
-        //Invoke("SceneManager.LoadScene(0);", 3);
-        //Debug.Log("Exit game");
-        //Application.Quit();
+        
     }
    
 }

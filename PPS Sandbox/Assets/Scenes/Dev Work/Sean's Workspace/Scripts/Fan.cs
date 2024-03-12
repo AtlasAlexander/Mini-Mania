@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +12,45 @@ public class Fan : MonoBehaviour
     private Vector3 goalPos;
     private GameObject hands;
 
+    public EventInstance fanSound;
+
     private void Start()
     {
         player = GameObject.Find("Player");
         playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
         goalPos = this.gameObject.transform.GetChild(0).position;
         hands = GameObject.Find("Hands");
+
+        fanSound = FMODUnity.RuntimeManager.CreateInstance(FindObjectOfType<FmodAudioManager>().gameplaySounds[FindObjectOfType<FmodAudioManager>().FindEventReferenceByName("fanBuzz")]);
+        fanSound.start();
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(fanSound, gameObject.transform);
     }
 
     private void OnTriggerEnter(Collider other)
     {
- 
+        if (other.GetComponent<CharacterController>() != null)
+        {
+            //Is Player Shrunk
+            if (other.GetComponent<SizeChange>().GetShrunkStatus())
+            {
+                other.GetComponent<FirstPersonController>().SetMoveDirY(0);
+                other.GetComponent<FirstPersonController>().SetGravity(0f);
+
+                float direction = (goalPos.y - other.transform.position.y);
+                print(direction);
+                if(direction > 2f)
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);
+                   
+                }
+                else 
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("airWhoosh", player);
+                  
+                }
+                
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -32,18 +61,24 @@ public class Fan : MonoBehaviour
             //Is Player Shrunk
             if(other.GetComponent<SizeChange>().GetShrunkStatus())
             {
+                
+
                 other.GetComponent<FirstPersonController>().SetMoveDirY(0);
                 other.GetComponent<FirstPersonController>().SetGravity(0f);
 
                 float direction = (goalPos.y - other.transform.position.y);
-
+                
                 other.GetComponent<CharacterController>().Move(new Vector3(0, direction * Time.deltaTime * fanPowerForPlayer, 0));
             }
             else
             {
+               
+                other.GetComponent<FirstPersonController>().inFan = true;
                 other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
             }
+
         }
+       
 
 
         if (other.gameObject.GetComponent<Rigidbody>() == null)
@@ -74,7 +109,11 @@ public class Fan : MonoBehaviour
         if (other.GetComponent<CharacterController>() == null)
         {
             return;
+        }else
+        {
+            player.GetComponent<FirstPersonController>().inFan = false;
         }
+
 
         other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
     }

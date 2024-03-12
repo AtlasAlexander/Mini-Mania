@@ -10,7 +10,6 @@ using System.Data.SqlTypes;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
-using UnityEngine.EventSystems;
 
 public class FmodAudioManager : MonoBehaviour
 {
@@ -31,7 +30,8 @@ public class FmodAudioManager : MonoBehaviour
         "roomAmbience","playerGrow","playerShrink","laserOn",
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
-        "Cutscene1","enterMenu"
+        "Cutscene1","enterMenu","fanBoost","fanBuzz","airWhoosh",
+        "thump"
     };
 
     private Bus masterBus;
@@ -50,9 +50,9 @@ public class FmodAudioManager : MonoBehaviour
 
     float time;
 
-  
-
     EventInstance menuMusic;
+
+    public float hitWallTimer;
 
     private void Awake()
     {
@@ -62,8 +62,8 @@ public class FmodAudioManager : MonoBehaviour
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
         musicBus = RuntimeManager.GetBus("bus:/Music");
 
-        
-    }
+        hitWallTimer = 0f;
+}
 
     private void Start()
     {
@@ -91,9 +91,9 @@ public class FmodAudioManager : MonoBehaviour
         }
         else
         {
+           
             player = FindObjectOfType<FirstPersonController>().gameObject;
             controller = player.GetComponent<FirstPersonController>();
-
             QuickPlaySound("roomAmbience", player);
         }
     }
@@ -103,9 +103,21 @@ public class FmodAudioManager : MonoBehaviour
         //Use this function form any script to play a sound
         //Use the name of the sound in Assets/Sounds for soundName
         //Pass in the object you want the sound to play from into soundSource
-
-        RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);     
+        if(soundName == "thump")
+        {
+            if(hitWallTimer > 0.35f)
+            {
+                RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);
+                hitWallTimer = 0f;
+            }
+        }
+        else
+        {
+            RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);
+        }
+           
     }
+
 
     public int FindEventReferenceByName(string eventName)  //Finds the position of a sound name in the gameplaySounds Array
     {
@@ -113,14 +125,8 @@ public class FmodAudioManager : MonoBehaviour
         //foreach (EventReference eventRef in gameplaySounds)
         foreach (string eventRef in UnityBuildWorkAround)
         {
-
-            
-            //string soundName = eventRef.Path.Replace("event:/GameSoundEffects/", "");
-            //if (soundName == eventName)
-            // {
             if (eventRef.Contains(eventName))
             {
-                
                 return soundIndex;
             }
             soundIndex++;
@@ -131,6 +137,12 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
+        hitWallTimer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            killMusic();                 //Temporary method of playing/pausing until we find another way
+        }
+
 
         masterBus.setVolume(masterVolume);
         sfxBus.setVolume(soundEffectsVolume);
@@ -188,6 +200,9 @@ public class FmodAudioManager : MonoBehaviour
 
     public void killMusic()
     {
+        menuMusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        menuMusic.clearHandle();
+        menuMusic.release();
         menuMusic.setVolume(0);
     }
 
