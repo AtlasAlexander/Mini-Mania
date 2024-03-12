@@ -312,10 +312,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638457933572416648
+  lastModified: 638458129053151141
   FileSizes:
   - Name: Desktop
-    Value: 1069888
+    Value: 2352672
   Exists: 1
 --- !u!114 &-6508093239213644183
 MonoBehaviour:
@@ -982,13 +982,14 @@ MonoBehaviour:
   - {fileID: -6289850133210806389}
   - {fileID: 8758076282392316768}
   - {fileID: -6764782131252921157}
+  - {fileID: 8486088487034724372}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638457990058502906
+  cacheTime: 638458134400505264
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1299,10 +1300,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638457990058502906
+  lastModified: 638458134400505264
   FileSizes:
   - Name: Desktop
-    Value: 2566
+    Value: 2618
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1719,14 +1720,13 @@ MonoBehaviour:
     Data4: 1689374981
   Banks:
   - {fileID: 7539504792668824982}
-  - {fileID: -6586294020853849464}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 81000
+  Length: 200800
 --- !u!114 &7539504792668824982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1742,10 +1742,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638457990058346680
+  lastModified: 638458134400475137
   FileSizes:
   - Name: Desktop
-    Value: 17682400
+    Value: 20033600
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
@@ -1882,6 +1882,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8486088487034724372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/the-girl-from-ipanema
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/the-girl-from-ipanema
+  Guid:
+    Data1: -2112509020
+    Data2: 1078742956
+    Data3: 690532536
+    Data4: -141564487
+  Banks:
+  - {fileID: -6586294020853849464}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200800
 --- !u!114 &8560530393390793279
 MonoBehaviour:
   m_ObjectHideFlags: 0
