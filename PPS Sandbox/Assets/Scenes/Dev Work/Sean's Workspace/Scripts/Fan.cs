@@ -41,9 +41,12 @@ public class Fan : MonoBehaviour
                 if(direction > 2f)
                 {
                     FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);
-                }else if(direction > .5f)
+                   
+                }
+                else 
                 {
-                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoostTiny", player);
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("airWhoosh", player);
+                  
                 }
                 
             }
@@ -58,6 +61,8 @@ public class Fan : MonoBehaviour
             //Is Player Shrunk
             if(other.GetComponent<SizeChange>().GetShrunkStatus())
             {
+                
+
                 other.GetComponent<FirstPersonController>().SetMoveDirY(0);
                 other.GetComponent<FirstPersonController>().SetGravity(0f);
 
@@ -67,9 +72,13 @@ public class Fan : MonoBehaviour
             }
             else
             {
+               
+                other.GetComponent<FirstPersonController>().inFan = true;
                 other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
             }
+
         }
+       
 
 
         if (other.gameObject.GetComponent<Rigidbody>() == null)
@@ -100,7 +109,11 @@ public class Fan : MonoBehaviour
         if (other.GetComponent<CharacterController>() == null)
         {
             return;
+        }else
+        {
+            player.GetComponent<FirstPersonController>().inFan = false;
         }
+
 
         other.GetComponent<FirstPersonController>().SetGravity(playerGravityValue);
     }
