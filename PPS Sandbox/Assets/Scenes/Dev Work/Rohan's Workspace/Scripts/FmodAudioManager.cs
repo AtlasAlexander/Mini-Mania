@@ -30,7 +30,7 @@ public class FmodAudioManager : MonoBehaviour
         "roomAmbience","playerGrow","playerShrink","laserOn",
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
-        "Cutscene1","enterMenu","fanBoost","fanBuzz"
+        "Cutscene1","enterMenu","fanBoost","fanBuzz","fanBoostTiny"
     };
 
     private Bus masterBus;
@@ -105,6 +105,7 @@ public class FmodAudioManager : MonoBehaviour
 
         RuntimeManager.PlayOneShotAttached(gameplaySounds[FindEventReferenceByName(soundName)], soundSource);     
     }
+
 
     public int FindEventReferenceByName(string eventName)  //Finds the position of a sound name in the gameplaySounds Array
     {
