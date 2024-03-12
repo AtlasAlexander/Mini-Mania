@@ -30,7 +30,7 @@ public class FmodAudioManager : MonoBehaviour
         "roomAmbience","playerGrow","playerShrink","laserOn",
         "menuSelection","pause","gameTheme-StuckInTheWormHole",
         "shootGrowthRay","static","laserConstant","navigateMenu",
-        "Cutscene1","enterMenu","fanBoost","fanBuzz","fanBoostTiny"
+        "Cutscene1","enterMenu","fanBoost","fanBuzz","airWhoosh"
     };
 
     private Bus masterBus;

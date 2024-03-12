@@ -269,7 +269,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 980
+  Length: 2000
 --- !u!114 &-6707377617523990400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   - Name: Desktop
     Value: 2490
   Exists: 1
---- !u!114 &-3707939542003612527
+--- !u!114 &-3767180675111544118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -537,23 +537,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GameSoundEffects/fanBoostTiny
+  m_Name: event:/Soundtrack/girl From Ipanema radio
   m_EditorClassIdentifier: 
-  Path: event:/GameSoundEffects/fanBoostTiny
+  Path: event:/Soundtrack/girl From Ipanema radio
   Guid:
-    Data1: -1137614820
-    Data2: 1115835596
-    Data3: 977726341
-    Data4: 1925757449
+    Data1: 1856735556
+    Data2: 1135290852
+    Data3: -1312167798
+    Data4: -1956155977
   Banks:
   - {fileID: 7539504792668824982}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 980
+  Length: 152540
 --- !u!114 &-2932424981560450837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,14 +1010,15 @@ MonoBehaviour:
   - {fileID: 8758076282392316768}
   - {fileID: -6764782131252921157}
   - {fileID: 8486088487034724372}
-  - {fileID: -3707939542003612527}
+  - {fileID: -3767180675111544118}
+  - {fileID: 1378152288912365899}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638458427803513465
+  cacheTime: 638458505461079887
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1208,6 +1209,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1378152288912365899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/airWhoosh
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/airWhoosh
+  Guid:
+    Data1: 1158747894
+    Data2: 1269005122
+    Data3: 1904363435
+    Data4: 1179404862
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2060
 --- !u!114 &1406120093662497507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,10 +1356,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638458427803513465
+  lastModified: 638458505461079887
   FileSizes:
   - Name: Desktop
-    Value: 2664
+    Value: 2722
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1386,7 +1414,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 82540
+  Length: 50540
 --- !u!114 &3236465255407597942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,10 +1798,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638458427803483551
+  lastModified: 638458505461049968
   FileSizes:
   - Name: Desktop
-    Value: 20036928
+    Value: 21893888
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
