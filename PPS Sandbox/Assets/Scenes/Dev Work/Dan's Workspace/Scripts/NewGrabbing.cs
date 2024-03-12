@@ -24,6 +24,7 @@ public class NewGrabbing : MonoBehaviour
     public Camera cam;
     SizeChange sizeChange;
     PlayerControls playerControls;
+    SizeChange playerSize;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class NewGrabbing : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        playerSize = GameObject.Find("Player").GetComponent<SizeChange>();
     }
 
     private void Update()
@@ -61,7 +63,24 @@ public class NewGrabbing : MonoBehaviour
                         sizeChange = hitData.transform.gameObject.GetComponent<SizeChange>();
                         if (!sizeChange.isChangingSize && sizeChange.Pickupable())
                         {
-                            PickUpObject(hitData.transform.gameObject);
+                            if (sizeChange.shrunk)
+                            {
+                                PickUpObject(hitData.transform.gameObject);
+                            }
+                            else if (sizeChange.shrunk && playerSize.shrunk)
+                            {
+                                PickUpObject(hitData.transform.gameObject);
+                            }
+
+                            else if (!sizeChange.shrunk && !playerSize.shrunk)
+                            {
+                                PickUpObject(hitData.transform.gameObject);
+                            }
+
+                            else
+                            {
+                                return;
+                            }
                         }
                     }
                 }
@@ -78,14 +97,14 @@ public class NewGrabbing : MonoBehaviour
             MoveObject();
         }
 
-        if (grab)
-        {
-            time += Time.deltaTime;
-        }
-
         if (heldObj != null)
         {
             float dis = Vector3.Distance(heldObj.transform.position, holdArea.transform.position);
+
+            if (dis > 1f)
+            {
+                time += Time.deltaTime;
+            }
             //print(dis);
             if (dis >= 1f && time > 1f)
             {
