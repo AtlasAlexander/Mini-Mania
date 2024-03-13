@@ -75,6 +75,9 @@
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{b8417b57-d050-4aff-9ece-746a7bbbb8f1}">
+		<relationship name="modules">
+			<destination>{9829caf4-5d20-4bb3-8007-cd285dea6fd3}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{5f23200a-544f-42aa-9296-fccb13815ffe}</destination>
 		</relationship>
@@ -83,6 +86,7 @@
 		<relationship name="modules">
 			<destination>{12532f8f-691c-45bb-a4e8-812b254893d1}</destination>
 			<destination>{8c7e3038-e0a7-4152-9c18-9d1a43d36863}</destination>
+			<destination>{9829caf4-5d20-4bb3-8007-cd285dea6fd3}</destination>
 		</relationship>
 	</object>
 	<object class="ActionSheet" id="{742c33c2-22af-4414-acce-71dbb579a163}">
@@ -142,6 +146,14 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{28d527d6-88ab-4979-a35f-380574a57b4d}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{9829caf4-5d20-4bb3-8007-cd285dea6fd3}">
+		<property name="length">
+			<value>0.84618749999999998</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{51122a87-d2f5-4254-b0ce-d25a660e7ec5}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{5f23200a-544f-42aa-9296-fccb13815ffe}">

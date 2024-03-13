@@ -54,10 +54,12 @@ public class NewGrabbing : MonoBehaviour
         {
             if (heldObj == null)
             {
+                
                 RaycastHit hitData;
                 Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * pickUpRange, Color.red);
                 if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hitData, pickUpRange))
                 {
+                    
                     if (hitData.transform.gameObject.GetComponent<SizeChange>())
                     {
                         sizeChange = hitData.transform.gameObject.GetComponent<SizeChange>();
@@ -65,15 +67,18 @@ public class NewGrabbing : MonoBehaviour
                         {
                             if (sizeChange.shrunk)
                             {
+                                FindObjectOfType<FmodAudioManager>().QuickPlaySound("pickUpSmall", sizeChange.gameObject);
                                 PickUpObject(hitData.transform.gameObject);
                             }
                             else if (sizeChange.shrunk && playerSize.shrunk)
                             {
+                                FindObjectOfType<FmodAudioManager>().QuickPlaySound("pickUpSmall", sizeChange.gameObject);
                                 PickUpObject(hitData.transform.gameObject);
                             }
 
                             else if (!sizeChange.shrunk && !playerSize.shrunk)
                             {
+                                FindObjectOfType<FmodAudioManager>().QuickPlaySound("pickUp", sizeChange.gameObject);
                                 PickUpObject(hitData.transform.gameObject);
                             }
 
