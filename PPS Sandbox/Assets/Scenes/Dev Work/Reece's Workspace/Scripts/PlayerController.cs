@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         // Changes the height position of the player..
         if (jumpInput > inputPress && groundedPlayer)
         {
+            
             playerVelocity.y += Mathf.Sqrt(jumpHeight * force * gravityValue);
         }
 

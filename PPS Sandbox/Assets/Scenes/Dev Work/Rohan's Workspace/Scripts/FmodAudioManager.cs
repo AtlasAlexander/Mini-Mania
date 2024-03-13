@@ -25,13 +25,12 @@ public class FmodAudioManager : MonoBehaviour
 
     private string[] UnityBuildWorkAround =
     {
-        "footsteps","shootShrinkRay","objectShrink","objectGrow",
-        "buttonClick","closeDoor","openDoor","gatePassthrough",
-        "roomAmbience","playerGrow","playerShrink","laserOn",
-        "menuSelection","pause","gameTheme-StuckInTheWormHole",
-        "shootGrowthRay","static","laserConstant","navigateMenu",
-        "Cutscene1","enterMenu","fanBoost","fanBuzz","airWhoosh",
-        "thump"
+        "footsteps","shootShrinkRay","objectShrink","objectGrow","buttonClick",
+        "closeDoor","openDoor","gatePassthrough","roomAmbience","playerGrow",
+        "playerShrink","laserOn","menuSelection","pause","gameTheme-StuckInTheWormHole",
+        "shootGrowthRay","static","laserConstant","navigateMenu","Cutscene1",
+        "enterMenu","fanBoost","fanBuzz","airWhoosh","thump",
+        "jump","pickUp","land"
     };
 
     private Bus masterBus;
