@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WeighingScale : MonoBehaviour
@@ -5,12 +6,10 @@ public class WeighingScale : MonoBehaviour
     // Transforms
     [SerializeField] private Transform cube1;
     [SerializeField] private Transform cube2;
-    [SerializeField] private Transform parentPlatform;
 
     // Used for putting weight on the platforms
     [SerializeField] private Rigidbody scalePlatforms;
 
-    [SerializeField] private Transform playerTransform; 
     
     // Weighing scale conditions
     private bool isBigCube;
@@ -20,7 +19,7 @@ public class WeighingScale : MonoBehaviour
     private bool isSmallCube;
     private bool isSmallCube2;
     private bool isSwitchingWeights;
-    private bool hasMultipleWeights;
+    //private bool hasMultipleWeights;
     
     // Player & Cube weight values
     private Stats playerWeight;
@@ -39,24 +38,50 @@ public class WeighingScale : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Detects if the player is on the platform by itself
-        if (other.CompareTag("Player") && playerWeight.Weight >= 100.0f && !isSwitchingWeights)
+        PlayerEnteringTrigger(other);
+        CarryCubesEnteringTheTrigger(other);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        CarryMultipleCubes(other);
+        CarryCubesAndPlayer();
+        WeightSwitching(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Detects if the player exits platform.
+        if (other.CompareTag("Player"))
         {
-            // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 10.0f;
-            // Tracks if the player is on the platform
-            isNormalPlayer = true;
+            Debug.Log("Player exits platform.");
+            scalePlatforms.mass = 0.1f;
+            isNormalPlayer = false;
+            isSmallPlayer = false;
+            isSwitchingWeights = false;
         }
 
-        // Detects if the small player is on the platform by itself
-        if (other.CompareTag("Player") && playerWeight.Weight < 100.0f && !isSwitchingWeights)
+        // Detects if the cube exits platform.
+        if (other.name == "CarryCube Big")
         {
-            // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 1.0f;
-            // Tracks if the player is on the platform
-            isSmallPlayer = true;
+            //Debug.Log("Carry Cube 1");
+            scalePlatforms.mass = 0.1f;
+            isBigCube = false;
+            isSmallCube = false;
+            isSwitchingWeights = false;
         }
 
+        if (other.name == "CarryCube Big (1)")
+        {
+            //Debug.Log("Carry Cube 2");
+            scalePlatforms.mass = 0.1f;
+            isBigCube2 = false;
+            isSmallCube2 = false;
+            isSwitchingWeights = false;
+        }
+    }
+
+    private void CarryCubesEnteringTheTrigger(Collider other)
+    {
         // Detects if the big cube is on the platform by itself
         if (other.name == carryCube1 && cube1Weight.Weight >= 50 && !isSwitchingWeights)
         {
@@ -88,121 +113,15 @@ public class WeighingScale : MonoBehaviour
             // Tracks if the cube is on the platform
             isSmallCube2 = true;
         }
-
     }
 
-    private void CarryMultipleCubes(Collider other)
+    private void WeightSwitching(Collider other)
     {
-        if (other.name == carryCube2 && cube2Weight.Weight >= 50)
-        {
-            //Debug.Log("Big cube 2");
-            scalePlatforms.mass = 50.0f;
-            isBigCube2 = true;
-        }
-
-        if (other.name == carryCube2 && cube2Weight.Weight < 50)
-        {
-            //Debug.Log("Small cube 2");
-            scalePlatforms.mass = 1.0f;
-            isSmallCube2 = true;
-        }
-
-        if ((isBigCube && cube1Weight.Weight >= 50) && (isBigCube2 && cube2Weight.Weight >= 50))
-        {
-            Debug.Log("Big cube 1 & Big cube 2");
-            scalePlatforms.mass = 50.0f;
-        }
-
-        if ((isBigCube2 && cube2Weight.Weight >= 50) && (isBigCube && cube1Weight.Weight >= 50))
-        {
-            //Debug.Log("2");
-            scalePlatforms.mass = 50.0f;
-        }
-
-        if ((isBigCube && cube1Weight.Weight >= 50) && (isSmallCube2 && cube2Weight.Weight < 50))
-        {
-            //Debug.Log("1");
-            scalePlatforms.mass = 50.0f;
-        }
-
-        if ((isSmallCube2 && cube2Weight.Weight < 50) && (isBigCube && cube1Weight.Weight >= 50))
-        {
-            //Debug.Log("Small cube 2 & Big cube 1");
-            scalePlatforms.mass = 50.0f;
-        }
-
-        if ((isBigCube2 && cube2Weight.Weight >= 50) && (isSmallCube && cube1Weight.Weight < 50))
-        {
-            //Debug.Log("1");
-            scalePlatforms.mass = 50.0f;
-        }
-
-        if ((isSmallCube && cube1Weight.Weight < 50) && (isBigCube2 && cube2Weight.Weight >= 50))
-        {
-            //Debug.Log("Small cube 1 & Big cube 2");
-            scalePlatforms.mass = 50.0f;
-        }
-
-        if ((isSmallCube && cube1Weight.Weight < 50) && (isSmallCube2 && cube2Weight.Weight < 50))
-        {
-            //Debug.Log("1");
-            scalePlatforms.mass = 2.0f;
-        }
-
-        if ((isSmallCube2 && cube2Weight.Weight < 50) && (isSmallCube && cube1Weight.Weight < 50))
-        {
-            //Debug.Log("1");
-            scalePlatforms.mass = 2.0f;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-
-        CarryMultipleCubes(other);
-
-        // Detects if the big cube and the player are on the same platform
-        if (isBigCube && isNormalPlayer)
-        {
-            // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 50.0f;
-            // Tracks if the cube is on the platform
-            isSwitchingWeights = true;
-        }
-
-        // Detects if the big cube and the small player are on the same platform
-        if (isBigCube && isSmallPlayer)
-        {
-            // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 50.0f;
-            // Tracks if the cube is on the platform
-            isSwitchingWeights = true;
-        }
-
-        // Detects if the small cube and the player are on the same platform
-        if (isSmallCube && isNormalPlayer)
-        {
-            // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 50.0f;
-            // Tracks if the cube is on the platform
-            isSwitchingWeights = true;
-        }
-
-        // Detects if the small cube and the small player are on the same platform
-        if (isSmallCube && isSmallPlayer)
-        {
-            // Change the mass of the scale platform when player interacts
-            scalePlatforms.mass = 2.0f;
-            // Tracks if the cube is on the platform
-            isSwitchingWeights = true;
-        }
-
         /// USED FOR SWITCHING BETWEEN CUBES WEIGHTS AND PLAYER WEIGHTS
 
         if ((other.name == "CarryCube Big" && cube1Weight.Weight >= 50))
         {
             scalePlatforms.mass = 50.0f;
-            Debug.Log("3");
             isBigCube = true;
         }
 
@@ -244,35 +163,107 @@ public class WeighingScale : MonoBehaviour
         ///
     }
 
-    private void OnTriggerExit(Collider other)
+    private void CarryCubesAndPlayer()
     {
-        // Detects if the player exits platform.
-        if (other.CompareTag("Player"))
+        // Detects if the big cube and the player are on the same platform
+        if (isBigCube && isNormalPlayer)
         {
-            Debug.Log("Player exits platform.");
-            scalePlatforms.mass = 0.1f;
-            isNormalPlayer = false;
-            isSmallPlayer = false;
-            isSwitchingWeights = false;
+            scalePlatforms.mass = 50.0f;
+            isSwitchingWeights = true;
         }
 
-        // Detects if the cube exits platform.
-        if (other.name == "CarryCube Big")
+        // Detects if the big cube and the small player are on the same platform
+        if (isBigCube && isSmallPlayer)
         {
-            //Debug.Log("Carry Cube 1");
-            scalePlatforms.mass = 0.1f;
-            isBigCube = false;
-            isSmallCube = false;
-            isSwitchingWeights = false;
+            scalePlatforms.mass = 50.0f;
+            isSwitchingWeights = true;
         }
 
-        if (other.name == "CarryCube Big (1)")
+        // Detects if the small cube and the player are on the same platform
+        if (isSmallCube && isNormalPlayer)
         {
-            //Debug.Log("Carry Cube 2");
-            scalePlatforms.mass = 0.1f;
-            isBigCube2 = false;
-            isSmallCube2 = false;
-            isSwitchingWeights = false;
+            scalePlatforms.mass = 50.0f;
+            isSwitchingWeights = true;
+        }
+
+        // Detects if the small cube and the small player are on the same platform
+        if (isSmallCube && isSmallPlayer)
+        {
+            scalePlatforms.mass = 2.0f;
+            isSwitchingWeights = true;
+        }
+    }
+
+    private void PlayerEnteringTrigger(Collider other)
+    {
+        // Detects if the player is on the platform by itself
+        if (other.CompareTag("Player") && playerWeight.Weight >= 100.0f && !isSwitchingWeights)
+        {
+            scalePlatforms.mass = 10.0f;
+            isNormalPlayer = true;
+        }
+
+        // Detects if the small player is on the platform by itself
+        if (other.CompareTag("Player") && playerWeight.Weight < 100.0f && !isSwitchingWeights)
+        {
+            scalePlatforms.mass = 1.0f;
+            isSmallPlayer = true;
+        }
+    }
+
+    private void CarryMultipleCubes(Collider other)
+    {
+        if (other.name == carryCube2 && cube2Weight.Weight >= 50)
+        {
+            scalePlatforms.mass = 50.0f;
+            isBigCube2 = true;
+        }
+
+        if (other.name == carryCube2 && cube2Weight.Weight < 50)
+        {
+            scalePlatforms.mass = 1.0f;
+            isSmallCube2 = true;
+        }
+
+        if ((isBigCube && cube1Weight.Weight >= 50) && (isBigCube2 && cube2Weight.Weight >= 50))
+        {
+            Debug.Log("Big cube 1 & Big cube 2");
+            scalePlatforms.mass = 50.0f;
+        }
+
+        if ((isBigCube2 && cube2Weight.Weight >= 50) && (isBigCube && cube1Weight.Weight >= 50))
+        {
+            scalePlatforms.mass = 50.0f;
+        }
+
+        if ((isBigCube && cube1Weight.Weight >= 50) && (isSmallCube2 && cube2Weight.Weight < 50))
+        {
+            scalePlatforms.mass = 50.0f;
+        }
+
+        if ((isSmallCube2 && cube2Weight.Weight < 50) && (isBigCube && cube1Weight.Weight >= 50))
+        {
+            scalePlatforms.mass = 50.0f;
+        }
+
+        if ((isBigCube2 && cube2Weight.Weight >= 50) && (isSmallCube && cube1Weight.Weight < 50))
+        {
+            scalePlatforms.mass = 50.0f;
+        }
+
+        if ((isSmallCube && cube1Weight.Weight < 50) && (isBigCube2 && cube2Weight.Weight >= 50))
+        {
+            scalePlatforms.mass = 50.0f;
+        }
+
+        if ((isSmallCube && cube1Weight.Weight < 50) && (isSmallCube2 && cube2Weight.Weight < 50))
+        {
+            scalePlatforms.mass = 2.0f;
+        }
+
+        if ((isSmallCube2 && cube2Weight.Weight < 50) && (isSmallCube && cube1Weight.Weight < 50))
+        {
+            scalePlatforms.mass = 2.0f;
         }
     }
 }
