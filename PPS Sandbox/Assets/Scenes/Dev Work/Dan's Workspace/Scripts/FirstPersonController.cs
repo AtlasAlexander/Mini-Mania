@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
@@ -18,6 +19,8 @@ public class FirstPersonController : MonoBehaviour
     public bool isWalking;
     public bool isSprinting;
     public bool isCrouching;
+    private bool inAir;
+    
     private bool shouldJump => characterController.isGrounded;
     private bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded;
 
@@ -137,6 +140,7 @@ public class FirstPersonController : MonoBehaviour
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
 
         inFan = false;
+        inAir = false;
 }
 
     private void Awake()
@@ -212,6 +216,19 @@ public class FirstPersonController : MonoBehaviour
                     }
                     
                 }
+                if (!characterController.isGrounded)
+                {
+                    inAir = true;
+                }
+                else
+                {
+                    if (inAir)
+                    {
+                        FindObjectOfType<FmodAudioManager>().QuickPlaySound("land", characterController.gameObject);
+                        inAir= false;
+                    }
+                }
+
 
                 ApplyFinalMovements();
             }
@@ -295,6 +312,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (shouldJump)
         {
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("jump", characterController.gameObject);
             moveDir.y = jumpForce;
         }
     }
