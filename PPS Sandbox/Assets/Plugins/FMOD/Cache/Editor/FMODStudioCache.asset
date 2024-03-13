@@ -312,7 +312,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638459376099003204
+  lastModified: 638459568755164955
   FileSizes:
   - Name: Desktop
     Value: 2352672
@@ -425,6 +425,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 40540
+--- !u!114 &-5784144907749183711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/pickUpSmall
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/pickUpSmall
+  Guid:
+    Data1: 879867768
+    Data2: 1206188264
+    Data3: -1887318639
+    Data4: 1732772761
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1200
 --- !u!114 &-4932452830234707055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,13 +1098,14 @@ MonoBehaviour:
   - {fileID: 9220575521494547955}
   - {fileID: -4612823389909400632}
   - {fileID: 7117487399906642697}
+  - {fileID: -5784144907749183711}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638459376099003204
+  cacheTime: 638459586022997809
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1186,7 +1214,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2020
+  Length: 2000
 --- !u!114 &943646345214900749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,10 +1443,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638459376098744282
+  lastModified: 638459586022997809
   FileSizes:
   - Name: Desktop
-    Value: 2934
+    Value: 2982
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1884,10 +1912,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638459376098714358
+  lastModified: 638459586022967582
   FileSizes:
   - Name: Desktop
-    Value: 21789440
+    Value: 21796128
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
