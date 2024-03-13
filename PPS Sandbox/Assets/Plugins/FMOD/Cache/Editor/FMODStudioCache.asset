@@ -312,7 +312,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638459326044339258
+  lastModified: 638459376099003204
   FileSizes:
   - Name: Desktop
     Value: 2352672
@@ -784,10 +784,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/GameSoundEffects/thump
   Guid:
-    Data1: -345854659
-    Data2: 1244416654
-    Data3: 1277549478
-    Data4: 384165603
+    Data1: -1143673284
+    Data2: 1152840125
+    Data3: -2030627695
+    Data4: 987289899
   Banks:
   - {fileID: 7539504792668824982}
   IsStream: 0
@@ -796,7 +796,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 380
+  Length: 2000
 --- !u!114 &-1541967149121859432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,13 +1070,14 @@ MonoBehaviour:
   - {fileID: 8538478540087548109}
   - {fileID: 9220575521494547955}
   - {fileID: -4612823389909400632}
+  - {fileID: 7117487399906642697}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638459343683625875
+  cacheTime: 638459376099003204
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1414,10 +1415,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638459343683625875
+  lastModified: 638459376098744282
   FileSizes:
   - Name: Desktop
-    Value: 2886
+    Value: 2934
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1814,6 +1815,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7117487399906642697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/bump-01
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/bump-01
+  Guid:
+    Data1: 227303416
+    Data2: 1300264140
+    Data3: 62275501
+    Data4: 1348987310
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 868
 --- !u!114 &7158179574695658217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,10 +1884,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638459343683595953
+  lastModified: 638459376098714358
   FileSizes:
   - Name: Desktop
-    Value: 21785504
+    Value: 21789440
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
