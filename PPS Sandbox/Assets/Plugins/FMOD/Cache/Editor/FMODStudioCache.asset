@@ -608,6 +608,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 152540
+--- !u!114 &-3440815371094056873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/crossbowShoot
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/crossbowShoot
+  Guid:
+    Data1: -989635584
+    Data2: 1170035263
+    Data3: 1351804095
+    Data4: -1936405158
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1623
 --- !u!114 &-2932424981560450837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,13 +1126,15 @@ MonoBehaviour:
   - {fileID: -4612823389909400632}
   - {fileID: 7117487399906642697}
   - {fileID: -5784144907749183711}
+  - {fileID: 1010470342281739286}
+  - {fileID: -3440815371094056873}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638460112500000000
+  cacheTime: 638460172520129419
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1269,6 +1298,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1010470342281739286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/arrowHit
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/arrowHit
+  Guid:
+    Data1: 1473500250
+    Data2: 1087868060
+    Data3: -950606662
+    Data4: -1635732268
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 550
 --- !u!114 &1173561513959413039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,10 +1499,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638460112480000000
+  lastModified: 638460172520129419
   FileSizes:
   - Name: Desktop
-    Value: 2982
+    Value: 3086
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1912,10 +1968,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638460112480000000
+  lastModified: 638460172520099493
   FileSizes:
   - Name: Desktop
-    Value: 21796128
+    Value: 21828480
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
