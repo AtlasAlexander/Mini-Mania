@@ -497,11 +497,13 @@ public class FirstPersonController : MonoBehaviour
         if(healthForTurret == 50)
         {
             //stun player
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("arrowHit", gameObject);
             StartCoroutine(StunRoutine());
         }
 
         if(healthForTurret <= 1)
         {
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("arrowHit", gameObject);
             //Respawn player at chechpoint
             ResetPlayer();
         }
