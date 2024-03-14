@@ -90,6 +90,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] float turretDamage = 50f;
     [SerializeField] float regenTime = 3f;
     [SerializeField] ParticleSystem stunEffect;
+    private float initialSpeed;
 
     public bool isFocus;
     public bool inFan;
@@ -141,6 +142,7 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         CheckpointControllerRef = GameObject.Find("CheckpointController");
+        initialSpeed = walkSpeed;
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
@@ -519,8 +521,12 @@ public class FirstPersonController : MonoBehaviour
         yield return new WaitForSeconds(regenTime);
         if(healthForTurret == 50)
         {
-            walkSpeed = 5;
+            walkSpeed = initialSpeed;
             healthForTurret = 100f;
+            if (stunEffect != null)
+            {
+                stunEffect.Stop();
+            }
         }
 
     }
@@ -533,7 +539,11 @@ public class FirstPersonController : MonoBehaviour
             CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
         characterController.enabled = true;
         healthForTurret = 100f;
-        walkSpeed = 5;
+        walkSpeed = initialSpeed;
+        if (stunEffect != null)
+        {
+            stunEffect.Stop();
+        }
     }
     
     public void SetGravity(float newGrav)
