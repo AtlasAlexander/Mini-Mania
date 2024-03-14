@@ -181,18 +181,22 @@ public class Weapon : MonoBehaviour
             Vector3 downRight = (down + right).normalized * raycastClusterSpread;
             Vector3 downLeft = (down + left).normalized * raycastClusterSpread;
 
+            TrailRenderer trail = Instantiate(BulletTrail, trajectoryOrigin.position, Quaternion.identity);
+
             //Shoot cluster of raycasts
-            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward, false, true);
+            ProcessRaycast(rayCastOrigin, FPCamera.transform.forward, false, trail);
 
-            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward, false, false);
-            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward, false, false);
-            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward, false, false);
-            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward, false, false);
+            
+            ProcessRaycast(rayCastOrigin + up, FPCamera.transform.forward, false, null);
+            ProcessRaycast(rayCastOrigin + down, FPCamera.transform.forward, false, null);
+            ProcessRaycast(rayCastOrigin + right, FPCamera.transform.forward, false, null);
+            ProcessRaycast(rayCastOrigin + left, FPCamera.transform.forward, false, null);
 
-            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward, false, false);
-            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward, false, false);
-            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward, false, false);
-            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward, false, false);
+            ProcessRaycast(rayCastOrigin + upRight, FPCamera.transform.forward, false, null);
+            ProcessRaycast(rayCastOrigin + upLeft, FPCamera.transform.forward, false, null);
+            ProcessRaycast(rayCastOrigin + downRight, FPCamera.transform.forward, false, null);
+            ProcessRaycast(rayCastOrigin + downLeft, FPCamera.transform.forward, false, null);
+            
 
 
             //ProcessRaycast(FPCamera.transform.position, FPCamera.transform.forward);
@@ -209,18 +213,16 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
     }
 
-    private void ProcessRaycast(Vector3 position, Vector3 direction, bool canShootSelf, bool canShowTrail)
+    private void ProcessRaycast(Vector3 position, Vector3 direction, bool canShootSelf, TrailRenderer trail)
     {
         RaycastHit hit;
-        TrailRenderer trail = Instantiate(BulletTrail, trajectoryOrigin.position, Quaternion.identity);
+
+        //TrailRenderer trail = Instantiate(BulletTrail, trajectoryOrigin.position, Quaternion.identity);
+        
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
             if (hit.transform.tag == "Radio") { hit.transform.GetComponent<FmodMusicManager>().togglePause(); }
-            //StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
-            if (canShowTrail)
-            {
-                StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
-            }
+            StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
 
             Debug.DrawLine(position, hit.point, Color.red, 1f);
             //CreateHitImpact(hit);
@@ -234,6 +236,7 @@ public class Weapon : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Mirror")
                 {
                     //BouncingBullets = true;
+                    //trail.transform.position = hit.point;
                     ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
                 }
 
@@ -242,7 +245,6 @@ public class Weapon : MonoBehaviour
             else
             {
                 CreateSizeHitImpact(hit);
-                //target.TakeDamage(damage);
 
                 //If target is not the player
                 if(hit.transform.GetComponent<CharacterController>() == null)
@@ -261,22 +263,13 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            //StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
-            if (canShowTrail)
-            {
-                StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
-            }
-
+            StartCoroutine(SpawnTrail(trail, trajectoryOrigin.position + direction * 100, hit.normal, BounceDistance, false));
             return;
         }
     }
 
     private void ReflectRay(Vector3 position, Vector3 direction, bool canShootSelf)
     {
-        //Code had to be repeated here as I couldnt recall "ProcessRaycast(position, direction)" like that as it'd make the trails come from the camera
-        //rather than the barrel of the weapons. 
-
-        //ProcessRaycast(position, direction);
         TrailRenderer trail = Instantiate(BulletTrail, position, Quaternion.identity);
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
@@ -295,7 +288,6 @@ public class Weapon : MonoBehaviour
                     Debug.Log("Mirror");
                     //BouncingBullets = true;
                     ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
-
                 }
 
                 return;
@@ -341,28 +333,6 @@ public class Weapon : MonoBehaviour
 
             yield return null;
         }
-
-        // code below for boucing off muliple surfaces
-        /*
-        if(madeImpact) 
-        {
-            if(BouncingBullets && BounceDistance > 0)
-            {
-                Vector3 bounceDirection = Vector3.Reflect(direction, HitNormal);
-
-                if(Physics.Raycast(HitPoint, bounceDirection, out RaycastHit hit, BounceDistance))
-                {
-                    yield return StartCoroutine(SpawnTrail(Trail, hit.point, hit.normal, BounceDistance - Vector3.Distance(hit.point, HitPoint), true));
-                }
-                else
-                {
-                    yield return StartCoroutine(SpawnTrail(Trail, bounceDirection * BounceDistance, Vector3.zero, 0, false));
-                }
-            }
-        
-
-        }
-        */
 
         Trail.transform.position = HitPoint;
 
