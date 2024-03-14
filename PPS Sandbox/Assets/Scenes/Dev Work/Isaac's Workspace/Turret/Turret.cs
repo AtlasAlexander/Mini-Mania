@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Turret : MonoBehaviour
 {
@@ -12,8 +13,12 @@ public class Turret : MonoBehaviour
     Transform target;
     SizeChange sizeChange;
 
+    private float arrowSoundLimiter;
+
     private void Start()
     {
+        StartCoroutine(DetectParticleEmitted());
+        arrowSoundLimiter = 0.0f;
         target = FindObjectOfType<FirstPersonController>().transform;
         sizeChange = GetComponent<SizeChange>();
     }
@@ -21,6 +26,7 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
+        arrowSoundLimiter += Time.deltaTime;
         AimWeapon();
 
         if(sizeChange != null)
@@ -51,7 +57,7 @@ public class Turret : MonoBehaviour
                 }
             }
         }
-
+        
     }
 
     void AimWeapon()
@@ -59,9 +65,11 @@ public class Turret : MonoBehaviour
         float targetDistance = Vector3.Distance(transform.position, target.position);
 
         weapon.LookAt(target);
-
+        
         if (targetDistance < range)
         {
+           
+            
             Attack(true);
         }
         else
@@ -75,4 +83,27 @@ public class Turret : MonoBehaviour
         var emissionModule = projectileParticles.emission;
         emissionModule.enabled = isActive;
     }
+
+
+    private IEnumerator DetectParticleEmitted()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (projectileParticles.isPlaying)
+            {
+                if (projectileParticles.particleCount > 0)
+                {
+                    if(arrowSoundLimiter > 0.7f)
+                    {
+                        FindObjectOfType<FmodAudioManager>().QuickPlaySound("crossbowShoot", gameObject);
+    
+                        arrowSoundLimiter = 0;
+                    }
+                    
+                }
+            }
+        }
+    }
+
 }

@@ -312,7 +312,7 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638460112500000000
+  lastModified: 638459568755164955
   FileSizes:
   - Name: Desktop
     Value: 2352672
@@ -561,6 +561,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 275
+--- !u!114 &-4275002801561254085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/castleAmbience
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/castleAmbience
+  Guid:
+    Data1: 1158282323
+    Data2: 1120516282
+    Data3: 228629915
+    Data4: -2107270816
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 181385
 --- !u!114 &-4199182644061916937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +661,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1623
+  Length: 1583
 --- !u!114 &-2932424981560450837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,6 +716,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &-2316367193583391376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/MedievalRadio/song-03
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/MedievalRadio/song-03
+  Guid:
+    Data1: 1074383332
+    Data2: 1310448283
+    Data3: 502518410
+    Data4: 191493013
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120540
 --- !u!114 &-2285541108690714261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,6 +851,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1910017714332085592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/MedievalRadio/song-01
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/MedievalRadio/song-01
+  Guid:
+    Data1: -1071477837
+    Data2: 1234037332
+    Data3: -396830553
+    Data4: -502324054
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 90540
 --- !u!114 &-1809406791267567511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,13 +1209,18 @@ MonoBehaviour:
   - {fileID: -5784144907749183711}
   - {fileID: 1010470342281739286}
   - {fileID: -3440815371094056873}
+  - {fileID: 3464171280385787402}
+  - {fileID: -4275002801561254085}
+  - {fileID: 1665609175413829803}
+  - {fileID: -1910017714332085592}
+  - {fileID: -2316367193583391376}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638460172520129419
+  cacheTime: 638460222389796549
   cacheVersion: 131616
 --- !u!114 &500859671136625317
 MonoBehaviour:
@@ -1460,6 +1546,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35540
+--- !u!114 &1665609175413829803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/MedievalRadio/song-02
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/MedievalRadio/song-02
+  Guid:
+    Data1: -1923841942
+    Data2: 1307557587
+    Data3: 1270203035
+    Data4: -491828645
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 102540
 --- !u!114 &1734902212379250650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,10 +1612,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638460172520129419
+  lastModified: 638460222389796549
   FileSizes:
   - Name: Desktop
-    Value: 3086
+    Value: 3320
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -1612,6 +1725,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3464171280385787402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/littleCrossbowShoot
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/littleCrossbowShoot
+  Guid:
+    Data1: -1636091310
+    Data2: 1152815908
+    Data3: -1908834645
+    Data4: -139678411
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1503
 --- !u!114 &3679467404516995544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1968,10 +2108,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638460172520099493
+  lastModified: 638460222389766457
   FileSizes:
   - Name: Desktop
-    Value: 21828480
+    Value: 30353632
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:

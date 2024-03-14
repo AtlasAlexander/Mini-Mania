@@ -31,7 +31,7 @@ public class FmodAudioManager : MonoBehaviour
         "shootGrowthRay","static","laserConstant","navigateMenu","Cutscene1",
         "enterMenu","fanBoost","fanBuzz","airWhoosh","thump",
         "jump","pickUp","land","pickUpSmall","crossbowShoot",
-        "arrowHit"
+        "arrowHit","littleCrossbowShoot","castleAmbience",
     };
 
     private Bus masterBus;
@@ -94,7 +94,15 @@ public class FmodAudioManager : MonoBehaviour
            
             player = FindObjectOfType<FirstPersonController>().gameObject;
             controller = player.GetComponent<FirstPersonController>();
-            QuickPlaySound("roomAmbience", player);
+            
+            if (sceneName.Contains("Medieval"))
+            {
+                QuickPlaySound("castleAmbience", player);
+            }
+            else
+            {
+                QuickPlaySound("roomAmbience", player);
+            }
         }
     }
 
