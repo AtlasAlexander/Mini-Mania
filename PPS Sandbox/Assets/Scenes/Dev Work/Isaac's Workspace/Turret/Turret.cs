@@ -12,10 +12,14 @@ public class Turret : MonoBehaviour
     Transform target;
     SizeChange sizeChange;
 
+    [SerializeField] Transform lineOrigin;
+    LineRenderer lineRenderer;
+
     private void Start()
     {
         target = FindObjectOfType<FirstPersonController>().transform;
         sizeChange = GetComponent<SizeChange>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
 
@@ -23,33 +27,14 @@ public class Turret : MonoBehaviour
     {
         AimWeapon();
 
-        if(sizeChange != null)
+        HandleSizeChange();
+
+        Ray lineRay = new Ray(lineOrigin.position, lineOrigin.forward);
+        RaycastHit hit;
+        lineRenderer.SetPosition(0, lineOrigin.position);
+        if(Physics.Raycast(lineRay, out hit, range))
         {
-            if(sizeChange.GetShrunkStatus())
-            {
-                if (turretSmallBolts != null)
-                {
-                    turretSmallBolts.SetActive(true);
-
-                    if(turretBigBolts != null)
-                    {
-                        turretBigBolts.SetActive(false);
-                    }
-                }
-            }
-
-            if(!sizeChange.GetShrunkStatus())
-            {
-                if(turretBigBolts != null)
-                {
-                    turretBigBolts.SetActive(true);
-
-                    if(turretSmallBolts != null)
-                    {
-                        turretSmallBolts.SetActive(false);
-                    }
-                }
-            }
+            lineRenderer.SetPosition(1, hit.point);
         }
 
     }
@@ -63,10 +48,12 @@ public class Turret : MonoBehaviour
         if (targetDistance < range)
         {
             Attack(true);
+            lineRenderer.enabled = true;
         }
         else
         {
             Attack(false);
+            lineRenderer.enabled = false;
         }
     }
 
@@ -74,5 +61,37 @@ public class Turret : MonoBehaviour
     {
         var emissionModule = projectileParticles.emission;
         emissionModule.enabled = isActive;
+    }
+
+    void HandleSizeChange()
+    {
+        if (sizeChange != null)
+        {
+            if (sizeChange.GetShrunkStatus())
+            {
+                if (turretSmallBolts != null)
+                {
+                    turretSmallBolts.SetActive(true);
+
+                    if (turretBigBolts != null)
+                    {
+                        turretBigBolts.SetActive(false);
+                    }
+                }
+            }
+
+            if (!sizeChange.GetShrunkStatus())
+            {
+                if (turretBigBolts != null)
+                {
+                    turretBigBolts.SetActive(true);
+
+                    if (turretSmallBolts != null)
+                    {
+                        turretSmallBolts.SetActive(false);
+                    }
+                }
+            }
+        }
     }
 }
