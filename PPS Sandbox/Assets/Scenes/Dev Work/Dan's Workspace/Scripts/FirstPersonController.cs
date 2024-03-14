@@ -85,6 +85,12 @@ public class FirstPersonController : MonoBehaviour
     [Header("Animations")]
     private Animator _animator;
 
+    [Header("Turret Parameters")]
+    [SerializeField] float healthForTurret = 100f;
+    [SerializeField] float turretDamage = 50f;
+    [SerializeField] float regenTime = 3f;
+    [SerializeField] ParticleSystem stunEffect;
+
     public bool isFocus;
     public bool inFan;
 
@@ -484,11 +490,50 @@ public class FirstPersonController : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        //Needed for turrets
+        healthForTurret -= turretDamage;
+
+        if(healthForTurret == 50)
+        {
+            //stun player
+            StartCoroutine(StunRoutine());
+        }
+
+        if(healthForTurret <= 1)
+        {
+            //Respawn player at chechpoint
+            ResetPlayer();
+        }
+
+    }
+    IEnumerator StunRoutine()
+    {
+        if(healthForTurret == 50)
+        {
+            if(stunEffect != null)
+            {
+                stunEffect.Play();
+            }
+            walkSpeed = 2; 
+        }
+        
+        yield return new WaitForSeconds(regenTime);
+        if(healthForTurret == 50)
+        {
+            walkSpeed = 5;
+            healthForTurret = 100f;
+        }
+
+    }
+
+    void ResetPlayer()
+    {
+        //checkpoint respawn
         characterController.enabled = false;
-        if(CheckpointControllerRef != null)
+        if (CheckpointControllerRef != null)
             CheckpointControllerRef.GetComponent<CheckpointController>().LoadCheckpoint();
         characterController.enabled = true;
+        healthForTurret = 100f;
+        walkSpeed = 5;
     }
     
     public void SetGravity(float newGrav)
