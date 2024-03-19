@@ -1242,14 +1242,44 @@ MonoBehaviour:
   - {fileID: -1910017714332085592}
   - {fileID: -2316367193583391376}
   - {fileID: -6390442967549973873}
+  - {fileID: 2414700497370250867}
+  - {fileID: 2645256604430881225}
+  - {fileID: 483961277755570998}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638464614955789002
+  cacheTime: 638464644842613815
   cacheVersion: 131616
+--- !u!114 &483961277755570998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/footstepsSmall
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/footstepsSmall
+  Guid:
+    Data1: 744130031
+    Data2: 1099189814
+    Data3: -453350751
+    Data4: 93207343
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 570
 --- !u!114 &500859671136625317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1625,6 +1655,60 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &2414700497370250867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/landSmall
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/landSmall
+  Guid:
+    Data1: -136543482
+    Data2: 1082678178
+    Data3: -1273804415
+    Data4: -520109614
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 255
+--- !u!114 &2645256604430881225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/jumpSmall
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/jumpSmall
+  Guid:
+    Data1: -1592624924
+    Data2: 1321151918
+    Data3: -1016376164
+    Data4: -1311140668
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 275
 --- !u!114 &2879099310241619427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,10 +1724,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638464614955789002
+  lastModified: 638464644842613815
   FileSizes:
   - Name: Desktop
-    Value: 3370
+    Value: 3510
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -2136,10 +2220,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638464614955749106
+  lastModified: 638464644842583900
   FileSizes:
   - Name: Desktop
-    Value: 30358080
+    Value: 30364352
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:

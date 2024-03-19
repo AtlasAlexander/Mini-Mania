@@ -234,7 +234,15 @@ public class FirstPersonController : MonoBehaviour
                 {
                     if (inAir)
                     {
-                        FindObjectOfType<FmodAudioManager>().QuickPlaySound("land", characterController.gameObject);
+                        if (GetComponent<SizeChange>().GetShrunkStatus())
+                        {
+                            FindObjectOfType<FmodAudioManager>().QuickPlaySound("landSmall", characterController.gameObject);
+                        }
+                        else
+                        {
+                            FindObjectOfType<FmodAudioManager>().QuickPlaySound("land", characterController.gameObject);
+                        }
+                           
                         inAir= false;
                         _animator.SetBool("IsGrounded", true);
                         _animator.SetBool("IsJumping", false);
@@ -325,7 +333,14 @@ public class FirstPersonController : MonoBehaviour
     {
         if (shouldJump)
         {
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("jump", characterController.gameObject);
+            if (FindObjectOfType<FirstPersonController>().GetComponent<SizeChange>().GetShrunkStatus()) {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("jumpSmall", characterController.gameObject);
+            }
+            else
+            {
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("jump", characterController.gameObject);
+            }
+                
             moveDir.y = jumpForce;
             _animator.SetBool("IsJumping", true);
         }

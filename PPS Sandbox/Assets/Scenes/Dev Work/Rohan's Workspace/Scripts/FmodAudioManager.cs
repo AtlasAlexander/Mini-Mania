@@ -31,7 +31,8 @@ public class FmodAudioManager : MonoBehaviour
         "shootGrowthRay","static","laserConstant","navigateMenu","Cutscene1",
         "enterMenu","fanBoost","fanBuzz","airWhoosh","thump",
         "jump","pickUp","land","pickUpSmall","crossbowShoot",
-        "arrowHit","littleCrossbowShoot","castleAmbience","exitMenu"
+        "arrowHit","littleCrossbowShoot","castleAmbience","exitMenu",
+        "footstepsSmall","landSmall","jumpSmall"
     };
 
     private Bus masterBus;
@@ -166,7 +167,17 @@ public class FmodAudioManager : MonoBehaviour
             {
                 if (time >= footstepsRate)
                 {
-                    QuickPlaySound("footsteps", player);
+                    if (player.GetComponent<SizeChange>().GetShrunkStatus())
+                    {
+                        QuickPlaySound("footstepsSmall", player);
+                        
+                    }
+                    else
+                    {
+                        QuickPlaySound("footsteps", player);
+                        
+                    }
+                    
                     time = 0;
                 }
             }
