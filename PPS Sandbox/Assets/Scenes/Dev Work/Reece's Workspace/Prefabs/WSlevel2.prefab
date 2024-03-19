@@ -66655,12 +66655,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offMat: {fileID: 0}
   onMat: {fileID: 0}
+  ButtonOnMatt: {fileID: 0}
+  ButtonOffMat: {fileID: 0}
   RequiredWeight: 25
   DoorsToOpen:
   - {fileID: 2255292610028532283}
   LasersToTrigger: []
   TriggerLasersOn: 0
   circuitBoard: []
+  mirroredButton: {fileID: 0}
   objOnButton: {fileID: 0}
 --- !u!4 &4416021242177721378 stripped
 Transform:
@@ -67331,8 +67334,62 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6673504348347093253, guid: 2935dd27be5c712499c88fabe4a91c81,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5681472252404992607}
   m_SourcePrefab: {fileID: 100100000, guid: 2935dd27be5c712499c88fabe4a91c81, type: 3}
+--- !u!1 &1373048519789988982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6673504348347093253, guid: 2935dd27be5c712499c88fabe4a91c81,
+    type: 3}
+  m_PrefabInstance: {fileID: 5733927310985633139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5681472252404992607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373048519789988982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!4 &2733933180421804855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7666218640165277252, guid: 2935dd27be5c712499c88fabe4a91c81,
