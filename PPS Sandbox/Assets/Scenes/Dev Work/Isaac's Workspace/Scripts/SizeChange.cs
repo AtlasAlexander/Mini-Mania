@@ -22,9 +22,11 @@ public class SizeChange : MonoBehaviour
     private GameObject player;
     NewGrabbing grabbing;
 
+    private float growSoundLimiter;
 
     public void Awake()
     {
+        growSoundLimiter = 0f;
         player = GameObject.Find("Player");
         grabbing = player.GetComponent<NewGrabbing>();
 
@@ -151,13 +153,18 @@ public class SizeChange : MonoBehaviour
             GetComponent<Stats>().Weight = GetComponent<Stats>().Weight * 5f;
             StartCoroutine(LerpSize(currentSize, maxSize, changeDuration));
             shrunk = false;
-            if (gameObject.tag == "Player")
+            if (growSoundLimiter > 0.2f)
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("playerGrow", gameObject);
-            }
-            else
-            {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectGrow", gameObject);
+                if (gameObject.tag == "Player")
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("playerGrow", gameObject);
+                }
+                else
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("objectGrow", gameObject);
+                    
+                }
+                growSoundLimiter = 0f;
             }
         }
     }
@@ -195,4 +202,9 @@ public class SizeChange : MonoBehaviour
     {
         return canBePickedUp;
     }
-}
+
+    private void Update()
+    {
+        growSoundLimiter += Time.deltaTime;
+    }
+    }
