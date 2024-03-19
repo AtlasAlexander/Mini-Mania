@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -227,6 +227,8 @@ public class FirstPersonController : MonoBehaviour
                 if (!characterController.isGrounded)
                 {
                     inAir = true;
+                    _animator.SetBool("IsGrounded", false);
+                    _animator.SetBool("IsFalling", true);
                 }
                 else
                 {
@@ -234,6 +236,9 @@ public class FirstPersonController : MonoBehaviour
                     {
                         FindObjectOfType<FmodAudioManager>().QuickPlaySound("land", characterController.gameObject);
                         inAir= false;
+                        _animator.SetBool("IsGrounded", true);
+                        _animator.SetBool("IsJumping", false);
+                        _animator.SetBool("IsFalling", false);
                     }
                 }
 
@@ -322,6 +327,7 @@ public class FirstPersonController : MonoBehaviour
         {
             FindObjectOfType<FmodAudioManager>().QuickPlaySound("jump", characterController.gameObject);
             moveDir.y = jumpForce;
+            _animator.SetBool("IsJumping", true);
         }
     }
 
