@@ -74313,6 +74313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offMat: {fileID: 0}
   onMat: {fileID: 0}
+  ButtonOnMatt: {fileID: 0}
+  ButtonOffMat: {fileID: 0}
   RequiredWeight: 25
   DoorsToOpen:
   - {fileID: 2768808263336144713}
@@ -74320,6 +74322,7 @@ MonoBehaviour:
   TriggerLasersOn: 0
   circuitBoard:
   - {fileID: 7316489421443768654}
+  mirroredButton: {fileID: 0}
   objOnButton: {fileID: 0}
 --- !u!1001 &7002101968783763296
 PrefabInstance:
