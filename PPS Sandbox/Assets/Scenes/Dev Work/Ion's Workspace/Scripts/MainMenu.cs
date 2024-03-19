@@ -198,7 +198,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LevelSelect()
     {
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", FindObjectOfType<Camera>().gameObject);
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("exitMenu", FindObjectOfType<Camera>().gameObject);
         levelSelect = !levelSelect;
     }
 

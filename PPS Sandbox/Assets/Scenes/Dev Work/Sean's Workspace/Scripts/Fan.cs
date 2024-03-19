@@ -37,7 +37,7 @@ public class Fan : MonoBehaviour
                 other.GetComponent<FirstPersonController>().SetGravity(0f);
 
                 float direction = (goalPos.y - other.transform.position.y);
-                print(direction);
+                
                 if(direction > 2f)
                 {
                     FindObjectOfType<FmodAudioManager>().QuickPlaySound("fanBoost", player);

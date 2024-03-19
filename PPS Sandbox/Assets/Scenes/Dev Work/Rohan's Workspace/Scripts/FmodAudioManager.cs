@@ -31,7 +31,7 @@ public class FmodAudioManager : MonoBehaviour
         "shootGrowthRay","static","laserConstant","navigateMenu","Cutscene1",
         "enterMenu","fanBoost","fanBuzz","airWhoosh","thump",
         "jump","pickUp","land","pickUpSmall","crossbowShoot",
-        "arrowHit","littleCrossbowShoot","castleAmbience",
+        "arrowHit","littleCrossbowShoot","castleAmbience","exitMenu"
     };
 
     private Bus masterBus;
