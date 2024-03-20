@@ -75,7 +75,7 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 if (playerControls.Actions.NavigateMenu.WasPressedThisFrame())
                 {
-                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", FindObjectOfType<Camera>().gameObject);
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", GameObject.Find("MenuListener").gameObject);
                 }
             }
             //Workaround for the audiomanager being set to disabled in main menu
@@ -95,7 +95,7 @@ public class NewBehaviourScript : MonoBehaviour
         float moveSpeed = Time.deltaTime * speed;
         if (playerControls.Actions.Play.IsPressed() && !startPressed)
         {
-            FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", GameObject.Find("MenuListener").gameObject);
             startPressed = true;
             foreach (GameObject button in MainMenuOptions)
             {
@@ -130,14 +130,16 @@ public class NewBehaviourScript : MonoBehaviour
 
             if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", FindObjectOfType<Camera>().gameObject);
+                
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.Find("MenuListener").gameObject);
                 i += 1;
                 levelText[i - 1].SetActive(false);
             }
 
             if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed < 0)
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", FindObjectOfType<Camera>().gameObject);
+
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.Find("MenuListener").gameObject);
                 i -= 1;
                 levelText[i + 1].SetActive(false);
             }
@@ -145,7 +147,8 @@ public class NewBehaviourScript : MonoBehaviour
 
             if (playerControls.Actions.Pause.IsPressed() || playerControls.Actions.Return.IsPressed())
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
+                
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", GameObject.Find("MenuListener").gameObject);
                 levelSelect = !levelSelect;
                 levelText[i].SetActive(false);
                 levelSelectLight.enabled = false;
@@ -198,8 +201,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LevelSelect()
     {
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("exitMenu", FindObjectOfType<Camera>().gameObject);
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("exitMenu", GameObject.Find("MenuListener").gameObject);
         levelSelect = !levelSelect;
+        
     }
 
     public void Exit()
@@ -210,6 +214,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void FowardLevel()
     {
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.Find("MenuListener").gameObject);
         i += 1;
         levelText[i - 1].SetActive(false);
         if (i >= camLocations.Length)
@@ -219,6 +224,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
     public void BackLevel()
     {
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.Find("MenuListener").gameObject);
         i -= 1;
         levelText[i + 1].SetActive(false);
         if (i < 0)
@@ -230,6 +236,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void ExitLevelSelect()
     {
+        
         levelSelect = false;
         levelText[i].SetActive(false);
         levelSelectLight.enabled = false;
@@ -237,6 +244,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             arrows.SetActive(false);
         }
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", GameObject.Find("MenuListener").gameObject);
     }
 
     public void PlaySelected()

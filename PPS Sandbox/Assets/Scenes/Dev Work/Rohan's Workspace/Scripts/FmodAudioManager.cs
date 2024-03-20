@@ -53,7 +53,7 @@ public class FmodAudioManager : MonoBehaviour
 
     EventInstance menuMusic;
 
-    public float hitWallTimer;
+    private float hitWallTimer;
 
     private void Awake()
     {
@@ -64,6 +64,7 @@ public class FmodAudioManager : MonoBehaviour
         musicBus = RuntimeManager.GetBus("bus:/Music");
 
         hitWallTimer = 0f;
+        
 }
 
     private void Start()
@@ -83,7 +84,7 @@ public class FmodAudioManager : MonoBehaviour
             if (!playbackState.ToString().Contains("PLAYING")){
                 
                 menuMusic.start();
-                FMODUnity.RuntimeManager.AttachInstanceToGameObject(menuMusic, GameObject.FindWithTag("MainCamera").transform);
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(menuMusic, GameObject.Find("MenuListener").transform);
             }
            
             
@@ -146,10 +147,10 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Update()
     {
-        hitWallTimer += Time.deltaTime;
+        
         if (Input.GetKeyDown(KeyCode.J))
         {
-            killMusic();                 //Temporary method of playing/pausing until we find another way
+            QuickPlaySound("exitMenu", player);              
         }
 
 
@@ -181,6 +182,10 @@ public class FmodAudioManager : MonoBehaviour
                     time = 0;
                 }
             }
+        }
+        else
+        {
+            hitWallTimer += Time.deltaTime;
         }
     }
 
