@@ -185,7 +185,7 @@ public class PauseMenu : MonoBehaviour
         foreach (FmodMusicManager musicManager in radios)
         {
             musicManager.songPlaying.setVolume(0);
-            print("STopped radio " + musicManager.gameObject.name);
+           
         }
 
         laser[] lasers = FindObjectsOfType<laser>();
@@ -193,7 +193,7 @@ public class PauseMenu : MonoBehaviour
         foreach (laser laserScript in lasers)
         {
             laserScript.laserSound.setVolume(0);
-            print("STopped radio " + laserScript.gameObject.name);
+            
         }
 
         Fan[] fans = FindObjectsOfType<Fan>();
