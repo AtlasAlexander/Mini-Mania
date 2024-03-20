@@ -312,10 +312,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638464606325526067
+  lastModified: 638465315713001100
   FileSizes:
   - Name: Desktop
-    Value: 2352672
+    Value: 2352704
   Exists: 1
 --- !u!114 &-6508093239213644183
 MonoBehaviour:
@@ -986,6 +986,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4360
+--- !u!114 &-1328184081258102796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameSoundEffects/weaponSwitch
+  m_EditorClassIdentifier: 
+  Path: event:/GameSoundEffects/weaponSwitch
+  Guid:
+    Data1: 215964173
+    Data2: 1193742074
+    Data3: -1351617395
+    Data4: 1479435323
+  Banks:
+  - {fileID: 7539504792668824982}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-861967864090633574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,13 +1272,14 @@ MonoBehaviour:
   - {fileID: 2414700497370250867}
   - {fileID: 2645256604430881225}
   - {fileID: 483961277755570998}
+  - {fileID: -1328184081258102796}
   EditorParameters:
   - {fileID: 1734902212379250650}
   MasterBanks:
   - {fileID: 7539504792668824982}
   StringsBanks:
   - {fileID: 2879099310241619427}
-  cacheTime: 638464711389731602
+  cacheTime: 638465333221847407
   cacheVersion: 131616
 --- !u!114 &483961277755570998
 MonoBehaviour:
@@ -1724,10 +1752,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638464711389731602
+  lastModified: 638465333221847407
   FileSizes:
   - Name: Desktop
-    Value: 3510
+    Value: 3564
   Exists: 1
 --- !u!114 &2950715503600446549
 MonoBehaviour:
@@ -2220,10 +2248,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638464711389721610
+  lastModified: 638465333221787382
   FileSizes:
   - Name: Desktop
-    Value: 30364352
+    Value: 30413632
   Exists: 1
 --- !u!114 &7726974403628663235
 MonoBehaviour:
