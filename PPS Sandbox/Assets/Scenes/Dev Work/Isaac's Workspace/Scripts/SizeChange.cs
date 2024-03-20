@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 
 public class SizeChange : MonoBehaviour
 {
-    [SerializeField] Vector3 smallestSize = new Vector3(0.2f, 0.2f, 0.2f);
-    [SerializeField] Vector3 maxSize = new Vector3(1.5f, 1.5f, 1.5f);
+    [SerializeField] Vector3 smallestSize = new Vector3(0.4f, 0.4f, 0.4f);
+    [SerializeField] Vector3 maxSize = new Vector3(1.2f, 1.2f, 1.2f);
     [SerializeField] float changeDuration = 1f;
 
     [SerializeField] bool forceOnSizeChange = false;

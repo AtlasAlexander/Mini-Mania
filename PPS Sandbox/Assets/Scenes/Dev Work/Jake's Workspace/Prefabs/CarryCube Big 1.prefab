@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.16, y: 3.08, z: 0.73}
-  m_LocalScale: {x: 1.5000002, y: 1.5, z: 1.5000002}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4288717741485208106}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallestSize: {x: 0.4, y: 0.4, z: 0.4}
-  maxSize: {x: 1.5, y: 1.5, z: 1.5}
+  maxSize: {x: 1.2, y: 1.2, z: 1.2}
   changeDuration: 1
   forceOnSizeChange: 0
   forceMultiplier: 1
@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dispenser: {fileID: 0}
+  AssignedRoom: {fileID: 0}
 --- !u!1 &7615446089252077295
 GameObject:
   m_ObjectHideFlags: 0
