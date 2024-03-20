@@ -32,7 +32,7 @@ public class FmodAudioManager : MonoBehaviour
         "enterMenu","fanBoost","fanBuzz","airWhoosh","thump",
         "jump","pickUp","land","pickUpSmall","crossbowShoot",
         "arrowHit","littleCrossbowShoot","castleAmbience","exitMenu",
-        "footstepsSmall","landSmall","jumpSmall"
+        "footstepsSmall","landSmall","jumpSmall","weaponSwitch"
     };
 
     private Bus masterBus;

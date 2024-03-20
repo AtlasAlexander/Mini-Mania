@@ -45,6 +45,7 @@ public class WeaponSwitcher : MonoBehaviour
             if (previousWeapon != currentWeapon)
             {
                 SetWeaponActive();
+                FindObjectOfType<FmodAudioManager>().QuickPlaySound("weaponSwitch", gameObject);
             }
         }
     }
@@ -120,6 +121,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void SetWeaponActive()
     {
+       
         int weaponIndex = 0;
 
         foreach(Transform weapon in transform)
