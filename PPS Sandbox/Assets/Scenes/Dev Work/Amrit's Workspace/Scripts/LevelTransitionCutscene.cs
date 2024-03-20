@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class LevelTransitionCutscene : MonoBehaviour
 {
@@ -28,6 +31,15 @@ public class LevelTransitionCutscene : MonoBehaviour
     private LevelTransitionTrigger levelTransitionTrigger;
     private GrandpaAnimationHashes grandpaAnimationHashes;
 
+    public PlayerControls playerControls;
+    private InputAction jump;
+
+    //Skip
+    private float timeSkipPressed = 0;
+    private float timeSkipNeeded = 2f;
+    [SerializeField] private GameObject skipText;
+    [SerializeField] private GameObject skipImage;
+
     private void Awake()
     {
         audioPlaying = false;
@@ -45,6 +57,8 @@ public class LevelTransitionCutscene : MonoBehaviour
 
         fadeInOut.timeToFade = timeToFade;
         StartCoroutine(fadeInOut.FadeIn(timeToWaitForFadeIn));
+
+        playerControls = new PlayerControls();
     }
 
     private void Start()
@@ -53,8 +67,21 @@ public class LevelTransitionCutscene : MonoBehaviour
         grandpaAnimationHashes.animator.SetBool(grandpaAnimationHashes.isSittingBool, true);
     }
 
+    private void OnEnable()
+    {
+        playerControls.Enable();
+        jump = playerControls.Movement.Jump;
+
+        jump.Enable();
+    }
+
     private void Update()
     {
+        if(player.GetComponent<FirstPersonController>().enabled == false)
+        {
+            SkipCutScene();
+        }
+
         if (levelTransitionTrigger.levelTransitioning == true)
         {
             StartCoroutine(fadeInOut.FadeOut(0));
@@ -154,5 +181,31 @@ public class LevelTransitionCutscene : MonoBehaviour
         {
             pickup = false;
         }
+    }
+
+    private void SkipCutScene()
+    {
+        if(jump.IsPressed())
+        {
+            Debug.Log("HI");
+            skipText.SetActive(true);
+            skipImage.SetActive(true);
+
+            timeSkipPressed += Time.deltaTime;
+            skipImage.GetComponent<Image>().fillAmount = timeSkipPressed / timeSkipNeeded;
+
+            if (timeSkipPressed >= timeSkipNeeded)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
+        else
+        {
+            timeSkipPressed = 0;
+            skipText.SetActive(false);
+            skipImage.SetActive(false);
+            skipImage.GetComponent<Image>().fillAmount = timeSkipPressed / timeSkipNeeded;
+        }
+        
     }
 }
