@@ -7,7 +7,15 @@ public class DestroyCube : MonoBehaviour
     public GameObject Dispenser;
     public GameObject AssignedRoom;
 
-    bool OoB;
+    public GameObject player;
+
+    bool OoB, startCubeStasis;
+    float timer;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Goop")
@@ -24,6 +32,7 @@ public class DestroyCube : MonoBehaviour
             if (other == AssignedRoom.GetComponent<Collider>())
             {
                 Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
+                GetComponent<MeshRenderer>().enabled = false;
                 StartCoroutine(RespawnDelay());
                 OoB = true;
             }
@@ -32,8 +41,9 @@ public class DestroyCube : MonoBehaviour
 
     IEnumerator RespawnDelay()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.45f);
         OoB = false;
+        startCubeStasis = true;
         transform.rotation = Dispenser.transform.rotation;
         transform.position = Dispenser.transform.position;
         if (Dispenser.GetComponent<CubeVomit>().originalCube.GetComponent<SizeChange>().startSmall)
@@ -53,10 +63,32 @@ public class DestroyCube : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             transform.parent = null;
+            player.GetComponent<NewGrabbing>().DropObject();
         }
         else
         {
+            if (startCubeStasis)
+            {
+                KeepingTheCubeThere();
+            }
             gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
+    }
+
+    public void KeepingTheCubeThere()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        timer += Time.deltaTime;
+        if (timer <= 0.2f)
+        {
+            transform.rotation = Dispenser.transform.rotation;
+            transform.position = Dispenser.transform.position;
+        }
+        else
+        {
+            timer = 0;
+            startCubeStasis = false;
+        }
+        
     }
 }

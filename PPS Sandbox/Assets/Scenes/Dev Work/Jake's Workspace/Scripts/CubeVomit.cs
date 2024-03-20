@@ -7,6 +7,10 @@ public class CubeVomit : MonoBehaviour
     public GameObject activeCube, originalCube, assignedRoom;
     public ParticleSystem beam, electricity;
 
+    private void Awake()
+    {
+        StartCoroutine(CubeVomParticalEvent());
+    }
     private void FixedUpdate()
     {
         if (activeCube == null)
@@ -15,14 +19,6 @@ public class CubeVomit : MonoBehaviour
         }
         else
         {
-            if (originalCube.GetComponent<SizeChange>().startSmall)
-            {
-                activeCube.transform.localScale = new Vector3(.4f, .4f, .4f);
-            }
-            else
-            {
-                activeCube.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            }
             activeCube.GetComponent<DestroyCube>().Dispenser = gameObject;
             activeCube.GetComponent<DestroyCube>().AssignedRoom = assignedRoom;
         }
@@ -34,6 +30,7 @@ public class CubeVomit : MonoBehaviour
     }
     public IEnumerator CubeVomParticalEvent()
     {
+        yield return new WaitForSeconds(0.2f);
         beam.Play();
         yield return new WaitForEndOfFrame();
         beam.Stop();

@@ -143,7 +143,7 @@ public class NewGrabbing : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         heldObjRb.useGravity = true;
         heldObjRb.drag = 1;
