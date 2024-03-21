@@ -164,6 +164,7 @@ public class Weapon : MonoBehaviour
         canShoot = false;
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
+            
             Vector3 rayCastOrigin = FPCamera.transform.position;
             Vector3 direction = FPCamera.transform.forward;
 
@@ -229,18 +230,18 @@ public class Weapon : MonoBehaviour
 
             SizeChange target = hit.transform.GetComponent<SizeChange>();
             
-            if (target == null)
+            if (target == null && hit.collider.gameObject.tag != "Mirror")
             {
+                RumbleManager.instance.RumblePulse(0.5f, 0.5f, 0.2f);
                 CreateHitImpact(hit);
 
-                if (hit.collider.gameObject.tag == "Mirror")
-                {
-                    //BouncingBullets = true;
-                    //trail.transform.position = hit.point;
-                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
-                }
-
                 return;
+            }
+            else if (hit.collider.gameObject.tag == "Mirror")
+            {
+                //BouncingBullets = true;
+                //trail.transform.position = hit.point;
+                ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
             }
             else
             {
@@ -279,18 +280,18 @@ public class Weapon : MonoBehaviour
 
             SizeChange target = hit.transform.GetComponent<SizeChange>();
 
-            if (target == null)
+            if (target == null && hit.collider.gameObject.tag != "Mirror")
             {
+                RumbleManager.instance.RumblePulse(0.5f, 0.5f, 0.2f);
                 CreateHitImpact(hit);
 
-                if (hit.collider.gameObject.tag == "Mirror")
-                {
-                    Debug.Log("Mirror");
-                    //BouncingBullets = true;
-                    ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
-                }
-
                 return;
+            }
+            else if (hit.collider.gameObject.tag == "Mirror")
+            {
+                Debug.Log("Mirror");
+                //BouncingBullets = true;
+                ReflectRay(hit.point, Vector3.Reflect(direction, hit.normal), true);
             }
             else
             {
