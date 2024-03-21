@@ -32,7 +32,8 @@ public class FmodAudioManager : MonoBehaviour
         "enterMenu","fanBoost","fanBuzz","airWhoosh","thump",
         "jump","pickUp","land","pickUpSmall","crossbowShoot",
         "arrowHit","littleCrossbowShoot","castleAmbience","exitMenu",
-        "footstepsSmall","landSmall","jumpSmall","weaponSwitch"
+        "footstepsSmall","landSmall","jumpSmall","weaponSwitch",
+        "Silent80sMenu"
     };
 
     private Bus masterBus;
@@ -57,7 +58,7 @@ public class FmodAudioManager : MonoBehaviour
 
     private void Awake()
     {
-        menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("gameTheme-StuckInTheWormHole")]);
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("Silent80sMenu")]);
         
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SoundEffects");
