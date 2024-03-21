@@ -9,10 +9,12 @@ public class NewBehaviourScript : MonoBehaviour
 {
     [Header("REFERENCES")]
     public GameObject[] MainMenuOptions;
+    public GameObject[] optionMenuButtons;
     public GameObject[] camLocations;
     public GameObject[] levelText;
     public GameObject[] buttons;
     public Transform mainCamPos;
+    public Transform optionsCamPos;
     Light levelSelectLight;
     PlayerControls playerControls;
     public GameObject startText;
@@ -21,10 +23,13 @@ public class NewBehaviourScript : MonoBehaviour
     [Header("VARIABLES")]
     public bool startPressed = false;
     public float dis = 0;
+    public bool mainMenu = false;
+    public bool optionsMenu = false;
     public bool levelSelect = false;
     public float speed = 1;
     public int i = 0;
     public bool isMoving;
+    float moveSpeed;
 
     private void Awake()
     {
@@ -34,6 +39,7 @@ public class NewBehaviourScript : MonoBehaviour
         levelSelect = false;
         dis = 0;
         mainCamPos = GameObject.Find("MenuCamPos").transform;
+        optionsCamPos = GameObject.Find("OptionsCamPos").transform;
         Time.timeScale = 1f;
     }
 
@@ -91,75 +97,37 @@ public class NewBehaviourScript : MonoBehaviour
         {
             isMoving = false;
         }
-
-        float moveSpeed = Time.deltaTime * speed;
-        if (playerControls.Actions.Play.IsPressed() && !startPressed)
+        moveSpeed = Time.deltaTime * speed;
+        if (playerControls.Actions.Play.IsPressed() && !startPressed && !optionsMenu)
         {
             FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", GameObject.Find("MenuListener").gameObject);
             startPressed = true;
-            foreach (GameObject button in MainMenuOptions)
-            {
-                button.SetActive(true);
-                startText.SetActive(false);
-            }
+            startText.SetActive(false);
+            mainMenu = true;
         }
 
         dis = Vector3.Distance(cam.transform.position, mainCamPos.position);
-        if (dis > 0 && startPressed && !levelSelect)
+        if (dis > 0 && startPressed && !levelSelect && !optionsMenu)
         {
             cam.transform.position = Vector3.Lerp(cam.transform.position, mainCamPos.position, moveSpeed);
             cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, mainCamPos.rotation, moveSpeed * 10);
         }
 
-        float dirPressed = playerControls.Actions.NavigateMenu.ReadValue<Vector2>().x;
+        if (mainMenu)
+        {
+            HandleMainMenu();
+        }
+
         if (levelSelect)
         {
-            EventSystem.current.SetSelectedGameObject(buttons[2]);
-            
-            if(i >= PlayerPrefs.GetInt("Level"))
-                levelSelectLight.enabled = false;
-            else
-                levelSelectLight.enabled = true;
-            cam.transform.position = Vector3.Lerp(cam.transform.position, camLocations[i].transform.position, moveSpeed);
-            cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, camLocations[i].transform.rotation, moveSpeed * 10);
-            levelText[i].SetActive(true);
-            foreach (GameObject arrows in buttons)
-            {
-                arrows.SetActive(true);
-            }
-
-            if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
-            {
-                
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.Find("MenuListener").gameObject);
-                i += 1;
-                levelText[i - 1].SetActive(false);
-            }
-
-            if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed < 0)
-            {
-
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", GameObject.Find("MenuListener").gameObject);
-                i -= 1;
-                levelText[i + 1].SetActive(false);
-            }
-
-
-            if (playerControls.Actions.Pause.IsPressed() || playerControls.Actions.Return.IsPressed())
-            {
-                
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", GameObject.Find("MenuListener").gameObject);
-                levelSelect = !levelSelect;
-                levelText[i].SetActive(false);
-                levelSelectLight.enabled = false;
-                foreach (GameObject arrows in buttons)
-                {
-                    arrows.SetActive(false);
-                }
-            }
-
-
+            HandleLevelSelect();
         }
+
+        if (optionsMenu)
+        {
+            HandleOptionMenu();
+        }
+
 
         if (i >= camLocations.Length)
         {
@@ -192,6 +160,29 @@ public class NewBehaviourScript : MonoBehaviour
         
     }
 
+    public void ToggleMainMenu()
+    {
+        mainMenu = true;
+        levelSelect = false;
+        optionsMenu = false;
+
+        foreach (GameObject button in optionMenuButtons)
+        {
+            button.SetActive(false);
+        }
+    }
+
+    public void ToggleOptionMenu()
+    {
+        optionsMenu = true;
+        mainMenu = false;
+
+        foreach (GameObject button in MainMenuOptions)
+        {
+            button.SetActive(false);
+        }
+    }
+
     public void LoadMenu()
     {
         if(FindObjectOfType<FmodAudioManager>() != null)
@@ -201,9 +192,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void LevelSelect()
     {
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("exitMenu", GameObject.Find("MenuListener").gameObject);
-        levelSelect = !levelSelect;
-        
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("pause", FindObjectOfType<Camera>().gameObject);
+        levelSelect = true;
+        mainMenu = false;
     }
 
     public void Exit()
@@ -238,6 +229,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         
         levelSelect = false;
+        mainMenu = true;
         levelText[i].SetActive(false);
         levelSelectLight.enabled = false;
         foreach (GameObject arrows in buttons)
@@ -252,6 +244,77 @@ public class NewBehaviourScript : MonoBehaviour
         if (levelSelectLight.enabled == true)
         {
             SceneManager.LoadScene(i + 2);
+        }
+    }
+
+    private void HandleMainMenu()
+    {
+        optionsMenu = false;
+        levelSelect = false;
+        foreach (GameObject button in MainMenuOptions)
+        {
+            button.SetActive(true);
+        }
+    }
+
+    private void HandleLevelSelect()
+    {
+        mainMenu = false;
+        optionsMenu = false;
+        float dirPressed = playerControls.Actions.NavigateMenu.ReadValue<Vector2>().x;
+        EventSystem.current.SetSelectedGameObject(buttons[2]);
+
+        if (i >= PlayerPrefs.GetInt("Level"))
+            levelSelectLight.enabled = false;
+        else
+            levelSelectLight.enabled = true;
+        cam.transform.position = Vector3.Lerp(cam.transform.position, camLocations[i].transform.position, moveSpeed);
+        cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, camLocations[i].transform.rotation, moveSpeed * 10);
+        levelText[i].SetActive(true);
+        foreach (GameObject arrows in buttons)
+        {
+            arrows.SetActive(true);
+        }
+
+        if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
+        {
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", FindObjectOfType<Camera>().gameObject);
+            i += 1;
+            levelText[i - 1].SetActive(false);
+        }
+
+        if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed < 0)
+        {
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("menuSelection", FindObjectOfType<Camera>().gameObject);
+            i -= 1;
+            levelText[i + 1].SetActive(false);
+        }
+
+
+        if (playerControls.Actions.Pause.IsPressed() || playerControls.Actions.Return.IsPressed())
+        {
+            FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
+            levelSelect = !levelSelect;
+            levelText[i].SetActive(false);
+            levelSelectLight.enabled = false;
+            foreach (GameObject arrows in buttons)
+            {
+                arrows.SetActive(false);
+            }
+        }
+    }
+
+
+    private void HandleOptionMenu()
+    {
+        mainMenu = false;
+        levelSelect = false;
+        cam.transform.position = Vector3.Lerp(cam.transform.position, optionsCamPos.transform.position, moveSpeed);
+        cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, optionsCamPos.transform.rotation, moveSpeed * 10);
+
+        foreach (GameObject button in optionMenuButtons)
+        {
+            button.SetActive(true);
         }
     }
 
