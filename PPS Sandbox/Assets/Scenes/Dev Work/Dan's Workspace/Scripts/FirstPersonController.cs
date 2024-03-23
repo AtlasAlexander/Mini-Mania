@@ -83,7 +83,7 @@ public class FirstPersonController : MonoBehaviour
     private Coroutine zoomRoutine;
 
     [Header("Animations")]
-    private Animator _animator;
+    public Animator _animator;
 
     [Header("Turret Parameters")]
     [SerializeField] float healthForTurret = 100f;

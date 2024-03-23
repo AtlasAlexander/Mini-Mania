@@ -8,11 +8,14 @@ public class mirroredObj : MonoBehaviour
     public Transform mirror;
     public bool isPlayer;
     public GameObject player;
-    [SerializeField] private Animator _animator;
+    public Animator _animator;
+
+    public Animator pAnim;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        pAnim = player.GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -32,7 +35,7 @@ public class mirroredObj : MonoBehaviour
         // 4 = strafe right
         // 5 = strafe left
 
-        if (isPlayer)
+        /*if (isPlayer)
         {
             if (player.GetComponent<FirstPersonController>().isWalking)
             {
@@ -57,6 +60,14 @@ public class mirroredObj : MonoBehaviour
             {
                 _animator.SetFloat("Decider", 1); // 1 = idle
             }
+        }*/
+
+        if(isPlayer)
+        {
+            _animator.SetFloat("Decider", pAnim.GetFloat("Decider"));
+            _animator.SetBool("IsJumping", pAnim.GetBool("IsJumping"));
+            _animator.SetBool("IsGrounded", pAnim.GetBool("IsGrounded"));
+            _animator.SetBool("IsFalling", pAnim.GetBool("IsFalling"));
         }
     }
 }
