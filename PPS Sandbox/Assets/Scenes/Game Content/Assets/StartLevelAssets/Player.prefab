@@ -11949,6 +11949,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8506921838401353247}
+    - targetCorrespondingSourceObject: {fileID: 7913828251214828328, guid: 65b0ddc7cefe7b0438005740e197a245,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3766802824763402119}
     - targetCorrespondingSourceObject: {fileID: 5140519487029014269, guid: 65b0ddc7cefe7b0438005740e197a245,
         type: 3}
       insertIndex: -1
@@ -12056,6 +12060,24 @@ MonoBehaviour:
   pickUpRange: 4
   pickUpForce: 175
   cam: {fileID: 0}
+--- !u!114 &3766802824763402119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481304293594359937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c28682e58a533489541a3d975f9190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rooms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6866675103290410664 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7740266739797032193, guid: 65b0ddc7cefe7b0438005740e197a245,
