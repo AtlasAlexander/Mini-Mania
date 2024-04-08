@@ -8,11 +8,11 @@ using UnityEngine.EventSystems;
 public class NewBehaviourScript : MonoBehaviour
 {
     [Header("REFERENCES")]
-    public GameObject[] MainMenuOptions;
-    public GameObject[] optionMenuButtons;
+    public GameObject MainMenuCanvas;
+    public GameObject optionMenuCanvas;
+    public GameObject levelSelectCanvas;
     public GameObject[] camLocations;
     public GameObject[] levelText;
-    public GameObject[] buttons;
     public Transform mainCamPos;
     public Transform optionsCamPos;
     Light levelSelectLight;
@@ -30,6 +30,7 @@ public class NewBehaviourScript : MonoBehaviour
     public int i = 0;
     public bool isMoving;
     float moveSpeed;
+    public bool transition = false;
 
     private void Awake()
     {
@@ -57,15 +58,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         cam = Camera.main;
-        foreach (GameObject button in MainMenuOptions)
-        {
-            button.SetActive(false);
-        }
-
-        foreach (GameObject arrows in buttons)
-        {
-            arrows.SetActive(false);
-        }
+        optionMenuCanvas.SetActive(false);
+        MainMenuCanvas.SetActive(false);
+        startText.SetActive(true);
+        levelSelectCanvas.SetActive(false);
         levelSelectLight = cam.GetComponent<Light>();
         levelSelectLight.enabled = false;
     }
@@ -104,6 +100,7 @@ public class NewBehaviourScript : MonoBehaviour
             startPressed = true;
             startText.SetActive(false);
             mainMenu = true;
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("New Game"));
         }
 
         dis = Vector3.Distance(cam.transform.position, mainCamPos.position);
@@ -142,8 +139,6 @@ public class NewBehaviourScript : MonoBehaviour
     }
     public void Play()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //Load Current Saved Level
         FindObjectOfType<FmodAudioManager>().killMusic();
         SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);       
     }
@@ -153,34 +148,23 @@ public class NewBehaviourScript : MonoBehaviour
         PlayerPrefs.SetInt("Level", 1);
     }
 
-    public void LoadLevelSelect()
-    {
-        FindObjectOfType<FmodAudioManager>().killMusic();
-        SceneManager.LoadScene(1);
-        
-    }
-
     public void ToggleMainMenu()
     {
         mainMenu = true;
         levelSelect = false;
         optionsMenu = false;
 
-        foreach (GameObject button in optionMenuButtons)
-        {
-            button.SetActive(false);
-        }
+        optionMenuCanvas.SetActive(false);
+        MainMenuCanvas.SetActive(true);
     }
 
     public void ToggleOptionMenu()
     {
         optionsMenu = true;
         mainMenu = false;
-
-        foreach (GameObject button in MainMenuOptions)
-        {
-            button.SetActive(false);
-        }
+        MainMenuCanvas.SetActive(false);
+        optionMenuCanvas.SetActive(true);
+        
     }
 
     public void LoadMenu()
@@ -232,10 +216,7 @@ public class NewBehaviourScript : MonoBehaviour
         mainMenu = true;
         levelText[i].SetActive(false);
         levelSelectLight.enabled = false;
-        foreach (GameObject arrows in buttons)
-        {
-            arrows.SetActive(false);
-        }
+        levelSelectCanvas.SetActive(false);
         FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", GameObject.Find("MenuListener").gameObject);
     }
 
@@ -251,10 +232,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         optionsMenu = false;
         levelSelect = false;
-        foreach (GameObject button in MainMenuOptions)
-        {
-            button.SetActive(true);
-        }
+        MainMenuCanvas.SetActive(true);
     }
 
     private void HandleLevelSelect()
@@ -262,7 +240,6 @@ public class NewBehaviourScript : MonoBehaviour
         mainMenu = false;
         optionsMenu = false;
         float dirPressed = playerControls.Actions.NavigateMenu.ReadValue<Vector2>().x;
-        EventSystem.current.SetSelectedGameObject(buttons[2]);
 
         if (i >= PlayerPrefs.GetInt("Level"))
             levelSelectLight.enabled = false;
@@ -271,10 +248,7 @@ public class NewBehaviourScript : MonoBehaviour
         cam.transform.position = Vector3.Lerp(cam.transform.position, camLocations[i].transform.position, moveSpeed);
         cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, camLocations[i].transform.rotation, moveSpeed * 10);
         levelText[i].SetActive(true);
-        foreach (GameObject arrows in buttons)
-        {
-            arrows.SetActive(true);
-        }
+        levelSelectCanvas.SetActive(true);
 
         if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
         {
@@ -290,32 +264,36 @@ public class NewBehaviourScript : MonoBehaviour
             levelText[i + 1].SetActive(false);
         }
 
-
         if (playerControls.Actions.Pause.IsPressed() || playerControls.Actions.Return.IsPressed())
         {
             FindObjectOfType<FmodAudioManager>().QuickPlaySound("enterMenu", FindObjectOfType<Camera>().gameObject);
             levelSelect = !levelSelect;
             levelText[i].SetActive(false);
             levelSelectLight.enabled = false;
-            foreach (GameObject arrows in buttons)
-            {
-                arrows.SetActive(false);
-            }
+            levelSelectCanvas.SetActive(false);
         }
     }
 
 
     private void HandleOptionMenu()
     {
+
         mainMenu = false;
         levelSelect = false;
         cam.transform.position = Vector3.Lerp(cam.transform.position, optionsCamPos.transform.position, moveSpeed);
         cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, optionsCamPos.transform.rotation, moveSpeed * 10);
-
-        foreach (GameObject button in optionMenuButtons)
-        {
-            button.SetActive(true);
-        }
+        optionMenuCanvas.SetActive(true);
     }
 
+    public void SetSelected(string name)
+    {
+        StartCoroutine(SelectDelay(name));
+
+    }
+
+    IEnumerator SelectDelay(string name)
+    {
+        yield return new WaitForSeconds(0.2f);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find(name));
+    }
 }
