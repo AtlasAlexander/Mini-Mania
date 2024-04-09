@@ -36,6 +36,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private bool canUseHeadbob = true;
     [SerializeField] private bool willSlideOnSlopes = true;
     [SerializeField] private bool canZoom = true;
+    [SerializeField] public string inputDevice;
+    [SerializeField] public GameObject inputManager;
+    [SerializeField] public PlayerInput playerInp;
 
     [Header("Movement Parameters")]
     [SerializeField] private float walkSpeed = 3.0f;
@@ -143,6 +146,8 @@ public class FirstPersonController : MonoBehaviour
         Cursor.visible = false;
         CheckpointControllerRef = GameObject.Find("CheckpointController");
         initialSpeed = walkSpeed;
+        inputManager = GameObject.Find("InputManager");
+        playerInp = inputManager.GetComponent<PlayerInput>();
 
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
@@ -171,6 +176,7 @@ public class FirstPersonController : MonoBehaviour
         crouch.Enable();
         look.Enable();
         zoom.Enable();
+        
     }
 
     private void OnDisable()
@@ -179,10 +185,20 @@ public class FirstPersonController : MonoBehaviour
     }
     void Update()
     {
+        if (playerInp.currentControlScheme == "Keyboard & Mouse")
+        {
+            inputDevice = "Keyboard";
+        }
+
+        else
+        {
+            inputDevice = "Gamepad";
+        }
+
         if (!pauseMenu.GamePaused)
         {
             if (canMove)
-            {
+            {   
                 HandleMovementInput();
                 HandleLook();
                
@@ -432,9 +448,9 @@ public class FirstPersonController : MonoBehaviour
     {
         rotationInput = look.ReadValue<Vector2>();
         
-        if (isFocus)
+        if (inputDevice != null)
         {
-            if (look.activeControl.device.name == "Mouse")
+            if (inputDevice == "Keyboard")
             {
                 lookSpeedY = mouseLookSpeedY;
                 //aimAssist.assistLookSpeedX = mouseLookSpeedX * 0.5f;
@@ -442,7 +458,7 @@ public class FirstPersonController : MonoBehaviour
                 //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
             }
 
-            else if (Gamepad.all.Count > 0)
+            else if (inputDevice == "Gamepad")
             {
                 lookSpeedY = controllerLookSpeedY;
                 //aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
@@ -453,7 +469,6 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 return;
-
             }
         }
         

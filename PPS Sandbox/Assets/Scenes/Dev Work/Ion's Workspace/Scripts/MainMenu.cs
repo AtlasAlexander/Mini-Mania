@@ -100,7 +100,7 @@ public class NewBehaviourScript : MonoBehaviour
             startPressed = true;
             startText.SetActive(false);
             mainMenu = true;
-            EventSystem.current.SetSelectedGameObject(GameObject.Find("New Game"));
+            SetSelected("New Game");
         }
 
         dis = Vector3.Distance(cam.transform.position, mainCamPos.position);
@@ -249,6 +249,7 @@ public class NewBehaviourScript : MonoBehaviour
         cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, camLocations[i].transform.rotation, moveSpeed * 10);
         levelText[i].SetActive(true);
         levelSelectCanvas.SetActive(true);
+        MainMenuCanvas.SetActive(false);
 
         if (playerControls.Actions.NavigateMenu.WasPressedThisFrame() && dirPressed > 0)
         {
@@ -271,6 +272,8 @@ public class NewBehaviourScript : MonoBehaviour
             levelText[i].SetActive(false);
             levelSelectLight.enabled = false;
             levelSelectCanvas.SetActive(false);
+            MainMenuCanvas.SetActive(true);
+            SetSelected("New Game");
         }
     }
 
@@ -293,7 +296,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     IEnumerator SelectDelay(string name)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         EventSystem.current.SetSelectedGameObject(GameObject.Find(name));
     }
 }

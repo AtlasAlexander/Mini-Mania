@@ -8,7 +8,7 @@ public class ButtonSelectionSound : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         // Play sound when the button is selected
-        FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", FindObjectOfType<FirstPersonController>().gameObject);
-        print("navigateMenu");
+        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", FindObjectOfType<FirstPersonController>().gameObject);
+        FindObjectOfType<FmodAudioManager>().QuickPlaySound("navigateMenu", GameObject.FindGameObjectWithTag("MainCamera"));
     }
 }
