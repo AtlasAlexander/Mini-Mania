@@ -17,7 +17,10 @@ public class Fan : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
-        playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
+        if (player != null)
+        {
+            playerGravityValue = player.GetComponent<FirstPersonController>().GetGravity();
+        }
         goalPos = this.gameObject.transform.GetChild(0).position;
         hands = GameObject.Find("Hands");
 

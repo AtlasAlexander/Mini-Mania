@@ -7,6 +7,7 @@ public class LevelRendering : MonoBehaviour
     [SerializeField] List<GameObject> Rooms;
 
     int currentRoom = 0;
+    GameObject eventSystem;
 
     // Start is called before the first frame update
     void Start()

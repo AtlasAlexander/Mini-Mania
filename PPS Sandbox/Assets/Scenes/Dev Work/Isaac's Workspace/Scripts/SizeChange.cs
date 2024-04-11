@@ -28,7 +28,10 @@ public class SizeChange : MonoBehaviour
     {
         growSoundLimiter = 0f;
         player = GameObject.Find("Player");
-        grabbing = player.GetComponent<NewGrabbing>();
+        if (player != null)
+        {
+            grabbing = player.GetComponent<NewGrabbing>();
+        }
 
         if (startSmall)
         {
