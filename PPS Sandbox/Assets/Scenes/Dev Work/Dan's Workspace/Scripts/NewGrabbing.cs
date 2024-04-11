@@ -121,10 +121,15 @@ public class NewGrabbing : MonoBehaviour
 
     void MoveObject()
     {
-        if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
+        if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.2f)
         {
             Vector3 moveDir = (holdArea.position - heldObj.transform.position);
             heldObjRb.AddForce(moveDir * pickUpForce);
+        }
+
+        else if (Vector3.Distance(heldObj.transform.position, holdArea.position) <= 0.2f)
+        {
+            heldObj.transform.position = holdArea.position;
         }
     }
 

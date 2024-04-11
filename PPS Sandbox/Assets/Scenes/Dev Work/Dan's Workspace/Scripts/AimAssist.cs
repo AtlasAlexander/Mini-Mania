@@ -31,6 +31,7 @@ public class AimAssist : MonoBehaviour
         reticle = reticleObj.GetComponent<Image>();
         originalSensX = fpc.lookSpeedX;
         originalSensY = fpc.lookSpeedY;
+        camTrans = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 
 

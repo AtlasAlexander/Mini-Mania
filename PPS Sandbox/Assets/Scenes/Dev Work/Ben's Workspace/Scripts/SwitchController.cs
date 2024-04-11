@@ -61,13 +61,13 @@ public class SwitchController : MonoBehaviour
             
             if (DoorsToOpen.Count > 0)
             {
-                foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().OpenDoor(); }
+                foreach (GameObject door in DoorsToOpen) if (door != null) { { door.GetComponent<DoorController>().OpenDoor(); } }
             }
             
 
             if (LasersToTrigger.Count > 0)
             {
-                foreach (GameObject laser in LasersToTrigger) { laser.SetActive(TriggerLasersOn); }
+                foreach (GameObject laser in LasersToTrigger) if (laser != null) { { laser.SetActive(TriggerLasersOn); } }
             }
         }           
         else
@@ -90,17 +90,14 @@ public class SwitchController : MonoBehaviour
             if (DoorsToOpen.Count > 0)
                 {
                     buttonClicked = false;
-                    foreach (GameObject door in DoorsToOpen) { door.GetComponent<DoorController>().CloseDoor(); }
+                foreach (GameObject door in DoorsToOpen) if (door != null) { { door.GetComponent<DoorController>().CloseDoor(); } }
                 }
             
 
             if (LasersToTrigger.Count > 0)
             {
                 buttonClicked = false;
-                foreach (GameObject laser in LasersToTrigger) { 
-                    laser.SetActive(!TriggerLasersOn);
-                    
-                }
+                foreach (GameObject laser in LasersToTrigger) if (laser != null) { { laser.SetActive(!TriggerLasersOn); } }
             }
         }
     }
@@ -150,6 +147,11 @@ public class SwitchController : MonoBehaviour
                 if (other.gameObject.GetComponent<Stats>().Weight > RequiredWeight)
                 {
                     ObjOnSwitch++;
+                }
+
+                else
+                {
+                    return;
                 }
             }
             if (other.gameObject.CompareTag("PlayerTrigger"))

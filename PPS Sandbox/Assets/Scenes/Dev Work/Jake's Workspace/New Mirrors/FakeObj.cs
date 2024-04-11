@@ -10,8 +10,11 @@ public class FakeObj : MonoBehaviour
 
     private void Update()
     {
-        Vector3 localObj = originalObj.position - otherMirror.position;
-        transform.position = mirror.position + localObj;
+        if (originalObj != null && otherMirror != null)
+        {
+            Vector3 localObj = originalObj.position - otherMirror.position;
+            transform.position = mirror.position + localObj;
+        }
 
         float angularDifference = Quaternion.Angle(mirror.rotation, otherMirror.rotation);
         Quaternion mirrorRotationDiff = Quaternion.AngleAxis(angularDifference, Vector3.up);
