@@ -32,6 +32,7 @@ public class LevelSelectController : MonoBehaviour
 
     public void LoadLevel(int num)
     {
+        FindObjectOfType<FmodAudioManager>().killMusic();
         PlayerPrefs.SetInt("Checkpoint", 0);
         SceneManager.LoadScene(num + 1);
     }
