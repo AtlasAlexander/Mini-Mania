@@ -171,6 +171,8 @@ public class FirstPersonController : MonoBehaviour
         crouch.Enable();
         look.Enable();
         zoom.Enable();
+
+        isFocus= true;
     }
 
     private void OnDisable()
