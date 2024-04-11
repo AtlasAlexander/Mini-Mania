@@ -224,6 +224,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (levelSelectLight.enabled == true)
         {
+            FindObjectOfType<FmodAudioManager>().killMusic();
             SceneManager.LoadScene(i + 2);
         }
     }
