@@ -321,6 +321,7 @@ public class Weapon : MonoBehaviour
     private IEnumerator SpawnTrail(TrailRenderer Trail, Vector3 HitPoint, Vector3 HitNormal, float BounceDistance, bool madeImpact)
     {
         //float time = 0f;
+        if(Trail == null) { yield break; }
         Vector3 startPosition = Trail.transform.position;
         Vector3 direction = (HitPoint - Trail.transform.position).normalized;
         float distance = Vector3.Distance(Trail.transform.position, HitPoint);
