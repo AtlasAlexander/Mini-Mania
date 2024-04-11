@@ -20,6 +20,7 @@ public class FirstPersonController : MonoBehaviour
     public bool isSprinting;
     public bool isCrouching;
     private bool inAir;
+    public bool isStatic = false;
     
     private bool shouldJump => characterController.isGrounded;
     private bool shouldCrouch => !duringCrouchAnimation && characterController.isGrounded;
@@ -185,17 +186,20 @@ public class FirstPersonController : MonoBehaviour
     }
     void Update()
     {
-        if (playerInp.currentControlScheme == "Keyboard & Mouse")
+        if (playerInp != null)
         {
-            inputDevice = "Keyboard";
+            if (playerInp.currentControlScheme == "Keyboard & Mouse")
+            {
+                inputDevice = "Keyboard";
+            }
+
+            else
+            {
+                inputDevice = "Gamepad";
+            }
         }
 
-        else
-        {
-            inputDevice = "Gamepad";
-        }
-
-        if (!pauseMenu.GamePaused)
+        if (!pauseMenu.GamePaused || !isStatic)
         {
             if (canMove)
             {   

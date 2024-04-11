@@ -14,6 +14,12 @@ public class OptionsSettings : MonoBehaviour
     public AudioSource musicAudioMixer;
     public AudioSource SFXAudioMixer;
 
+    string xLookSpeedMouse;
+    string yLookSpeedMouse;
+    string xLookSpeedCont;
+    string yLookSpeedCont;
+
+
 
     // Start is called before the first frame update
     public void Start()
@@ -22,6 +28,10 @@ public class OptionsSettings : MonoBehaviour
         aimAssist = FindObjectOfType<AimAssist>();
         radio = GameObject.Find("Radio");
         //musicAudioSource = radio.GetComponent<AudioSource>();
+        xLookSpeedMouse = fpc.mouseLookSpeedX.ToString();
+        yLookSpeedMouse = fpc.mouseLookSpeedY.ToString();
+        xLookSpeedCont = fpc.controllerLookSpeedX.ToString();
+        yLookSpeedCont = fpc.controllerLookSpeedY.ToString();
 
     }
 
@@ -41,23 +51,27 @@ public class OptionsSettings : MonoBehaviour
     {
         fpc.mouseLookSpeedX = xSens;
         aimAssist.assistLookSpeedX = fpc.mouseLookSpeedX * 0.5f;
+        PlayerPrefs.SetFloat(xLookSpeedMouse, xSens);
     }
 
     public void ChangeSensitivityYMouse(float ySens)
     {
-        fpc.mouseLookSpeedY = ySens;
+        PlayerPrefs.SetFloat(xLookSpeedMouse, ySens);
         aimAssist.assistLookSpeedY = fpc.mouseLookSpeedY * 0.5f;
+        PlayerPrefs.SetFloat(yLookSpeedMouse, ySens);
     }
 
     public void ChangeSensitivityXController(float xSens)
     {
         fpc.controllerLookSpeedX = xSens;
         aimAssist.assistLookSpeedY = fpc.controllerLookSpeedX * 0.5f;
+        PlayerPrefs.SetFloat(xLookSpeedCont, xSens);
     }
 
     public void ChangeSensitivityYController(float ySens)
     {
         fpc.controllerLookSpeedY = ySens;
         aimAssist.assistLookSpeedY = fpc.controllerLookSpeedY * 0.5f;
+        PlayerPrefs.SetFloat(yLookSpeedCont, ySens);
     }
 }
