@@ -171,6 +171,8 @@ public class FirstPersonController : MonoBehaviour
         crouch.Enable();
         look.Enable();
         zoom.Enable();
+
+        isFocus = true;
     }
 
     private void OnDisable()
@@ -434,6 +436,7 @@ public class FirstPersonController : MonoBehaviour
         
         if (isFocus)
         {
+
             if (look.activeControl.device.name == "Mouse")
             {
                 lookSpeedY = mouseLookSpeedY;
