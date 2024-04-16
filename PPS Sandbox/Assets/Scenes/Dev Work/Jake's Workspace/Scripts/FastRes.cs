@@ -8,10 +8,12 @@ public class FastRes : MonoBehaviour
     public int i;
     public bool test;
     public GameObject player;
+    GameObject CheckpointRef;
 
     private void Awake()
     {
         player = gameObject;
+        CheckpointRef = GameObject.Find("CheckpointController");
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -21,9 +23,12 @@ public class FastRes : MonoBehaviour
         }
         if(other.tag == "Goop")
         {
-            player.transform.position = resPoint[i].transform.position;
+            //player.transform.position = resPoint[i].transform.position;
+            Debug.Log("Death by goop");
             player.GetComponent<CharacterController>().enabled = false;
             test = true;
+            CheckpointRef.GetComponent<CheckpointController>().checkChange = true;
+            CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
         }
         
     }
