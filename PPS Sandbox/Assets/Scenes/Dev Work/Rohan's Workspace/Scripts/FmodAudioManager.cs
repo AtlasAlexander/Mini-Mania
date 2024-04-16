@@ -74,7 +74,7 @@ public class FmodAudioManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         
-        if (sceneName.Contains("MAIN MENU"))
+        if (sceneName.Contains("MAIN MENU") || sceneName.Contains("Game Over"))
         {
             FMOD.Studio.PLAYBACK_STATE playbackState; 
             
