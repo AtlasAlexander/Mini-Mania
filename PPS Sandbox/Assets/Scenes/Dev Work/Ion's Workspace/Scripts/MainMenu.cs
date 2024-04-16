@@ -42,6 +42,7 @@ public class NewBehaviourScript : MonoBehaviour
         mainCamPos = GameObject.Find("MenuCamPos").transform;
         optionsCamPos = GameObject.Find("OptionsCamPos").transform;
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnEnable()

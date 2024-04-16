@@ -11,6 +11,7 @@ public class LevelTransitionTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             levelTransitioning = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
