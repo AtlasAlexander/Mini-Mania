@@ -12,7 +12,7 @@ public class CheckpointController : MonoBehaviour
     public List<GameObject> Checkpoints;
     GameObject currentCheckpoint;
     int checkp = 0;
-    bool checkChange = false;
+    public bool checkChange = false;
 
 
     private void OnEnable()

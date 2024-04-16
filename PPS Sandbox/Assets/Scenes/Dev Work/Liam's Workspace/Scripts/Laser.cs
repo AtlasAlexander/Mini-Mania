@@ -58,9 +58,10 @@ public class laser : MonoBehaviour
                 lr.SetPosition(1, hit.point);
                 //Kill player
                 //Destroy(hit.collider.gameObject);
-
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                //CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
+                Debug.Log("Player has been killed by laser");
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                CheckpointRef.GetComponent<CheckpointController>().checkChange = true;
+                CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
             }
             else
             {
