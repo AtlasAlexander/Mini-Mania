@@ -124,7 +124,11 @@ public class SizeChange : MonoBehaviour
 
     IEnumerator LerpSize(Vector3 currentSize, Vector3 targetSize, float duration)
     {
-        RumbleManager.instance.RumblePulse(0.1f, 0.1f, duration);
+        if(RumbleManager.instance != null) 
+        {
+            RumbleManager.instance.RumblePulse(0.1f, 0.1f, duration);
+        }
+        
         float time = 0;
         while (time < duration)
         {

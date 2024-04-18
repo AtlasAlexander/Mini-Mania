@@ -232,7 +232,10 @@ public class Weapon : MonoBehaviour
             
             if (target == null && hit.collider.gameObject.tag != "Mirror")
             {
-                RumbleManager.instance.RumblePulse(0.5f, 0.5f, 0.2f);
+                if (RumbleManager.instance != null)
+                {
+                    RumbleManager.instance.RumblePulse(0.5f, 0.5f, 0.2f);
+                }
                 CreateHitImpact(hit);
 
                 return;
@@ -282,7 +285,11 @@ public class Weapon : MonoBehaviour
 
             if (target == null && hit.collider.gameObject.tag != "Mirror")
             {
-                RumbleManager.instance.RumblePulse(0.5f, 0.5f, 0.2f);
+                if (RumbleManager.instance != null)
+                {
+                    RumbleManager.instance.RumblePulse(0.5f, 0.5f, 0.2f);
+                }
+                    
                 CreateHitImpact(hit);
 
                 return;
