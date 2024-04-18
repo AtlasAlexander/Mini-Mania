@@ -83,7 +83,7 @@ public class tutorialController : MonoBehaviour
             currentInstruction++;
             StartCoroutine(Transition());
         }
-        else if (CheckpointController.GetComponent<CheckpointController>().GetCheckP() > 0 && currentInstruction < 5)
+        else if (CheckpointController != null && CheckpointController.GetComponent<CheckpointController>().GetCheckP() > 0 && currentInstruction < 5)
         {
             currentInstruction = 5;
             StartCoroutine(Transition());
@@ -119,7 +119,7 @@ public class tutorialController : MonoBehaviour
             currentInstruction++;
             StartCoroutine(Transition());
         }
-        else if (CheckpointController.GetComponent<CheckpointController>().GetCheckP() > 0 && currentInstruction < 5)
+        else if (CheckpointController != null && CheckpointController.GetComponent<CheckpointController>().GetCheckP() > 0 && currentInstruction < 5)
         {
             currentInstruction = 5;
             StartCoroutine(Transition());
