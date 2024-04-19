@@ -29,11 +29,11 @@ public class SkipCutsceneTextController : MonoBehaviour
     {
         if (inputType == "keyboard")
         {
-            textElement.text = "Press and hold SPACE to skip";
+            textElement.text = "Press and Hold SPACE to Skip";
         }
         else if (inputType == "gamepad")
         {
-            textElement.text = "Press and Hold the South Button on the gamepad to skip";
+            textElement.text = "Press and Hold the South Button on the Gamepad to Skip";
         }
     }
 }
