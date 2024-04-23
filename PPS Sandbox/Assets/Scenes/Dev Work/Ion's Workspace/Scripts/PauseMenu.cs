@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         playerControls.Actions.Pause.performed += x => HandlePause();
-        
+        Debug.Log(Time.timeScale);
     }
 
     void HandlePause()

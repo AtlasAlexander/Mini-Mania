@@ -98,7 +98,7 @@ public class FirstPersonController : MonoBehaviour
 
     public bool isFocus;
     public bool inFan;
-
+    PauseMenu pause;
     private Vector3 hitPointNormal;
 
 
@@ -149,7 +149,6 @@ public class FirstPersonController : MonoBehaviour
         initialSpeed = walkSpeed;
         inputManager = GameObject.Find("InputManager");
         playerInp = inputManager.GetComponent<PlayerInput>();
-
         //aimAssist.assistLookSpeedX = lookSpeedX * 0.5f;
         //aimAssist.assistLookSpeedY = lookSpeedY * 0.5f;
 
@@ -199,7 +198,7 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
-        if (!pauseMenu.GamePaused || !isStatic)
+        if (!pauseMenu.GamePaused)
         {
             if (canMove)
             {   
