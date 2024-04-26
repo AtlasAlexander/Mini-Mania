@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Linq;
 
 public class Weapon : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class Weapon : MonoBehaviour
     bool canShoot = true;
     bool trajectoryOn = false;
 
-    
+    public FmodMusicManager[] Radios;
 
     private void Start()
     {
@@ -55,6 +56,8 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+
+        Radios = FindObjectsOfType<FmodMusicManager>();
     }
     private void OnEnable()
     {
@@ -222,7 +225,13 @@ public class Weapon : MonoBehaviour
         
         if (Physics.SphereCast(position, sphereCastWidth, direction, out hit, range, sphereCastLayerMask, QueryTriggerInteraction.Ignore))
         {
-            if (hit.transform.tag == "Radio") { hit.transform.GetComponent<FmodMusicManager>().togglePause(); }
+            if (hit.transform.tag == "Radio") {
+
+                for (int i = 0; i < Radios.Length; i++)
+                    Radios[i].GetComponent<FmodMusicManager>().togglePause();
+                //hit.transform.GetComponent<FmodMusicManager>().togglePause(); 
+
+            }
             StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, BounceDistance, true));
 
             Debug.DrawLine(position, hit.point, Color.red, 1f);
