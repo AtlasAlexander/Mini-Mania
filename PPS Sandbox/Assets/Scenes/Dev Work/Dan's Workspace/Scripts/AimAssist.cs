@@ -65,7 +65,7 @@ public class AimAssist : MonoBehaviour
     private void HandleAimAssist()
     {
         int objectLayer = LayerMask.NameToLayer("ObjectOfImportance");
-        if (Physics.SphereCast(camTrans.position, 0.15f, camTrans.forward, out RaycastHit hitRange, 1000))
+        if (Physics.SphereCast(camTrans.position, 0.15f, camTrans.forward * 15, out RaycastHit hitRange))
         {
             var layerMask = hitRange.collider.gameObject.layer;
             if (layerMask == objectLayer)

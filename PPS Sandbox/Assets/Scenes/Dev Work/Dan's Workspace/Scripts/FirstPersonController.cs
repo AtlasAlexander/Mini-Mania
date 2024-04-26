@@ -19,6 +19,7 @@ public class FirstPersonController : MonoBehaviour
     public bool isWalking;
     public bool isSprinting;
     public bool isCrouching;
+    public bool isZooming = false;
     private bool inAir;
     public bool isStatic = false;
     
@@ -235,11 +236,13 @@ public class FirstPersonController : MonoBehaviour
                     if (UserInput.instance.ZoomInput)
                     {
                         HandleZoom();
+                        isZooming = true;
                     }
 
                     if (UserInput.instance.ZoomInputReleased)
                     {
                         CancelZoom();
+                        isZooming = false;
                     }
                     
                 }
@@ -456,17 +459,35 @@ public class FirstPersonController : MonoBehaviour
             if (inputDevice == "Keyboard")
             {
                 lookSpeedY = mouseLookSpeedY;
-                //aimAssist.assistLookSpeedX = mouseLookSpeedX * 0.5f;
                 lookSpeedX = mouseLookSpeedX;
-                //aimAssist.assistLookSpeedY = mouseLookSpeedY * 0.5f;
+                if (isZooming)
+                {
+                    lookSpeedX = lookSpeedX / 4;
+                    lookSpeedY = lookSpeedY / 4;
+                }
+
+                else
+                {
+                    lookSpeedY = mouseLookSpeedY;
+                    lookSpeedX = mouseLookSpeedX;
+                }
             }
 
             else if (inputDevice == "Gamepad")
             {
                 lookSpeedY = controllerLookSpeedY;
-                //aimAssist.assistLookSpeedY = controllerLookSpeedY * 0.5f;
                 lookSpeedX = controllerLookSpeedX;
-                //aimAssist.assistLookSpeedX = controllerLookSpeedX * 0.5f;
+                if (isZooming)
+                {
+                    lookSpeedX = lookSpeedX / 2;
+                    lookSpeedY = lookSpeedY / 2;
+                }
+
+                else
+                {
+                    lookSpeedY = controllerLookSpeedY;
+                    lookSpeedX = controllerLookSpeedX;
+                }
             }
 
             else
