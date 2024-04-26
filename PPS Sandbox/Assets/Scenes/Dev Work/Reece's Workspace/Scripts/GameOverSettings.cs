@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMOD.Studio;
+using UnityEngine.EventSystems;
  
 
 public class GameOverSettings : MonoBehaviour
@@ -13,6 +14,11 @@ public class GameOverSettings : MonoBehaviour
     private void Start()
     {
         fmodAudio = FindObjectOfType<FmodAudioManager>();
+    }
+
+    private void Awake()
+    {
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Menu"));
     }
 
     public void GoToMainMenu()
