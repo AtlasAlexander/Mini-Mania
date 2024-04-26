@@ -63,7 +63,8 @@ public class SaveSystem : MonoBehaviour
         //checkpoints saves
         if (PlayerPrefs.HasKey("Checkpoint"))
         {
-            CheckpointsOBJ.GetComponent<CheckpointController>().SetCheckpoint(CheckpointsOBJ.GetComponent<CheckpointController>().Checkpoints[PlayerPrefs.GetInt("Checkpoint")]);
+            PlayerPrefs.SetInt("Checkpoint", 1);
+           // CheckpointsOBJ.GetComponent<CheckpointController>().SetCheckpoint(CheckpointsOBJ.GetComponent<CheckpointController>().Checkpoints[PlayerPrefs.GetInt("Checkpoint")]);
             CheckpointsOBJ.GetComponent<CheckpointController>().LoadCheckpoint();
         }
 
