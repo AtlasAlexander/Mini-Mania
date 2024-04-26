@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 282847393515090714}
   - component: {fileID: 2650362770571716276}
   - component: {fileID: 3301511241842864184}
+  - component: {fileID: 4897712731415329761}
   m_Layer: 9
   m_Name: Growth Ray
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   bulletSpeed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  Radios: []
 --- !u!114 &2650362770571716276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +329,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4897712731415329761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854009843129213784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f770c17e971b2074a9b420a8466eeb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilIntensity: 0.1
+  recoilDirection: {x: 0, y: 0, z: -1}
+  recoilRecoverySpeed: 1
 --- !u!1 &3082137102699401338
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,6 +5631,7 @@ GameObject:
   - component: {fileID: 8341036452961456951}
   - component: {fileID: 2401001903381214275}
   - component: {fileID: 7901922164481139070}
+  - component: {fileID: 6420710960541488687}
   m_Layer: 9
   m_Name: Shrink Ray
   m_TagString: Untagged
@@ -5754,6 +5772,7 @@ MonoBehaviour:
   bulletSpeed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  Radios: []
 --- !u!114 &2401001903381214275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5896,6 +5915,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &6420710960541488687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669486962184876727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f770c17e971b2074a9b420a8466eeb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilIntensity: 0.1
+  recoilDirection: {x: 0, y: 0, z: -1}
+  recoilRecoverySpeed: 1
 --- !u!1 &7172964338878696076
 GameObject:
   m_ObjectHideFlags: 0
