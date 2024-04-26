@@ -12,6 +12,8 @@ public class DestroyCube : MonoBehaviour
     bool OoB, startCubeStasis;
     float timer;
 
+    public bool newCube;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,6 +25,10 @@ public class DestroyCube : MonoBehaviour
             Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
             StartCoroutine(RespawnDelay());
             OoB = true;
+            if (newCube)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -33,6 +39,7 @@ public class DestroyCube : MonoBehaviour
             {
                 Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
                 GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<Rigidbody>().useGravity = false;
                 StartCoroutine(RespawnDelay());
                 OoB = true;
             }
@@ -79,7 +86,7 @@ public class DestroyCube : MonoBehaviour
     {
         GetComponent<MeshRenderer>().enabled = true;
         timer += Time.deltaTime;
-        if (timer <= 0.2f)
+        if (timer <= 1.0f)
         {
             transform.rotation = Dispenser.transform.rotation;
             transform.position = Dispenser.transform.position;
