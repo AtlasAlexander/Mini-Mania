@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirstLevelOnlyCutsceneScript : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject weapons;
     CharacterController controller;
     
     void Awake()
@@ -12,10 +13,14 @@ public class FirstLevelOnlyCutsceneScript : MonoBehaviour
         controller = player.GetComponent<CharacterController>();
    
         controller.enabled = false;
+        weapons.SetActive(false);
+
+        
     }
 
     public void EnableMovement()
     {
+        weapons.SetActive(true);
         controller.enabled = true; 
     }
 
