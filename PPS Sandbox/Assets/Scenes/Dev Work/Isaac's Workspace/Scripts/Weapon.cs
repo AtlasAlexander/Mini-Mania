@@ -89,8 +89,8 @@ public class Weapon : MonoBehaviour
                 {
                     FindObjectOfType<FmodAudioManager>().QuickPlaySound("shootGrowthRay", gameObject);
                 }
-                
-                
+
+                GetComponent<Recoil>().RecoilInit();
                 //FindObjectOfType<AudioManager>().Play("shoot_shrink_ray");
 
             }

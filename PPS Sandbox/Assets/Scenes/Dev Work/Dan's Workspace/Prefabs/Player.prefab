@@ -5274,6 +5274,7 @@ GameObject:
   - component: {fileID: 4110397418092330468}
   - component: {fileID: 4706639080619054545}
   - component: {fileID: 6410216206091184586}
+  - component: {fileID: 6658436591602420176}
   m_Layer: 0
   m_Name: Growth Ray
   m_TagString: Untagged
@@ -5412,6 +5413,7 @@ MonoBehaviour:
   bulletSpeed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  Radios: []
 --- !u!114 &4706639080619054545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5554,6 +5556,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &6658436591602420176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558378890206274511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f770c17e971b2074a9b420a8466eeb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilIntensity: 0.1
+  recoilDirection: {x: 0, y: 0, z: -1}
+  recoilRecoverySpeed: 1
 --- !u!1 &4597654449533595454
 GameObject:
   m_ObjectHideFlags: 0
@@ -10589,6 +10606,7 @@ GameObject:
   - component: {fileID: 7243589248269511053}
   - component: {fileID: 6604264451908354345}
   - component: {fileID: 195247069157457744}
+  - component: {fileID: 2060140332542376336}
   m_Layer: 0
   m_Name: Shrink Ray
   m_TagString: Untagged
@@ -10727,6 +10745,7 @@ MonoBehaviour:
   bulletSpeed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  Radios: []
 --- !u!114 &6604264451908354345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10869,6 +10888,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2060140332542376336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295878989204686394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f770c17e971b2074a9b420a8466eeb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilIntensity: 0.1
+  recoilDirection: {x: 0, y: 0, z: -1}
+  recoilRecoverySpeed: 1
 --- !u!1 &7913828251214828328
 GameObject:
   m_ObjectHideFlags: 0
@@ -10950,6 +10984,8 @@ MonoBehaviour:
   isWalking: 0
   isSprinting: 0
   isCrouching: 0
+  isZooming: 0
+  isStatic: 0
   gravityValue: -9.81
   canSprint: 0
   canJump: 1
@@ -10957,6 +10993,9 @@ MonoBehaviour:
   canUseHeadbob: 1
   willSlideOnSlopes: 1
   canZoom: 1
+  inputDevice: 
+  inputManager: {fileID: 0}
+  playerInp: {fileID: 0}
   walkSpeed: 3
   sprintSpeed: 6
   crouchSpeed: 1.5
@@ -10986,7 +11025,14 @@ MonoBehaviour:
   timeToZoom: 0.3
   zoomFOV: 30
   _animator: {fileID: 0}
+  healthForTurret: 100
+  turretDamage: 50
+  regenTime: 3
+  stunEffect: {fileID: 0}
+  isFocus: 0
+  inFan: 0
   moveDir: {x: 0, y: 0, z: 0}
+  currentInput: {x: 0, y: 0}
   i: 0
 --- !u!114 &7740266739797032193
 MonoBehaviour:
@@ -11041,7 +11087,9 @@ MonoBehaviour:
   forceOnSizeChange: 0
   forceMultiplier: 1
   shrunk: 0
+  canBePickedUp: 1
   startSmall: 0
+  isChangingSize: 0
 --- !u!114 &3356970266101371283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11055,6 +11103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 100
+  DefaultWeight: 50
 --- !u!136 &3369448322526671820
 CapsuleCollider:
   m_ObjectHideFlags: 0
