@@ -55,7 +55,6 @@ public class CheckpointController : MonoBehaviour
                     if(canvasGroup != null)
                     {
                         StartCoroutine(FadeIn());
-                        
                     }
                     else
                     {
