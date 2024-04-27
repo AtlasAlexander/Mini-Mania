@@ -14,6 +14,10 @@ public class CheckpointController : MonoBehaviour
     int checkp = 0;
     public bool checkChange = false;
 
+    [SerializeField] GameObject fadeImage;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] float fadeSpeed = 1f;
+
 
     private void OnEnable()
     {
@@ -27,6 +31,12 @@ public class CheckpointController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         currentCheckpoint = Checkpoints[checkp];
         playerControls = new PlayerControls();
+
+        if(fadeImage != null)
+        {
+            canvasGroup = fadeImage.GetComponent<CanvasGroup>();
+            StartCoroutine(FadeOut());
+        }
     }
 
     private void Update()
@@ -41,7 +51,19 @@ public class CheckpointController : MonoBehaviour
             if(GameObject.Find("LevelTransitionStuff") == null)
             {
                 if(SceneManager.GetActiveScene().buildIndex < 6)
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                {
+                    if(canvasGroup != null)
+                    {
+                        StartCoroutine(FadeIn());
+                        
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    }
+                    
+                }
+                    
                 else
                     SceneManager.LoadScene(0);
             }
@@ -96,6 +118,34 @@ public class CheckpointController : MonoBehaviour
     public void LoadCheckpoint()
     {
         player.transform.position = currentCheckpoint.transform.position;
+    }
+
+    public IEnumerator FadeIn()
+    {
+        canvasGroup.alpha = 0;
+        fadeImage.SetActive(true);
+
+        while (canvasGroup.alpha < 1)
+        {
+            canvasGroup.alpha += fadeSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public IEnumerator FadeOut()
+    {
+        canvasGroup.alpha = 1;
+        fadeImage.SetActive(true);
+
+        while (canvasGroup.alpha > 0)
+        {
+            canvasGroup.alpha -= fadeSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        fadeImage.SetActive(false);
     }
 
 
