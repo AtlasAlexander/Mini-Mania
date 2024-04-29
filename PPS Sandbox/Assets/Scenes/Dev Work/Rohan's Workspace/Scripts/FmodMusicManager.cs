@@ -24,7 +24,7 @@ public class FmodMusicManager : MonoBehaviour
     private bool exitScene = false;
     private void Awake()
     {
-        
+        paused = false;
         pauseTimer = 0f;
         songIndex = startingSong;
     }

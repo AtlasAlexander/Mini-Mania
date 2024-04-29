@@ -45,12 +45,32 @@ public class SaveSystem : MonoBehaviour
 
         if (PlayerPrefs.HasKey("XMouseSensitivity"))
             XMousesensSlider.value = PlayerPrefs.GetFloat("XMouseSensitivity");
+        else
+        {
+            PlayerPrefs.SetFloat("XmouseSensitivity", .2f);
+            XMousesensSlider.value = PlayerPrefs.GetFloat("XMouseSensitivity");
+        }
         if (PlayerPrefs.HasKey("YMouseSensitivity"))
             YMousesensSlider.value = PlayerPrefs.GetFloat("YMouseSensitivity");
+        else
+        {
+            PlayerPrefs.SetFloat("YmouseSensitivity", .2f);
+            YMousesensSlider.value = PlayerPrefs.GetFloat("YMouseSensitivity");
+        }
         if (PlayerPrefs.HasKey("XControllerSensitivity"))
             XControllersensSlider.value = PlayerPrefs.GetFloat("XControllerSensitivity");
+        else
+        {
+            PlayerPrefs.SetFloat("XControllerSensitivity", 2f);
+            XControllersensSlider.value = PlayerPrefs.GetFloat("XControllerSensitivity");
+        }
         if (PlayerPrefs.HasKey("YControllerSensitivity"))
             YControllersensSlider.value = PlayerPrefs.GetFloat("YControllerSensitivity");
+        else
+        {
+            PlayerPrefs.SetFloat("YControllerSensitivity", 2f);
+            YControllersensSlider.value = PlayerPrefs.GetFloat("YControllerSensitivity");
+        }
 
         /*        if (PlayerPrefs.HasKey("InvertLook"))
                 {
