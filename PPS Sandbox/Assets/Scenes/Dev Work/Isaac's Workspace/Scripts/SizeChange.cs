@@ -28,7 +28,7 @@ public class SizeChange : MonoBehaviour
 
     public void Awake()
     {
-        outline = GetComponent<Outline>();
+        //outline = GetComponent<Outline>();
         growSoundLimiter = 0f;
         player = GameObject.Find("Player");
         if (player != null)
