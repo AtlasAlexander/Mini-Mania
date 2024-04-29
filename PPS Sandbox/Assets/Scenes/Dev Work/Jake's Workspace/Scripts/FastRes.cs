@@ -9,11 +9,14 @@ public class FastRes : MonoBehaviour
     public bool test;
     public GameObject player;
     GameObject CheckpointRef;
+    public List<GameObject> cubes = new List<GameObject>();
+    public NewGrabbing grabbing;
 
     private void Awake()
     {
         player = gameObject;
         CheckpointRef = GameObject.Find("CheckpointController");
+        grabbing = player.GetComponent<NewGrabbing>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +32,12 @@ public class FastRes : MonoBehaviour
             test = true;
             CheckpointRef.GetComponent<CheckpointController>().checkChange = true;
             CheckpointRef.GetComponent<CheckpointController>().LoadCheckpoint();
+
+            if (grabbing.heldObj !=null)
+            {
+                grabbing.heldObj.GetComponent<DestroyCube>().Respawn();
+            }
+
         }
         
     }
