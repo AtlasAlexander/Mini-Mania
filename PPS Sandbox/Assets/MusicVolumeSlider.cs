@@ -6,8 +6,8 @@ public class MusicVolumeSlider : MonoBehaviour
 {
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("MusicVolume"))
-            GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+/*        if (PlayerPrefs.HasKey("MusicVolume"))
+            GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");*/
     }
     void Update()
     {

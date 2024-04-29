@@ -19,7 +19,8 @@ public class VolumeSetting : MonoBehaviour
     {
         audioManager = FindAnyObjectByType<FmodAudioManager>();
 
-        sounds = FindObjectOfType<AudioManager>().sounds;
+        if(FindObjectOfType<AudioManager>() != null)
+            sounds = FindObjectOfType<AudioManager>().sounds;
         menuAuidos = FindObjectOfType<PauseMenu>().GetComponent<AudioSource>();
     }
     public void SetMainVolume (float volume)

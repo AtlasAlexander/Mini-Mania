@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class SaveSystem : MonoBehaviour
         XControllersensSlider = PauseOptionMenu.transform.Find("XSens Slider - Controller").GetComponent<Slider>();
         YControllersensSlider = PauseOptionMenu.transform.Find("YSens Slider - Controller").GetComponent<Slider>();
         XMousesensSlider = PauseOptionMenu.transform.Find("XSens Slider").GetComponent<Slider>();
-        YMousesensSlider = PauseOptionMenu.transform.Find("YSens Slider - Controller").GetComponent<Slider>();
+        YMousesensSlider = PauseOptionMenu.transform.Find("YSens Slider").GetComponent<Slider>();
         InvertLookToggle = PauseOptionMenu.transform.Find("InvertToggle").GetComponent<Toggle>();
 
         if (PlayerPrefs.HasKey("MusicVolume"))
@@ -42,14 +43,14 @@ public class SaveSystem : MonoBehaviour
         if (PlayerPrefs.HasKey("MasterVolume"))
             MasterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
 
-        /*        if (PlayerPrefs.HasKey("XMouseSensitivity"))
-                    XMousesensSlider.value = PlayerPrefs.GetFloat("XMouseSensitivity");
-                if (PlayerPrefs.HasKey("YMouseSensitivity"))
-                    YMousesensSlider.value = PlayerPrefs.GetFloat("YMouseSensitivity");
-                if (PlayerPrefs.HasKey("XControllerSensitivity"))
-                    XControllersensSlider.value = PlayerPrefs.GetFloat("XControllerSensitivity");
-                if (PlayerPrefs.HasKey("YControllerSensitivity"))
-                    YControllersensSlider.value = PlayerPrefs.GetFloat("YControllerSensitivity");*/
+        if (PlayerPrefs.HasKey("XMouseSensitivity"))
+            XMousesensSlider.value = PlayerPrefs.GetFloat("XMouseSensitivity");
+        if (PlayerPrefs.HasKey("YMouseSensitivity"))
+            YMousesensSlider.value = PlayerPrefs.GetFloat("YMouseSensitivity");
+        if (PlayerPrefs.HasKey("XControllerSensitivity"))
+            XControllersensSlider.value = PlayerPrefs.GetFloat("XControllerSensitivity");
+        if (PlayerPrefs.HasKey("YControllerSensitivity"))
+            YControllersensSlider.value = PlayerPrefs.GetFloat("YControllerSensitivity");
 
         /*        if (PlayerPrefs.HasKey("InvertLook"))
                 {
@@ -65,7 +66,8 @@ public class SaveSystem : MonoBehaviour
         {
             PlayerPrefs.SetInt("Checkpoint", 1);
            // CheckpointsOBJ.GetComponent<CheckpointController>().SetCheckpoint(CheckpointsOBJ.GetComponent<CheckpointController>().Checkpoints[PlayerPrefs.GetInt("Checkpoint")]);
-            CheckpointsOBJ.GetComponent<CheckpointController>().LoadCheckpoint();
+           if(SceneManager.GetActiveScene().buildIndex != 0)
+                CheckpointsOBJ.GetComponent<CheckpointController>().LoadCheckpoint();
         }
 
         //LevelSaves

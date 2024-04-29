@@ -6,8 +6,8 @@ public class SFXVolumeSlider : MonoBehaviour
 {
     private void Awake()
     {
-        if(PlayerPrefs.HasKey("SFXVolume"))
-            GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
+/*        if(PlayerPrefs.HasKey("SFXVolume"))
+            GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");*/
     }
 
     void Update()

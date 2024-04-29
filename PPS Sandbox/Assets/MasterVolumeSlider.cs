@@ -7,8 +7,8 @@ public class MasterVolumeSlider : MonoBehaviour
 {
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("MasterVolume"))
-            GetComponent<Slider>().value = PlayerPrefs.GetFloat("MasterVolume");
+/*        if (PlayerPrefs.HasKey("MasterVolume"))
+            GetComponent<Slider>().value = PlayerPrefs.GetFloat("MasterVolume");*/
     }
     void Update()
     {
