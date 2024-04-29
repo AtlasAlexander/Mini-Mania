@@ -135,6 +135,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7429117420514560959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Radio/Radio-04
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Radio/Radio-04
+  Guid:
+    Data1: 2048418272
+    Data2: 1184307192
+    Data3: 1351028886
+    Data4: -389427483
+  Banks:
+  - {fileID: 8760376574040102500}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 81050
 --- !u!114 &-7386320458627335313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,10 +366,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638493179007652363
+  lastModified: 638499970996288757
   FileSizes:
   - Name: Desktop
-    Value: 33067584
+    Value: 31574144
   Exists: 1
 --- !u!114 &-4535074352235336827
 MonoBehaviour:
@@ -479,6 +506,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2060
+--- !u!114 &-3559683983106795221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Radio/Radio-02
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Radio/Radio-02
+  Guid:
+    Data1: -1330887312
+    Data2: 1153783604
+    Data3: -1106083194
+    Data4: 1566379962
+  Banks:
+  - {fileID: 8760376574040102500}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 86502
+--- !u!114 &-3548426141864637527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Radio/gameTheme-StuckInTheWormHoleRadio
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Radio/gameTheme-StuckInTheWormHoleRadio
+  Guid:
+    Data1: 1123619177
+    Data2: 1153837852
+    Data3: 1366805929
+    Data4: -1889586728
+  Banks:
+  - {fileID: 8760376574040102500}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40299
 --- !u!114 &-3484685858612814750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +830,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1500
+--- !u!114 &-1747907317740103610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Radio/Radio-01
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Radio/Radio-01
+  Guid:
+    Data1: 563388480
+    Data2: 1086045573
+    Data3: -750646604
+    Data4: -2010108734
+  Banks:
+  - {fileID: 8760376574040102500}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 162612
 --- !u!114 &-1404336894063690904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,13 +1146,18 @@ MonoBehaviour:
   - {fileID: -3721336556379252829}
   - {fileID: -3879168667418956488}
   - {fileID: 7444517223555431303}
+  - {fileID: -1747907317740103610}
+  - {fileID: -3548426141864637527}
+  - {fileID: -3559683983106795221}
+  - {fileID: -7429117420514560959}
+  - {fileID: 1821530745728071329}
   EditorParameters:
   - {fileID: 4538833326417481379}
   MasterBanks:
   - {fileID: -4757944316540829380}
   StringsBanks:
   - {fileID: 9038549819261733023}
-  cacheTime: 638493179008652688
+  cacheTime: 638499970996717609
   cacheVersion: 131616
 --- !u!114 &1118521017255986717
 MonoBehaviour:
@@ -1154,6 +1267,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 270
+--- !u!114 &1821530745728071329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtrack/Radio/Radio-03
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Radio/Radio-03
+  Guid:
+    Data1: -1203054083
+    Data2: 1166530398
+    Data3: -1889147222
+    Data4: 436677713
+  Banks:
+  - {fileID: 8760376574040102500}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 43562
 --- !u!114 &2141225071115883074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,10 +1792,10 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638493179008652688
+  lastModified: 638499970996717609
   FileSizes:
   - Name: Desktop
-    Value: 2352672
+    Value: 6792352
   Exists: 1
 --- !u!114 &9038549819261733023
 MonoBehaviour:
@@ -1672,8 +1812,8 @@ MonoBehaviour:
   Path: ../Fmod/FmodAudioManager/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638493179007662337
+  lastModified: 638499970996288757
   FileSizes:
   - Name: Desktop
-    Value: 3662
+    Value: 3890
   Exists: 1
