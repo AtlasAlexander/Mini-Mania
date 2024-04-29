@@ -61,7 +61,8 @@ public class SwitchController : MonoBehaviour
                 
                 if(noiseTimer > 0.4f)
                 {
-                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
+                    if(DoorsToOpen.Count > 0)
+                        FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
                     noiseTimer = 0;
                 }
                 
@@ -141,7 +142,8 @@ public class SwitchController : MonoBehaviour
             {
                 if(noiseTimer> 0.4f)
                 {
-                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
+                    if(DoorsToOpen.Count > 0)
+                        FindObjectOfType<FmodAudioManager>().QuickPlaySound("closeDoor", DoorsToOpen[0]);
                     noiseTimer = 0;
                 }
                 
