@@ -16,7 +16,7 @@ public class CheckpointController : MonoBehaviour
 
     [SerializeField] GameObject fadeImage;
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] float fadeSpeed = 1f;
+    [SerializeField] float fadeSpeed = 0.5f;
 
 
     private void OnEnable()
