@@ -133,7 +133,7 @@ public class WeighingScale : MonoBehaviour
 
         if (other.CompareTag("Player") && playerWeight.Weight >= 100.0f)
         {
-            scalePlatforms.mass = 10.0f;
+            scalePlatforms.mass = 7.0f;
         }
 
         if (other.CompareTag("Player") && playerWeight.Weight < 100.0f)
@@ -199,7 +199,7 @@ public class WeighingScale : MonoBehaviour
         // Detects if the player is on the platform by itself
         if (other.CompareTag("Player") && playerWeight.Weight >= 100.0f && !isSwitchingWeights)
         {
-            scalePlatforms.mass = 10.0f;
+            scalePlatforms.mass = 7.0f;
             isNormalPlayer = true;
         }
 
