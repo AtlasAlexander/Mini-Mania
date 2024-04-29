@@ -90,6 +90,7 @@ public class LevelTransitionCutscene : MonoBehaviour
             if (!audioPlaying)                           //cutscene1 plays
             {
                 player.GetComponent<FirstPersonController>().isWalking = false;
+                FindObjectOfType<FmodMusicManager>().killMusic();
                 FindObjectOfType<FmodAudioManager>().QuickPlaySound("Cutscene1", player);
                 audioPlaying = true;
             }
