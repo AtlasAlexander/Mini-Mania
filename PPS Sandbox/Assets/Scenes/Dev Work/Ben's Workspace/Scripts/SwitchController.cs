@@ -12,6 +12,8 @@ public class SwitchController : MonoBehaviour
     [SerializeField] List<GameObject> DoorsToOpen;
     [SerializeField] List<GameObject> LasersToTrigger;
     [SerializeField] bool TriggerLasersOn = false;
+    [SerializeField] bool invertedSound = false;
+    [SerializeField] int laserVolume = 10;
     bool doorOpen = false;
     int ObjOnSwitch = 0;
     private bool buttonClicked = false;
@@ -23,8 +25,10 @@ public class SwitchController : MonoBehaviour
 
     private float noiseTimer;
 
+
     private void Start()
     {
+
         anim = GetComponent<Animator>();
         GetComponentInChildren<MeshRenderer>().material = ButtonOffMat;
     }
@@ -67,7 +71,17 @@ public class SwitchController : MonoBehaviour
 
             if (LasersToTrigger.Count > 0)
             {
-                foreach (GameObject laser in LasersToTrigger) if (laser != null) { { laser.SetActive(TriggerLasersOn); } }
+                foreach (GameObject laser in LasersToTrigger) if (laser != null) { { 
+                            laser.SetActive(TriggerLasersOn);
+                            if (invertedSound)
+                            {
+                                laser.GetComponent<laser>().SetLaserVolume(laserVolume);
+                            }
+                            else
+                            {
+                                laser.GetComponent<laser>().SetLaserVolume(0);
+                            }
+                        } }
             }
         }           
         else
@@ -97,7 +111,18 @@ public class SwitchController : MonoBehaviour
             if (LasersToTrigger.Count > 0)
             {
                 buttonClicked = false;
-                foreach (GameObject laser in LasersToTrigger) if (laser != null) { { laser.SetActive(!TriggerLasersOn); } }
+                foreach (GameObject laser in LasersToTrigger) if (laser != null) { { 
+                            laser.SetActive(!TriggerLasersOn);
+                            if (invertedSound)
+                            {
+                                laser.GetComponent<laser>().SetLaserVolume(0);
+                            }
+                            else
+                            {
+                                laser.GetComponent<laser>().SetLaserVolume(laserVolume);
+                            }
+                            
+                        } }
             }
         }
     }

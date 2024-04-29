@@ -12,9 +12,11 @@ public class laser : MonoBehaviour
     private LineRenderer lr;
 
     public EventInstance laserSound;
+    private int laserVolume;
     void Start()
     {
-
+        laserVolume = 10;
+        SetLaserVolume(10);
         CheckpointRef = GameObject.Find("CheckpointController"); 
         lr = GetComponent<LineRenderer>();
 
@@ -28,8 +30,8 @@ public class laser : MonoBehaviour
         //if (!playbackState.ToString().Contains("PLAYING"))
         laserSound.start();
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(laserSound, gameObject.transform);
-         
-            //FindObjectOfType<FmodAudioManager>().QuickPlaySound("laserConstant", gameObject);
+        
+        //FindObjectOfType<FmodAudioManager>().QuickPlaySound("laserConstant", gameObject);
     }
 
     /*  private void OnTriggerEnter(Collider other)
@@ -70,5 +72,25 @@ public class laser : MonoBehaviour
         }
         else lr.SetPosition(1, transform.forward * 5000);
     }
+
+    public void ToggleLaserSound()
+    {
+        if(laserVolume == 10)
+        {
+            laserSound.setVolume(0);
+            laserVolume = 0;
+        }
+        else
+        {
+            laserSound.setVolume(10);
+            laserVolume = 10;
+        }
+        
+    }
+    public void SetLaserVolume(int volume)
+    {
+        laserSound.setVolume(volume);
+    }
+
 }
     
