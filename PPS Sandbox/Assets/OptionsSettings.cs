@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static UnityEngine.Rendering.DebugUI;
 
 public class OptionsSettings : MonoBehaviour
 {
@@ -28,11 +29,13 @@ public class OptionsSettings : MonoBehaviour
         aimAssist = FindObjectOfType<AimAssist>();
         radio = GameObject.Find("Radio");
         //musicAudioSource = radio.GetComponent<AudioSource>();
-        xLookSpeedMouse = fpc.mouseLookSpeedX.ToString();
-        yLookSpeedMouse = fpc.mouseLookSpeedY.ToString();
-        xLookSpeedCont = fpc.controllerLookSpeedX.ToString();
-        yLookSpeedCont = fpc.controllerLookSpeedY.ToString();
-
+/*        if(fpc != null)
+        {
+            xLookSpeedMouse = fpc.mouseLookSpeedX.ToString();
+            yLookSpeedMouse = fpc.mouseLookSpeedY.ToString();
+            xLookSpeedCont = fpc.controllerLookSpeedX.ToString();
+            yLookSpeedCont = fpc.controllerLookSpeedY.ToString();
+        }*/
     }
 
     public void InvertLook(bool tickOn)
@@ -49,29 +52,41 @@ public class OptionsSettings : MonoBehaviour
 
     public void ChangeSensitivityXMouse(float xSens)
     {
-        fpc.mouseLookSpeedX = xSens;
-        aimAssist.assistLookSpeedX = fpc.mouseLookSpeedX * 0.5f;
-        PlayerPrefs.SetFloat(xLookSpeedMouse, xSens);
+        if (fpc != null)
+            fpc.mouseLookSpeedX = xSens;
+        if (fpc != null)
+            aimAssist.assistLookSpeedX = fpc.mouseLookSpeedX * 0.5f;
+        //PlayerPrefs.SetFloat(xLookSpeedMouse, xSens);
+        PlayerPrefs.SetFloat("XMouseSensitivity", xSens);
     }
 
     public void ChangeSensitivityYMouse(float ySens)
     {
-        PlayerPrefs.SetFloat(xLookSpeedMouse, ySens);
-        aimAssist.assistLookSpeedY = fpc.mouseLookSpeedY * 0.5f;
-        PlayerPrefs.SetFloat(yLookSpeedMouse, ySens);
+        if (fpc != null)
+            fpc.mouseLookSpeedY = ySens;
+        if (fpc != null)
+            aimAssist.assistLookSpeedY = fpc.mouseLookSpeedY * 0.5f;
+        //PlayerPrefs.SetFloat(yLookSpeedMouse, ySens);
+        PlayerPrefs.SetFloat("YMouseSensitivity", ySens);
     }
 
     public void ChangeSensitivityXController(float xSens)
     {
-        fpc.controllerLookSpeedX = xSens;
-        aimAssist.assistLookSpeedY = fpc.controllerLookSpeedX * 0.5f;
-        PlayerPrefs.SetFloat(xLookSpeedCont, xSens);
+        if (fpc != null)
+            fpc.controllerLookSpeedX = xSens;
+        if (fpc != null)
+            aimAssist.assistLookSpeedY = fpc.controllerLookSpeedX * 0.5f;
+        //PlayerPrefs.SetFloat(xLookSpeedCont, xSens);
+        PlayerPrefs.SetFloat("XControllerSensitivity", xSens);
     }
 
     public void ChangeSensitivityYController(float ySens)
     {
-        fpc.controllerLookSpeedY = ySens;
-        aimAssist.assistLookSpeedY = fpc.controllerLookSpeedY * 0.5f;
-        PlayerPrefs.SetFloat(yLookSpeedCont, ySens);
+        if (fpc != null)
+            fpc.controllerLookSpeedY = ySens;
+        if (fpc != null)
+            aimAssist.assistLookSpeedY = fpc.controllerLookSpeedY * 0.5f;
+        //PlayerPrefs.SetFloat(yLookSpeedCont, ySens);
+        PlayerPrefs.SetFloat("YControllerSensitivity", ySens);
     }
 }
