@@ -56,6 +56,8 @@ public class FmodAudioManager : MonoBehaviour
 
     private float hitWallTimer;
 
+    public FmodMusicManager[] Radios;
+
     private void Awake()
     {
         menuMusic = FMODUnity.RuntimeManager.CreateInstance(gameplaySounds[FindEventReferenceByName("Silent80sMenu")]);
@@ -94,7 +96,8 @@ public class FmodAudioManager : MonoBehaviour
         }
         else
         {
-           
+            Radios = FindObjectsOfType<FmodMusicManager>();
+            Invoke("ToggleAllRadios", 0.1f);
             player = FindObjectOfType<FirstPersonController>().gameObject;
             controller = player.GetComponent<FirstPersonController>();
             
@@ -229,6 +232,12 @@ public class FmodAudioManager : MonoBehaviour
         menuMusic.clearHandle();
         menuMusic.release();
         menuMusic.setVolume(0);
+    }
+
+    private void ToggleAllRadios()
+    {
+        for (int i = 0; i < Radios.Length; i++)
+            Radios[i].GetComponent<FmodMusicManager>().togglePause();
     }
 
 }
