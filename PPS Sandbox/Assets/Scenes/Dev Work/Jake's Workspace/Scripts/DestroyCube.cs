@@ -11,6 +11,7 @@ public class DestroyCube : MonoBehaviour
     public GameObject player;
 
     bool OoB, startCubeStasis;
+    bool respawned;
     float timer;
 
     public bool newCube;
@@ -25,6 +26,7 @@ public class DestroyCube : MonoBehaviour
         if (other.tag == "Goop")
         {
             Respawn();
+            NewRes();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -33,73 +35,25 @@ public class DestroyCube : MonoBehaviour
         {
             if (other == AssignedRoom.GetComponent<Collider>())
             {
-                Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
-                GetComponent<MeshRenderer>().enabled = false;
-                GetComponent<Rigidbody>().useGravity = false;
-                StartCoroutine(RespawnDelay());
-                OoB = true;
+                NewRes();
             }
         }
     }
 
-    IEnumerator RespawnDelay()
+    public void NewRes()
     {
-        yield return new WaitForSeconds(0.45f);
-        OoB = false;
-        startCubeStasis = true;
+        Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
+        //GetComponent<MeshRenderer>().enabled = false;
+        //GetComponent<Rigidbody>().useGravity = false;
+        //StartCoroutine(RespawnDelay());
         transform.rotation = Dispenser.transform.rotation;
         transform.position = Dispenser.transform.position;
-        if (Dispenser.GetComponent<CubeVomit>().originalCube.GetComponent<SizeChange>().startSmall)
-        {
-            transform.localScale = new Vector3(.4f, .4f, .4f);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-        }
-    }
-
-    private void Update()
-    {
-        if(OoB)
-        {
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
-            transform.parent = null;
-            player.GetComponent<NewGrabbing>().DropObject();
-        }
-        else
-        {
-            if (startCubeStasis)
-            {
-                KeepingTheCubeThere();
-            }
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
-        }
-    }
-
-    public void KeepingTheCubeThere()
-    {
-        GetComponent<MeshRenderer>().enabled = true;
-        timer += Time.deltaTime;
-        if (timer <= 1.0f)
-        {
-            transform.rotation = Dispenser.transform.rotation;
-            transform.position = Dispenser.transform.position;
-        }
-        else
-        {
-            timer = 0;
-            startCubeStasis = false;
-        }
-        
+        transform.parent = null;
+        player.GetComponent<NewGrabbing>().DropObject();
     }
 
     public void Respawn()
     {
-        Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
-        StartCoroutine(RespawnDelay());
-        OoB = true;
         if (newCube)
         {
             Destroy(gameObject);
