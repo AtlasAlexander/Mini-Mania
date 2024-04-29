@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class OptionsSettings : MonoBehaviour
 {
     public GameObject player;
-    FirstPersonController fpc;
+    [SerializeField] FirstPersonController fpc;
     AimAssist aimAssist;
 
     GameObject radio;
