@@ -94,10 +94,13 @@ public class FmodAudioManager : MonoBehaviour
 
 
         }
+        else if (sceneName.Contains("Main Scene"))
+        {
+            Invoke("ToggleAllRadios", 1f);
+        }
         else
         {
             Radios = FindObjectsOfType<FmodMusicManager>();
-            Invoke("ToggleAllRadios", 1f);
             player = FindObjectOfType<FirstPersonController>().gameObject;
             controller = player.GetComponent<FirstPersonController>();
             
