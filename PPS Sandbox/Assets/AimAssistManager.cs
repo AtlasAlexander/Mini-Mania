@@ -37,8 +37,10 @@ public class AimAssistManager : MonoBehaviour
         }
         if(!AssistOn)
         {
-            fpc.mouseLookSpeedX = PlayerPrefs.GetFloat("XMouseSensitivity");
-            fpc.mouseLookSpeedY = PlayerPrefs.GetFloat("YMouseSensitivity");
+            if(PlayerPrefs.HasKey("XMouseSensitivity"))
+                fpc.mouseLookSpeedX = PlayerPrefs.GetFloat("XMouseSensitivity");
+            if( PlayerPrefs.HasKey("YMouseSensitivity"))
+                fpc.mouseLookSpeedY = PlayerPrefs.GetFloat("YMouseSensitivity");
         }
     }
 }

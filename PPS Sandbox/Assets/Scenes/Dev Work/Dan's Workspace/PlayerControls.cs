@@ -586,6 +586,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""eb4339d4-6d50-4ac5-bf70-97cada5700ad"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e5b38c94-7b74-48c1-9e21-8bff0c314f75"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
