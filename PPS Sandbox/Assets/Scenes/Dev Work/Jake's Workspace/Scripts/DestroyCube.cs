@@ -6,6 +6,7 @@ public class DestroyCube : MonoBehaviour
 {
     public GameObject Dispenser;
     public GameObject AssignedRoom;
+    public FastRes fastRes;
 
     public GameObject player;
 
@@ -17,18 +18,13 @@ public class DestroyCube : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        fastRes = gameObject.GetComponent<FastRes>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Goop")
         {
-            Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
-            StartCoroutine(RespawnDelay());
-            OoB = true;
-            if (newCube)
-            {
-                Destroy(gameObject);
-            }
+            Respawn();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -97,5 +93,16 @@ public class DestroyCube : MonoBehaviour
             startCubeStasis = false;
         }
         
+    }
+
+    public void Respawn()
+    {
+        Dispenser.GetComponent<CubeVomit>().particleTriggerEvent();
+        StartCoroutine(RespawnDelay());
+        OoB = true;
+        if (newCube)
+        {
+            Destroy(gameObject);
+        }
     }
 }
