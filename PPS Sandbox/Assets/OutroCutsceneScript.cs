@@ -16,5 +16,6 @@ public class OutroCutsceneScript : MonoBehaviour
     public void EnableEvents()
     {
         eventSystem.SetActive(true);
+        Cursor.visible = true;
     }
 }
