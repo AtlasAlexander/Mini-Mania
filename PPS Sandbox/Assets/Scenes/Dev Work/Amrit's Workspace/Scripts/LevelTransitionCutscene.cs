@@ -21,6 +21,8 @@ public class LevelTransitionCutscene : MonoBehaviour
     private bool pickup;
     private bool audioPlaying;
 
+    public Animator fadeAnimator;
+
     private GameObject player;
     private Camera playerCamera;
     private GameObject playerWeapons;
@@ -130,6 +132,11 @@ public class LevelTransitionCutscene : MonoBehaviour
 
             playerCamera.transform.SetPositionAndRotation(Vector3.Lerp(playerCamera.transform.position, grandpaHandPos.transform.position, 0.5f * Time.deltaTime),
             Quaternion.Lerp(playerCamera.transform.rotation, grandpaHandPos.transform.rotation, 0.5f * Time.deltaTime));
+            
+            if (SceneManager.GetActiveScene().buildIndex == 6)
+            { 
+                fadeAnimator.SetBool("LastFadeBool", true);
+            }
 
             /*
                         player.transform.parent = gameObject.transform;
