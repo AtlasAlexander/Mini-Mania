@@ -29,13 +29,13 @@ public class OptionsSettings : MonoBehaviour
         aimAssist = FindObjectOfType<AimAssist>();
         radio = GameObject.Find("Radio");
         //musicAudioSource = radio.GetComponent<AudioSource>();
-/*        if(fpc != null)
-        {
-            xLookSpeedMouse = fpc.mouseLookSpeedX.ToString();
-            yLookSpeedMouse = fpc.mouseLookSpeedY.ToString();
-            xLookSpeedCont = fpc.controllerLookSpeedX.ToString();
-            yLookSpeedCont = fpc.controllerLookSpeedY.ToString();
-        }*/
+        /*        if(fpc != null)
+                {
+                    xLookSpeedMouse = fpc.mouseLookSpeedX.ToString();
+                    yLookSpeedMouse = fpc.mouseLookSpeedY.ToString();
+                    xLookSpeedCont = fpc.controllerLookSpeedX.ToString();
+                    yLookSpeedCont = fpc.controllerLookSpeedY.ToString();
+                }*/
     }
 
     public void InvertLook(bool tickOn)
