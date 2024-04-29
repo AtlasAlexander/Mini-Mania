@@ -88,7 +88,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -224,6 +224,46 @@ PrefabInstance:
       propertyPath: CollisionModule.enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.20191048
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.20191048
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799903135417794541, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 7091642594149809792, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
         type: 3}
       propertyPath: m_Name
@@ -231,9 +271,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7447477861346955754, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447477861346955754, guid: b6d4542dd1b8ea34791fbb3b46d8c810,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7a308f4e867cb246af707103c1e9dad, type: 2}
+      objectReference: {fileID: 2100000, guid: 7b0fd311afc9b0f4f9e088992166dee5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
