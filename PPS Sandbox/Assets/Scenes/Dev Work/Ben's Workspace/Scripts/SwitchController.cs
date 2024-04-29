@@ -14,6 +14,7 @@ public class SwitchController : MonoBehaviour
     [SerializeField] bool TriggerLasersOn = false;
     [SerializeField] bool invertedSound = false;
     [SerializeField] int laserVolume = 10;
+    [SerializeField] bool soundOverride = false;
     bool doorOpen = false;
     int ObjOnSwitch = 0;
     private bool buttonClicked = false;
@@ -53,7 +54,11 @@ public class SwitchController : MonoBehaviour
 
             if (buttonClicked == false)
             {
-                FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
+                if (!soundOverride)
+                {
+                    FindObjectOfType<FmodAudioManager>().QuickPlaySound("buttonClick", gameObject);
+                }
+                
                 if(noiseTimer > 0.4f)
                 {
                     FindObjectOfType<FmodAudioManager>().QuickPlaySound("openDoor", DoorsToOpen[0]);
