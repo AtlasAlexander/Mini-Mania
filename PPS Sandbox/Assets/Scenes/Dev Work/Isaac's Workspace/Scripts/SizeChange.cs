@@ -16,6 +16,8 @@ public class SizeChange : MonoBehaviour
     [SerializeField] public bool shrunk = false;
     [SerializeField] private bool canBePickedUp = true;
 
+    Outline outline;
+
     public bool startSmall;
     public bool isChangingSize;
 
@@ -26,6 +28,7 @@ public class SizeChange : MonoBehaviour
 
     public void Awake()
     {
+        outline = GetComponent<Outline>();
         growSoundLimiter = 0f;
         player = GameObject.Find("Player");
         if (player != null)
@@ -87,6 +90,7 @@ public class SizeChange : MonoBehaviour
                 if (currentSize != smallestSize)
                 {
                     gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 7f * forceMultiplier);
+                    outline.enabled = false;
                 }
                 else
                 {
@@ -152,6 +156,7 @@ public class SizeChange : MonoBehaviour
                 Vector3 upForce = new Vector3(Random.Range(-0.90f, 0.90f), 1f, Random.Range(-0.90f, 0.90f));
                 if (currentSize != maxSize) gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 7.77f * forceMultiplier);
                 else gameObject.GetComponent<Rigidbody>().AddRelativeForce(upForce * 10f * forceMultiplier);
+                outline.enabled = false;
             }
         }
 
